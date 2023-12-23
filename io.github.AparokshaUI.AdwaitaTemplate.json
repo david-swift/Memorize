@@ -1,0 +1,57 @@
+{
+  "app-id": "io.github.AparokshaUI.AdwaitaTemplate",
+  "runtime": "org.gnome.Platform",
+  "runtime-version": "45",
+  "sdk": "org.gnome.Sdk",
+  "sdk-extensions": [
+    "org.freedesktop.Sdk.Extension.swift"
+  ],
+  "command": "AdwaitaTemplate",
+  "finish-args": [
+    "--share=network",
+    "--share=ipc",
+    "--socket=fallback-x11",
+    "--device=dri",
+    "--socket=wayland"
+  ],
+  "build-options": {
+    "append-path": "/usr/lib/sdk/swift/bin",
+    "prepend-ld-library-path": "/usr/lib/sdk/swift/lib"
+  },
+  "cleanup": [
+    "/include",
+    "/lib/pkgconfig",
+    "/man",
+    "/share/doc",
+    "/share/gtk-doc",
+    "/share/man",
+    "/share/pkgconfig",
+    "/share/vala",
+    "*.la",
+    "*.a"
+  ],
+  "modules": [
+    {
+      "name": "AdwaitaTemplate",
+      "builddir": true,
+      "buildsystem": "simple",
+      "sources": [
+        {
+          "type": "git",
+          "url": "https://github.com/AparokshaUI/AdwaitaTemplate",
+          "branch": "main"
+        }
+      ],
+      "build-commands": [
+        "swift build -c release --static-swift-stdlib",
+        "rm -r -f /app/bin",
+        "mkdir /app/bin",
+        "cp .build/release/AdwaitaTemplate /app/bin",
+        "install -Dm644 data/io.github.AparokshaUI.AdwaitaTemplate.metainfo.xml $DESTDIR/app/share/metainfo/io.github.AparokshaUI.AdwaitaTemplate.metainfo.xml",
+        "install -Dm644 data/io.github.AparokshaUI.AdwaitaTemplate.desktop $DESTDIR/app/share/applications/io.github.AparokshaUI.AdwaitaTemplate.desktop",
+        "install -Dm644 data/icons/io.github.AparokshaUI.AdwaitaTemplate.svg $DESTDIR/app/share/icons/hicolor/scalable/apps/io.github.AparokshaUI.AdwaitaTemplate.svg",
+        "install -Dm644 data/icons/io.github.AparokshaUI.AdwaitaTemplate-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.AparokshaUI.AdwaitaTemplate-symbolic.svg"
+      ]
+    }
+  ]
+}
