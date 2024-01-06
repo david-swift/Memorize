@@ -1,0 +1,2 @@
+swiftlint:
+	@swiftlint --autocorrect

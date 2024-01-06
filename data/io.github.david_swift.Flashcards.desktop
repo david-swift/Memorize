@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+
+Name=Flashcards
+Comment=Study flashcards
+Categories=Education;GNOME;
+
+Icon=io.github.david_swift.Flashcards
+Exec=Flashcards
+Terminal=false

@@ -1,16 +1,19 @@
 // swift-tools-version: 5.8
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+//
+//  Package.swift
+//  Flashcards
+//
 
 import PackageDescription
 
 let package = Package(
-    name: "Adwaita Template",
+    name: "Flashcards",
     dependencies: [
-        .package(url: "https://github.com/AparokshaUI/Adwaita", from: "0.1.5")
+        .package(url: "https://github.com/AparokshaUI/Adwaita", from: "0.1.9")
     ],
     targets: [
         .executableTarget(
-            name: "AdwaitaTemplate",
+            name: "Flashcards",
             dependencies: [
                 .product(name: "Adwaita", package: "Adwaita")
             ],
