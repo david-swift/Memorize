@@ -4,7 +4,6 @@
 //
 
 import Adwaita
-import Libadwaita
 
 struct TestView: View {
 
@@ -53,7 +52,7 @@ struct TestView: View {
 
     var generalSection: View {
         Form {
-            ComboRow("Answer With", selection: $set.answerSide, values: Flashcard.Side.allCases)
+            SwitchRow("Answer With Back", isOn: $set.answerWithBack)
             ActionRow("Testing \(finalNumberOfQuestions) of \(set.flashcards.count) Flashcards")
                 .suffix {
                     Button("Start Test") {
@@ -67,7 +66,7 @@ struct TestView: View {
 
     @ViewBuilder var test: Body {
         FormSection("Solve Test") {
-            Container(set.test) { id in
+            ForEach(set.test) { id in
                 if let index = set.studyFlashcards.firstIndex(where: { $0.id == id }) {
                     FlashcardTestSection(
                         flashcard: .init {
@@ -77,8 +76,6 @@ struct TestView: View {
                         }
                     )
                 }
-            } container: {
-                Box(horizontal: false)
             }
         }
         .padding(20)

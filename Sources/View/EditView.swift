@@ -4,7 +4,6 @@
 //
 
 import Adwaita
-import Libadwaita
 
 struct EditView: View {
 
@@ -32,7 +31,7 @@ struct EditView: View {
     }
 
     var flashcards: View {
-        Container(.init(set.flashcards.indices)) { index in
+        ForEach(.init(set.flashcards.indices).reversed()) { index in
             Form {
                 front(index: index)
                 back(index: index)
@@ -45,8 +44,6 @@ struct EditView: View {
                 .style("flat")
             }
             .padding()
-        } container: {
-            Box(horizontal: false)
         }
         .padding()
     }

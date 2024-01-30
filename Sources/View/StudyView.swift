@@ -67,7 +67,7 @@ struct StudyView: View {
     }
 
     var sideSwitchRow: View {
-        ComboRow("Answer With", selection: $set.answerSide, values: Flashcard.Side.allCases)
+        SwitchRow("Answer With Back", isOn: $set.answerWithBack)
     }
 
     var entryButtons: View {

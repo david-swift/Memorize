@@ -4,7 +4,6 @@
 //
 
 import Adwaita
-import Libadwaita
 
 struct SetOverview: View {
 
@@ -12,7 +11,6 @@ struct SetOverview: View {
     @Binding var set: FlashcardsSet
     var app: GTUIApp
     var window: GTUIWindow
-    var deleteSet: (String) -> Void
 
     var view: Body {
         ViewStack(element: set) { _ in
@@ -71,24 +69,7 @@ struct SetOverview: View {
     }
 
     func showDeleteDialog() {
-        let dialog = MessageDialog(
-            parent: window,
-            heading: "Delete Set?",
-            body: "There is no undo. The flashcards will be lost."
-        )
-        .response(
-            id: "cancel",
-            label: "Cancel",
-            type: .closeResponse
-        ) { }
-        .response(
-            id: "delete",
-            label: "Delete",
-            appearance: .destructive
-        ) {
-            deleteSet(set.id)
-        }
-        dialog.show()
+        app.addWindow("delete-\(set.id)", parent: window)
     }
 
 }

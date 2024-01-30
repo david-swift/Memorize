@@ -13,6 +13,15 @@ struct FlashcardsSet: Identifiable, Codable {
     var test: [String] = []
     var answerSide: Flashcard.Side = .back
 
+    var answerWithBack: Bool {
+        get {
+            answerSide == .back
+        }
+        set {
+            answerSide = newValue ? .back : .front
+        }
+    }
+
     var studyFlashcards: [Flashcard] {
         get {
             if answerSide == .back {

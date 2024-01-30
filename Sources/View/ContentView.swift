@@ -18,7 +18,7 @@ struct ContentView: View {
     var window: GTUIApplicationWindow
 
     var view: Body {
-        OverlaySplitView(visible: sidebarVisible) {
+        OverlaySplitView(visible: $sidebarVisible) {
             sidebar
         } content: {
             content
@@ -62,10 +62,7 @@ struct ContentView: View {
             let binding = Binding<FlashcardsSet> { sets[safe: index] ?? .init() } set: { sets[safe: index] = $0 }
             switch flashcardsView {
             case .overview:
-                SetOverview(set: binding, app: app, window: window) { id in
-                    sets = sets.filter { $0.id != id }
-                    selectedSet = sets[safe: index]?.id ?? sets.last?.id ?? ""
-                }
+                SetOverview(set: binding, app: app, window: window)
             case .study:
                 ViewStack(element: set) { _ in
                     StudyView(set: binding)
@@ -73,6 +70,13 @@ struct ContentView: View {
             case .test:
                 TestView(set: binding)
             }
+        } else if !sets.isEmpty {
+            StatusPage(
+                "No Selection",
+                icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
+                description: "Select a set in the sidebar."
+            )
+            .centerMinSize()
         } else {
             StatusPage(
                 "No Sets",
