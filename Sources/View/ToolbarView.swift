@@ -39,6 +39,7 @@ struct ToolbarView: View {
                     }
                 }
             }
+            .primary()
         }
         .headerBarTitle {
             Text("Sets")
