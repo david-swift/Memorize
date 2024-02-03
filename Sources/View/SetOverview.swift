@@ -31,14 +31,20 @@ struct SetOverview: View {
             HeaderBar(titleButtons: false) {
                 ViewStack(element: set) { _ in
                     Button("Delete Set", icon: .default(icon: .userTrash)) {
-                        showDeleteDialog()
+                        app.addWindow("delete-\(set.id)", parent: window)
                     }
                 }
             } end: {
-                Button("Done") {
-                    editMode = false
+                HStack {
+                    Button("Export") {
+                        app.addWindow("export-\(set.id)", parent: window)
+                    }
+                    .padding(10, .horizontal)
+                    Button("Done") {
+                        editMode = false
+                    }
+                    .style("suggested-action")
                 }
-                .style("suggested-action")
             }
             .headerBarTitle { }
         }
@@ -66,10 +72,6 @@ struct SetOverview: View {
             .transition(.crossfade)
         }
         .centerMinSize()
-    }
-
-    func showDeleteDialog() {
-        app.addWindow("delete-\(set.id)", parent: window)
     }
 
 }

@@ -26,20 +26,31 @@ struct Flashcards: App {
                 .website(.init(string: "https://github.com/david-swift/Flashcards"))
                 .issues(.init(string: "https://github.com/david-swift/Flashcards/issues"))
             for (index, set) in sets.enumerated() {
+                // Import flashcards and add to a set.
                 Window(id: "import-\(set.id)", open: 0) { window in
-                    ImportView(set: .init {
-                        set
-                    } set: { newValue in
-                        sets[safe: index] = newValue
-                    }, window: window)
+                    ImportView(
+                        set: .init { set } set: { sets[safe: index] = $0 },
+                        window: window
+                    )
                 }
                 .title("Import Flashcards")
                 .defaultSize(width: 500, height: 500)
                 .keyboardShortcut("Escape") { $0.close() }
+
+                // Export a set.
+                Window(id: "export-\(set.id)", open: 0) { window in
+                    ExportView(
+                        set: .init { set } set: { sets[safe: index] = $0 },
+                        window: window
+                    )
+                }
+                .title("Export Set \"\(set.name)\"")
+                .defaultSize(width: 500, height: 500)
+                .keyboardShortcut("Escape") { $0.close() }
+
+                // Delete a set.
                 Window(id: "delete-\(set.id)", open: 0) { window in
-                    DeleteView(set: set, window: window) {
-                        sets = sets.filter { $0.id != set.id }
-                    }
+                    DeleteView(set: set, window: window) { sets = sets.filter { $0.id != set.id } }
                 }
                 .defaultSize(width: 450, height: 350)
                 .resizable(false)

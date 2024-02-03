@@ -28,10 +28,14 @@ You can easily import existing Quizlet sets.
 Create a new set using the `+` button in the sidebar. Press on the pen icon in order to edit the set's title
 and content, or to delete the set.
 
+### Import
+
 ![Import Quizlet Set](data/tutorials/Import.png)
 
 Click on the button with the download icon next to `Add Flashcard` if you want to import a Quizlet set.
 Follow the tutorial [here](data/tutorials/Import.mp4).
+
+### Study
 
 ![Study Set](data/tutorials/Study.png)
 
@@ -41,10 +45,18 @@ If your answer is right, the difficulty score decreases, otherwise, it increases
 When a card reaches the score of zero, it won't appear in this round anymore.
 You can always restart the study mode.
 
+### Test
+
 ![Test Set](data/tutorials/Test.png)
 
 A test is one page containing a specified number of random flashcards.
 Type in your answers and scroll down to correct and see your score. Correct your mistakes.
+
+### Export
+
+![Export Set](data/tutorials/Export.png)
+
+In the bottom toolbar of the view for editing a set, find the `Export` button in order to export the set.
 
 ## Thanks
 
