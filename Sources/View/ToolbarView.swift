@@ -11,6 +11,7 @@ struct ToolbarView: View {
     @Binding var flashcardsView: FlashcardsView
     @Binding var sets: [FlashcardsSet]
     @Binding var selectedSet: String
+    @Binding var filter: String?
     var app: GTUIApp
     var window: GTUIApplicationWindow
 
@@ -31,14 +32,7 @@ struct ToolbarView: View {
                     window.close()
                 }
                 .keyboardShortcut("w".ctrl())
-                Submenu("View") {
-                    for (index, view) in FlashcardsView.allCases.enumerated() {
-                        MenuButton(view.title) {
-                            flashcardsView = view
-                        }
-                        .keyboardShortcut("\(index + 1)".alt())
-                    }
-                }
+                viewMenu
                 MenuSection {
                     MenuButton("About", window: false) {
                         app.addWindow("about", parent: window)
@@ -62,6 +56,27 @@ struct ToolbarView: View {
                     .wideDesign()
                     .transition(.crossfade)
             }
+        }
+    }
+
+    var viewMenu: MenuSection {
+        .init {
+            Submenu("View") {
+                for (index, view) in FlashcardsView.allCases.enumerated() {
+                    MenuButton(view.title) {
+                        flashcardsView = view
+                    }
+                    .keyboardShortcut("\(index + 1)".alt())
+                }
+            }
+            MenuButton("Filter") {
+                if filter != nil {
+                    filter = nil
+                } else {
+                    filter = ""
+                }
+            }
+            .keyboardShortcut("f".ctrl())
         }
     }
 

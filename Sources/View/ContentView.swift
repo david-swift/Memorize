@@ -4,6 +4,7 @@
 //
 
 import Adwaita
+import CAdw
 import Foundation
 
 struct ContentView: View {
@@ -14,6 +15,7 @@ struct ContentView: View {
     @State private var sidebarVisible = true
     @State("flashcards-view")
     private var flashcardsView: FlashcardsView = .overview
+    @State private var filter: String?
     var app: GTUIApp
     var window: GTUIApplicationWindow
 
@@ -28,6 +30,7 @@ struct ContentView: View {
                         flashcardsView: $flashcardsView,
                         sets: $sets,
                         selectedSet: $selectedSet,
+                        filter: $filter,
                         app: app,
                         window: window
                     ).content
@@ -37,7 +40,10 @@ struct ContentView: View {
 
     var sidebar: View {
         ScrollView {
-            List(sets, selection: $selectedSet) { set in
+            List(
+                sets.map { ($0, $0.score(filter)) }.sorted { $0.1 > $1.1 }.filter { $0.1 != 0 }.map { $0.0 },
+                selection: $selectedSet
+            ) { set in
                 Text(set.name)
                     .padding()
                     .halign(.start)
@@ -51,9 +57,25 @@ struct ContentView: View {
                 flashcardsView: $flashcardsView,
                 sets: $sets,
                 selectedSet: $selectedSet,
+                filter: $filter,
                 app: app,
                 window: window
             )
+        }
+        .bottomToolbar(visible: filter != nil) {
+            Form {
+                EntryRow("Filter", text: .init { filter ?? "" } set: { filter = $0 })
+                    .suffix {
+                        VStack {
+                            Button(icon: .default(icon: .windowClose)) {
+                                filter = nil
+                            }
+                            .style("flat")
+                        }
+                        .valign(.center)
+                    }
+            }
+            .padding(10)
         }
     }
 

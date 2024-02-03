@@ -9,9 +9,21 @@ struct FlashcardsSet: Identifiable, Codable {
 
     let id: String
     var name: String
+    // swiftlint:disable discouraged_optional_collection
+    var keywords: [String]?
+    // swiftlint:enable discouraged_optional_collection
     var flashcards: [Flashcard]
     var test: [String] = []
     var answerSide: Flashcard.Side = .back
+
+    var nonOptionalKeywords: [String] {
+        get {
+            keywords ?? []
+        }
+        set {
+            keywords = newValue
+        }
+    }
 
     var answerWithBack: Bool {
         get {
@@ -99,6 +111,31 @@ struct FlashcardsSet: Identifiable, Codable {
         for index in flashcards.indices {
             flashcards[safe: index]?.gameData.difficulty = difficulty
         }
+    }
+
+    func score(_ filter: String?) -> Int {
+        var totalScore = 1
+        if let filter, !filter.isEmpty {
+            totalScore = search(filter, in: name) ? 5 : 0
+            for keyword in nonOptionalKeywords {
+                totalScore += search(filter, in: keyword) ? 1 : 0
+            }
+        }
+        return totalScore
+    }
+
+    func search(_ search: String, in text: String) -> Bool {
+        guard !search.isEmpty else {
+            return true
+        }
+        var remainder = search.lowercased()[...]
+        for char in text.lowercased() where char == remainder[remainder.startIndex] {
+            remainder.removeFirst()
+            if remainder.isEmpty {
+                return true
+            }
+        }
+        return false
     }
 
 }

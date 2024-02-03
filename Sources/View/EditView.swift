@@ -8,6 +8,7 @@ import Adwaita
 struct EditView: View {
 
     @Binding var set: FlashcardsSet
+    @State private var expanded = false
     var app: GTUIApp
     var window: GTUIWindow
 
@@ -26,6 +27,7 @@ struct EditView: View {
     var title: View {
         Form {
             EntryRow("Title", text: $set.name)
+            KeywordsRow(keywords: $set.nonOptionalKeywords)
         }
         .padding(20)
     }
