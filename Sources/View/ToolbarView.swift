@@ -80,7 +80,7 @@ struct ToolbarView: View {
                 }
             }
             if flashcardsView == .overview {
-                MenuButton("Filter") {
+                MenuButton("Filter...") {
                     if filter != nil {
                         filter = nil
                     } else {

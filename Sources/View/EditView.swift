@@ -63,12 +63,12 @@ struct EditView: View {
             KeywordsRow(
                 keywords: $set.tags.nonOptional,
                 title: "Tags",
-                subtitle: "Organize and study flashcards in groups.",
+                subtitle: "Organize and study flashcards in groups",
                 element: "Tag"
             )
             SwitchRow()
                 .title("Star")
-                .subtitle("A special tag that can be set while studying.")
+                .subtitle("A special tag that can be set while studying")
                 .active(
                     .init {
                         set.tags.nonOptional.contains("Star")

@@ -10,7 +10,7 @@ struct KeywordsRow: View {
     @Binding var keywords: [String]
     @State private var expanded = false
     var title = "Keywords"
-    var subtitle = "Keywords simplify the search for sets."
+    var subtitle = "Keywords simplify the search for sets"
     var element = "Keyword"
 
     var view: Body {

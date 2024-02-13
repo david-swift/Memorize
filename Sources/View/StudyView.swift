@@ -55,7 +55,7 @@ struct StudyView: View {
         Form {
             sideSwitchRow
             SpinRow("Initial Difficulty", value: $initialDifficulty, min: 1, max: 20)
-                .subtitle("Set the minimum number of repetitions per flashcard.")
+                .subtitle("Set the minimum number of repetitions per flashcard")
             ActionRow("Studying \(set.studyFlashcards.count) of \(set.flashcards.count) Flashcards")
                 .suffix {
                     Button("Start Study Mode") {
