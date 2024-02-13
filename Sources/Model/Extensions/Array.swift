@@ -9,7 +9,7 @@ extension Array where Element == FlashcardsSet {
     var keywords: [String] {
         var keywords: Set<String> = []
         for set in self {
-            keywords.formUnion(set.nonOptionalKeywords)
+            keywords.formUnion(set.keywords.nonOptional)
         }
         return .init(keywords)
     }

@@ -1,5 +1,5 @@
 //
-//  KeyboardsRow.swift
+//  KeywordsRow.swift
 //  Flashcards
 //
 
@@ -9,10 +9,14 @@ struct KeywordsRow: View {
 
     @Binding var keywords: [String]
     @State private var expanded = false
+    var title = "Keywords"
+    var subtitle = "Keywords simplify the search for sets."
+    var element = "Keyword"
 
     var view: Body {
         ExpanderRow()
-            .title("Keywords")
+            .title(title)
+            .subtitle(subtitle)
             .suffix {
                 VStack {
                     Button(icon: .default(icon: .listAdd)) {
@@ -24,9 +28,9 @@ struct KeywordsRow: View {
                 .valign(.center)
             }
             .rows {
-                List(.init(keywords.indices)) { index in
+                List(.init(keywords.indices), selection: nil) { index in
                     let keyword = keywords[safe: index] ?? ""
-                    EntryRow("Keyword", text: .init {
+                    EntryRow(element, text: .init {
                         keyword
                     } set: { newValue in
                         keywords[safe: index] = newValue

@@ -12,21 +12,20 @@ struct ContentView: View {
     @Binding var sets: [FlashcardsSet]
     @State("selected-set")
     private var selectedSet = ""
-    @State private var sidebarVisible = true
     @State("flashcards-view")
     private var flashcardsView: FlashcardsView = .overview
     @State private var filter: String?
+    @State private var editMode = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
 
     var view: Body {
-        OverlaySplitView(visible: $sidebarVisible) {
+        OverlaySplitView(visible: .constant(flashcardsView == .overview && !editMode)) {
             sidebar
         } content: {
             content
-                .topToolbar {
+                .topToolbar(visible: !editMode || flashcardsView != .overview) {
                     ToolbarView(
-                        sidebarVisible: $sidebarVisible,
                         flashcardsView: $flashcardsView,
                         sets: $sets,
                         selectedSet: $selectedSet,
@@ -53,7 +52,6 @@ struct ContentView: View {
         .hexpand()
         .topToolbar {
             ToolbarView(
-                sidebarVisible: $sidebarVisible,
                 flashcardsView: $flashcardsView,
                 sets: $sets,
                 selectedSet: $selectedSet,
@@ -84,7 +82,7 @@ struct ContentView: View {
             let binding = Binding<FlashcardsSet> { sets[safe: index] ?? .init() } set: { sets[safe: index] = $0 }
             switch flashcardsView {
             case .overview:
-                SetOverview(set: binding, app: app, window: window)
+                SetOverview(set: binding, editMode: $editMode, app: app, window: window)
             case .study:
                 ViewStack(element: set) { _ in
                     StudyView(set: binding)

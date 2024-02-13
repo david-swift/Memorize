@@ -8,13 +8,7 @@ import Adwaita
 struct TestView: View {
 
     @Binding var set: FlashcardsSet
-
-    @State private var allFlashcards = true
-    @State private var numberOfQuestions = 1
-
-    var finalNumberOfQuestions: Int {
-        (allFlashcards || numberOfQuestions > set.flashcards.count) ? set.flashcards.count : numberOfQuestions
-    }
+    @State private var roundIndex = 0
 
     var view: Body {
         ViewStack(element: set) { set in
@@ -22,38 +16,44 @@ struct TestView: View {
                 Text("No flashcards available.")
             } else if set.test.isEmpty {
                 configuration
-                    .formWidth()
+                    .valign(.center)
             } else {
-                ScrollView {
-                    test
-                        .formWidth()
+                ViewStack(id: roundIndex) { _ in
+                    ScrollView {
+                        test
+                            .formWidth()
+                    }
+                    .vexpand()
                 }
-                .vexpand()
             }
         }
     }
 
-    var configuration: View {
-        FormSection("Configure Test") {
-            testConfiguration
-            generalSection
-        }
-        .padding(20)
-    }
-
-    var testConfiguration: View {
+    @ViewBuilder var configuration: View {
+        TagFilterForm(
+            allFlashcards: $set.testAllFlashcards.nonOptional,
+            selectedTags: $set.testTags.nonOptional,
+            tags: set.tags.nonOptional
+        )
         Form {
-            SwitchRow("All Flashcards", isOn: $allFlashcards)
-            SpinRow("Number of Questions", value: $numberOfQuestions, min: 1, max: set.flashcards.count)
-                .insensitive(allFlashcards)
+            SpinRow(
+                "Number of Questions",
+                value: $set.numberOfQuestions.nonOptional,
+                min: 1,
+                max: set.testFlashcards.count
+            )
         }
-        .padding(20, .bottom)
+        .padding(20, .horizontal.add(.top))
+        .formWidth()
+        generalSection
+            .padding(20)
+            .formWidth()
     }
 
     var generalSection: View {
         Form {
             SwitchRow("Answer With Back", isOn: $set.answerWithBack)
-            ActionRow("Testing \(finalNumberOfQuestions) of \(set.flashcards.count) Flashcards")
+            ActionRow("Testing \(set.numberOfQuestions.nonOptional) of \(set.flashcards.count) Flashcards")
                 .suffix {
                     Button("Start Test") {
                         startTest()
@@ -67,12 +67,12 @@ struct TestView: View {
     @ViewBuilder var test: Body {
         FormSection("Solve Test") {
             ForEach(set.test) { id in
-                if let index = set.studyFlashcards.firstIndex(where: { $0.id == id }) {
+                if let index = set.testFlashcards.firstIndex(where: { $0.id == id }) {
                     FlashcardTestSection(
                         flashcard: .init {
-                            set.studyFlashcards[safe: index] ?? .init()
+                            set.testFlashcards[safe: index] ?? .init()
                         } set: { newValue in
-                            set.studyFlashcards[safe: index] = newValue
+                            set.testFlashcards[safe: index] = newValue
                         }
                     )
                 }
@@ -86,7 +86,7 @@ struct TestView: View {
     var score: View {
         Form {
             if let score = set.score {
-                if score == finalNumberOfQuestions {
+                if score == set.numberOfQuestions {
                     scoreRow
                         .subtitle("Full Score!")
                 } else {
@@ -98,7 +98,7 @@ struct TestView: View {
                     .subtitle("-")
             }
             ActionRow("Maximum Score")
-                .subtitle("\(finalNumberOfQuestions) Point\(finalNumberOfQuestions == 1 ? "" : "s")")
+                .subtitle("\(set.numberOfQuestions ?? 1) Point\(set.numberOfQuestions.nonOptional == 1 ? "" : "s")")
         }
         .modifyContent(Adwaita.ActionRow.self) { $0.style("property") }
         .section("Score")
@@ -123,9 +123,10 @@ struct TestView: View {
     }
 
     func startTest() {
+        roundIndex += 1
         var randomElements: Set<String> = []
-        while randomElements.count < finalNumberOfQuestions {
-            if let random = set.flashcards[safe: Int.random(in: 0..<set.flashcards.count)] {
+        while randomElements.count < set.numberOfQuestions.nonOptional {
+            if let random = set.testFlashcards.randomElement() {
                 randomElements.insert(random.id)
             }
         }

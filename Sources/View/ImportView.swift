@@ -57,7 +57,7 @@ struct ImportView: View {
 
     var preview: View {
         ScrollView {
-            CarouselView(set: previewSet)
+            CarouselView(set: .constant(previewSet))
         }
         .vexpand()
     }

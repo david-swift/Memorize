@@ -13,7 +13,7 @@ struct DeleteView: View {
 
     var view: Body {
         ScrollView {
-            CarouselView(set: set)
+            CarouselView(set: .constant(set))
         }
         .vexpand()
         .topToolbar {

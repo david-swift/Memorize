@@ -8,7 +8,7 @@ import Adwaita
 struct CarouselView: View {
 
     @State private var answerCards: [String] = []
-    var set: FlashcardsSet
+    @Binding var set: FlashcardsSet
 
     var view: Body {
         Carousel(set.flashcards) { flashcard in
@@ -24,6 +24,9 @@ struct CarouselView: View {
                     }
                 }
                 .frame(maxSize: 350)
+                .overlay {
+                    starOverlay(flashcard: flashcard)
+                }
         }
         .longSwipes()
     }
@@ -49,6 +52,28 @@ struct CarouselView: View {
                     .padding()
             }
         }
+    }
+
+    func starOverlay(flashcard: Flashcard) -> View {
+        VStack {
+            HStack {
+                TagsButton(
+                    selectedTags: .init {
+                        (set.flashcards.first { $0.id == flashcard.id }?.tags).nonOptional
+                    } set: { newValue in
+                        set.flashcards[
+                            safe: set.flashcards.firstIndex { $0.id == flashcard.id }
+                        ]?.tags = newValue
+                    },
+                    editTags: .constant(false),
+                    tags: set.tags.nonOptional,
+                    starOnly: true
+                )
+                .padding(35, .top.add(.trailing))
+            }
+            .halign(.end)
+        }
+        .valign(.start)
     }
 
 }

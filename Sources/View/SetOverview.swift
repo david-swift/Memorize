@@ -7,8 +7,8 @@ import Adwaita
 
 struct SetOverview: View {
 
-    @State private var editMode = false
     @Binding var set: FlashcardsSet
+    @Binding var editMode: Bool
     var app: GTUIApp
     var window: GTUIWindow
 
@@ -16,37 +16,14 @@ struct SetOverview: View {
         ViewStack(element: set) { _ in
             if editMode {
                 VStack {
-                    EditView(set: $set, app: app, window: window)
+                    EditView(set: $set, editMode: $editMode, app: app, window: window)
                 }
-                .transition(.slideUp)
             } else {
                 ScrollView {
                     title
                     cards
                 }
-                .transition(.slideDown)
             }
-        }
-        .bottomToolbar(visible: editMode) {
-            HeaderBar(titleButtons: false) {
-                ViewStack(element: set) { _ in
-                    Button("Delete Set", icon: .default(icon: .userTrash)) {
-                        app.addWindow("delete-\(set.id)", parent: window)
-                    }
-                }
-            } end: {
-                HStack {
-                    Button("Export") {
-                        app.addWindow("export-\(set.id)", parent: window)
-                    }
-                    .padding(10, .horizontal)
-                    Button("Done") {
-                        editMode = false
-                    }
-                    .style("suggested-action")
-                }
-            }
-            .headerBarTitle { }
         }
     }
 
@@ -65,9 +42,9 @@ struct SetOverview: View {
     }
 
     var cards: View {
-        ViewStack(element: set) { set in
+        ViewStack(element: set) { _ in
             VStack {
-                CarouselView(set: set)
+                CarouselView(set: $set)
             }
             .transition(.crossfade)
         }

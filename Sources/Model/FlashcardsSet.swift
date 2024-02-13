@@ -11,19 +11,22 @@ struct FlashcardsSet: Identifiable, Codable {
     var name: String
     // swiftlint:disable discouraged_optional_collection
     var keywords: [String]?
+    var tags: [String]? {
+        didSet {
+            filterTags()
+        }
+    }
+    var studyTags: [String]?
+    var testTags: [String]?
     // swiftlint:enable discouraged_optional_collection
     var flashcards: [Flashcard]
     var test: [String] = []
     var answerSide: Flashcard.Side = .back
-
-    var nonOptionalKeywords: [String] {
-        get {
-            keywords ?? []
-        }
-        set {
-            keywords = newValue
-        }
-    }
+    // swiftlint:disable discouraged_optional_boolean
+    var studyAllFlashcards: Bool?
+    var testAllFlashcards: Bool?
+    // swiftlint:enable discouraged_optional_boolean
+    var numberOfQuestions: Int?
 
     var answerWithBack: Bool {
         get {
@@ -35,11 +38,24 @@ struct FlashcardsSet: Identifiable, Codable {
     }
 
     var studyFlashcards: [Flashcard] {
+        if answerSide == .back {
+            return flashcards(tags: studyAllFlashcards.nonOptional ? nil : studyTags.nonOptional)
+        } else {
+            return flashcards(tags: studyAllFlashcards.nonOptional ? nil : studyTags.nonOptional).map { flashcard in
+                var newCard = flashcard
+                newCard.front = flashcard.back
+                newCard.back = flashcard.front
+                return newCard
+            }
+        }
+    }
+
+    var testFlashcards: [Flashcard] {
         get {
             if answerSide == .back {
-                return flashcards
+                return flashcards(tags: testAllFlashcards.nonOptional ? nil : testTags.nonOptional)
             } else {
-                return flashcards.map { flashcard in
+                return flashcards(tags: testAllFlashcards.nonOptional ? nil : testTags.nonOptional).map { flashcard in
                     var newCard = flashcard
                     newCard.front = flashcard.back
                     newCard.back = flashcard.front
@@ -48,15 +64,8 @@ struct FlashcardsSet: Identifiable, Codable {
             }
         }
         set {
-            if answerSide == .back {
-                flashcards = newValue
-            } else {
-                flashcards = newValue.map { flashcard in
-                    var newCard = flashcard
-                    newCard.front = flashcard.back
-                    newCard.back = flashcard.front
-                    return newCard
-                }
+            for flashcard in newValue {
+                flashcards[safe: flashcards.firstIndex { $0.id == flashcard.id }]?.gameData = flashcard.gameData
             }
         }
     }
@@ -74,11 +83,11 @@ struct FlashcardsSet: Identifiable, Codable {
     }
 
     var filteredStudyCards: [String] {
-        flashcards.filter { $0.gameData.difficulty != 0 }.map { $0.id }
+        studyFlashcards.filter { $0.gameData.difficulty != 0 }.map { $0.id }
     }
 
     var completedCardsCount: Int {
-        flashcards.count - filteredStudyCards.count
+        studyFlashcards.count - filteredStudyCards.count
     }
 
     init(name: String = "New Set", flashcards: [Flashcard] = [
@@ -117,7 +126,7 @@ struct FlashcardsSet: Identifiable, Codable {
         var totalScore = 1
         if let filter, !filter.isEmpty {
             totalScore = search(filter, in: name) ? 5 : 0
-            for keyword in nonOptionalKeywords {
+            for keyword in keywords.nonOptional {
                 totalScore += search(filter, in: keyword) ? 1 : 0
             }
         }
@@ -137,5 +146,23 @@ struct FlashcardsSet: Identifiable, Codable {
         }
         return false
     }
+
+    mutating func filterTags() {
+        for (index, flashcard) in flashcards.enumerated() {
+            flashcards[safe: index]?.tags.nonOptional = flashcard.tags.nonOptional
+                .filter { tags.nonOptional.contains($0) }
+        }
+        studyTags.nonOptional = studyTags.nonOptional.filter { tags.nonOptional.contains($0) }
+        testTags.nonOptional = testTags.nonOptional.filter { tags.nonOptional.contains($0) }
+    }
+
+    // swiftlint:disable discouraged_optional_collection
+    func flashcards(tags: [String]?) -> [Flashcard] {
+        if let tags {
+            return flashcards.filter { $0.tags.nonOptional.contains { tags.contains($0) } }
+        }
+        return flashcards
+    }
+    // swiftlint:enable discouraged_optional_collection
 
 }

@@ -11,6 +11,9 @@ struct Flashcard: Identifiable, Codable {
     var front = ""
     var back = ""
     var gameData = GameData()
+    // swiftlint:disable discouraged_optional_collection
+    var tags: [String]?
+    // swiftlint:enable discouraged_optional_collection
 
     init(id: String? = nil, front: String = "", back: String = "") {
         self.id = id ?? UUID().uuidString

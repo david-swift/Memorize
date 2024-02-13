@@ -19,9 +19,10 @@ struct StudyView: View {
 
     var view: Body {
         VStack {
-            if set.filteredStudyCards.isEmpty {
+            if set.flashcards.isEmpty {
+                Text("No flashcards available.")
+            } else if set.filteredStudyCards.isEmpty {
                 startConfiguration
-                startButton
             } else if let flashcard {
                 if solution {
                     solutionView(flashcard: flashcard)
@@ -37,7 +38,7 @@ struct StudyView: View {
         .overlay {
             VStack {
                 if !set.filteredStudyCards.isEmpty {
-                    ProgressBar(value: .init(set.completedCardsCount), total: .init(set.flashcards.count))
+                    ProgressBar(value: .init(set.completedCardsCount), total: .init(set.studyFlashcards.count))
                         .style("osd")
                 }
             }
@@ -45,25 +46,28 @@ struct StudyView: View {
         }
     }
 
-    var startConfiguration: View {
+    @ViewBuilder var startConfiguration: Body {
+        TagFilterForm(
+            allFlashcards: $set.studyAllFlashcards.nonOptional,
+            selectedTags: $set.studyTags.nonOptional,
+            tags: set.tags.nonOptional
+        )
         Form {
             sideSwitchRow
             SpinRow("Initial Difficulty", value: $initialDifficulty, min: 1, max: 20)
                 .subtitle("Set the minimum number of repetitions per flashcard.")
+            ActionRow("Studying \(set.studyFlashcards.count) of \(set.flashcards.count) Flashcards")
+                .suffix {
+                    Button("Start Study Mode") {
+                        set.setDifficulty(initialDifficulty)
+                        continueStudying()
+                    }
+                    .style("suggested-action")
+                    .verticalCenter()
+                }
         }
         .padding(20)
         .formWidth()
-    }
-
-    var startButton: View {
-        Button("Start Study Mode") {
-            set.setDifficulty(initialDifficulty)
-            continueStudying()
-        }
-        .style("pill")
-        .style("suggested-action")
-        .padding(20)
-        .horizontalCenter()
     }
 
     var sideSwitchRow: View {
@@ -178,7 +182,7 @@ struct StudyView: View {
     }
 
     func getFlashcard(id: String) -> Flashcard? {
-        self.set.studyFlashcards.first { $0.id == id }
+        self.set.testFlashcards.first { $0.id == id }
     }
 
 }

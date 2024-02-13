@@ -7,7 +7,6 @@ import Adwaita
 
 struct ToolbarView: View {
 
-    @Binding var sidebarVisible: Bool
     @Binding var flashcardsView: FlashcardsView
     @Binding var sets: [FlashcardsSet]
     @Binding var selectedSet: String
@@ -23,23 +22,9 @@ struct ToolbarView: View {
                 selectedSet = newSet.id
             }
         } end: {
-            Menu(icon: .default(icon: .openMenu), app: app, window: window) {
-                MenuButton("New Window", window: false) {
-                    app.addWindow("main")
-                }
-                .keyboardShortcut("n".ctrl())
-                MenuButton("Close Window") {
-                    window.close()
-                }
-                .keyboardShortcut("w".ctrl())
-                viewMenu
-                MenuSection {
-                    MenuButton("About", window: false) {
-                        app.addWindow("about", parent: window)
-                    }
-                }
+            if flashcardsView == .overview {
+                menu
             }
-            .primary()
         }
         .headerBarTitle {
             Text("Sets")
@@ -48,16 +33,40 @@ struct ToolbarView: View {
     }
 
     @ViewBuilder var content: Body {
-        HeaderBar.start {
-            Toggle(icon: .default(icon: .sidebarShow), isOn: $sidebarVisible)
+        HeaderBar.end {
+            if flashcardsView != .overview {
+                menu
+            }
         }
         .headerBarTitle {
             if sets.contains(where: { $0.id == selectedSet }) {
                 ViewSwitcher(selection: $flashcardsView)
                     .wideDesign()
                     .transition(.crossfade)
+            } else {
+                []
             }
         }
+    }
+
+    var menu: View {
+        Menu(icon: .default(icon: .openMenu), app: app, window: window) {
+            MenuButton("New Window", window: false) {
+                app.addWindow("main")
+            }
+            .keyboardShortcut("n".ctrl())
+            MenuButton("Close Window") {
+                window.close()
+            }
+            .keyboardShortcut("w".ctrl())
+            viewMenu
+            MenuSection {
+                MenuButton("About", window: false) {
+                    app.addWindow("about", parent: window)
+                }
+            }
+        }
+        .primary()
     }
 
     var viewMenu: MenuSection {
@@ -70,14 +79,16 @@ struct ToolbarView: View {
                     .keyboardShortcut("\(index + 1)".alt())
                 }
             }
-            MenuButton("Filter") {
-                if filter != nil {
-                    filter = nil
-                } else {
-                    filter = ""
+            if flashcardsView == .overview {
+                MenuButton("Filter") {
+                    if filter != nil {
+                        filter = nil
+                    } else {
+                        filter = ""
+                    }
                 }
+                .keyboardShortcut("f".ctrl())
             }
-            .keyboardShortcut("f".ctrl())
         }
     }
 

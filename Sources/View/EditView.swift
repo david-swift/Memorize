@@ -8,6 +8,7 @@ import Adwaita
 struct EditView: View {
 
     @Binding var set: FlashcardsSet
+    @Binding var editMode: Bool
     @State private var expanded = false
     var app: GTUIApp
     var window: GTUIWindow
@@ -16,36 +17,88 @@ struct EditView: View {
         ScrollView {
             VStack {
                 title
+                tags
                 flashcards
                 actions
             }
             .formWidth()
         }
         .vexpand()
+        .topToolbar {
+            HeaderBar(titleButtons: false) {
+                ViewStack(element: set) { _ in
+                    HStack {
+                        Button(icon: .default(icon: .userTrash)) {
+                            app.addWindow("delete-\(set.id)", parent: window)
+                            editMode = false
+                        }
+                        Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
+                            app.addWindow("export-\(set.id)", parent: window)
+                        }
+                        .padding(10, .horizontal)
+                    }
+                }
+            } end: {
+                Button("Done") {
+                    editMode = false
+                }
+                .style("suggested-action")
+            }
+            .headerBarTitle {
+                WindowTitle(subtitle: "", title: "Edit Set")
+            }
+        }
     }
 
     var title: View {
         Form {
             EntryRow("Title", text: $set.name)
-            KeywordsRow(keywords: $set.nonOptionalKeywords)
+            KeywordsRow(keywords: $set.keywords.nonOptional)
+        }
+        .padding(20)
+    }
+
+    var tags: View {
+        Form {
+            KeywordsRow(
+                keywords: $set.tags.nonOptional,
+                title: "Tags",
+                subtitle: "Organize and study flashcards in groups.",
+                element: "Tag"
+            )
+            SwitchRow()
+                .title("Star")
+                .subtitle("A special tag that can be set while studying.")
+                .active(
+                    .init {
+                        set.tags.nonOptional.contains("Star")
+                    } set: { newValue in
+                        if newValue && !set.tags.nonOptional.contains("Star") {
+                            set.tags.nonOptional.append("Star")
+                        } else {
+                            set.tags.nonOptional = set.tags.nonOptional.filter { $0 != "Star" }
+                        }
+                    }
+                )
         }
         .padding(20)
     }
 
     var flashcards: View {
         ForEach(.init(set.flashcards.indices).reversed()) { index in
-            Form {
-                front(index: index)
-                back(index: index)
-            }
-            .section("Flashcard \(index + 1)")
-            .suffix {
-                Button("Delete", icon: .default(icon: .userTrash)) {
+            if set.flashcards[safe: index] != nil {
+                EditFlashcardView(
+                    flashcard: .init {
+                        set.flashcards[safe: index] ?? .init()
+                    } set: { newValue in
+                        set.flashcards[safe: index] = newValue
+                    },
+                    index: index,
+                    tags: set.tags.nonOptional
+                ) {
                     set.flashcards = set.flashcards.filter { $0.id != set.flashcards[safe: index]?.id }
                 }
-                .style("flat")
             }
-            .padding()
         }
         .padding()
     }
@@ -60,28 +113,6 @@ struct EditView: View {
         } secondary: {
             app.addWindow("import-\(set.id)", parent: window)
         }
-    }
-
-    func front(index: Int) -> View {
-        EntryRow(
-            "Front",
-            text: .init {
-                set.flashcards[safe: index]?.front ?? ""
-            } set: { newValue in
-                set.flashcards[safe: index]?.front = newValue
-            }
-        )
-    }
-
-    func back(index: Int) -> View {
-        EntryRow(
-            "Back",
-            text: .init {
-                set.flashcards[safe: index]?.back ?? ""
-            } set: { newValue in
-                set.flashcards[safe: index]?.back = newValue
-            }
-        )
     }
 
 }
