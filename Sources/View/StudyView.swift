@@ -65,6 +65,7 @@ struct StudyView: View {
                     .style("suggested-action")
                     .verticalCenter()
                 }
+                .insensitive(set.studyFlashcards.isEmpty)
         }
         .padding(20)
         .formWidth()

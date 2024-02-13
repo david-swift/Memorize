@@ -7,9 +7,10 @@ import Adwaita
 
 struct ExportView: View {
 
-    @Binding var set: FlashcardsSet
     @State private var termDefinitionSeparator: TermDefinitionSeparator = .tab
     @State private var rowSeparator: RowSeparator = .newLine
+    @State private var switchSides = false
+    var set: FlashcardsSet
     var window: GTUIWindow
 
     var view: Body {
@@ -27,7 +28,7 @@ struct ExportView: View {
                 )
                 SwitchRow(
                     "Switch Front and Back",
-                    isOn: .init { !set.answerWithBack } set: { set.answerWithBack = !$0 }
+                    isOn: $switchSides
                 )
             }
             .padding(20)
@@ -57,7 +58,15 @@ struct ExportView: View {
 
     var text: String {
         var text = ""
-        for flashcard in set.studyFlashcards {
+        let flashcards = set.flashcards.map { flashcard in
+            if switchSides {
+                var flashcard = flashcard
+                (flashcard.front, flashcard.back) = (flashcard.back, flashcard.front)
+                return flashcard
+            }
+            return flashcard
+        }
+        for flashcard in flashcards {
             text += flashcard.front + termDefinitionSeparator.syntax + flashcard.back + rowSeparator.syntax
         }
         text.removeLast(rowSeparator.syntax.count)

@@ -39,10 +39,7 @@ struct Flashcards: App {
 
                 // Export a set.
                 Window(id: "export-\(set.id)", open: 0) { window in
-                    ExportView(
-                        set: .init { set } set: { sets[safe: index] = $0 },
-                        window: window
-                    )
+                    ExportView(set: set, window: window)
                 }
                 .title("Export Set \"\(set.name)\"")
                 .defaultSize(width: 500, height: 500)

@@ -61,6 +61,7 @@ struct TestView: View {
                     .style("suggested-action")
                     .verticalCenter()
                 }
+                .insensitive(set.testFlashcards.isEmpty)
         }
     }
 
