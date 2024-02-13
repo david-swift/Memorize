@@ -153,10 +153,10 @@ struct StudyView: View {
     }
 
     func continueStudying() {
+        solution = false
         if let id = set.filteredStudyCards.randomElement() {
             randomID = id
         }
-        solution = false
         Task {
             input = ""
         }
@@ -172,7 +172,19 @@ struct StudyView: View {
         return Form {
             ActionRow("Solution")
                 .subtitle(solution)
-
+                .suffix {
+                    TagsButton(
+                        selectedTags: .init {
+                            (flashcard?.tags).nonOptional
+                        } set: { newValue in
+                            set.flashcards[safe: set.flashcards.firstIndex { $0.id == flashcard?.id }]?.tags = newValue
+                        },
+                        editTags: .constant(false),
+                        tags: set.tags.nonOptional,
+                        starOnly: true
+                    )
+                    .padding()
+                }
             ActionRow(correct ? "Correct!" : "Your Answer")
                 .subtitle(answer)
                 .style("property")
