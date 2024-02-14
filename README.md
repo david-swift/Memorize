@@ -5,8 +5,8 @@
 
 _Flashcards_ is a native GNOME app that stores your flashcard sets.
 It enables you to create, edit, view, and study sets.
-Use the test mode for creating a preparation exam.
-You can easily import existing Quizlet sets.
+Use the test mode to create preparation exams.
+Additionally, you can easily import existing Quizlet sets.
 
 ![Screenshot](data/tutorials/Overview.png)
 
@@ -25,14 +25,14 @@ You can easily import existing Quizlet sets.
 
 ## Usage
 
-Create a new set using the `+` button in the sidebar. Press on the pen icon in order to edit the set's title
+Create a new set using the `+` button in the sidebar. Click the pen icon to edit the set's title
 and content, or to delete the set.
 
 ### Import
 
 ![Import Quizlet Set](data/tutorials/Import.png)
 
-Click on the button with the download icon next to `Add Flashcard` if you want to import a Quizlet set.
+If you have a Quizlet set you'd like to use, click the download icon next to `Add Flashcard`.
 Follow the tutorial [here](data/tutorials/Import.mp4).
 
 ### Study
@@ -41,9 +41,9 @@ Follow the tutorial [here](data/tutorials/Import.mp4).
 
 The study mode follows a simple principle: each flashcard starts with the same initial difficulty value.
 The cards will be presented in a random order. Type in the answer and press enter.
-If your answer is right, the difficulty score decreases, otherwise, it increases by one.
-When a card reaches the score of zero, it won't appear in this round anymore.
-You can always restart the study mode.
+If correct, the difficulty score decreases, otherwise, it increases by one.
+Cards with a score of zero won't appear again in this round.
+You can restart the study mode at any time.
 
 ### Test
 
@@ -56,12 +56,12 @@ Type in your answers and scroll down to correct and see your score. Correct your
 
 ![Export Set](data/tutorials/Export.png)
 
-In the bottom toolbar of the view for editing a set, find the `Export` button in order to export the set.
+In the toolbar of the view for editing a set, find the button with a sharing icon in order to export the set.
 
 ## Thanks
 
 ### Dependencies
-- [Adwaita](https://github.com/AparokshaUI/Adwaita) licensed under the [GPL-3.0 license](https://github.com/AparokshaUI/Adwaita/blob/main/LICENSE.md)
+- [Adwaita](https://github.com/AparokshaUI/Adwaita) licensed under the [MIT License](https://github.com/AparokshaUI/Adwaita/blob/main/LICENSE.md)
 
 ### Other Thanks
 - The [contributors](Contributors.md)
