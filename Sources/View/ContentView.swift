@@ -50,6 +50,12 @@ struct ContentView: View {
             .style("navigation-sidebar")
         }
         .hexpand()
+        .topToolbar(visible: filter != nil) {
+            SearchEntry()
+                .placeholderText("Filter Sets")
+                .text(.init { filter ?? "" } set: { filter = $0 })
+                .padding(5, .horizontal.add(.bottom))
+        }
         .topToolbar {
             ToolbarView(
                 flashcardsView: $flashcardsView,
@@ -59,21 +65,6 @@ struct ContentView: View {
                 app: app,
                 window: window
             )
-        }
-        .bottomToolbar(visible: filter != nil) {
-            Form {
-                EntryRow("Filter", text: .init { filter ?? "" } set: { filter = $0 })
-                    .suffix {
-                        VStack {
-                            Button(icon: .default(icon: .windowClose)) {
-                                filter = nil
-                            }
-                            .style("flat")
-                        }
-                        .valign(.center)
-                    }
-            }
-            .padding(10)
         }
     }
 

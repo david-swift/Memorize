@@ -59,7 +59,7 @@ struct CarouselView: View {
             HStack {
                 TagsButton(
                     selectedTags: .init {
-                        (set.flashcards.first { $0.id == flashcard.id }?.tags).nonOptional
+                        flashcard.tags.nonOptional
                     } set: { newValue in
                         set.flashcards[
                             safe: set.flashcards.firstIndex { $0.id == flashcard.id }
