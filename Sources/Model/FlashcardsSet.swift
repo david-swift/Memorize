@@ -71,12 +71,12 @@ struct FlashcardsSet: Identifiable, Codable {
     }
 
     var score: Int? {
-        let studyFlashcards = studyFlashcards.filter { test.contains($0.id) }
-        guard studyFlashcards.first?.gameData.lastInput != nil else {
+        let testFlashcards = testFlashcards.filter { test.contains($0.id) }
+        guard testFlashcards.first?.gameData.lastInput != nil else {
             return nil
         }
         var score = 0
-        for flashcard in studyFlashcards where flashcard.back == flashcard.gameData.lastInput {
+        for flashcard in testFlashcards where flashcard.back == flashcard.gameData.lastInput {
             score += 1
         }
         return score
