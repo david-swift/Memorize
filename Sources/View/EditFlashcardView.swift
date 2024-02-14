@@ -11,12 +11,14 @@ struct EditFlashcardView: View {
     @State private var editTags = false
     var index: Int
     var tags: [String]
+    var focusedFlashcard: String?
     var delete: () -> Void
 
     var view: Body {
         FormSection("Flashcard \(index + 1)") {
             Form {
                 EntryRow("Front", text: $flashcard.front)
+                    .focused(.constant(focusedFlashcard == flashcard.id))
                 EntryRow("Back", text: $flashcard.back)
             }
         }

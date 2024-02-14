@@ -12,6 +12,7 @@ struct StudyView: View {
     @State private var randomID = ""
     @State private var solution = false
     @State private var initialDifficulty = 1
+    @State private var focusDefaults = Signal()
 
     var flashcard: Flashcard? {
         getFlashcard(id: randomID)
@@ -122,7 +123,8 @@ struct StudyView: View {
             primary: "Continue",
             icon: .default(icon: .goNext),
             secondary: flashcard.back == input
-            ? .custom(name: "io.github.david_swift.Flashcards.mistake-symbolic") : .default(icon: .emblemOk)
+            ? .custom(name: "io.github.david_swift.Flashcards.mistake-symbolic") : .default(icon: .emblemOk),
+            focus: focusDefaults
         ) {
             let index = set.flashcards.firstIndex { $0.id == getFlashcard(id: randomID)?.id }
             if input == flashcard.back {
@@ -145,6 +147,7 @@ struct StudyView: View {
                         check()
                     }
                     .insensitive(solution)
+                    .focus(focusDefaults)
             }
             .padding(20)
             entryButtons
@@ -160,11 +163,13 @@ struct StudyView: View {
         }
         Task {
             input = ""
+            focusDefaults.signal()
         }
     }
 
     func check() {
         solution = true
+        focusDefaults.signal()
     }
 
     func solutionRow(answer: String) -> View {

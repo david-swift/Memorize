@@ -54,6 +54,7 @@ struct ContentView: View {
             SearchEntry()
                 .placeholderText("Filter Sets")
                 .text(.init { filter ?? "" } set: { filter = $0 })
+                .focused(.constant(!editMode && flashcardsView == .overview))
                 .padding(5, .horizontal.add(.bottom))
         }
         .topToolbar {

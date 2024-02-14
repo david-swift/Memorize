@@ -10,6 +10,7 @@ struct PillButtonSet: View {
     var primary: String
     var primaryIcon: Icon
     var secondaryIcon: Icon
+    var focus: Signal?
     var primaryAction: () -> Void
     var secondaryAction: () -> Void
 
@@ -28,6 +29,7 @@ struct PillButtonSet: View {
             primaryAction()
         }
         .style("suggested-action")
+        .focus(focus ?? .init())
     }
 
     var secondaryView: View {
@@ -40,6 +42,7 @@ struct PillButtonSet: View {
         primary: String,
         icon primaryIcon: Icon,
         secondary secondaryIcon: Icon,
+        focus: Signal? = nil,
         primary primaryAction: @escaping () -> Void,
         secondary secondaryAction: @escaping () -> Void
     ) {
@@ -48,6 +51,7 @@ struct PillButtonSet: View {
         self.secondaryIcon = secondaryIcon
         self.primaryAction = primaryAction
         self.secondaryAction = secondaryAction
+        self.focus = focus
     }
 
 }

@@ -10,6 +10,7 @@ struct EditView: View {
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
     @State private var expanded = false
+    @State private var focusedFlashcard: String?
     var app: GTUIApp
     var window: GTUIWindow
 
@@ -85,7 +86,7 @@ struct EditView: View {
     }
 
     var flashcards: View {
-        ForEach(.init(set.flashcards.indices).reversed()) { index in
+        ForEach(.init(set.flashcards.indices)) { index in
             if set.flashcards[safe: index] != nil {
                 EditFlashcardView(
                     flashcard: .init {
@@ -94,9 +95,15 @@ struct EditView: View {
                         set.flashcards[safe: index] = newValue
                     },
                     index: index,
-                    tags: set.tags.nonOptional
+                    tags: set.tags.nonOptional,
+                    focusedFlashcard: focusedFlashcard
                 ) {
                     set.flashcards = set.flashcards.filter { $0.id != set.flashcards[safe: index]?.id }
+                    Task {
+                        try? await Task.sleep(nanoseconds: 100)
+                        focusedFlashcard = set.flashcards[safe: index - 1]?.id
+                        focusedFlashcard = nil
+                    }
                 }
             }
         }
@@ -109,7 +116,13 @@ struct EditView: View {
             icon: .default(icon: .listAdd),
             secondary: .default(icon: .folderDownload)
         ) {
-            set.flashcards.append(.init())
+            let flashcard = Flashcard()
+            set.flashcards.append(flashcard)
+            Task {
+                try? await Task.sleep(nanoseconds: 100)
+                focusedFlashcard = flashcard.id
+                focusedFlashcard = nil
+            }
         } secondary: {
             app.addWindow("import-\(set.id)", parent: window)
         }
