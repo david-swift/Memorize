@@ -57,7 +57,6 @@ struct ImportView: View {
         List(FlashcardsApp.allCases, selection: nil) { app in
             ActionRow()
                 .title(app.name)
-                .subtitle(app.description)
                 .suffix {
                     ButtonContent()
                         .iconName("go-next-symbolic")
@@ -136,14 +135,14 @@ struct ImportView: View {
         }
     }
 
-    @ViewBuilder var ankiCardsTutorial: View {
+    @ViewBuilder var ankiTutorial: View {
         let ttb = "<tt><b>"
         let ttb2 = "</b></tt>"
         StatusPage(
             "Export Anki Deck",
             icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
             description: """
-            Export decks under \(ttb)File > Export\(ttb2)
+            Export decks under \(ttb)File > Export\(ttb2).
             Select the export format \(ttb)Cards in Plain Text (.txt)\(ttb2).
             Uncheck \(ttb)Include HTML and media references\(ttb2).
             Copy the content of the text file.
@@ -157,8 +156,8 @@ struct ImportView: View {
                 switch app {
                 case .quizlet:
                     quizletTutorial
-                case .ankiCards:
-                    ankiCardsTutorial
+                case .anki:
+                    ankiTutorial
                 }
             }
             .transition(.slideLeft)

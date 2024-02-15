@@ -8,7 +8,7 @@ import Foundation
 enum FlashcardsApp: String, CaseIterable, Identifiable {
 
     case quizlet
-    case ankiCards
+    case anki
 
     var id: String { rawValue }
 
@@ -16,17 +16,8 @@ enum FlashcardsApp: String, CaseIterable, Identifiable {
         switch self {
         case .quizlet:
             "Quizlet"
-        case .ankiCards:
-            "Anki (Cards)"
-        }
-    }
-
-    var description: String {
-        switch self {
-        case .ankiCards:
-            "Ignore fields that are not on the front or back"
-        default:
-            ""
+        case .anki:
+            "Anki"
         }
     }
 
