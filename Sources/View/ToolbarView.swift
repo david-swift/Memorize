@@ -61,7 +61,7 @@ struct ToolbarView: View {
             .keyboardShortcut("w".ctrl())
             viewMenu
             MenuSection {
-                MenuButton("About", window: false) {
+                MenuButton("About Flashcards", window: false) {
                     app.addWindow("about", parent: window)
                 }
             }
