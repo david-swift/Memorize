@@ -15,8 +15,13 @@ struct TestView: View {
             if set.flashcards.isEmpty {
                 Text("No flashcards available.")
             } else if set.test.isEmpty {
-                configuration
-                    .valign(.center)
+                StatusPage()
+                    .title("Generate a Preparation Exam")
+                    .description("Spot last mistakes before your exam about \"\(set.name)\"")
+                    .iconName(Icon.default(icon: .toolsCheckSpelling).string)
+                    .child {
+                        configuration
+                    }
             } else {
                 ViewStack(id: roundIndex) { _ in
                     ScrollView {
@@ -35,16 +40,6 @@ struct TestView: View {
             selectedTags: $set.testTags.nonOptional,
             tags: set.tags.nonOptional
         )
-        Form {
-            SpinRow(
-                "Number of Questions",
-                value: $set.numberOfQuestions.nonOptional,
-                min: 1,
-                max: set.testFlashcards.count
-            )
-        }
-        .padding(20, .horizontal.add(.top))
-        .formWidth()
         generalSection
             .padding(20)
             .formWidth()
@@ -53,9 +48,15 @@ struct TestView: View {
     var generalSection: View {
         Form {
             SwitchRow("Answer With Back", isOn: $set.answerWithBack)
+            SpinRow(
+                "Number of Questions",
+                value: $set.numberOfQuestions.nonOptional,
+                min: 1,
+                max: set.testFlashcards.count
+            )
             ActionRow("Testing \(set.numberOfQuestions.nonOptional) of \(set.flashcards.count) Flashcards")
                 .suffix {
-                    Button("Start Test") {
+                    Button("Create Test") {
                         startTest()
                     }
                     .style("suggested-action")

@@ -23,15 +23,27 @@ struct StudyView: View {
             if set.flashcards.isEmpty {
                 Text("No flashcards available.")
             } else if set.filteredStudyCards.isEmpty {
-                startConfiguration
-            } else if let flashcard {
-                if solution {
-                    solutionView(flashcard: flashcard)
-                } else {
-                    entryView(flashcard: flashcard)
-                }
+                StatusPage()
+                    .title("Study \"\(set.name)\"")
+                    .description("Repeat each flashcard until you remember it")
+                    .iconName(Icon.default(icon: .mediaPlaylistRepeat).string)
+                    .child {
+                        startConfiguration
+                    }
             } else {
-                pauseView
+                Bin()
+                    .child {
+                        if let flashcard {
+                            if solution {
+                                solutionView(flashcard: flashcard)
+                            } else {
+                                entryView(flashcard: flashcard)
+                            }
+                        } else {
+                            pauseView
+                        }
+                    }
+                    .valign(.center)
             }
         }
         .vexpand()
