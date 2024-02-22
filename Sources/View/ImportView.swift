@@ -10,45 +10,39 @@ import RegexBuilder
 struct ImportView: View {
 
     @Binding var set: FlashcardsSet
-    @State private var flashcardsApp: FlashcardsApp?
-    @State private var pasteView = false
     @State private var text = ""
     @State private var switchSides = false
+    @State private var navigationStack = NavigationStack<ImportNavigationDestination>()
     var window: GTUIWindow
 
     var view: Body {
         VStack {
-            if let flashcardsApp {
-                if pasteView {
+            NavigationView(
+                $navigationStack,
+                "Source"
+            ) { destination in
+                switch destination {
+                case let .tutorial(app):
+                    tutorial(app: app)
+                        .centerMinSize()
+                        .topToolbar {
+                            toolbar(destination: destination)
+                        }
+                case let .paste(app):
                     VStack {
                         entry
                         preview
                     }
-                    .transition(.slideLeft)
-                } else {
-                    tutorial(app: flashcardsApp)
-                        .centerMinSize()
-                }
-            } else {
-                appView
-            }
-        }
-        .topToolbar {
-            HeaderBar(titleButtons: false) {
-                Button("Cancel") {
-                    window.close()
-                }
-            } end: {
-                Button(pasteView ? "Import" : "Continue") {
-                    if pasteView {
-                        set.flashcards += previewSet.flashcards
-                        window.close()
-                    } else {
-                        pasteView = true
+                    .topToolbar {
+                        toolbar(destination: destination)
                     }
                 }
-                .style("suggested-action")
-                .insensitive(flashcardsApp == nil)
+            } initialView: {
+                appView
+                    .topToolbar {
+                        toolbar(destination: nil)
+                    }
+                    .valign(.start)
             }
         }
     }
@@ -64,14 +58,13 @@ struct ImportView: View {
                 .activatableWidget {
                     Button()
                         .activate {
-                            flashcardsApp = app
+                            navigationStack.push(.tutorial(app: app))
                         }
                 }
         }
         .style("boxed-list")
         .padding(20)
         .formWidth()
-        .transition(.slideLeft)
     }
 
     var entry: View {
@@ -150,17 +143,45 @@ struct ImportView: View {
         )
     }
 
+    @ViewBuilder
     func tutorial(app: FlashcardsApp) -> View {
-        Bin()
-            .child {
-                switch app {
-                case .quizlet:
-                    quizletTutorial
-                case .anki:
-                    ankiTutorial
+        switch app {
+        case .quizlet:
+            quizletTutorial
+        case .anki:
+            ankiTutorial
+        }
+    }
+
+    func toolbar(destination: ImportNavigationDestination?) -> View {
+        HeaderBar(titleButtons: false) {
+            if destination == nil {
+                Button("Cancel") {
+                    window.close()
                 }
             }
-            .transition(.slideLeft)
+        } end: {
+            let label = {
+                switch destination {
+                case .paste:
+                    "Import"
+                default:
+                    "Continue"
+                }
+            }()
+            Button(label) {
+                if case .paste = destination {
+                    set.flashcards += previewSet.flashcards
+                    window.close()
+                } else {
+                    if case let .tutorial(app) = destination {
+                        navigationStack.push(.paste(app: app))
+                    }
+                }
+            }
+            .style("suggested-action")
+            .insensitive(destination == nil)
+        }
     }
 
 }
