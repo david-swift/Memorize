@@ -155,7 +155,7 @@ struct StudyView: View {
             Form {
                 ActionRow(flashcard.front)
                 EntryRow("Answer", text: $input)
-                    .onSubmit {
+                    .entryActivated {
                         check()
                     }
                     .insensitive(solution)
