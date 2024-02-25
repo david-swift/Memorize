@@ -10,7 +10,7 @@ struct EditView: View {
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
     @State private var expanded = false
-    @State private var focusedFlashcard: String?
+    @State private var focusedFront: String?
     var app: GTUIApp
     var window: GTUIWindow
 
@@ -96,13 +96,20 @@ struct EditView: View {
                     },
                     index: index,
                     tags: set.tags.nonOptional,
-                    focusedFlashcard: focusedFlashcard
+                    focusedFront: focusedFront
                 ) {
+                    if let flashcard = set.flashcards[safe: index + 1] {
+                        focusedFront = flashcard.id
+                        focusedFront = nil
+                    } else {
+                        appendFlashcard()
+                    }
+                } delete: {
                     set.flashcards = set.flashcards.filter { $0.id != set.flashcards[safe: index]?.id }
                     Task {
                         try? await Task.sleep(nanoseconds: 100)
-                        focusedFlashcard = set.flashcards[safe: index - 1]?.id
-                        focusedFlashcard = nil
+                        focusedFront = set.flashcards[safe: index - 1]?.id
+                        focusedFront = nil
                     }
                 }
             }
@@ -116,15 +123,19 @@ struct EditView: View {
             icon: .default(icon: .listAdd),
             secondary: .default(icon: .folderDownload)
         ) {
-            let flashcard = Flashcard()
-            set.flashcards.append(flashcard)
-            Task {
-                try? await Task.sleep(nanoseconds: 100)
-                focusedFlashcard = flashcard.id
-                focusedFlashcard = nil
-            }
+            appendFlashcard()
         } secondary: {
             app.addWindow("import-\(set.id)", parent: window)
+        }
+    }
+
+    func appendFlashcard() {
+        let flashcard = Flashcard()
+        set.flashcards.append(flashcard)
+        Task {
+            try? await Task.sleep(nanoseconds: 100)
+            focusedFront = flashcard.id
+            focusedFront = nil
         }
     }
 
