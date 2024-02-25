@@ -9,6 +9,7 @@ struct KeywordsRow: View {
 
     @Binding var keywords: [String]
     @State private var expanded = false
+    @State private var focus = Signal()
     var title = "Keywords"
     var subtitle = "Keywords simplify the search for sets"
     var element = "Keyword"
@@ -22,6 +23,7 @@ struct KeywordsRow: View {
                     Button(icon: .default(icon: .listAdd)) {
                         keywords.append("")
                         expanded = true
+                        focus.signal()
                     }
                     .style("flat")
                 }
@@ -44,6 +46,11 @@ struct KeywordsRow: View {
                         }
                         .valign(.center)
                     }
+                    .entryActivated {
+                        keywords.append("")
+                        focus.signal()
+                    }
+                    .focus(index == keywords.count - 1 ? focus : .init())
                 }
                 .style("boxed-list")
                 .padding()

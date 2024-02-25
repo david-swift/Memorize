@@ -21,7 +21,7 @@ struct Flashcards: App {
         .defaultSize(width: 700, height: 550)
         .quitShortcut()
         .overlay {
-            AboutWindow(id: "about", appName: "Flashcards", developer: "david-swift", version: "0.1.1")
+            AboutWindow(id: "about", appName: "Flashcards", developer: "david-swift", version: "0.1.2")
                 .icon(.custom(name: "io.github.david_swift.Flashcards"))
                 .website(.init(string: "https://github.com/david-swift/Flashcards"))
                 .issues(.init(string: "https://github.com/david-swift/Flashcards/issues"))
