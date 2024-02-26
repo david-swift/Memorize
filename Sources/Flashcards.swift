@@ -18,7 +18,6 @@ struct Flashcards: App {
         Window(id: "main") { window in
             ContentView(sets: $sets, app: app, window: window)
         }
-        .defaultSize(width: 700, height: 550)
         .quitShortcut()
         .overlay {
             AboutWindow(id: "about", appName: "Flashcards", developer: "david-swift", version: "0.1.2")

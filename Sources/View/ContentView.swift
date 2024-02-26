@@ -7,7 +7,7 @@ import Adwaita
 import CAdw
 import Foundation
 
-struct ContentView: View {
+struct ContentView: WindowView {
 
     @Binding var sets: [FlashcardsSet]
     @State("selected-set")
@@ -16,6 +16,10 @@ struct ContentView: View {
     private var flashcardsView: FlashcardsView = .overview
     @State private var filter: String?
     @State private var editMode = false
+    @State("width")
+    private var width = 700
+    @State("height")
+    private var height = 550
     var app: GTUIApp
     var window: GTUIApplicationWindow
 
@@ -97,6 +101,11 @@ struct ContentView: View {
             )
             .centerMinSize()
         }
+    }
+
+    func window(_ window: Window) -> Window {
+        window
+            .size(width: $width, height: $height)
     }
 
 }
