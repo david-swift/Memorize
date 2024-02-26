@@ -45,17 +45,15 @@ struct TagsButton: View {
     }
 
     @ViewBuilder var popover: Body {
-        ScrollView {
-            Text("Tags")
-                .style("title-3")
-                .padding(10, .top.add(.horizontal))
-            FlowBox(tags, selection: nil) { tag in
-                tagToggle(tag: tag)
-            }
-            .padding()
+        Text("Tags")
+            .style("title-3")
+            .padding(10, .top.add(.horizontal))
+        FlowBox(tags, selection: nil) { tag in
+            tagToggle(tag: tag)
+                .frame(minWidth: 10)
         }
-        .frame(minWidth: 200, minHeight: 150)
-        .padding(-10)
+        .padding()
+        .frame(maxWidth: 200)
     }
 
     @ViewBuilder
@@ -78,6 +76,7 @@ struct TagsButton: View {
             }
         )
         .style("flat")
+        .modifyContent(ButtonContent.self) { $0.canShrink() }
     }
 
 }
