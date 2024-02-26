@@ -33,10 +33,12 @@ struct EditView: View {
                             app.addWindow("delete-\(set.id)", parent: window)
                             editMode = false
                         }
+                        .tooltip("Delete Set")
                         Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
                             app.addWindow("export-\(set.id)", parent: window)
                         }
                         .padding(10, .horizontal)
+                        .tooltip("Export Set")
                     }
                 }
             } end: {
@@ -121,7 +123,8 @@ struct EditView: View {
         PillButtonSet(
             primary: "Add Flashcard",
             icon: .default(icon: .listAdd),
-            secondary: .default(icon: .folderDownload)
+            secondary: "Import Flashcards",
+            icon: .custom(name: "io.github.david_swift.Flashcards.import-symbolic")
         ) {
             appendFlashcard()
         } secondary: {

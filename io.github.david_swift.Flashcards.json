@@ -55,7 +55,8 @@
         "install -Dm644 data/icons/settings-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.settings-symbolic.svg",
         "install -Dm644 data/icons/mistake-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.mistake-symbolic.svg",
         "install -Dm644 data/icons/tag-outline-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.tag-outline-symbolic.svg",
-        "install -Dm644 data/icons/share-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.share-symbolic.svg"
+        "install -Dm644 data/icons/share-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.share-symbolic.svg",
+        "install -Dm644 data/icons/import-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.import-symbolic.svg"
       ]
     }
   ]

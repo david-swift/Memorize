@@ -28,6 +28,7 @@ struct TagsButton: View {
         tagToggle(tag: "Star")
             .style("flat")
             .style("circular")
+            .tooltip("Star")
     }
 
     var pickerButton: View {
@@ -39,6 +40,7 @@ struct TagsButton: View {
         }
         .style("flat")
         .insensitive(tags.isEmpty)
+        .tooltip("Tags")
         .popover(visible: $editTags) {
             popover
         }

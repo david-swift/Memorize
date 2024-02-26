@@ -116,7 +116,8 @@ struct TestView: View {
         PillButtonSet(
             primary: "Check",
             icon: .default(icon: .emblemOk),
-            secondary: .default(icon: .goNext)
+            secondary: "Finish Test",
+            icon: .default(icon: .goNext)
         ) {
             set.check()
         } secondary: {

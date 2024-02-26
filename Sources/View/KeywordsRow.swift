@@ -26,6 +26,7 @@ struct KeywordsRow: View {
                         focus.signal()
                     }
                     .style("flat")
+                    .tooltip("Add \(element)")
                 }
                 .valign(.center)
             }
@@ -43,6 +44,7 @@ struct KeywordsRow: View {
                                 keywords = keywords.filter { $0 != keyword }
                             }
                             .style("flat")
+                            .tooltip("Remove \(element)")
                         }
                         .valign(.center)
                     }

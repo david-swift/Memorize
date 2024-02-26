@@ -92,7 +92,8 @@ struct StudyView: View {
         PillButtonSet(
             primary: "Check",
             icon: .default(icon: .emblemOk),
-            secondary: .custom(name: "io.github.david_swift.Flashcards.settings-symbolic")
+            secondary: "Study Settings",
+            icon: .custom(name: "io.github.david_swift.Flashcards.settings-symbolic")
         ) {
             check()
         } secondary: {
@@ -109,7 +110,8 @@ struct StudyView: View {
         PillButtonSet(
             primary: "Continue Studying",
             icon: .default(icon: .mediaPlaybackStart),
-            secondary: .default(icon: .mediaSkipBackward)
+            secondary: "Terminate Study Mode",
+            icon: .default(icon: .mediaSkipBackward)
         ) {
             continueStudying()
         } secondary: {
@@ -134,7 +136,8 @@ struct StudyView: View {
         PillButtonSet(
             primary: "Continue",
             icon: .default(icon: .goNext),
-            secondary: flashcard.back == input
+            secondary: flashcard.back == input ? "Make Incorrect" : "Make Correct",
+            icon: flashcard.back == input
             ? .custom(name: "io.github.david_swift.Flashcards.mistake-symbolic") : .default(icon: .emblemOk),
             focus: focusDefaults
         ) {

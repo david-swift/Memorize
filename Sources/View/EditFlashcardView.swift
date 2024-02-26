@@ -38,6 +38,7 @@ struct EditFlashcardView: View {
                     delete()
                 }
                 .style("flat")
+                .tooltip("Delete Flashcard")
             }
         }
         .padding()

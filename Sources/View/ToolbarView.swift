@@ -21,6 +21,7 @@ struct ToolbarView: View {
                 sets.insert(newSet, at: 0)
                 selectedSet = newSet.id
             }
+            .tooltip("Add Set")
         } end: {
             if flashcardsView == .overview {
                 menu
@@ -67,6 +68,7 @@ struct ToolbarView: View {
             }
         }
         .primary()
+        .tooltip("Main Menu")
     }
 
     var viewMenu: MenuSection {

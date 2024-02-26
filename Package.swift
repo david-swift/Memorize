@@ -9,7 +9,7 @@ import PackageDescription
 let package = Package(
     name: "Flashcards",
     dependencies: [
-        .package(url: "https://github.com/AparokshaUI/Adwaita", from: "0.2.1")
+        .package(url: "https://github.com/AparokshaUI/Adwaita", branch: "main")
     ],
     targets: [
         .executableTarget(

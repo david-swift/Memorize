@@ -36,6 +36,7 @@ struct SetOverview: View {
                 editMode = true
             }
             .style("circular")
+            .tooltip("Edit Set")
             .padding()
         }
         .halign(.center)
