@@ -1,6 +1,6 @@
 //
 //  String.swift
-//  Flashcards
+//  Memorize
 //
 
 extension String: Identifiable {

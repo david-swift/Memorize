@@ -94,7 +94,7 @@ disabled_rules:
 custom_rules:
     github_issue:
         name: 'GitHub Issue'
-        regex: '//.(TODO|FIXME):.(?!.*(https://github\.com/david-swift/Flashcards/issues/\d))'
+        regex: '//.(TODO|FIXME):.(?!.*(https://github\.com/david-swift/Memorize/issues/\d))'
         message: 'The related GitHub issue must be included in a TODO or FIXME.'
         severity: warning
 
@@ -135,7 +135,7 @@ analyzer_rules:
 
 # Options
 file_header:
-    required_pattern: '(//  swift-tools-version: .+)?//\n//  .*.swift\n//  Flashcards\n//\n(\n//  Thanks to .* for the .*:\n//  ".*"\n//  https://.* \(\d\d.\d\d.\d\d\))*'
+    required_pattern: '(//  swift-tools-version: .+)?//\n//  .*.swift\n//  Memorize\n//\n(\n//  Thanks to .* for the .*:\n//  ".*"\n//  https://.* \(\d\d.\d\d.\d\d\))*'
 missing_docs:
     error: [open, public]
     excludes_extensions: false

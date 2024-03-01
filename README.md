@@ -1,9 +1,9 @@
 <p align="center">
-  <img width="256" alt="Flashcards Icon" src="data/icons/io.github.david_swift.Flashcards-shadow.svg">
-  <h1 align="center">Flashcards</h1>
+  <img width="256" alt="Memorize Icon" src="data/icons/io.github.david_swift.Flashcards-shadow.svg">
+  <h1 align="center">Memorize</h1>
 </p>
 
-_Flashcards_ is a native GNOME app that stores your flashcard sets.
+_Memorize_ is a native GNOME app that stores your flashcard sets.
 It enables you to create, edit, view, and study sets.
 Use the test mode to create preparation exams.
 Additionally, you can easily import existing Quizlet sets.

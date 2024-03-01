@@ -1,6 +1,6 @@
 //
 //  PillButtonSet.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

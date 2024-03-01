@@ -1,6 +1,6 @@
 //
 //  TagsButton.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>io.github.david_swift.Flashcards</id>
 
-  <name>Flashcards</name>
+  <name>Memorize</name>
   <summary>Study flashcards</summary>
 
   <metadata_license>MIT</metadata_license>
@@ -16,7 +16,7 @@
 
   <description>
     <p>
-      Flashcards is a native GNOME app that stores your flashcard sets.
+      Memorize is a native GNOME app that stores your flashcard sets.
       It enables you to create, edit, view, and study sets.
       Use the test mode for creating a preparation exam.
 

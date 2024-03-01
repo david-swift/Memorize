@@ -1,6 +1,6 @@
 //
 //  Array.swift
-//  Flashcards
+//  Memorize
 //
 
 extension Array where Element == FlashcardsSet {

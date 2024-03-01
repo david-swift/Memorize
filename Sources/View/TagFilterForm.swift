@@ -1,6 +1,6 @@
 //
 //  TagFilterForm.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

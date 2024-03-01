@@ -1,7 +1,7 @@
 // swift-tools-version: 5.8
 //
 //  Package.swift
-//  Flashcards
+//  Memorize
 //
 
 import PackageDescription

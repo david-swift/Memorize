@@ -1,6 +1,6 @@
 //
 //  EditFlashcardView.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

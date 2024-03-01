@@ -1,6 +1,6 @@
 //
 //  Localized.swift
-//  Flashcards
+//  Memorize
 //
 
 // swiftlint:disable line_length file_length
@@ -29,8 +29,8 @@ closeWindow:
     de: Fenster schliessen
 
 about:
-    en: About Flashcards
-    de: Info zu Flashcards
+    en: About Memorize
+    de: Info zu Memorize
 
 mainMenu:
     en: Main Menu

@@ -1,6 +1,6 @@
 //
 //  StudyView.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

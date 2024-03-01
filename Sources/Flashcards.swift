@@ -1,6 +1,6 @@
 //
 //  Flashcards.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita
@@ -20,10 +20,10 @@ struct Flashcards: App {
         }
         .quitShortcut()
         .overlay {
-            AboutWindow(id: "about", appName: "Flashcards", developer: "david-swift", version: "0.1.2")
+            AboutWindow(id: "about", appName: "Memorize", developer: "david-swift", version: "0.1.2")
                 .icon(.custom(name: "io.github.david_swift.Flashcards"))
-                .website(.init(string: "https://github.com/david-swift/Flashcards"))
-                .issues(.init(string: "https://github.com/david-swift/Flashcards/issues"))
+                .website(.init(string: "https://github.com/david-swift/Memorize"))
+                .issues(.init(string: "https://github.com/david-swift/Memorize/issues"))
             for (index, set) in sets.enumerated() {
                 // Import flashcards and add to a set.
                 Window(id: "import-\(set.id)", open: 0) { window in

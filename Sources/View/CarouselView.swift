@@ -1,6 +1,6 @@
 //
 //  CarouselView.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

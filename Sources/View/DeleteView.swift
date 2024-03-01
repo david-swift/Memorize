@@ -1,6 +1,6 @@
 //
 //  DeleteView.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

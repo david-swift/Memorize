@@ -1,6 +1,6 @@
 //
 //  KeywordsRow.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

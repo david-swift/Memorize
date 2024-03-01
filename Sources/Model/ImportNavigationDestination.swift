@@ -1,6 +1,6 @@
 //
 //  ImportNavigationDestination.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

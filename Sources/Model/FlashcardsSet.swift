@@ -1,6 +1,6 @@
 //
 //  FlashcardsSet.swift
-//  Flashcards
+//  Memorize
 //
 
 import Foundation

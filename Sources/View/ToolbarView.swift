@@ -1,6 +1,6 @@
 //
 //  ToolbarView.swift
-//  Flashcards
+//  Memorize
 //
 
 import Adwaita

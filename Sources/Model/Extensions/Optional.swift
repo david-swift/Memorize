@@ -1,6 +1,6 @@
 //
 //  Optional.swift
-//  Flashcards
+//  Memorize
 //
 
 extension Optional where Wrapped == [String] {
