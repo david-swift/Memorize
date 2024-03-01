@@ -32,7 +32,6 @@ struct Flashcards: App {
                         window: window
                     )
                 }
-                .title("Import Flashcards")
                 .defaultSize(width: 500, height: 500)
                 .keyboardShortcut("Escape") { $0.close() }
 
@@ -40,7 +39,7 @@ struct Flashcards: App {
                 Window(id: "export-\(set.id)", open: 0) { window in
                     ExportView(set: set, window: window)
                 }
-                .title("Export Set \"\(set.name)\"")
+                .title(Loc.export(title: set.name))
                 .defaultSize(width: 500, height: 500)
                 .keyboardShortcut("Escape") { $0.close() }
 

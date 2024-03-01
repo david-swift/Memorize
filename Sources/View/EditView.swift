@@ -33,29 +33,29 @@ struct EditView: View {
                             app.addWindow("delete-\(set.id)", parent: window)
                             editMode = false
                         }
-                        .tooltip("Delete Set")
+                        .tooltip(Loc.deleteSet)
                         Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
                             app.addWindow("export-\(set.id)", parent: window)
                         }
                         .padding(10, .horizontal)
-                        .tooltip("Export Set")
+                        .tooltip(Loc.exportSet)
                     }
                 }
             } end: {
-                Button("Done") {
+                Button(Loc.done) {
                     editMode = false
                 }
                 .style("suggested-action")
             }
             .headerBarTitle {
-                WindowTitle(subtitle: "", title: "Edit Set")
+                WindowTitle(subtitle: "", title: Loc.editSet)
             }
         }
     }
 
     var title: View {
         Form {
-            EntryRow("Title", text: $set.name)
+            EntryRow(Loc.title, text: $set.name)
             KeywordsRow(keywords: $set.keywords.nonOptional)
         }
         .padding(20)
@@ -65,21 +65,26 @@ struct EditView: View {
         Form {
             KeywordsRow(
                 keywords: $set.tags.nonOptional,
-                title: "Tags",
-                subtitle: "Organize and study flashcards in groups",
-                element: "Tag"
+                title: Loc.tags,
+                subtitle: Loc.tagsDescription,
+                element: Loc.tag
             )
             SwitchRow()
-                .title("Star")
-                .subtitle("A special tag that can be set while studying")
+                .title(Loc.star)
+                .subtitle(Loc.starDescription)
                 .active(
                     .init {
-                        set.tags.nonOptional.contains("Star")
+                        set.tags.nonOptional.contains(Localized.star.en) ||
+                        set.tags.nonOptional.contains(Localized.star.de)
                     } set: { newValue in
-                        if newValue && !set.tags.nonOptional.contains("Star") {
-                            set.tags.nonOptional.append("Star")
+                        if newValue && !(
+                            set.tags.nonOptional.contains(Localized.star.en) ||
+                            set.tags.nonOptional.contains(Localized.star.de)
+                        ) {
+                            set.tags.nonOptional.append(Loc.star)
                         } else {
-                            set.tags.nonOptional = set.tags.nonOptional.filter { $0 != "Star" }
+                            set.tags.nonOptional = set.tags.nonOptional
+                                .filter { $0 != Localized.star.en && $0 != Localized.star.de }
                         }
                     }
                 )
@@ -121,9 +126,9 @@ struct EditView: View {
 
     var actions: View {
         PillButtonSet(
-            primary: "Add Flashcard",
+            primary: Loc.addFlashcard,
             icon: .default(icon: .listAdd),
-            secondary: "Import Flashcards",
+            secondary: Loc.importFlashcards,
             icon: .custom(name: "io.github.david_swift.Flashcards.import-symbolic")
         ) {
             appendFlashcard()

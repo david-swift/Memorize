@@ -90,9 +90,9 @@ struct FlashcardsSet: Identifiable, Codable {
         studyFlashcards.count - filteredStudyCards.count
     }
 
-    init(name: String = "New Set", flashcards: [Flashcard] = [
-        .init(front: "Question 1", back: "Answer"),
-        .init(front: "Question 2", back: "Answer")
+    init(name: String = Loc.newSet, flashcards: [Flashcard] = [
+        .init(front: Loc.question(index: 1.description), back: Loc.answer),
+        .init(front: Loc.question(index: 2.description), back: Loc.answer)
     ]) {
         id = UUID().uuidString
         self.name = name

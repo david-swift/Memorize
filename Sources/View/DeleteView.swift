@@ -18,11 +18,11 @@ struct DeleteView: View {
         .vexpand()
         .topToolbar {
             HeaderBar(titleButtons: false) {
-                Button("Cancel") {
+                Button(Loc.cancel) {
                     window.close()
                 }
             } end: {
-                Button("Delete") {
+                Button(Loc.delete) {
                     delete()
                     window.close()
                 }
@@ -30,8 +30,8 @@ struct DeleteView: View {
             }
             .titleWidget {
                 WindowTitle(
-                    subtitle: "There is no undo. The flashcards will be lost.",
-                    title: "Delete \"\(set.name)\"?"
+                    subtitle: Loc.deleteDescription,
+                    title: Loc.deleteTitle(title: set.name)
                 )
             }
         }

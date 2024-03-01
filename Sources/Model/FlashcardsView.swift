@@ -5,14 +5,21 @@
 
 import Adwaita
 
-enum FlashcardsView: String, ViewSwitcherOption, Codable {
+enum FlashcardsView: ViewSwitcherOption, Codable {
 
     case overview
     case study
     case test
 
     var title: String {
-        rawValue.capitalized
+        switch self {
+        case .overview:
+            Loc.overview
+        case .study:
+            Loc.studySwitcher
+        case .test:
+            Loc.test
+        }
     }
 
     var icon: Icon {
@@ -27,7 +34,14 @@ enum FlashcardsView: String, ViewSwitcherOption, Codable {
     }
 
     init?(title: String) {
-        self.init(rawValue: title.lowercased())
+        switch title {
+        case Loc.studySwitcher:
+            self = .study
+        case Loc.test:
+            self = .test
+        default:
+            self = .overview
+        }
     }
 
 }

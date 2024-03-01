@@ -69,8 +69,8 @@ struct ImportView: View {
 
     var entry: View {
         Form {
-            EntryRow("Paste Text", text: $text)
-            SwitchRow("Switch Front and Back", isOn: $switchSides)
+            EntryRow(Loc.pasteText, text: $text)
+            SwitchRow(Loc.switchFrontBack, isOn: $switchSides)
         }
         .padding(20)
     }
@@ -108,14 +108,11 @@ struct ImportView: View {
 
     var quizletTutorial: View {
         StatusPage(
-            "Export Quizlet Set",
+            Loc.exportQuizletSet,
             icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-            description: """
-            Export a set in <a href="https://quizlet.com">Quizlet</a> under <tt><b> ⋯ > Export</b></tt>.
-            Using the default configuration, copy the text.
-            """
+            description: Loc.quizletDescription
         ) {
-            Button("Show Tutorial") {
+            Button(Loc.showTutorial) {
                 let process = Process()
                 process.executableURL = URL(fileURLWithPath: "/usr/bin/xdg-open")
                 process.arguments = [
@@ -132,14 +129,9 @@ struct ImportView: View {
         let ttb = "<tt><b>"
         let ttb2 = "</b></tt>"
         StatusPage(
-            "Export Anki Deck",
+            Loc.exportAnkiDeck,
             icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-            description: """
-            Export decks under \(ttb)File > Export\(ttb2).
-            Select the export format \(ttb)Cards in Plain Text (.txt)\(ttb2).
-            Uncheck \(ttb)Include HTML and media references\(ttb2).
-            Copy the content of the text file.
-            """
+            description: Loc.ankiDescription
         )
     }
 
@@ -156,7 +148,7 @@ struct ImportView: View {
     func toolbar(destination: ImportNavigationDestination?) -> View {
         HeaderBar(titleButtons: false) {
             if destination == nil {
-                Button("Cancel") {
+                Button(Loc.cancel) {
                     window.close()
                 }
             }
@@ -164,9 +156,9 @@ struct ImportView: View {
             let label = {
                 switch destination {
                 case .paste:
-                    "Import"
+                    Loc._import
                 default:
-                    "Continue"
+                    Loc._continue
                 }
             }()
             Button(label) {

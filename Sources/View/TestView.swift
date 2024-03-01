@@ -13,11 +13,11 @@ struct TestView: View {
     var view: Body {
         ViewStack(element: set) { set in
             if set.flashcards.isEmpty {
-                Text("No flashcards available.")
+                Text(Loc.noFlashcards)
             } else if set.test.isEmpty {
                 StatusPage()
-                    .title("Generate a Preparation Exam")
-                    .description("Spot last mistakes before your exam about \"\(set.name)\"")
+                    .title(Loc.generateExam)
+                    .description(Loc.generateExamDescription(title: set.name))
                     .iconName(Icon.default(icon: .toolsCheckSpelling).string)
                     .child {
                         configuration
@@ -47,16 +47,19 @@ struct TestView: View {
 
     var generalSection: View {
         Form {
-            SwitchRow("Answer With Back", isOn: $set.answerWithBack)
+            SwitchRow(Loc.answerWithBack, isOn: $set.answerWithBack)
             SpinRow(
-                "Number of Questions",
+                Loc.numberOfQuestions,
                 value: $set.numberOfQuestions.nonOptional,
                 min: 1,
                 max: set.testFlashcards.count
             )
-            ActionRow("Testing \(set.numberOfQuestions.nonOptional) of \(set.flashcards.count) Flashcards")
+            ActionRow(Loc.testDescription(
+                count: set.numberOfQuestions.nonOptional.description,
+                total: set.flashcards.count.description
+            ))
                 .suffix {
-                    Button("Create Test") {
+                    Button(Loc.createTest) {
                         startTest()
                     }
                     .style("suggested-action")
@@ -67,7 +70,7 @@ struct TestView: View {
     }
 
     @ViewBuilder var test: Body {
-        FormSection("Solve Test") {
+        FormSection(Loc.solveTest) {
             ForEach(set.test) { id in
                 if let index = set.testFlashcards.firstIndex(where: { $0.id == id }) {
                     FlashcardTestSection(
@@ -90,33 +93,36 @@ struct TestView: View {
             if let score = set.score {
                 if score == set.numberOfQuestions {
                     scoreRow
-                        .subtitle("Full Score!")
+                        .subtitle(Loc.fullScore)
                 } else {
                     scoreRow
-                        .subtitle("\(score) Point\(score == 1 ? "" : "s")")
+                        .subtitle(Loc.score(score: score.description, points: score == 1 ? Loc.point : Loc.points))
                 }
             } else {
                 scoreRow
-                    .subtitle("-")
+                    .subtitle(Loc.noScoreData)
             }
-            ActionRow("Maximum Score")
-                .subtitle("\(set.numberOfQuestions ?? 1) Point\(set.numberOfQuestions.nonOptional == 1 ? "" : "s")")
+            ActionRow(Loc.maxScore)
+                .subtitle(Loc.score(
+                    score: (set.numberOfQuestions ?? 1).description,
+                    points: set.numberOfQuestions.nonOptional == 1 ? Loc.point : Loc.points
+                ))
         }
         .modifyContent(Adwaita.ActionRow.self) { $0.style("property") }
-        .section("Score")
-        .description(set.score == nil ? "Scroll down to check your answers." : "")
+        .section(Loc.scoreLabel)
+        .description(set.score == nil ? Loc.scoreInstructions : "")
         .padding(20, .horizontal.add(.bottom))
     }
 
     var scoreRow: Adwaita.ActionRow {
-        .init("Your Score")
+        .init(Loc.scoreRowLabel)
     }
 
     var testButtons: View {
         PillButtonSet(
-            primary: "Check",
+            primary: Loc.check,
             icon: .default(icon: .emblemOk),
-            secondary: "Finish Test",
+            secondary: Loc.finishTest,
             icon: .default(icon: .goNext)
         ) {
             set.check()

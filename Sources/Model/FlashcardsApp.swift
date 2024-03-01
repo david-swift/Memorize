@@ -15,9 +15,9 @@ enum FlashcardsApp: String, CaseIterable, Identifiable {
     var name: String {
         switch self {
         case .quizlet:
-            "Quizlet"
+            Loc.quizlet
         case .anki:
-            "Anki"
+            Loc.anki
         }
     }
 

@@ -21,11 +21,11 @@ struct StudyView: View {
     var view: Body {
         VStack {
             if set.flashcards.isEmpty {
-                Text("No flashcards available.")
+                Text(Loc.noFlashcards)
             } else if set.filteredStudyCards.isEmpty {
                 StatusPage()
-                    .title("Study \"\(set.name)\"")
-                    .description("Repeat each flashcard until you remember it")
+                    .title(Loc.study(title: set.name))
+                    .description(Loc.studyDescription)
                     .iconName(Icon.default(icon: .mediaPlaylistRepeat).string)
                     .child {
                         startConfiguration
@@ -67,32 +67,35 @@ struct StudyView: View {
         )
         Form {
             sideSwitchRow
-            SpinRow("Initial Difficulty", value: $initialDifficulty, min: 1, max: 20)
-                .subtitle("Set the minimum number of repetitions per flashcard")
-            ActionRow("Studying \(set.studyFlashcards.count) of \(set.flashcards.count) Flashcards")
-                .suffix {
-                    Button("Start Study Mode") {
-                        set.setDifficulty(initialDifficulty)
-                        continueStudying()
-                    }
-                    .style("suggested-action")
-                    .verticalCenter()
+            SpinRow(Loc.initialDifficulty, value: $initialDifficulty, min: 1, max: 20)
+                .subtitle(Loc.initialDifficultyDescription)
+            ActionRow(Loc.studySummary(
+                count: set.studyFlashcards.count.description,
+                total: set.flashcards.count.description
+            ))
+            .suffix {
+                Button(Loc.startStudyMode) {
+                    set.setDifficulty(initialDifficulty)
+                    continueStudying()
                 }
-                .insensitive(set.studyFlashcards.isEmpty)
+                .style("suggested-action")
+                .verticalCenter()
+            }
+            .insensitive(set.studyFlashcards.isEmpty)
         }
         .padding(20)
         .formWidth()
     }
 
     var sideSwitchRow: View {
-        SwitchRow("Answer With Back", isOn: $set.answerWithBack)
+        SwitchRow(Loc.answerWithBack, isOn: $set.answerWithBack)
     }
 
     var entryButtons: View {
         PillButtonSet(
-            primary: "Check",
+            primary: Loc.check,
             icon: .default(icon: .emblemOk),
-            secondary: "Study Settings",
+            secondary: Loc.studySettings,
             icon: .custom(name: "io.github.david_swift.Flashcards.settings-symbolic")
         ) {
             check()
@@ -108,9 +111,9 @@ struct StudyView: View {
         .padding(20)
         .formWidth()
         PillButtonSet(
-            primary: "Continue Studying",
+            primary: Loc.continueStudying,
             icon: .default(icon: .mediaPlaybackStart),
-            secondary: "Terminate Study Mode",
+            secondary: Loc.terminateStudyMode,
             icon: .default(icon: .mediaSkipBackward)
         ) {
             continueStudying()
@@ -134,9 +137,9 @@ struct StudyView: View {
 
     func solutionButtons(flashcard: Flashcard) -> View {
         PillButtonSet(
-            primary: "Continue",
+            primary: Loc._continue,
             icon: .default(icon: .goNext),
-            secondary: flashcard.back == input ? "Make Incorrect" : "Make Correct",
+            secondary: flashcard.back == input ? Loc.makeIncorrect : Loc.makeCorrect,
             icon: flashcard.back == input
             ? .custom(name: "io.github.david_swift.Flashcards.mistake-symbolic") : .default(icon: .emblemOk),
             focus: focusDefaults
@@ -157,7 +160,7 @@ struct StudyView: View {
         VStack {
             Form {
                 ActionRow(flashcard.front)
-                EntryRow("Answer", text: $input)
+                EntryRow(Loc.answer, text: $input)
                     .entryActivated {
                         check()
                     }
@@ -191,7 +194,7 @@ struct StudyView: View {
         let solution = flashcard?.back ?? ""
         let correct = answer == solution
         return Form {
-            ActionRow("Solution")
+            ActionRow(Loc.solution)
                 .subtitle(solution)
                 .suffix {
                     TagsButton(
@@ -206,7 +209,7 @@ struct StudyView: View {
                     )
                     .padding()
                 }
-            ActionRow(correct ? "Correct!" : "Your Answer")
+            ActionRow(correct ? Loc.correct : Loc.yourAnswer)
                 .subtitle(answer)
                 .style("property")
                 .style(correct ? "success" : "error")

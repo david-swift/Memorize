@@ -15,7 +15,7 @@ struct TagsButton: View {
     var view: Body {
         HStack {
             if starOnly {
-                if tags.contains("Star") {
+                if tags.contains(Localized.star.en) || tags.contains(Localized.star.de) {
                     starButton
                 }
             } else {
@@ -25,10 +25,10 @@ struct TagsButton: View {
     }
 
     var starButton: View {
-        tagToggle(tag: "Star")
+        tagToggle(tag: Loc.star)
             .style("flat")
             .style("circular")
-            .tooltip("Star")
+            .tooltip(Loc.star)
     }
 
     var pickerButton: View {
@@ -40,14 +40,14 @@ struct TagsButton: View {
         }
         .style("flat")
         .insensitive(tags.isEmpty)
-        .tooltip("Tags")
+        .tooltip(Loc.tags)
         .popover(visible: $editTags) {
             popover
         }
     }
 
     @ViewBuilder var popover: Body {
-        Text("Tags")
+        Text(Loc.tags)
             .style("title-3")
             .padding(10, .top.add(.horizontal))
         FlowBox(tags, selection: nil) { tag in
@@ -61,7 +61,7 @@ struct TagsButton: View {
     @ViewBuilder
     func tagToggle(tag: String) -> View {
         let name = "io.github.david_swift.Flashcards.tag-outline-symbolic"
-        let icon: Icon = tag == "Star" ? .default(
+        let icon: Icon = tag == Localized.star.en || tag == Localized.star.de ? .default(
             icon: selectedTags.contains(tag) ? .starred : .nonStarred
         ) : .custom(name: name)
         ToggleButton(

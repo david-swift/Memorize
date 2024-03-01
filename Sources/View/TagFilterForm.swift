@@ -14,9 +14,9 @@ struct TagFilterForm: View {
 
     var view: Body {
         Form {
-            SwitchRow("All Flashcards", isOn: $allFlashcards)
+            SwitchRow(Loc.allFlashcards, isOn: $allFlashcards)
             ActionRow()
-                .title("Flashcards With Tags")
+                .title(Loc.flashcardsWithTags)
                 .activatableWidget {
                     Button()
                         .activate {

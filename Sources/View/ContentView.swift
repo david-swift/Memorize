@@ -56,7 +56,7 @@ struct ContentView: WindowView {
         .hexpand()
         .topToolbar(visible: filter != nil) {
             SearchEntry()
-                .placeholderText("Filter Sets")
+                .placeholderText(Loc.filterSets)
                 .text(.init { filter ?? "" } set: { filter = $0 })
                 .focused(.constant(!editMode && flashcardsView == .overview))
                 .padding(5, .horizontal.add(.bottom))
@@ -88,16 +88,16 @@ struct ContentView: WindowView {
             }
         } else if !sets.isEmpty {
             StatusPage(
-                "No Selection",
+                Loc.noSelection,
                 icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-                description: "Select a set in the sidebar."
+                description: Loc.noSelectionDescription
             )
             .centerMinSize()
         } else {
             StatusPage(
-                "No Sets",
+                Loc.noSets,
                 icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-                description: "Create a new set using the <b>+</b> button in the sidebar."
+                description: Loc.noSetsDescription
             )
             .centerMinSize()
         }

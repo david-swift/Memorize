@@ -47,7 +47,7 @@ struct FlashcardTestSection: View {
     }
 
     var back: View {
-        EntryRow("Answer", text: $flashcard.gameData.input)
+        EntryRow(Loc.answer, text: $flashcard.gameData.input)
     }
 
 }

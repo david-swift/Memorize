@@ -17,17 +17,17 @@ struct ExportView: View {
         ScrollView {
             Form {
                 ComboRow(
-                    "Between Term and Definition",
+                    Loc.betweenTermDefinition,
                     selection: $termDefinitionSeparator,
                     values: [TermDefinitionSeparator.tab, .comma]
                 )
                 ComboRow(
-                    "Between Rows",
+                    Loc.betweenRows,
                     selection: $rowSeparator,
                     values: [RowSeparator.newLine, .semicolon]
                 )
                 SwitchRow(
-                    "Switch Front and Back",
+                    Loc.switchFrontBack,
                     isOn: $switchSides
                 )
             }
@@ -43,11 +43,11 @@ struct ExportView: View {
         }
         .topToolbar {
             HeaderBar(titleButtons: false) {
-                Button("Cancel") {
+                Button(Loc.cancel) {
                     window.close()
                 }
             } end: {
-                Button("Copy") {
+                Button(Loc.copy) {
                     State<Any>.copy(text)
                     window.close()
                 }

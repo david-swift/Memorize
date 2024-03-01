@@ -10,9 +10,9 @@ struct KeywordsRow: View {
     @Binding var keywords: [String]
     @State private var expanded = false
     @State private var focus = Signal()
-    var title = "Keywords"
-    var subtitle = "Keywords simplify the search for sets"
-    var element = "Keyword"
+    var title = Loc.keywords
+    var subtitle = Loc.keywordsDescription
+    var element = Loc.keyword
 
     var view: Body {
         ExpanderRow()
@@ -26,7 +26,7 @@ struct KeywordsRow: View {
                         focus.signal()
                     }
                     .style("flat")
-                    .tooltip("Add \(element)")
+                    .tooltip(Loc.add(element: element))
                 }
                 .valign(.center)
             }
@@ -44,7 +44,7 @@ struct KeywordsRow: View {
                                 keywords = keywords.filter { $0 != keyword }
                             }
                             .style("flat")
-                            .tooltip("Remove \(element)")
+                            .tooltip(Loc.remove(element: element))
                         }
                         .valign(.center)
                     }

@@ -21,14 +21,14 @@ struct ToolbarView: View {
                 sets.insert(newSet, at: 0)
                 selectedSet = newSet.id
             }
-            .tooltip("Add Set")
+            .tooltip(Loc.addSet)
         } end: {
             if flashcardsView == .overview {
                 menu
             }
         }
         .headerBarTitle {
-            Text("Sets")
+            Text(Loc.sets)
                 .style("heading")
         }
     }
@@ -52,28 +52,28 @@ struct ToolbarView: View {
 
     var menu: View {
         Menu(icon: .default(icon: .openMenu), app: app, window: window) {
-            MenuButton("New Window", window: false) {
+            MenuButton(Loc.newWindow, window: false) {
                 app.addWindow("main")
             }
             .keyboardShortcut("n".ctrl())
-            MenuButton("Close Window") {
+            MenuButton(Loc.closeWindow) {
                 window.close()
             }
             .keyboardShortcut("w".ctrl())
             viewMenu
             MenuSection {
-                MenuButton("About Flashcards", window: false) {
+                MenuButton(Loc.about, window: false) {
                     app.addWindow("about", parent: window)
                 }
             }
         }
         .primary()
-        .tooltip("Main Menu")
+        .tooltip(Loc.mainMenu)
     }
 
     var viewMenu: MenuSection {
         .init {
-            Submenu("View") {
+            Submenu(Loc.viewMenu) {
                 for (index, view) in FlashcardsView.allCases.enumerated() {
                     MenuButton(view.title) {
                         flashcardsView = view
@@ -82,7 +82,7 @@ struct ToolbarView: View {
                 }
             }
             if flashcardsView == .overview {
-                MenuButton("Filter...") {
+                MenuButton(Loc.filter) {
                     if filter != nil {
                         filter = nil
                     } else {

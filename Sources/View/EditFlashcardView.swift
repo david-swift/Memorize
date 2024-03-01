@@ -17,14 +17,14 @@ struct EditFlashcardView: View {
     var delete: () -> Void
 
     var view: Body {
-        FormSection("Flashcard \(index + 1)") {
+        FormSection(Loc.flashcard(index: (index + 1).description)) {
             Form {
-                EntryRow("Front", text: $flashcard.front)
+                EntryRow(Loc.front, text: $flashcard.front)
                     .entryActivated {
                         focusBack.signal()
                     }
                     .focused(.constant(focusedFront == flashcard.id))
-                EntryRow("Back", text: $flashcard.back)
+                EntryRow(Loc.back, text: $flashcard.back)
                     .entryActivated {
                         focusNext()
                     }
@@ -38,7 +38,7 @@ struct EditFlashcardView: View {
                     delete()
                 }
                 .style("flat")
-                .tooltip("Delete Flashcard")
+                .tooltip(Loc.deleteFlashcard)
             }
         }
         .padding()
