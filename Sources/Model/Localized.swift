@@ -294,7 +294,7 @@ tag:
 
 starDescription:
     en: A special tag that can be set while studying
-    de: Ein spezieller Tag, der während des Lernens gesetzt werden kann
+    de: Ein spezielles Tag, das während des Lernens gesetzt werden kann
 
 addFlashcard:
     en: Add Flashcard
