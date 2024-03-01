@@ -28,7 +28,7 @@ struct ImportView: View {
                         .topToolbar {
                             toolbar(destination: destination)
                         }
-                case let .paste(app):
+                case .paste:
                     VStack {
                         entry
                         preview
@@ -126,8 +126,6 @@ struct ImportView: View {
     }
 
     @ViewBuilder var ankiTutorial: View {
-        let ttb = "<tt><b>"
-        let ttb2 = "</b></tt>"
         StatusPage(
             Loc.exportAnkiDeck,
             icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
