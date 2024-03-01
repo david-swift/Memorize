@@ -21,13 +21,12 @@ struct Flashcard: Identifiable, Codable {
         self.back = back
     }
 
-    enum Side: String, Codable, CaseIterable, Identifiable, CustomStringConvertible {
+    enum Side: String, Codable, CaseIterable, Identifiable {
 
         case front
         case back
 
         var id: Self { self }
-        var description: String { rawValue.capitalized }
 
     }
 

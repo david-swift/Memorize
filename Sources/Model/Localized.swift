@@ -3,7 +3,7 @@
 //  Flashcards
 //
 
-// swiftlint:disable line_length
+// swiftlint:disable line_length file_length
 
 import Localized
 
@@ -383,6 +383,22 @@ anki:
 showTutorial:
     en: Show Tutorial
     de: Tutorial zeigen
+
+comma:
+    en: Comma
+    de: Komma
+
+tab:
+    en: Tab
+    de: Tab
+
+newLine:
+    en: New Line
+    de: Neue Zeile
+
+semicolon:
+    en: Semicolon
+    de: Semikolon
 """)
 
-// swiftlint:enable line_length
+// swiftlint:enable line_length file_length

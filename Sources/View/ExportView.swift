@@ -79,7 +79,14 @@ struct ExportView: View {
         case comma
 
         var id: Self { self }
-        var description: String { rawValue.capitalized }
+        var description: String {
+            switch self {
+            case .tab:
+                Loc.tab
+            case .comma:
+                Loc.comma
+            }
+        }
         var syntax: String {
             switch self {
             case .tab:
@@ -97,7 +104,14 @@ struct ExportView: View {
         case semicolon
 
         var id: Self { self }
-        var description: String { rawValue.capitalized }
+        var description: String {
+            switch self {
+            case .newLine:
+                Loc.newLine
+            case .semicolon:
+                Loc.semicolon
+            }
+        }
         var syntax: String {
             switch self {
             case .newLine:
