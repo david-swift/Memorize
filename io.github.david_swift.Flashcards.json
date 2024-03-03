@@ -44,9 +44,7 @@
       ],
       "build-commands": [
         "swift build -c release --static-swift-stdlib",
-        "rm -r -f /app/bin",
-        "mkdir /app/bin",
-        "cp .build/release/Flashcards /app/bin",
+        "install -Dm755 .build/release/Flashcards /app/bin/Flashcards",
         "install -Dm644 data/io.github.david_swift.Flashcards.metainfo.xml $DESTDIR/app/share/metainfo/io.github.david_swift.Flashcards.metainfo.xml",
         "install -Dm644 data/io.github.david_swift.Flashcards.desktop $DESTDIR/app/share/applications/io.github.david_swift.Flashcards.desktop",
         "install -Dm644 data/icons/io.github.david_swift.Flashcards.svg $DESTDIR/app/share/icons/hicolor/scalable/apps/io.github.david_swift.Flashcards.svg",
