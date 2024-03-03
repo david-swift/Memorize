@@ -58,17 +58,10 @@
   <launchable type="desktop-id">io.github.david_swift.Flashcards.desktop</launchable>
 
   <releases>
-    <release version="0.1.2" date="2024-03-03">
+    <release version="0.1.3" date="2024-03-03">
       <description>
         <ul>
-          <li>Rename Flashcards to Memorize</li>
-          <li>Make keywords and tags easier to edit with shortcuts</li>
-          <li>Make flashcards easier to navigate with shortcuts</li>
-          <li>Remember the size of the main window</li>
-          <li>Remove apply button in study view</li>
-          <li>Add tooltips</li>
-          <li>Replace "Import" icon with a more understandable icon</li>
-          <li>Add German localizations</li>
+          <li>Initial release on Flathub</li>
         </ul>
       </description>
     </release>

@@ -21,7 +21,7 @@ struct Flashcards: App {
         .title("Memorize")
         .quitShortcut()
         .overlay {
-            AboutWindow(id: "about", appName: "Memorize", developer: "david-swift", version: "0.1.2")
+            AboutWindow(id: "about", appName: "Memorize", developer: "david-swift", version: "0.1.3")
                 .icon(.custom(name: "io.github.david_swift.Flashcards"))
                 .website(.init(string: "https://github.com/david-swift/Memorize"))
                 .issues(.init(string: "https://github.com/david-swift/Memorize/issues"))
