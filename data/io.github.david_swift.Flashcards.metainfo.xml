@@ -3,10 +3,34 @@
   <id>io.github.david_swift.Flashcards</id>
 
   <name>Memorize</name>
+  <developer_name>david-swift</developer_name>
   <summary>Study flashcards</summary>
+  <summary xml:lang="de">Lerne Karteikarten</summary>
 
   <metadata_license>MIT</metadata_license>
-  <project_license>LGPL-3.0-or-later</project_license>
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <url type="homepage">https://github.com/david-swift/Memorize</url>
+  <url type="bugtracker">https://github.com/david-swift/Memorize/issues</url>
+  <url type="vcs-browser">https://github.com/david-swift/Memorize/</url>
+
+  <screenshots>
+    <screenshot type="default" xml:lang="en">
+      <image type="source">https://raw.githubusercontent.com/david-swift/Memorize/main/data/tutorials/Overview.png</image>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image type="source">https://raw.githubusercontent.com/david-swift/Memorize/main/data/tutorials/Study.png</image>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image type="source">https://raw.githubusercontent.com/david-swift/Memorize/main/data/tutorials/Test.png</image>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image type="source">https://raw.githubusercontent.com/david-swift/Memorize/main/data/tutorials/Import.png</image>
+    </screenshot>
+    <screenshot xml:lang="en">
+      <image type="source">https://raw.githubusercontent.com/david-swift/Memorize/main/data/tutorials/Export.png</image>
+    </screenshot>
+  </screenshots>
 
   <supports>
     <control>pointing</control>
@@ -22,8 +46,46 @@
 
       You can easily import existing Quizlet sets.
     </p>
+    <p xml:lang="de">
+      Memorize ist eine native GNOME-App, die deine Karteikarten-Sets speichert.
+      Sie ermöglicht dir die Erstellung, Bearbeitung und das Lernen von Sets.
+      Verwende den Test-Modus, um eine Vorbereitungsprüfung zu erstellen.
+
+      Du kannst Quizlet-Sets einfach importieren.
+    </p>
   </description>
 
   <launchable type="desktop-id">io.github.david_swift.Flashcards.desktop</launchable>
-</component>
 
+  <releases>
+    <release version="0.1.2" date="2024-03-03">
+      <description>
+        <ul>
+          <li>Rename Flashcards to Memorize</li>
+          <li>Make keywords and tags easier to edit with shortcuts</li>
+          <li>Make flashcards easier to navigate with shortcuts</li>
+          <li>Remember the size of the main window</li>
+          <li>Remove apply button in study view</li>
+          <li>Add tooltips</li>
+          <li>Replace "Import" icon with a more understandable icon</li>
+          <li>Add German localizations</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+
+  <content_rating type="oars-1.1" />
+
+  <branding>
+    <color type="primary" scheme_preference="light">#ffffff</color>
+    <color type="primary" scheme_preference="dark">#353535</color>
+  </branding>
+
+  <categories>
+    <category>Education</category>
+    <category>GNOME</category>
+  </categories>
+
+  <icon type="stock">io.github.david_swift.Flashcards</icon>
+
+</component>
