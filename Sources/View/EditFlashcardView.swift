@@ -17,7 +17,7 @@ struct EditFlashcardView: View {
     var delete: () -> Void
 
     var view: Body {
-        FormSection(Loc.flashcard(index: (index + 1).description)) {
+        FormSection(Loc.flashcard(index: index + 1)) {
             Form {
                 EntryRow(Loc.front, text: $flashcard.front)
                     .entryActivated {

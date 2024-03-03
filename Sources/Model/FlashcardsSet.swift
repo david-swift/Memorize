@@ -91,8 +91,8 @@ struct FlashcardsSet: Identifiable, Codable {
     }
 
     init(name: String = Loc.newSet, flashcards: [Flashcard] = [
-        .init(front: Loc.question(index: 1.description), back: Loc.answer),
-        .init(front: Loc.question(index: 2.description), back: Loc.answer)
+        .init(front: Loc.question(index: 1), back: Loc.answer),
+        .init(front: Loc.question(index: 2), back: Loc.answer)
     ]) {
         id = UUID().uuidString
         self.name = name

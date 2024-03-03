@@ -55,8 +55,8 @@ struct TestView: View {
                 max: set.testFlashcards.count
             )
             ActionRow(Loc.testDescription(
-                count: set.numberOfQuestions.nonOptional.description,
-                total: set.flashcards.count.description
+                count: set.numberOfQuestions.nonOptional,
+                total: set.flashcards.count
             ))
                 .suffix {
                     Button(Loc.createTest) {
@@ -96,17 +96,14 @@ struct TestView: View {
                         .subtitle(Loc.fullScore)
                 } else {
                     scoreRow
-                        .subtitle(Loc.score(score: score.description, points: score == 1 ? Loc.point : Loc.points))
+                        .subtitle(Loc.score(score: score))
                 }
             } else {
                 scoreRow
                     .subtitle(Loc.noScoreData)
             }
             ActionRow(Loc.maxScore)
-                .subtitle(Loc.score(
-                    score: (set.numberOfQuestions ?? 1).description,
-                    points: set.numberOfQuestions.nonOptional == 1 ? Loc.point : Loc.points
-                ))
+                .subtitle(Loc.score(score: set.numberOfQuestions ?? 1))
         }
         .modifyContent(Adwaita.ActionRow.self) { $0.style("property") }
         .section(Loc.scoreLabel)

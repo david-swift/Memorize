@@ -1,16 +1,8 @@
-//
-//  Localized.swift
-//  Memorize
-//
+default: en
 
-// swiftlint:disable line_length file_length
-
-import Localized
-
-#localized(default: "en", yml: """
 export(title):
-    en: Export Set \\"(title)\\"
-    de: Exportiere das Set \\"(title)\\"
+    en: Export Set \"(title)\"
+    de: Exportiere das Set \"(title)\"
 
 addSet:
     en: Add Set
@@ -53,8 +45,8 @@ generateExam:
     de: Erstelle eine Vorbereitungsprüfung
 
 generateExamDescription(title):
-    en: Spot last mistakes before your exam about \\"(title)\\"
-    de: Finde letzte Fehler vor deiner Prüfung zu \\"(title)\\"
+    en: Spot last mistakes before your exam about \"(title)\"
+    de: Finde letzte Fehler vor deiner Prüfung zu \"(title)\"
 
 answerWithBack:
     en: Answer With Back
@@ -65,7 +57,9 @@ numberOfQuestions:
     de: Anzahl Fragen
 
 testDescription(count, total):
+    en(total == "1"): Testing (count) of (total) Flashcard
     en: Testing (count) of (total) Flashcards
+    de(total == "1"): Teste (count) von (total) Karteikarte
     de: Teste (count) von (total) Karteikarten
 
 createTest:
@@ -80,17 +74,11 @@ fullScore:
     en: Full Score!
     de: Volle Punktzahl!
 
-score(score, points):
-    en: (score) (points)
-    de: (score) (points)
-
-point:
-    en: Point
-    de: Punkt
-
-points:
-    en: Points
-    de: Punkte
+score(score):
+    en(score == "1"): (score) Point
+    en: (score) Points
+    de(score == "1"): (score) Punkt
+    de: (score) Punkte
 
 maxScore:
     en: Maximum Score
@@ -137,8 +125,8 @@ flashcardsWithTags:
     de: Karteikarten mit Tags
 
 study(title):
-    en: Study \\"(title)\\"
-    de: Lerne \\"(title)\\"
+    en: Study \"(title)\"
+    de: Lerne \"(title)\"
 
 studyDescription:
     en: Repeat each flashcard until you remember it
@@ -153,7 +141,9 @@ initialDifficultyDescription:
     de: Lege die minimale Anzahl Wiederholungen pro Karteikarte fest
 
 studySummary(count, total):
+    en(total == "1"): Studying (count) of (total) Flashcard
     en: Studying (count) of (total) Flashcards
+    de(total == "1"): Lerne (count) von (total) Karteikarte
     de: Lerne (count) von (total) Karteikarten
 
 startStudyMode:
@@ -325,8 +315,8 @@ delete:
     de: Löschen
 
 deleteTitle(title):
-    en: Delete \\"(title)\\"?
-    de: \\"(title)\\" löschen?
+    en: Delete \"(title)\"?
+    de: \"(title)\" löschen?
 
 deleteDescription:
     en: There is no undo. The flashcards will be lost.
@@ -399,6 +389,3 @@ newLine:
 semicolon:
     en: Semicolon
     de: Semikolon
-""")
-
-// swiftlint:enable line_length file_length

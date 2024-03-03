@@ -70,8 +70,8 @@ struct StudyView: View {
             SpinRow(Loc.initialDifficulty, value: $initialDifficulty, min: 1, max: 20)
                 .subtitle(Loc.initialDifficultyDescription)
             ActionRow(Loc.studySummary(
-                count: set.studyFlashcards.count.description,
-                total: set.flashcards.count.description
+                count: set.studyFlashcards.count,
+                total: set.flashcards.count
             ))
             .suffix {
                 Button(Loc.startStudyMode) {

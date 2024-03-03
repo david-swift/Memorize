@@ -18,6 +18,7 @@ struct Flashcards: App {
         Window(id: "main") { window in
             ContentView(sets: $sets, app: app, window: window)
         }
+        .title("Memorize")
         .quitShortcut()
         .overlay {
             AboutWindow(id: "about", appName: "Memorize", developer: "david-swift", version: "0.1.2")
