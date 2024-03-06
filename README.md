@@ -18,8 +18,18 @@ Additionally, you can easily import existing Quizlet sets.
 
 ## Installation
 
-1. Follow the installation instructions [here](https://github.com/AparokshaUI/AdwaitaTemplate#install-the-swift-freedesktop-sdk-extension).
-2. Download this repository's source code and open the folder using [GNOME Builder](https://apps.gnome.org/Builder/).
+The preferred way to install the Memorize app is via Flathub.
+
+<a href='https://flathub.org/apps/io.github.david_swift.Flashcards' align="center">
+  <img align="center" width='240' alt='Download on Flathub' src='https://flathub.org/api/badge?locale=en'/>
+</a>
+
+### Build Flatpak Locally
+
+You can also build the app yourself, e.g. to modify the source code.
+
+1. Download this repository's source code and open the folder using [GNOME Builder](https://apps.gnome.org/Builder/).
+2. Build and run the project using the run button.
 3. Next to the hammer icon, in the dropdown menu, select `Export` and wait for the file browser to appear.
 4. Open the `.flatpak` file with [GNOME Software](https://apps.gnome.org/Software/) and install the app.
 
