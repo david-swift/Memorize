@@ -72,6 +72,7 @@ In the toolbar of the view for editing a set, find the button with a sharing ico
 
 ### Dependencies
 - [Adwaita](https://github.com/AparokshaUI/Adwaita) licensed under the [MIT License](https://github.com/AparokshaUI/Adwaita/blob/main/LICENSE.md)
+- [Localized](https://github.com/AparokshaUI/Localized) licensed under the [MIT License](https://github.com/AparokshaUI/Localized/blob/master/LICENSE.md)
 
 ### Other Thanks
 - The [contributors](Contributors.md)
