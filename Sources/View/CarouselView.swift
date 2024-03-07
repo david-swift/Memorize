@@ -47,6 +47,7 @@ struct CarouselView: View {
                     .wrap()
                     .style("title-3")
                     .valign(.center)
+                    .halign(.center)
                     .vexpand()
                     .hexpand()
                     .padding()
