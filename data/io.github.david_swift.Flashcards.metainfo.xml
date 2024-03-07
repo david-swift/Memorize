@@ -70,8 +70,8 @@ Du kannst Quizlet-Sets einfach importieren.
   <content_rating type="oars-1.1" />
 
   <branding>
-    <color type="primary" scheme_preference="light">#ffffff</color>
-    <color type="primary" scheme_preference="dark">#353535</color>
+    <color type="primary" scheme_preference="light">#f6d32d</color>
+    <color type="primary" scheme_preference="dark">#e5a50a</color>
   </branding>
 
   <categories>
