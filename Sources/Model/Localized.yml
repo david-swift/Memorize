@@ -75,7 +75,7 @@ testDescription(count, total):
     en: Testing (count) of (total) Flashcards
     de(total == "1"): Teste (count) von (total) Karteikarte
     de: Teste (count) von (total) Karteikarten
-    it:(total == "1"): Test (count) di (total) Flashcard
+    it(total == "1"): Test (count) di (total) Flashcard
     it: Test (count) di (total) Flashcard
 
 createTest:
@@ -98,7 +98,7 @@ score(score):
     en: (score) Points
     de(score == "1"): (score) Punkt
     de: (score) Punkte
-    it:(score == "1"): (score) Punto
+    it(score == "1"): (score) Punto
     it: (score) Punti
 
 maxScore:
@@ -181,7 +181,7 @@ studySummary(count, total):
     en: Studying (count) of (total) Flashcards
     de(total == "1"): Lerne (count) von (total) Karteikarte
     de: Lerne (count) von (total) Karteikarten
-    it:(total == "1"): Studio (count) di (total) Flashcard
+    it(total == "1"): Studio (count) di (total) Flashcard
     it: Studio (count) delle (total) Flashcard
 
 startStudyMode:
