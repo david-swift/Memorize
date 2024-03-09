@@ -2,390 +2,489 @@ default: en
 
 export(title):
     en: Export Set \"(title)\"
-    de: Exportiere das Set \"(title)\"
-
+    de: Exportiere das Set \"(title)\
+    it: Esporta set \"(title)\"
+    
 addSet:
     en: Add Set
     de: Set hinzufügen
+    it: Aggiungi Set
 
 sets:
     en: Sets
-    de: Sets
-
+    de: Setsde: 
+    it: Sets
+    
 newWindow:
     en: New Window
     de: Neues Fenster
+    it: Nuova finestra
 
 closeWindow:
     en: Close Window
     de: Fenster schliessen
+    it: Chiudi finestra
 
 about:
     en: About Memorize
     de: Info zu Memorize
+    it: Informazioni su Memorize
 
 mainMenu:
     en: Main Menu
     de: Hauptmenü
+    en: Menu principale
 
 viewMenu:
     en: View
     de: Ansicht
+    en: Vista
 
 filter:
     en: Filter...
     de: Filtern ...
+    it: Filtro...
 
 noFlashcards:
     en: No flashcards available
     de: Keine Karteikarten verfügbar
+    it: Nessuna flashcard disponibile
 
 generateExam:
     en: Generate a Preparation Exam
     de: Erstelle eine Vorbereitungsprüfung
+    it: Generare preparazione di un esame
 
 generateExamDescription(title):
     en: Spot last mistakes before your exam about \"(title)\"
     de: Finde letzte Fehler vor deiner Prüfung zu \"(title)\"
+    it: Individua gli ultimi errori prima dell'esame su \"(title)\"
 
 answerWithBack:
     en: Answer With Back
     de: Antworte mit der Rückseite
+    it: Rispondi con il retro
 
 numberOfQuestions:
     en: Number of Questions
     de: Anzahl Fragen
+    it: Numero di domande
 
 testDescription(count, total):
     en(total == "1"): Testing (count) of (total) Flashcard
     en: Testing (count) of (total) Flashcards
     de(total == "1"): Teste (count) von (total) Karteikarte
     de: Teste (count) von (total) Karteikarten
+    it:(total == "1"): Test (count) di (total) Flashcard
+    it: Test (count) di (total) Flashcard
 
 createTest:
     en: Create Test
     de: Prüfung erstellen
+    it: Crea Test
 
 solveTest:
     en: Solve Test
     de: Test lösen
+    it: Risolvi Test
 
 fullScore:
     en: Full Score!
     de: Volle Punktzahl!
+    it: Punteggio completo!
 
 score(score):
     en(score == "1"): (score) Point
     en: (score) Points
     de(score == "1"): (score) Punkt
     de: (score) Punkte
+    it:(score == "1"): (score) Punto
+    it: (score) Punti
 
 maxScore:
     en: Maximum Score
     de: Maximale Punktzahl
+    it: Punteggio massimo
 
 noScoreData:
     en: "-"
     de: "-"
+    it: "-"
 
 scoreInstructions:
     en: Scroll down to check your answers
     de: Überprüfe deine Antworten weiter unten
+    it: Scorri verso il basso per verificare le tue risposte
 
 scoreLabel:
     en: Score
     de: Punktzahl
+    it: Punteggio
 
 scoreRowLabel:
     en: Your Score
     de: Deine Punktzahl
+    it: Il tuo punteggio
 
 check:
     en: Check
     de: Überprüfen
+    it: Controlla
 
 finishTest:
     en: Finish Test
     de: Test beenden
+    it: Fine del test
 
 star:
     en: Star
     de: Stern
+    it: Stella
 
 tags:
     en: Tags
     de: Tags
-
+    en: Tag
+    
 allFlashcards:
     en: All Flashcards
     de: Alle Karteikarten
+    it: Tutte le Flashcard
 
 flashcardsWithTags:
     en: Flashcards With Tags
     de: Karteikarten mit Tags
+    it: Flashcard con tag
 
 study(title):
     en: Study \"(title)\"
     de: Lerne \"(title)\"
+    it: Studio \"(title)\"
 
 studyDescription:
     en: Repeat each flashcard until you remember it
     de: Lerne bis du jede Karteikarte beherrscht
+    it: Ripeti ogni flashcard finché non la ricordi
 
 initialDifficulty:
     en: Initial Difficulty
     de: Anfangsschwierigkeit
+    it: Difficoltà iniziale
 
 initialDifficultyDescription:
     en: Set the minimum number of repetitions per flashcard
     de: Lege die minimale Anzahl Wiederholungen pro Karteikarte fest
+    it: Imposta il numero minimo di ripetizioni per flashcard
 
 studySummary(count, total):
     en(total == "1"): Studying (count) of (total) Flashcard
     en: Studying (count) of (total) Flashcards
     de(total == "1"): Lerne (count) von (total) Karteikarte
     de: Lerne (count) von (total) Karteikarten
+    it:(total == "1"): Studio (count) di (total) Flashcard
+    it: Studio (count) delle (total) Flashcard
 
 startStudyMode:
     en: Start Study Mode
     de: Starte den Lernmodus
+    it: Avvia la modalità studio
 
 studySettings:
     en: Study Settings
     de: Einstellungen zum Lernmodus
+    it: Impostazioni di studio
 
 continueStudying:
     en: Continue Studying
     de: Lernen fortsetzen
+    it: Continua a studiare
 
 terminateStudyMode:
     en: Terminate Study Mode
     de: Lernmodus beenden
+    it: Termina la modalità studio
 
 _continue:
     en: Continue
     de: Fortfahren
+    it: Continua
 
 makeIncorrect:
     en: Make Incorrect
     de: Als falsch markieren
+    it: Rendi errato
 
 makeCorrect:
     en: Make Correct
     de: Als richtig markieren
+    it: Rendi corretto
 
 answer:
     en: Answer
     de: Antwort
+    it: Risposta
 
 solution:
     en: Solution
     de: Lösung
+    it: Soluzione
 
 correct:
     en: Correct!
     de: Korrekt!
+    it: Corretto!
 
 yourAnswer:
     en: Your Answer
     de: Deine Antwort
+    it: La tua risposta
 
 editSet:
     en: Edit Set
     de: Set bearbeiten
+    it: Modifica Set
 
 keywords:
     en: Keywords
     de: Schlüsselwörter
+    it: Parole chiave
 
 keyword:
     en: Keyword
     de: Schlüsselwort
+    it: Parola chiave
 
 keywordsDescription:
     en: Keywords simplify the search for sets
     de: Schlüsselwörter vereinfachen die Suche nach Sets
+    it: Le parole chiave semplificano la ricerca dei set
 
 add(element):
     en: Add (element)
     de: (element) hinzufügen
+    it: Aggiungi (element)
 
 remove(element):
     en: Remove (element)
     de: (element) entfernen
+    it: Rimuovi (element)
 
 pasteText:
     en: Paste Text
     de: Text einfügen
+    it: Incolla testo
 
 switchFrontBack:
     en: Switch Front and Back
     de: Vorder- und Rückseite vertauschen
+    it: Scambia da fronte e retro
 
 exportQuizletSet:
     en: Export Quizlet Set
     de: Quizlet-Set exportieren
+    it: Esporta set di quizlet
 
 quizletDescription:
     en: "Export a Quizlet set under <tt><b> ⋯ > Export</b></tt>. Using the default configuration, copy the text."
     de: "Exportiere ein Quizlet-Set unter <tt><b> ⋯ > Export</b></tt>. Kopiere den Text mit der Standardkonfiguration."
+    it: "Esporta un set di Quizlet in <tt><b> ⋯ > Esporta</b></tt>. Utilizzando la configurazione predefinita, copia il testo."
 
 exportAnkiDeck:
     en: Export Anki Deck
     de: Anki Deck exportieren
+    it: Esporta mazzo Anki
 
 ankiDescription:
     en: "Export decks under <tt><b> File > Export</b></tt>. Select the export format <tt><b> Cards in Plain Text </b></tt>. Uncheck <tt><b>Include HTML and media references</b></tt>. Copy the content of the text file."
     de: "Exportiere Decks unter <tt><b> File > Export</b></tt>. Wähle das Format <tt><b> Cards in Plain Text </b></tt>. Deaktiviere <tt><b>Include HTML and media references</b></tt>. Kopiere den Inhalt der Textdatei."
-
+    it: "Esporta mazzi in <tt><b> File > Esporta</b></tt>. Seleziona il formato di esportazione <tt><b> Carte in testo semplice </b></tt>. Deseleziona <tt ><b>Includi riferimenti HTML e multimediali</b></tt>. Copia il contenuto del file di testo."
 cancel:
     en: Cancel
     de: Abbrechen
+    it: Annulla
 
 _import:
     en: Import
     de: Importieren
+    it: Importa
 
 betweenTermDefinition:
     en: Between Term and Definition
     de: Zwischen Term und Definition
+    it: Tra termine e definizione
 
 betweenRows:
     en: Between Rows
     de: Zwischen Reihen
+    it: Tra le righe
 
 copy:
     en: Copy
     de: Kopieren
+    it: Copia
 
 deleteSet:
     en: Delete Set
     de: Set löschen
+    it: Cancella Set
 
 exportSet:
     en: Export Set
     de: Set exportieren
+    it: Esporta Set
 
 done:
     en: Done
     de: Fertig
+    en: Fatto
 
 title:
     en: Title
     de: Titel
+    en: Titolo
 
 tagsDescription:
     en: Organize and study flashcards in groups
     de: Organisiere und lerne Karteikarten in Gruppen
+    it: Organizza e studia le flashcard in gruppi
 
 tag:
     en: Tag
     de: Tag
+    it: Tag
 
 starDescription:
     en: A special tag that can be set while studying
     de: Ein spezielles Tag, das während des Lernens gesetzt werden kann
+    it: Un tag speciale che può essere impostato durante lo studio
 
 addFlashcard:
     en: Add Flashcard
     de: Karteikarte hinzufügen
+    it: Aggiungi Flashcard
 
 importFlashcards:
     en: Import Flashcards
     de: Karteikarten importieren
+    it: Importa Flashcards
 
 front:
     en: Front
     de: Vorderseite
+    en: Fronte
 
 back:
     en: Back
     de: Rückseite
+    en: Retro
 
 flashcard(index):
     en: Flashcard (index)
     de: Karteikarte (index)
+    it: Flashcard (index)
 
 deleteFlashcard:
     en: Delete Flashcard
     de: Karteikarte löschen
+    en: Elimina Flashcard
 
 delete:
     en: Delete
     de: Löschen
+    en: Elimina
 
 deleteTitle(title):
     en: Delete \"(title)\"?
     de: \"(title)\" löschen?
+    en: Eliminare \"(title)\"?
 
 deleteDescription:
     en: There is no undo. The flashcards will be lost.
     de: Die Karteikarten werden nicht wiederherstellbar sein.
+    it: Non è possibile annullare. Le flashcard andranno perse.
 
 filterSets:
     en: Filter Sets
     de: Sets filtern
+    it: Set di filtri
 
 noSelection:
     en: No Selection
     de: Keine Auswahl
+    it: Nessuna selezione
 
 noSelectionDescription:
     en: Select a set in the sidebar.
     de: Wähle ein Set in der Seitenleiste aus.
+    it: Seleziona un set nella barra laterale.
 
 noSets:
     en: No Sets
     de: Keine Sets verfügbar
+    en: Nessun Sets
 
 noSetsDescription:
     en: Create a new set using the <b>+</b> button in the sidebar.
     de: Erstelle mit dem <b>+</b>-Knopf in der Seitenleiste ein neues Set.
+    it: Crea un nuovo set utilizzando il pulsante <b>+</b> nella barra laterale.
 
 overview:
     en: Overview
     de: Übersicht
+    it: Panoramica
 
 studySwitcher:
     en: Study
     de: Lernen
+    it: Studio
 
 test:
     en: Test
     de: Testen
+    it: Test
 
 newSet:
     en: New Set
     de: Neues Set
+    it: Nuovo Set
 
 question(index):
     en: Question (index)
     de: Frage (index)
+    in: Domanda (index)
 
 quizlet:
     en: Quizlet
     de: Quizlet
+    it: Quizlet
 
 anki:
     en: Anki
     de: Anki
+    it: Anki
 
 showTutorial:
     en: Show Tutorial
     de: Tutorial zeigen
+    it: Mostra tutorial
 
 comma:
     en: Comma
     de: Komma
+    en: Virgola
 
 tab:
     en: Tab
     de: Tab
+    it: Scheda
 
 newLine:
     en: New Line
     de: Neue Zeile
+    it: Nuova riga
 
 semicolon:
     en: Semicolon
     de: Semikolon
+    it: Punto e virgola
+    
