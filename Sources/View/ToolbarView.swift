@@ -13,17 +13,16 @@ struct ToolbarView: View {
     @Binding var filter: String?
     var app: GTUIApp
     var window: GTUIApplicationWindow
+    var addSet: () -> Void
 
     var view: Body {
         HeaderBar {
             Button(icon: .default(icon: .listAdd)) {
-                let newSet = FlashcardsSet()
-                sets.insert(newSet, at: 0)
-                selectedSet = newSet.id
+                addSet()
             }
             .tooltip(Loc.addSet)
         } end: {
-            if flashcardsView == .overview {
+            if flashcardsView == .overview && !sets.isEmpty {
                 menu
             }
         }
@@ -35,7 +34,7 @@ struct ToolbarView: View {
 
     @ViewBuilder var content: Body {
         HeaderBar.end {
-            if flashcardsView != .overview {
+            if flashcardsView != .overview || sets.isEmpty {
                 menu
             }
         }
