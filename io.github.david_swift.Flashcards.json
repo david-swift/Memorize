@@ -37,9 +37,8 @@
       "buildsystem": "simple",
       "sources": [
         {
-          "type": "git",
-          "url": "https://github.com/david-swift/Flashcards",
-          "branch": "main"
+          "type": "dir",
+          "path": "."
         }
       ],
       "build-commands": [

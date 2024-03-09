@@ -7,6 +7,8 @@ import Adwaita
 
 struct SetOverview: View {
 
+    @State("tutorial")
+    private var tutorial = true
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
     var app: GTUIApp
@@ -38,6 +40,16 @@ struct SetOverview: View {
             .style("circular")
             .tooltip(Loc.editSet)
             .padding()
+            .popover(visible: $tutorial) {
+                Text(Loc.editSetDescription)
+                    .wrap()
+                    .padding(10, .vertical)
+                    .frame(maxWidth: 150)
+                Button(Loc.editSet) {
+                    editMode = true
+                    tutorial = false
+                }
+            }
         }
         .halign(.center)
     }

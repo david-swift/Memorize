@@ -414,9 +414,9 @@ noSelection:
     it: Nessuna selezione
 
 noSelectionDescription:
-    en: Select a set in the sidebar.
-    de: Wähle ein Set in der Seitenleiste aus.
-    it: Seleziona un set nella barra laterale.
+    en: Select a set in the sidebar
+    de: Wähle ein Set in der Seitenleiste aus
+    it: Seleziona un set nella barra laterale
 
 noSets:
     en: No Sets
@@ -424,9 +424,8 @@ noSets:
     it: Nessun Sets
 
 noSetsDescription:
-    en: Create a new set using the <b>+</b> button in the sidebar.
-    de: Erstelle mit dem <b>+</b>-Knopf in der Seitenleiste ein neues Set.
-    it: Crea un nuovo set utilizzando il pulsante <b>+</b> nella barra laterale.
+    en: Create a set to start practicing
+    de: Erstelle ein Set, um mit dem Lernen zu beginnen
 
 overview:
     en: Overview
@@ -488,3 +487,10 @@ semicolon:
     de: Semikolon
     it: Punto e virgola
     
+editSetDescription:
+    en: Edit the set's content and title
+    de: Bearbeite den Inhalt und Titel des Sets
+
+createSet:
+    en: Create Set
+    de: Set erstellen
