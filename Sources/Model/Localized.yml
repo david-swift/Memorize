@@ -2,7 +2,7 @@ default: en
 
 export(title):
     en: Export Set \"(title)\"
-    de: Exportiere das Set \"(title)\
+    de: Exportiere das Set \"(title)\"
     it: Esporta set \"(title)\"
     
 addSet:
@@ -12,7 +12,7 @@ addSet:
 
 sets:
     en: Sets
-    de: Setsde: 
+    de: Sets 
     it: Sets
     
 newWindow:
@@ -33,12 +33,12 @@ about:
 mainMenu:
     en: Main Menu
     de: Hauptmenü
-    en: Menu principale
+    it: Menu principale
 
 viewMenu:
     en: View
     de: Ansicht
-    en: Vista
+    it: Vista
 
 filter:
     en: Filter...
@@ -144,7 +144,7 @@ star:
 tags:
     en: Tags
     de: Tags
-    en: Tag
+    it: Tag
     
 allFlashcards:
     en: All Flashcards
@@ -336,12 +336,12 @@ exportSet:
 done:
     en: Done
     de: Fertig
-    en: Fatto
+    it: Fatto
 
 title:
     en: Title
     de: Titel
-    en: Titolo
+    it: Titolo
 
 tagsDescription:
     en: Organize and study flashcards in groups
@@ -371,12 +371,12 @@ importFlashcards:
 front:
     en: Front
     de: Vorderseite
-    en: Fronte
+    it: Fronte
 
 back:
     en: Back
     de: Rückseite
-    en: Retro
+    it: Retro
 
 flashcard(index):
     en: Flashcard (index)
@@ -386,17 +386,17 @@ flashcard(index):
 deleteFlashcard:
     en: Delete Flashcard
     de: Karteikarte löschen
-    en: Elimina Flashcard
+    it: Elimina Flashcard
 
 delete:
     en: Delete
     de: Löschen
-    en: Elimina
+    it: Elimina
 
 deleteTitle(title):
     en: Delete \"(title)\"?
     de: \"(title)\" löschen?
-    en: Eliminare \"(title)\"?
+    it: Eliminare \"(title)\"?
 
 deleteDescription:
     en: There is no undo. The flashcards will be lost.
@@ -421,7 +421,7 @@ noSelectionDescription:
 noSets:
     en: No Sets
     de: Keine Sets verfügbar
-    en: Nessun Sets
+    it: Nessun Sets
 
 noSetsDescription:
     en: Create a new set using the <b>+</b> button in the sidebar.
@@ -451,7 +451,7 @@ newSet:
 question(index):
     en: Question (index)
     de: Frage (index)
-    in: Domanda (index)
+    it: Domanda (index)
 
 quizlet:
     en: Quizlet
@@ -471,7 +471,7 @@ showTutorial:
 comma:
     en: Comma
     de: Komma
-    en: Virgola
+    it: Virgola
 
 tab:
     en: Tab
