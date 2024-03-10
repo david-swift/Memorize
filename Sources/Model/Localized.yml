@@ -280,7 +280,7 @@ correct:
     en: Correct!
     de: Korrekt!
     it: Corretto!
-    pt_BR: Correto\"
+    pt_BR: Correto!
 
 yourAnswer:
     en: Your Answer
@@ -496,7 +496,8 @@ noSelection:
     en: No Selection
     de: Keine Auswahl
     it: Nessuna selezione
-
+    pt_BR: Sem Seleção
+    
 noSelectionDescription:
     en: Select a set in the sidebar
     de: Wähle ein Set in der Seitenleiste aus
@@ -590,7 +591,11 @@ semicolon:
 editSetDescription:
     en: Edit the set's content and title
     de: Bearbeite den Inhalt und Titel des Sets
+    it: Modifica il contenuto e il titolo del Set
+    pt_BR: Editar conteúdo e título do set
 
 createSet:
     en: Create Set
     de: Set erstellen
+    it: Crea Set
+    pt_BR: Criar Set
