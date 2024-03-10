@@ -490,7 +490,9 @@ semicolon:
 editSetDescription:
     en: Edit the set's content and title
     de: Bearbeite den Inhalt und Titel des Sets
+    it: Modifica il contenuto e il titolo del Set
 
 createSet:
     en: Create Set
     de: Set erstellen
+    it: Crea Set
