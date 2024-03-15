@@ -49,6 +49,7 @@ struct ContentView: WindowView {
                 selection: $selectedSet
             ) { set in
                 Text(set.name)
+                    .inspectOnAppear { gtk_label_set_ellipsize($0.pointer, PANGO_ELLIPSIZE_END) }
                     .padding()
                     .halign(.start)
             }
