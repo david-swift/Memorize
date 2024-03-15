@@ -9,6 +9,7 @@ import Foundation
 
 struct ContentView: WindowView {
 
+    @Binding var copied: Signal
     @Binding var sets: [FlashcardsSet]
     @State("selected-set")
     private var selectedSet = ""
@@ -40,6 +41,7 @@ struct ContentView: WindowView {
                     ).content
                 }
         }
+        .toast(Loc.copied, signal: copied)
     }
 
     var sidebar: View {

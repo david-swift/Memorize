@@ -10,6 +10,7 @@ struct ExportView: View {
     @State private var termDefinitionSeparator: TermDefinitionSeparator = .tab
     @State private var rowSeparator: RowSeparator = .newLine
     @State private var switchSides = false
+    @Binding var copied: Signal
     var set: FlashcardsSet
     var window: GTUIWindow
 
@@ -50,6 +51,7 @@ struct ExportView: View {
                 Button(Loc.copy) {
                     State<Any>.copy(text)
                     window.close()
+                    copied.signal()
                 }
                 .style("suggested-action")
             }

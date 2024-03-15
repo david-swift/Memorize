@@ -599,3 +599,7 @@ createSet:
     de: Set erstellen
     it: Crea Set
     pt_BR: Criar Set
+
+copied:
+    en: Contents copied to clipboard
+    de: Inhalte wurden kopiert

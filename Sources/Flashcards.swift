@@ -11,12 +11,13 @@ struct Flashcards: App {
 
     @State("sets", folder: "io.github.david_swift.Flashcards", forceUpdates: true)
     private var sets: [FlashcardsSet] = []
+    @State private var copied = Signal()
     let id = "io.github.david_swift.Flashcards"
     var app: GTUIApp!
 
     var scene: Scene {
         Window(id: "main") { window in
-            ContentView(sets: $sets, app: app, window: window)
+            ContentView(copied: $copied, sets: $sets, app: app, window: window)
         }
         .title("Memorize")
         .quitShortcut()
@@ -38,7 +39,7 @@ struct Flashcards: App {
 
                 // Export a set.
                 Window(id: "export-\(set.id)", open: 0) { window in
-                    ExportView(set: set, window: window)
+                    ExportView(copied: $copied, set: set, window: window)
                 }
                 .title(Loc.export(title: set.name))
                 .defaultSize(width: 500, height: 500)
