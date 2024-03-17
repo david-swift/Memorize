@@ -58,6 +58,17 @@ Du kannst Quizlet-Sets einfach importieren.
   <launchable type="desktop-id">io.github.david_swift.Flashcards.desktop</launchable>
 
   <releases>
+    <release version="0.1.5" date="2024-03-17">
+      <description>
+        <ul>
+          <li>Add Brazilian Portuguese translation</li>
+          <li>Improve German translation</li>
+          <li>Ellipsize titles in sidebar</li>
+          <li>Add toast confirming that copying the exported data was successful</li>
+          <li>Remember whether the main window is maximized</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.1.4" date="2024-03-09">
       <description>
         <ul>
