@@ -26,7 +26,7 @@ newWindow:
 
 closeWindow:
     en: Close Window
-    de: Fenster schliessen
+    de: Fenster schließen
     it: Chiudi finestra
     pt_BR: Fechar Janela
 
