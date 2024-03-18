@@ -507,7 +507,7 @@ noSelectionDescription:
 noSets:
     en: No Sets
     de: Keine Sets verfügbar
-    it: Nessun Sets
+    it: Nessun Set
     pt_BR: Nenhum Set
 
 noSetsDescription:
@@ -603,3 +603,4 @@ createSet:
 copied:
     en: Contents copied to clipboard
     de: Inhalte wurden kopiert
+    it: Contenuto copiato negli appunti
