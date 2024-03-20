@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="256" alt="Memorize Icon" src="data/icons/io.github.david_swift.Flashcards-shadow.svg">
+  <img width="256" alt="Memorize Icon" src="data/icons/io.github.david_swift.Flashcards.svg">
   <h1 align="center">Memorize</h1>
 </p>
 
