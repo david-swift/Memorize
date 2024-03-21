@@ -32,7 +32,7 @@ struct ToolbarView: View {
             visible: $about,
             app: "Memorize",
             developer: "david-swift",
-            version: "0.1.6",
+            version: "0.2.0",
             icon: .custom(name: "io.github.david_swift.Flashcards"),
             website: .init(string: "https://github.com/david-swift/Memorize"),
             issues: .init(string: "https://github.com/david-swift/Memorize/issues")
