@@ -71,7 +71,9 @@ struct ExportView: View {
         for flashcard in flashcards {
             text += flashcard.front + termDefinitionSeparator.syntax + flashcard.back + rowSeparator.syntax
         }
-        text.removeLast(rowSeparator.syntax.count)
+        if text.count > rowSeparator.syntax.count {
+            text.removeLast(rowSeparator.syntax.count)
+        }
         return text
     }
 

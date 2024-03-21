@@ -38,6 +38,7 @@ struct SetOverview: View {
                         export = true
                     }
                     .tooltip(Loc.exportSet)
+                    .insensitive(set.flashcards.isEmpty)
                 }
                 .modifyContent(VStack.self) { $0.spacing(5) }
             } end: {
