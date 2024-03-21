@@ -612,3 +612,7 @@ activeStudySession:
 activeStudySessionDescription:
     en: You are currently in a study session
     de: Du befindest dich in einer Lerneinheit
+
+toggleSidebar:
+    en: Toggle Sidebar
+    de: Seitenleiste ein- und ausblenden

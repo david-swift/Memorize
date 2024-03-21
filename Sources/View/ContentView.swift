@@ -21,8 +21,11 @@ struct ContentView: WindowView {
     private var height = 550
     @State("maximized")
     private var maximized = false
+    @State private var sidebarVisible = true
     var app: GTUIApp
     var window: GTUIApplicationWindow
+
+    var smallWindow: Bool { width < 600 }
 
     var view: Body {
         NavigationView($flashcardsView, Loc.overview) { view in
@@ -41,11 +44,12 @@ struct ContentView: WindowView {
                     HeaderBar.empty()
                 }
         } initialView: {
-            OverlaySplitView(visible: .constant(true)) {
+            OverlaySplitView(visible: .init { sidebarVisible || !smallWindow } set: { sidebarVisible = $0 }) {
                 sidebar
             } content: {
                 content
             }
+            .collapsed(smallWindow)
         }
     }
 
@@ -53,7 +57,12 @@ struct ContentView: WindowView {
         ScrollView {
             List(
                 sets.map { ($0, $0.score(filter)) }.sorted { $0.1 > $1.1 }.filter { $0.1 != 0 }.map { $0.0 },
-                selection: $selectedSet
+                selection: .init {
+                    selectedSet
+                } set: { newValue in
+                    selectedSet = newValue
+                    sidebarVisible = false
+                }
             ) { set in
                 Text(set.name)
                     .ellipsize()
@@ -85,30 +94,50 @@ struct ContentView: WindowView {
     @ViewBuilder var content: Body {
         if let index = sets.firstIndex(where: { $0.id == selectedSet }), let set = sets[safe: index] {
             let binding = Binding<FlashcardsSet> { sets[safe: index] ?? .init() } set: { sets[safe: index] = $0 }
-            SetOverview(set: binding, editMode: $editMode, flashcardsView: $flashcardsView, app: app, window: window) {
+            SetOverview(
+                set: binding,
+                editMode: $editMode,
+                flashcardsView: $flashcardsView,
+                sidebarVisible: $sidebarVisible,
+                smallWindow: smallWindow
+            ) {
                 sets = sets.filter { $0.id != set.id }
             }
-        } else if !sets.isEmpty {
-            StatusPage(
-                Loc.noSelection,
-                icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-                description: Loc.noSelectionDescription
-            )
-            .centerMinSize()
         } else {
-            StatusPage(
-                Loc.noSets,
-                icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-                description: Loc.noSetsDescription
-            ) {
-                Button(Loc.createSet) {
-                    addSet()
+            VStack {
+                if !sets.isEmpty {
+                    StatusPage(
+                        Loc.noSelection,
+                        icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
+                        description: Loc.noSelectionDescription
+                    )
+                    .centerMinSize()
+                } else {
+                    StatusPage(
+                        Loc.noSets,
+                        icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
+                        description: Loc.noSetsDescription
+                    ) {
+                        Button(Loc.createSet) {
+                            addSet()
+                        }
+                        .style("pill")
+                        .style("suggested-action")
+                        .horizontalCenter()
+                    }
+                    .centerMinSize()
                 }
-                .style("pill")
-                .style("suggested-action")
-                .horizontalCenter()
             }
-            .centerMinSize()
+            .topToolbar {
+                HeaderBar.start {
+                    if smallWindow {
+                        Button(icon: .default(icon: .sidebarShow)) {
+                            sidebarVisible.toggle()
+                        }
+                        .tooltip(Loc.toggleSidebar)
+                    }
+                }
+            }
         }
     }
 

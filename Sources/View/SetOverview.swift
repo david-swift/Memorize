@@ -10,11 +10,11 @@ struct SetOverview: View {
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
     @Binding var flashcardsView: NavigationStack<FlashcardsView>
+    @Binding var sidebarVisible: Bool
     @State private var export = false
     @State private var deleteState = false
     @State private var copied = Signal()
-    var app: GTUIApp
-    var window: GTUIWindow
+    var smallWindow: Bool
     var delete: () -> Void
 
     var view: Body {
@@ -30,6 +30,12 @@ struct SetOverview: View {
         .topToolbar {
             HeaderBar {
                 HStack {
+                    if smallWindow {
+                        Button(icon: .default(icon: .sidebarShow)) {
+                            sidebarVisible.toggle()
+                        }
+                        .tooltip(Loc.toggleSidebar)
+                    }
                     Button(icon: .default(icon: .userTrash)) {
                         deleteState = true
                     }
@@ -57,10 +63,12 @@ struct SetOverview: View {
             }
         }
         .dialog(visible: $export, title: Loc.export(title: set.name), id: "export", width: 400, height: 400) {
-            ExportView(copied: $copied, set: set, window: window)
+            ExportView(copied: $copied, set: set) {
+                export = false
+            }
         }
         .dialog(visible: $editMode, id: "edit", width: 700, height: 550) {
-            EditView(set: $set, editMode: $editMode, app: app, window: window)
+            EditView(set: $set, editMode: $editMode)
         }
         .toast(Loc.copied, signal: copied)
     }

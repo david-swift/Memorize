@@ -12,8 +12,6 @@ struct EditView: View {
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
-    var app: GTUIApp
-    var window: GTUIWindow
 
     var view: Body {
         ScrollView {
@@ -123,7 +121,7 @@ struct EditView: View {
             importFlashcards = true
         }
         .dialog(visible: $importFlashcards, width: 400, height: 500) {
-            ImportView(set: $set, window: window)
+            ImportView(set: $set) { importFlashcards = false }
         }
     }
 

@@ -13,7 +13,7 @@ struct ImportView: View {
     @State private var text = ""
     @State private var switchSides = false
     @State private var navigationStack = NavigationStack<ImportNavigationDestination>()
-    var window: GTUIWindow
+    var close: () -> Void
 
     var view: Body {
         VStack {
@@ -147,7 +147,7 @@ struct ImportView: View {
         HeaderBar(titleButtons: false) {
             if destination == nil {
                 Button(Loc.cancel) {
-                    window.close()
+                    close()
                 }
             }
         } end: {
@@ -162,7 +162,7 @@ struct ImportView: View {
             Button(label) {
                 if case .paste = destination {
                     set.flashcards += previewSet.flashcards
-                    window.close()
+                    close()
                 } else {
                     if case let .tutorial(app) = destination {
                         navigationStack.push(.paste(app: app))
