@@ -588,12 +588,6 @@ semicolon:
     it: Punto e virgola
     pt_BR: Ponto e vírgula
 
-editSetDescription:
-    en: Edit the set's content and title
-    de: Bearbeite den Inhalt und Titel des Sets
-    it: Modifica il contenuto e il titolo del Set
-    pt_BR: Editar conteúdo e título do set
-
 createSet:
     en: Create Set
     de: Set erstellen
@@ -604,3 +598,9 @@ copied:
     en: Contents copied to clipboard
     de: Inhalte wurden kopiert
     it: Contenuto copiato negli appunti
+
+flashcards(count):
+    en(count == "1"): 1 flashcard
+    en: (count) flashcards
+    de(count == "1"): 1 Karteikarte
+    de: (count) Karteikarten

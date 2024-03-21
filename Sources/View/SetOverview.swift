@@ -7,49 +7,71 @@ import Adwaita
 
 struct SetOverview: View {
 
-    @State("tutorial")
-    private var tutorial = true
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
+    @Binding var flashcardsView: NavigationStack<FlashcardsView>
+    @State private var export = false
+    @State private var deleteState = false
+    @State private var copied = Signal()
     var app: GTUIApp
     var window: GTUIWindow
+    var delete: () -> Void
 
     var view: Body {
         ViewStack(element: set) { _ in
-            if editMode {
-                VStack {
-                    EditView(set: $set, editMode: $editMode, app: app, window: window)
+            title
+                .centerMinSize()
+            cards
+                .frame(minHeight: 270)
+                .valign(.center)
+            buttons
+                .centerMinSize()
+        }
+        .topToolbar {
+            HeaderBar {
+                HStack {
+                    Button(icon: .default(icon: .userTrash)) {
+                        deleteState = true
+                    }
+                    .tooltip(Loc.deleteSet)
+                    Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
+                        export = true
+                    }
+                    .tooltip(Loc.exportSet)
                 }
-            } else {
-                ScrollView {
-                    title
-                    cards
+                .modifyContent(VStack.self) { $0.spacing(5) }
+            } end: {
+                Button(icon: .default(icon: .documentEdit)) {
+                    editMode = true
                 }
+                .tooltip(Loc.editSet)
+            }
+            .titleWidget { }
+        }
+        .dialog(visible: $deleteState, title: Loc.deleteTitle(title: set.name), id: "delete", height: 350) {
+            DeleteView(set: set) {
+                delete()
+            } close: {
+                deleteState = false
             }
         }
+        .dialog(visible: $export, title: Loc.export(title: set.name), id: "export", width: 400, height: 400) {
+            ExportView(copied: $copied, set: set, window: window)
+        }
+        .dialog(visible: $editMode, id: "edit", width: 700, height: 550) {
+            EditView(set: $set, editMode: $editMode, app: app, window: window)
+        }
+        .toast(Loc.copied, signal: copied)
     }
 
     var title: View {
-        HStack {
-            Text(set.name)
-                .style("title-1")
-                .padding()
-            Button(icon: .default(icon: .documentEdit)) {
-                editMode = true
+        VStack {
+            HStack {
+                Text(set.name)
+                    .style("title-1")
+                    .padding()
             }
-            .style("circular")
-            .tooltip(Loc.editSet)
-            .padding()
-            .popover(visible: $tutorial) {
-                Text(Loc.editSetDescription)
-                    .wrap()
-                    .padding(10, .vertical)
-                    .frame(maxWidth: 150)
-                Button(Loc.editSet) {
-                    editMode = true
-                    tutorial = false
-                }
-            }
+            Text(Loc.flashcards(count: set.flashcards.count))
         }
         .halign(.center)
     }
@@ -61,7 +83,22 @@ struct SetOverview: View {
             }
             .transition(.crossfade)
         }
-        .centerMinSize()
+    }
+
+    var buttons: View {
+        HStack {
+            Button(Loc.studySwitcher, icon: .default(icon: .mediaPlaybackStart)) {
+                flashcardsView.push(.study(set: set.id))
+            }
+            .style("pill")
+            Button(Loc.test, icon: .default(icon: .emblemDocuments)) {
+                flashcardsView.push(.test(set: set.id))
+            }
+            .style("pill")
+        }
+        .halign(.center)
+        .modifyContent(VStack.self) { $0.spacing(20) }
+        .padding(20)
     }
 
 }

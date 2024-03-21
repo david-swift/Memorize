@@ -8,8 +8,8 @@ import Adwaita
 struct DeleteView: View {
 
     var set: FlashcardsSet
-    var window: GTUIWindow
     var delete: () -> Void
+    var close: () -> Void
 
     var view: Body {
         ScrollView {
@@ -19,12 +19,12 @@ struct DeleteView: View {
         .topToolbar {
             HeaderBar(titleButtons: false) {
                 Button(Loc.cancel) {
-                    window.close()
+                    close()
                 }
             } end: {
                 Button(Loc.delete) {
+                    close()
                     delete()
-                    window.close()
                 }
                 .style("destructive-action")
             }

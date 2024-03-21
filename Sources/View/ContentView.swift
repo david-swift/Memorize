@@ -9,12 +9,10 @@ import Foundation
 
 struct ContentView: WindowView {
 
-    @Binding var copied: Signal
     @Binding var sets: [FlashcardsSet]
     @State("selected-set")
     private var selectedSet = ""
-    @State("flashcards-view")
-    private var flashcardsView: FlashcardsView = .overview
+    @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
     @State private var filter: String?
     @State private var editMode = false
     @State("width")
@@ -27,23 +25,28 @@ struct ContentView: WindowView {
     var window: GTUIApplicationWindow
 
     var view: Body {
-        OverlaySplitView(visible: .constant(flashcardsView == .overview && !editMode && !sets.isEmpty)) {
-            sidebar
-        } content: {
-            content
-                .topToolbar(visible: !editMode || flashcardsView != .overview) {
-                    ToolbarView(
-                        flashcardsView: $flashcardsView,
-                        sets: $sets,
-                        selectedSet: $selectedSet,
-                        filter: $filter,
-                        app: app,
-                        window: window,
-                        addSet: addSet
-                    ).content
+        NavigationView($flashcardsView, Loc.overview) { view in
+            Bin()
+                .child {
+                    switch view {
+                    case let .study(set):
+                        ViewStack(element: set) { _ in
+                            StudyView(set: binding(id: set))
+                        }
+                    case let .test(set):
+                        TestView(set: binding(id: set))
+                    }
                 }
+                .topToolbar {
+                    HeaderBar.empty()
+                }
+        } initialView: {
+            OverlaySplitView(visible: .constant(true)) {
+                sidebar
+            } content: {
+                content
+            }
         }
-        .toast(Loc.copied, signal: copied)
     }
 
     var sidebar: View {
@@ -64,12 +67,11 @@ struct ContentView: WindowView {
             SearchEntry()
                 .placeholderText(Loc.filterSets)
                 .text(.init { filter ?? "" } set: { filter = $0 })
-                .focused(.constant(!editMode && flashcardsView == .overview))
+                .focused(.constant(filter != nil))
                 .padding(5, .horizontal.add(.bottom))
         }
         .topToolbar {
             ToolbarView(
-                flashcardsView: $flashcardsView,
                 sets: $sets,
                 selectedSet: $selectedSet,
                 filter: $filter,
@@ -83,15 +85,8 @@ struct ContentView: WindowView {
     @ViewBuilder var content: Body {
         if let index = sets.firstIndex(where: { $0.id == selectedSet }), let set = sets[safe: index] {
             let binding = Binding<FlashcardsSet> { sets[safe: index] ?? .init() } set: { sets[safe: index] = $0 }
-            switch flashcardsView {
-            case .overview:
-                SetOverview(set: binding, editMode: $editMode, app: app, window: window)
-            case .study:
-                ViewStack(element: set) { _ in
-                    StudyView(set: binding)
-                }
-            case .test:
-                TestView(set: binding)
+            SetOverview(set: binding, editMode: $editMode, flashcardsView: $flashcardsView, app: app, window: window) {
+                sets = sets.filter { $0.id != set.id }
             }
         } else if !sets.isEmpty {
             StatusPage(
@@ -127,6 +122,14 @@ struct ContentView: WindowView {
         let newSet = FlashcardsSet()
         sets.insert(newSet, at: 0)
         selectedSet = newSet.id
+    }
+
+    func binding(id: String) -> Binding<FlashcardsSet> {
+        .init {
+            sets.first { $0.id == id } ?? .init()
+        } set: { newValue in
+            sets[safe: sets.firstIndex { $0.id == id }] = newValue
+        }
     }
 
 }

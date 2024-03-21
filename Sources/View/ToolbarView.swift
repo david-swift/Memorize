@@ -7,10 +7,10 @@ import Adwaita
 
 struct ToolbarView: View {
 
-    @Binding var flashcardsView: FlashcardsView
     @Binding var sets: [FlashcardsSet]
     @Binding var selectedSet: String
     @Binding var filter: String?
+    @State private var about = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
     var addSet: () -> Void
@@ -22,31 +22,21 @@ struct ToolbarView: View {
             }
             .tooltip(Loc.addSet)
         } end: {
-            if flashcardsView == .overview && !sets.isEmpty {
-                menu
-            }
+            menu
         }
         .headerBarTitle {
             Text(Loc.sets)
                 .style("heading")
         }
-    }
-
-    @ViewBuilder var content: Body {
-        HeaderBar.end {
-            if flashcardsView != .overview || sets.isEmpty {
-                menu
-            }
-        }
-        .headerBarTitle {
-            if sets.contains(where: { $0.id == selectedSet }) {
-                ViewSwitcher(selection: $flashcardsView)
-                    .wideDesign()
-                    .transition(.crossfade)
-            } else {
-                []
-            }
-        }
+        .aboutDialog(
+            visible: $about,
+            app: "Memorize",
+            developer: "david-swift",
+            version: "0.1.6",
+            icon: .custom(name: "io.github.david_swift.Flashcards"),
+            website: .init(string: "https://github.com/david-swift/Memorize"),
+            issues: .init(string: "https://github.com/david-swift/Memorize/issues")
+        )
     }
 
     var menu: View {
@@ -62,7 +52,7 @@ struct ToolbarView: View {
             viewMenu
             MenuSection {
                 MenuButton(Loc.about, window: false) {
-                    app.addWindow("about", parent: window)
+                    about = true
                 }
             }
         }
@@ -72,24 +62,14 @@ struct ToolbarView: View {
 
     var viewMenu: MenuSection {
         .init {
-            Submenu(Loc.viewMenu) {
-                for (index, view) in FlashcardsView.allCases.enumerated() {
-                    MenuButton(view.title) {
-                        flashcardsView = view
-                    }
-                    .keyboardShortcut("\(index + 1)".alt())
+            MenuButton(Loc.filter) {
+                if filter != nil {
+                    filter = nil
+                } else {
+                    filter = ""
                 }
             }
-            if flashcardsView == .overview {
-                MenuButton(Loc.filter) {
-                    if filter != nil {
-                        filter = nil
-                    } else {
-                        filter = ""
-                    }
-                }
-                .keyboardShortcut("f".ctrl())
-            }
+            .keyboardShortcut("f".ctrl())
         }
     }
 
