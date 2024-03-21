@@ -12,7 +12,7 @@ struct ExportView: View {
     @State private var switchSides = false
     @Binding var copied: Signal
     var set: FlashcardsSet
-    var window: GTUIWindow
+    var close: () -> Void
 
     var view: Body {
         ScrollView {
@@ -45,12 +45,12 @@ struct ExportView: View {
         .topToolbar {
             HeaderBar(titleButtons: false) {
                 Button(Loc.cancel) {
-                    window.close()
+                    close()
                 }
             } end: {
                 Button(Loc.copy) {
                     State<Any>.copy(text)
-                    window.close()
+                    close()
                     copied.signal()
                 }
                 .style("suggested-action")
@@ -71,7 +71,9 @@ struct ExportView: View {
         for flashcard in flashcards {
             text += flashcard.front + termDefinitionSeparator.syntax + flashcard.back + rowSeparator.syntax
         }
-        text.removeLast(rowSeparator.syntax.count)
+        if text.count > rowSeparator.syntax.count {
+            text.removeLast(rowSeparator.syntax.count)
+        }
         return text
     }
 

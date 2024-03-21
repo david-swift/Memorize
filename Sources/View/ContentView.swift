@@ -9,12 +9,10 @@ import Foundation
 
 struct ContentView: WindowView {
 
-    @Binding var copied: Signal
     @Binding var sets: [FlashcardsSet]
     @State("selected-set")
     private var selectedSet = ""
-    @State("flashcards-view")
-    private var flashcardsView: FlashcardsView = .overview
+    @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
     @State private var filter: String?
     @State private var editMode = false
     @State("width")
@@ -23,34 +21,48 @@ struct ContentView: WindowView {
     private var height = 550
     @State("maximized")
     private var maximized = false
+    @State private var sidebarVisible = true
     var app: GTUIApp
     var window: GTUIApplicationWindow
 
+    var smallWindow: Bool { width < 600 }
+
     var view: Body {
-        OverlaySplitView(visible: .constant(flashcardsView == .overview && !editMode && !sets.isEmpty)) {
-            sidebar
-        } content: {
-            content
-                .topToolbar(visible: !editMode || flashcardsView != .overview) {
-                    ToolbarView(
-                        flashcardsView: $flashcardsView,
-                        sets: $sets,
-                        selectedSet: $selectedSet,
-                        filter: $filter,
-                        app: app,
-                        window: window,
-                        addSet: addSet
-                    ).content
+        NavigationView($flashcardsView, Loc.overview) { view in
+            Bin()
+                .child {
+                    switch view {
+                    case let .study(set):
+                        ViewStack(element: set) { _ in
+                            StudyView(set: binding(id: set))
+                        }
+                    case let .test(set):
+                        TestView(set: binding(id: set))
+                    }
                 }
+                .topToolbar {
+                    HeaderBar.empty()
+                }
+        } initialView: {
+            OverlaySplitView(visible: .init { sidebarVisible || !smallWindow } set: { sidebarVisible = $0 }) {
+                sidebar
+            } content: {
+                content
+            }
+            .collapsed(smallWindow)
         }
-        .toast(Loc.copied, signal: copied)
     }
 
     var sidebar: View {
         ScrollView {
             List(
                 sets.map { ($0, $0.score(filter)) }.sorted { $0.1 > $1.1 }.filter { $0.1 != 0 }.map { $0.0 },
-                selection: $selectedSet
+                selection: .init {
+                    selectedSet
+                } set: { newValue in
+                    selectedSet = newValue
+                    sidebarVisible = false
+                }
             ) { set in
                 Text(set.name)
                     .ellipsize()
@@ -64,12 +76,11 @@ struct ContentView: WindowView {
             SearchEntry()
                 .placeholderText(Loc.filterSets)
                 .text(.init { filter ?? "" } set: { filter = $0 })
-                .focused(.constant(!editMode && flashcardsView == .overview))
+                .focused(.constant(filter != nil))
                 .padding(5, .horizontal.add(.bottom))
         }
         .topToolbar {
             ToolbarView(
-                flashcardsView: $flashcardsView,
                 sets: $sets,
                 selectedSet: $selectedSet,
                 filter: $filter,
@@ -83,37 +94,50 @@ struct ContentView: WindowView {
     @ViewBuilder var content: Body {
         if let index = sets.firstIndex(where: { $0.id == selectedSet }), let set = sets[safe: index] {
             let binding = Binding<FlashcardsSet> { sets[safe: index] ?? .init() } set: { sets[safe: index] = $0 }
-            switch flashcardsView {
-            case .overview:
-                SetOverview(set: binding, editMode: $editMode, app: app, window: window)
-            case .study:
-                ViewStack(element: set) { _ in
-                    StudyView(set: binding)
-                }
-            case .test:
-                TestView(set: binding)
-            }
-        } else if !sets.isEmpty {
-            StatusPage(
-                Loc.noSelection,
-                icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-                description: Loc.noSelectionDescription
-            )
-            .centerMinSize()
-        } else {
-            StatusPage(
-                Loc.noSets,
-                icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
-                description: Loc.noSetsDescription
+            SetOverview(
+                set: binding,
+                editMode: $editMode,
+                flashcardsView: $flashcardsView,
+                sidebarVisible: $sidebarVisible,
+                smallWindow: smallWindow
             ) {
-                Button(Loc.createSet) {
-                    addSet()
-                }
-                .style("pill")
-                .style("suggested-action")
-                .horizontalCenter()
+                sets = sets.filter { $0.id != set.id }
             }
-            .centerMinSize()
+        } else {
+            VStack {
+                if !sets.isEmpty {
+                    StatusPage(
+                        Loc.noSelection,
+                        icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
+                        description: Loc.noSelectionDescription
+                    )
+                    .centerMinSize()
+                } else {
+                    StatusPage(
+                        Loc.noSets,
+                        icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
+                        description: Loc.noSetsDescription
+                    ) {
+                        Button(Loc.createSet) {
+                            addSet()
+                        }
+                        .style("pill")
+                        .style("suggested-action")
+                        .horizontalCenter()
+                    }
+                    .centerMinSize()
+                }
+            }
+            .topToolbar {
+                HeaderBar.start {
+                    if smallWindow {
+                        Button(icon: .default(icon: .sidebarShow)) {
+                            sidebarVisible.toggle()
+                        }
+                        .tooltip(Loc.toggleSidebar)
+                    }
+                }
+            }
         }
     }
 
@@ -127,6 +151,15 @@ struct ContentView: WindowView {
         let newSet = FlashcardsSet()
         sets.insert(newSet, at: 0)
         selectedSet = newSet.id
+        editMode = true
+    }
+
+    func binding(id: String) -> Binding<FlashcardsSet> {
+        .init {
+            sets.first { $0.id == id } ?? .init()
+        } set: { newValue in
+            sets[safe: sets.firstIndex { $0.id == id }] = newValue
+        }
     }
 
 }

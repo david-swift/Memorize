@@ -11,8 +11,7 @@ struct EditView: View {
     @Binding var editMode: Bool
     @State private var expanded = false
     @State private var focusedFront: String?
-    var app: GTUIApp
-    var window: GTUIWindow
+    @State private var importFlashcards = false
 
     var view: Body {
         ScrollView {
@@ -27,20 +26,6 @@ struct EditView: View {
         .vexpand()
         .topToolbar {
             HeaderBar(titleButtons: false) {
-                ViewStack(element: set) { _ in
-                    HStack {
-                        Button(icon: .default(icon: .userTrash)) {
-                            app.addWindow("delete-\(set.id)", parent: window)
-                            editMode = false
-                        }
-                        .tooltip(Loc.deleteSet)
-                        Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
-                            app.addWindow("export-\(set.id)", parent: window)
-                        }
-                        .padding(10, .horizontal)
-                        .tooltip(Loc.exportSet)
-                    }
-                }
             } end: {
                 Button(Loc.done) {
                     editMode = false
@@ -133,7 +118,10 @@ struct EditView: View {
         ) {
             appendFlashcard()
         } secondary: {
-            app.addWindow("import-\(set.id)", parent: window)
+            importFlashcards = true
+        }
+        .dialog(visible: $importFlashcards, width: 400, height: 500) {
+            ImportView(set: $set) { importFlashcards = false }
         }
     }
 
