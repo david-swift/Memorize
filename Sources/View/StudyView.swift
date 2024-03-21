@@ -31,19 +31,17 @@ struct StudyView: View {
                         startConfiguration
                     }
             } else {
-                Bin()
-                    .child {
-                        if let flashcard {
-                            if solution {
-                                solutionView(flashcard: flashcard)
-                            } else {
-                                entryView(flashcard: flashcard)
-                            }
-                        } else {
-                            pauseView
-                        }
+                if let flashcard {
+                    if solution {
+                        solutionView(flashcard: flashcard)
+                            .valign(.center)
+                    } else {
+                        entryView(flashcard: flashcard)
+                            .valign(.center)
                     }
-                    .valign(.center)
+                } else {
+                    pauseView
+                }
             }
         }
         .vexpand()
@@ -105,21 +103,26 @@ struct StudyView: View {
     }
 
     @ViewBuilder var pauseView: Body {
-        Form {
-            sideSwitchRow
-        }
-        .padding(20)
-        .formWidth()
-        PillButtonSet(
-            primary: Loc.continueStudying,
-            icon: .default(icon: .mediaPlaybackStart),
-            secondary: Loc.terminateStudyMode,
-            icon: .default(icon: .mediaSkipBackward)
-        ) {
-            continueStudying()
-        } secondary: {
-            set.resetStudyProgress()
-        }
+        StatusPage()
+            .title(Loc.activeStudySession)
+            .description(Loc.activeStudySessionDescription)
+            .child {
+                Form {
+                    sideSwitchRow
+                }
+                .padding(20)
+                .formWidth()
+                PillButtonSet(
+                    primary: Loc.continueStudying,
+                    icon: .default(icon: .mediaPlaybackStart),
+                    secondary: Loc.terminateStudyMode,
+                    icon: .default(icon: .mediaSkipBackward)
+                ) {
+                    continueStudying()
+                } secondary: {
+                    set.resetStudyProgress()
+                }
+            }
     }
 
     func solutionView(flashcard: Flashcard) -> View {

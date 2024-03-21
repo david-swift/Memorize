@@ -604,3 +604,11 @@ flashcards(count):
     en: (count) flashcards
     de(count == "1"): 1 Karteikarte
     de: (count) Karteikarten
+
+activeStudySession:
+    en: Active Study Session
+    de: Aktive Lerneinheit
+
+activeStudySessionDescription:
+    en: You are currently in a study session
+    de: Du befindest dich in einer Lerneinheit
