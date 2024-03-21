@@ -151,6 +151,7 @@ struct ContentView: WindowView {
         let newSet = FlashcardsSet()
         sets.insert(newSet, at: 0)
         selectedSet = newSet.id
+        editMode = true
     }
 
     func binding(id: String) -> Binding<FlashcardsSet> {
