@@ -21,7 +21,7 @@ struct ContentView: WindowView {
     private var height = 550
     @State("maximized")
     private var maximized = false
-    @State private var sidebarVisible = true
+    @State private var sidebarVisible = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
 
@@ -44,7 +44,13 @@ struct ContentView: WindowView {
                     HeaderBar.empty()
                 }
         } initialView: {
-            OverlaySplitView(visible: .init { sidebarVisible || !smallWindow } set: { sidebarVisible = $0 }) {
+            OverlaySplitView(
+                visible: .init {
+                    (smallWindow && sidebarVisible) || (!smallWindow && !sets.isEmpty)
+                } set: { newValue in
+                    sidebarVisible = newValue
+                }
+            ) {
                 sidebar
             } content: {
                 content
