@@ -9,6 +9,7 @@ struct TestView: View {
 
     @Binding var set: FlashcardsSet
     @State private var roundIndex = 0
+    @State private var focusedFlashcard: String?
 
     var view: Body {
         ViewStack(element: set) { set in
@@ -58,14 +59,14 @@ struct TestView: View {
                 count: set.numberOfQuestions.nonOptional,
                 total: set.flashcards.count
             ))
-                .suffix {
-                    Button(Loc.createTest) {
-                        startTest()
-                    }
-                    .style("suggested-action")
-                    .verticalCenter()
+            .suffix {
+                Button(Loc.createTest) {
+                    startTest()
                 }
-                .insensitive(set.testFlashcards.isEmpty)
+                .style("suggested-action")
+                .verticalCenter()
+            }
+            .insensitive(set.testFlashcards.isEmpty)
         }
     }
 
@@ -78,8 +79,16 @@ struct TestView: View {
                             set.testFlashcards[safe: index] ?? .init()
                         } set: { newValue in
                             set.testFlashcards[safe: index] = newValue
+                        },
+                        focusedFlashcard: focusedFlashcard
+                    ) {
+                        if let testIndex = set.test.firstIndex(
+                            where: { $0.id == set.testFlashcards[safe: index]?.id }
+                        ) {
+                            focusedFlashcard = set.test[safe: testIndex + 1]
+                            focusedFlashcard = nil
                         }
-                    )
+                    }
                 }
             }
         }

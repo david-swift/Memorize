@@ -8,6 +8,8 @@ import Adwaita
 struct FlashcardTestSection: View {
 
     @Binding var flashcard: Flashcard
+    var focusedFlashcard: String?
+    var focusNext: () -> Void
 
     var view: Body {
         VStack {
@@ -48,6 +50,10 @@ struct FlashcardTestSection: View {
 
     var back: View {
         EntryRow(Loc.answer, text: $flashcard.gameData.input)
+            .entryActivated {
+                focusNext()
+            }
+            .focused(.constant(focusedFlashcard == flashcard.id))
     }
 
 }
