@@ -142,7 +142,6 @@ score(score):
     pt_BR: (score) Pontos
     fr(score == "1"): (score) point
     fr: (score) points
-    
 
 maxScore:
     en: Maximum Score
