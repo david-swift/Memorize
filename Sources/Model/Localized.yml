@@ -5,84 +5,98 @@ export(title):
     de: Exportiere das Set \"(title)\"
     it: Esporta set \"(title)\"
     pt_BR: Exportar Set \"(title)\"
+    fr: Exporter le jeu \"(title)\"
 
 addSet:
     en: Add Set
     de: Set hinzufügen
     it: Aggiungi Set
     pt_BR: Adicionar Set
+    fr: Ajouter un jeu
 
 sets:
     en: Sets
     de: Sets 
     it: Sets
     pt_BR: Sets
+    fr: Jeux
 
 newWindow:
     en: New Window
     de: Neues Fenster
     it: Nuova finestra
     pt_BR: Nova Janela
+    fr: Nouvelle fenêtre
 
 closeWindow:
     en: Close Window
     de: Fenster schließen
     it: Chiudi finestra
     pt_BR: Fechar Janela
+    fr: Fermer la fenêtre
 
 about:
     en: About Memorize
     de: Info zu Memorize
     it: Informazioni su Memorize
     pt_BR: Sobre Memorize
+    fr: À propos de Memorize
 
 mainMenu:
     en: Main Menu
     de: Hauptmenü
     it: Menu principale
     pt_BR: Menu Principal
+    fr: Menu principal
 
 viewMenu:
     en: View
     de: Ansicht
     it: Vista
     pt_BR: Ver
+    fr: Voir
 
 filter:
     en: Filter...
     de: Filtern ...
     it: Filtro...
     pt_BR: Filtrar...
+    fr: Filtrer...
 
 noFlashcards:
     en: No flashcards available
     de: Keine Karteikarten verfügbar
     it: Nessuna flashcard disponibile
     pt_BR: Nenhum flashcard disponível
+    fr: Pas de cartes mémoire disponibles
 
 generateExam:
     en: Generate a Preparation Exam
     de: Erstelle eine Vorbereitungsprüfung
     it: Generare preparazione di un esame
     pt_BR: Gerar um Exame de Preparação
+    fr: Générer un examen préparatoire
 
 generateExamDescription(title):
     en: Spot last mistakes before your exam about \"(title)\"
     de: Finde letzte Fehler vor deiner Prüfung zu \"(title)\"
     it: Individua gli ultimi errori prima dell'esame su \"(title)\"
     pt_BR: Identifique os últimos erros antes de sua prova de \"(title)\"
+    fr: Repérez les dernières erreurs avant votre examen de \"(title)\"
 
 answerWithBack:
     en: Answer With Back
     de: Antworte mit der Rückseite
     it: Rispondi con il retro
     pt_BR: Responder Com Retorno
+    fr: Inverser recto et verso
 
 numberOfQuestions:
     en: Number of Questions
     de: Anzahl Fragen
     it: Numero di domande
     pt_BR: Número de Questões
+    fr: Nombre de questions
 
 testDescription(count, total):
     en(total == "1"): Testing (count) of (total) Flashcard
@@ -93,24 +107,29 @@ testDescription(count, total):
     it: Test (count) di (total) Flashcard
     pt_BR(total == "1"): Testando (count) de (total) Flashcard
     pt_BR: Testando (count) de (total) Flashcards
+    fr(total == "1"): Test de (count) carte mémoire sur (total)
+    fr: Test de (count) cartes mémoire sur (total)
 
 createTest:
     en: Create Test
     de: Prüfung erstellen
     it: Crea Test
     pt_BR: Criar Teste
+    fr: Créer un test
 
 solveTest:
     en: Solve Test
     de: Test lösen
     it: Risolvi Test
     pt_BR: Resolver Teste
+    fr: Résoudre le test
 
 fullScore:
     en: Full Score!
     de: Volle Punktzahl!
     it: Punteggio completo!
     pt_BR: Pontuação Total!
+    fr: Note maximale !
 
 score(score):
     en(score == "1"): (score) Point
@@ -121,96 +140,114 @@ score(score):
     it: (score) Punti
     pt_BR(score == "1"): (score) Ponto
     pt_BR: (score) Pontos
+    fr(score == "1"): (score) point
+    fr: (score) points
+    
 
 maxScore:
     en: Maximum Score
     de: Maximale Punktzahl
     it: Punteggio massimo
     pt_BR: Pontuação Máxima
+    fr: Score maximal
 
 noScoreData:
     en: "-"
     de: "-"
     it: "-"
     pt_BR: "-"
+    fr: "-"
 
 scoreInstructions:
     en: Scroll down to check your answers
     de: Überprüfe deine Antworten weiter unten
     it: Scorri verso il basso per verificare le tue risposte
     pt_BR: Arraste para baixo para ver suas respostas
+    fr: Défilez vers le bas pour vérifier vos réponses
 
 scoreLabel:
     en: Score
     de: Punktzahl
     it: Punteggio
     pt_BR: Pontuação
+    fr: Score
 
 scoreRowLabel:
     en: Your Score
     de: Deine Punktzahl
     it: Il tuo punteggio
     pt_BR: Sua Pontuação
+    fr: Votre score
 
 check:
     en: Check
     de: Überprüfen
     it: Controlla
     pt_BR: Conferir
+    fr: Vérifier
 
 finishTest:
     en: Finish Test
     de: Test beenden
     it: Fine del test
     pt_BR: Terminar Teste
+    fr: Terminer le test
 
 star:
     en: Star
     de: Stern
     it: Stella
     pt_BR: Estrela
+    fr: Étoile
 
 tags:
     en: Tags
     de: Tags
     it: Tag
     pt_BR: Tags
+    fr: Étiquettes
 
 allFlashcards:
     en: All Flashcards
     de: Alle Karteikarten
     it: Tutte le Flashcard
     pt_BR: Todos Os Flashcards
+    fr: Toutes les cartes mémoire
 
 flashcardsWithTags:
     en: Flashcards With Tags
     de: Karteikarten mit Tags
     it: Flashcard con tag
     pt_BR: Flashcards Com Tags
+    fr: Cartes mémoire avec étiquette
 
 study(title):
     en: Study \"(title)\"
     de: Lerne \"(title)\"
     it: Studio \"(title)\"
     pt_BR: Studar \"(title)\"
+    fr: Étudier \"(title)\"
 
 studyDescription:
     en: Repeat each flashcard until you remember it
     de: Lerne bis du jede Karteikarte beherrscht
     it: Ripeti ogni flashcard finché non la ricordi
     pt_BR: Repetir cada flashcard até você se lembrar
+    fr: Répétez chaque carte mémoire jusqu’à ce que vous vous en souveniez
 
 initialDifficulty:
     en: Initial Difficulty
     de: Anfangsschwierigkeit
     it: Difficoltà iniziale
     pt_BR: Dificuldade Inicial
+    fr: Difficulté initiale
 
 initialDifficultyDescription:
     en: Set the minimum number of repetitions per flashcard
     de: Lege die minimale Anzahl Wiederholungen pro Karteikarte fest
     it: Imposta il numero minimo di ripetizioni per flashcard
     pt_BR: Defina o número minimo de repetições por flashcard
+    fr: Définition le nombre minimum de répétitions par carte mémoire
 
 studySummary(count, total):
     en(total == "1"): Studying (count) of (total) Flashcard
@@ -221,398 +258,468 @@ studySummary(count, total):
     it: Studio (count) delle (total) Flashcard
     pt_BR(total == "1"): Estudando (count) de (total) Flashcard
     pt_BR:  Estudando (count) de (total) Flashcards
+    fr(total == "1"): Étude de (count) carte mémoire sur (total)
+    fr: Étude de (count) cartes mémoire sur (total)
 
 startStudyMode:
     en: Start Study Mode
     de: Starte den Lernmodus
     it: Avvia la modalità studio
     pt_BR: Iniciar Modo de Estudo
+    fr: Lancer la session d’étude
 
 studySettings:
     en: Study Settings
     de: Einstellungen zum Lernmodus
     it: Impostazioni di studio
     pt_BR: Configurações de Estudo
+    fr: Paramètres d’étude
 
 continueStudying:
     en: Continue Studying
     de: Lernen fortsetzen
     it: Continua a studiare
     pt_BR: Continuar Estudando
+    fr: Continuer à étudier
 
 terminateStudyMode:
     en: Terminate Study Mode
     de: Lernmodus beenden
     it: Termina la modalità studio
     pt_BR: Terminar Modo de Estudo
+    fr: Terminer la session d’étude
 
 _continue:
     en: Continue
     de: Fortfahren
     it: Continua
     pt_BR: Continuar
+    fr: Continuer
 
 makeIncorrect:
     en: Make Incorrect
     de: Als falsch markieren
     it: Rendi errato
     pt_BR: Deixar Incorreto
+    fr: Marquer comme incorrect
 
 makeCorrect:
     en: Make Correct
     de: Als richtig markieren
     it: Rendi corretto
     pt_BR: Deixar Correto
+    fr: Marquer comme correct
 
 answer:
     en: Answer
     de: Antwort
     it: Risposta
     pt_BR: Resposta
+    fr: Réponse
 
 solution:
     en: Solution
     de: Lösung
     it: Soluzione
     pt_BR: Solução
+    fr: Solution
 
 correct:
     en: Correct!
     de: Korrekt!
     it: Corretto!
     pt_BR: Correto!
+    fr: Correct !
 
 yourAnswer:
     en: Your Answer
     de: Deine Antwort
     it: La tua risposta
     pt_BR: Sua Resposta
+    fr: Votre réponse
 
 editSet:
     en: Edit Set
     de: Set bearbeiten
     it: Modifica Set
     pt_BR: Editar Set
+    fr: Modifier le jeu
 
 keywords:
     en: Keywords
     de: Schlüsselwörter
     it: Parole chiave
     pt_BR: Palavras Chave
+    fr: Mots-clé
 
 keyword:
     en: Keyword
     de: Schlüsselwort
     it: Parola chiave
     pt_BR: Palavra Chave
+    fr: Mot-clé
 
 keywordsDescription:
     en: Keywords simplify the search for sets
     de: Schlüsselwörter vereinfachen die Suche nach Sets
     it: Le parole chiave semplificano la ricerca dei set
     pt_BR: Palavras chave simplificam a procurar por sets
+    fr: Les mots-clés simplifient la recherche de jeux de cartes
 
 add(element):
     en: Add (element)
     de: (element) hinzufügen
     it: Aggiungi (element)
     pt_BR: Adicionar (element)
+    fr: Ajouter (element)
 
 remove(element):
     en: Remove (element)
     de: (element) entfernen
     it: Rimuovi (element)
     pt_BR: Remover (element)
+    fr: Supprimer (element)
 
 pasteText:
     en: Paste Text
     de: Text einfügen
     it: Incolla testo
     pt_BR: Colar Texto
+    fr: Coller le texte
 
 switchFrontBack:
     en: Switch Front and Back
     de: Vorder- und Rückseite vertauschen
     it: Scambia da fronte e retro
     pt_BR: Trocar Frente e Verso
+    fr: Inverser le recto et le verso
 
 exportQuizletSet:
     en: Export Quizlet Set
     de: Quizlet-Set exportieren
     it: Esporta set di quizlet
     pt_BR: Exportar Set do Quizlet
+    fr: Exporter un jeu de cartes Quizlet
 
 quizletDescription:
     en: "Export a Quizlet set under <tt><b> ⋯ > Export</b></tt>. Using the default configuration, copy the text."
     de: "Exportiere ein Quizlet-Set unter <tt><b> ⋯ > Export</b></tt>. Kopiere den Text mit der Standardkonfiguration."
     it: "Esporta un set di Quizlet in <tt><b> ⋯ > Esporta</b></tt>. Utilizzando la configurazione predefinita, copia il testo."
     pt_BR: "Exportar um set do Quizlet em <tt><b> ... > Exportar</b></tt>. Usando a configuração padrão, copie o texto."
+    fr: "Exportez un paquet Quizlet dans <tt><b> ⋯ > Exporter</b></tt>. Utilisez la configuration par défaut et copiez le texte."
 
 exportAnkiDeck:
     en: Export Anki Deck
     de: Anki Deck exportieren
     it: Esporta mazzo Anki
     pt_BR: Exporte um Deck do Anki
+    fr: Exporter un paquet de cartes Anki
 
 ankiDescription:
     en: "Export decks under <tt><b> File > Export</b></tt>. Select the export format <tt><b> Cards in Plain Text </b></tt>. Uncheck <tt><b>Include HTML and media references</b></tt>. Copy the content of the text file."
     de: "Exportiere Decks unter <tt><b> File > Export</b></tt>. Wähle das Format <tt><b> Cards in Plain Text </b></tt>. Deaktiviere <tt><b>Include HTML and media references</b></tt>. Kopiere den Inhalt der Textdatei."
     it: "Esporta mazzi in <tt><b> File > Esporta</b></tt>. Seleziona il formato di esportazione <tt><b> Carte in testo semplice </b></tt>. Deseleziona <tt ><b>Includi riferimenti HTML e multimediali</b></tt>. Copia il contenuto del file di testo."
     pt_BR: "Exporte decks em <<tt><b> Arquivo > Exportar</b></tt>. Selecionar o formato de exportação <tt><b> Cards in Plain Text. Desselecione <tt><b>Include HTML and media references</b></tt>. Copie o conteúdo do arquivo de texto."
+    fr: "Exportez des paquets dans <tt><b> Fichier > Exporter</b></tt>. Sélectionnez le format d’exportation <tt><b> Cartes en texte clair </b></tt>. Décochez la case <tt><b>Inclure les médias et références HTML</b></tt>. Copiez le contenu du ficher texte."
 
 cancel:
     en: Cancel
     de: Abbrechen
     it: Annulla
     pt_BR: Cancelar
+    fr: Annuler
 
 _import:
     en: Import
     de: Importieren
     it: Importa
     pt_BR: Importar
+    fr: Importer
 
 betweenTermDefinition:
     en: Between Term and Definition
     de: Zwischen Term und Definition
     it: Tra termine e definizione
     pt_BR: Entre Termo e Definição
+    fr: Entre terme et définition
 
 betweenRows:
     en: Between Rows
     de: Zwischen Reihen
     it: Tra le righe
     pt_BR: Entre Linhas
+    fr: Entre les lignes
 
 copy:
     en: Copy
     de: Kopieren
     it: Copia
     pt_BR: Copiar
+    fr: Copier
 
 deleteSet:
     en: Delete Set
     de: Set löschen
     it: Cancella Set
     pt_BR: Apagar Set
+    fr: Supprimer le jeu
 
 exportSet:
     en: Export Set
     de: Set exportieren
     it: Esporta Set
     pt_BR: Exportar Set
+    fr: Exporter le jeu
 
 done:
     en: Done
     de: Fertig
     it: Fatto
     pt_BR: Feito
+    fr: Terminé
 
 title:
     en: Title
     de: Titel
     it: Titolo
     pt_BR: Título
+    fr: Titre
 
 tagsDescription:
     en: Organize and study flashcards in groups
     de: Organisiere und lerne Karteikarten in Gruppen
     it: Organizza e studia le flashcard in gruppi
     pt_BR: Organize e estude flashcards em grupo
+    fr: Organiser et étudier les cartes mémoire par groupes
 
 tag:
     en: Tag
     de: Tag
     it: Tag
     pt_BR: Tag
+    fr: Étiquette
 
 starDescription:
     en: A special tag that can be set while studying
     de: Ein spezielles Tag, das während des Lernens gesetzt werden kann
     it: Un tag speciale che può essere impostato durante lo studio
     pt_BR: Uma tag especial pode ser definida enquanto estuda
+    fr: Une étiquette spéciale qui peut être utilisée pour l’étude
 
 addFlashcard:
     en: Add Flashcard
     de: Karteikarte hinzufügen
     it: Aggiungi Flashcard
     pt_BR: Adicionar Flashcard
+    fr: Ajouter une carte mémoire
 
 importFlashcards:
     en: Import Flashcards
     de: Karteikarten importieren
     it: Importa Flashcards
     pt_BR: Importar Flashcards
+    fr: Importer des cartes mémoire
 
 front:
     en: Front
     de: Vorderseite
     it: Fronte
     pt_BR: Frente
+    fr: Recto
 
 back:
     en: Back
     de: Rückseite
     it: Retro
     pt_BR: Verso
+    fr: Verso
 
 flashcard(index):
     en: Flashcard (index)
     de: Karteikarte (index)
     it: Flashcard (index)
     pt_BR: Flashcard (index)
+    fr: Carte mémoire (index)
 
 deleteFlashcard:
     en: Delete Flashcard
     de: Karteikarte löschen
     it: Elimina Flashcard
     pt_BR: Apagar Flashcard
+    fr: Supprimer la carte mémoire
 
 delete:
     en: Delete
     de: Löschen
     it: Elimina
     pt_BR: Apagar
+    fr: Supprimer
 
 deleteTitle(title):
     en: Delete \"(title)\"?
     de: \"(title)\" löschen?
     it: Eliminare \"(title)\"?
     pt_BR: Apagar \"(title)\"?
+    fr: Supprimer \"(title)\" ?
 
 deleteDescription:
     en: There is no undo. The flashcards will be lost.
     de: Die Karteikarten werden nicht wiederherstellbar sein.
     it: Non è possibile annullare. Le flashcard andranno perse.
     pt_BR: Não existe desfazer. Os flashcards serão perdidos
+    fr: Cette action est irréversible. Les cartes mémoire seront perdues.
 
 filterSets:
     en: Filter Sets
     de: Sets filtern
     it: Set di filtri
     pt_BR: Filtrar Sets
+    fr: Filtrer les jeux
 
 noSelection:
     en: No Selection
     de: Keine Auswahl
     it: Nessuna selezione
     pt_BR: Sem Seleção
+    fr: Pas de sélection
     
 noSelectionDescription:
     en: Select a set in the sidebar
     de: Wähle ein Set in der Seitenleiste aus
     it: Seleziona un set nella barra laterale
     pt_BR: Selecione um set na barra lateral
+    fr: Sélectionnez un jeu dans la barre latérale
 
 noSets:
     en: No Sets
     de: Keine Sets verfügbar
     it: Nessun Set
     pt_BR: Nenhum Set
+    fr: Aucun jeu disponible
 
 noSetsDescription:
     en: Create a new set using the <b>+</b> button in the sidebar
     de: Erstelle mit dem <b>+</b>-Knopf in der Seitenleiste ein neues Set
     it: Crea un nuovo set utilizzando il pulsante <b>+</b> nella barra laterale
     pt_BR: Crie um novo set utilizando o botão <b>+</b> na barra lateral
+    fr: Créez un nouveau jeu en utilisant le bouton <b>+</b> dans la barre latérale
 
 overview:
     en: Overview
     de: Übersicht
     it: Panoramica
     pt_BR: Visão Geral
+    fr: Aperçu
 
 studySwitcher:
     en: Study
     de: Lernen
     it: Studio
     pt_BR: Estudar
+    fr: Étudier
 
 test:
     en: Test
     de: Testen
     it: Test
     pt_BR: Teste
+    fr: Test
 
 newSet:
     en: New Set
     de: Neues Set
     it: Nuovo Set
     pt_BR: Novo Set
+    fr: Nouveau jeu
 
 question(index):
     en: Question (index)
     de: Frage (index)
     it: Domanda (index)
     pt_BR: Questão (index)
+    fr: Question (index)
 
 quizlet:
     en: Quizlet
     de: Quizlet
     it: Quizlet
     pt_BR: Quizlet
+    fr: Quizlet
 
 anki:
     en: Anki
     de: Anki
     it: Anki
     pt_BR: Anki
+    fr: Anki
 
 showTutorial:
     en: Show Tutorial
     de: Tutorial zeigen
     it: Mostra tutorial
     pt_BR: Mostrar Tutorial
+    fr: Afficher le tutoriel
 
 comma:
     en: Comma
     de: Komma
     it: Virgola
     pt_BR: Vírgula
+    fr: Virgule
 
 tab:
     en: Tab
     de: Tab
     it: Scheda
     pt_BR: Aba
+    fr: Tabulation
 
 newLine:
     en: New Line
     de: Neue Zeile
     it: Nuova riga
     pt_BR: Nova Linha
+    fr: Nouvelle ligne
 
 semicolon:
     en: Semicolon
     de: Semikolon
     it: Punto e virgola
     pt_BR: Ponto e vírgula
+    fr: Point-virgule
 
 createSet:
     en: Create Set
     de: Set erstellen
     it: Crea Set
     pt_BR: Criar Set
+    fr: Créer le jeu
 
 copied:
     en: Contents copied to clipboard
     de: Inhalte wurden kopiert
     it: Contenuto copiato negli appunti
+    fr: Contenu copié vers le presse-papiers
 
 flashcards(count):
     en(count == "1"): 1 flashcard
     en: (count) flashcards
     de(count == "1"): 1 Karteikarte
     de: (count) Karteikarten
+    fr(count == "1"): 1 carte mémoire
+    fr: (count) cartes mémoire
 
 activeStudySession:
     en: Active Study Session
     de: Aktive Lerneinheit
+    fr: Session d’étude active
 
 activeStudySessionDescription:
     en: You are currently in a study session
     de: Du befindest dich in einer Lerneinheit
+    fr: Vous êtes en session d’étude
 
 toggleSidebar:
     en: Toggle Sidebar
     de: Seitenleiste ein- und ausblenden
+    fr: Basculer la barre latérale
