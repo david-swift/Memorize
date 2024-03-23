@@ -100,8 +100,8 @@ struct EditView: View {
             if let flashcard = set.flashcards[safe: index],
                flashcard != nil &&
               (searchQuery.isEmpty ||
-               flashcard.front.contains(searchQuery) ||
-               flashcard.back.contains(searchQuery)) {
+               flashcard.front.lowercased().contains(searchQuery.lowercased()) ||
+               flashcard.back.lowercased().contains(searchQuery.lowercased())) {
 
                 EditFlashcardView(
                     flashcard: .init {

@@ -724,8 +724,8 @@ toggleSidebar:
     fr: Basculer la barre latérale
 
 searchTitle:
-    en: Search (case sensitive)
-    de: Suche (Groß-/Kleinschreibung beachten)
+    en: Search
+    de: Suche
 
 searchFlashcards:
     en: Search Flashcards …
