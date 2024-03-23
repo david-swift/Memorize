@@ -12,7 +12,7 @@ struct EditView: View {
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
-    @State private var searchQuery: String?
+    @State private var searchQuery: String = ""
 
     var view: Body {
         ScrollView {
@@ -84,10 +84,10 @@ struct EditView: View {
             Form {
                 EntryRow(Loc.searchFlashcards, text: Binding(
                     get: {
-                        self.searchQuery ?? ""
+                        self.searchQuery
                     },
                     set: { newQuery in
-                        self.searchQuery = newQuery.isEmpty ? nil : newQuery
+                        self.searchQuery = newQuery
                     }
                 ))
             }
@@ -97,7 +97,12 @@ struct EditView: View {
 
     var flashcards: View {
         ForEach(.init(set.flashcards.indices)) { index in
-            if set.flashcards[safe: index] != nil {
+            if let flashcard = set.flashcards[safe: index],
+               flashcard != nil &&
+              (searchQuery.isEmpty ||
+               flashcard.front.contains(searchQuery) ||
+               flashcard.back.contains(searchQuery)) {
+
                 EditFlashcardView(
                     flashcard: .init {
                         set.flashcards[safe: index] ?? .init()
