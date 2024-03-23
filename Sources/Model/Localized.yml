@@ -722,3 +722,11 @@ toggleSidebar:
     en: Toggle Sidebar
     de: Seitenleiste ein- und ausblenden
     fr: Basculer la barre latérale
+
+searchTitle:
+    en: Search
+    de: Suche
+
+searchFlashcards:
+    en: Search Flashcards …
+    de: Karteikarten durchsuchen …

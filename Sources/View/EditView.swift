@@ -12,12 +12,14 @@ struct EditView: View {
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
+    @State private var searchQuery: String = ""
 
     var view: Body {
         ScrollView {
             VStack {
                 title
                 tags
+                search
                 flashcards
                 actions
             }
@@ -73,6 +75,15 @@ struct EditView: View {
                         }
                     }
                 )
+        }
+        .padding(20)
+    }
+
+    var search: View {
+        FormSection(Loc.searchTitle) {
+            Form {
+                EntryRow(Loc.searchFlashcards, text: $searchQuery)
+            }
         }
         .padding(20)
     }
