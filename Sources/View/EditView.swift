@@ -12,7 +12,7 @@ struct EditView: View {
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
-    @State private var searchQuery: String = ""
+    @State private var searchQuery: String?
 
     var view: Body {
         ScrollView {
@@ -82,7 +82,14 @@ struct EditView: View {
     var search: View {
         FormSection(Loc.searchTitle) {
             Form {
-                EntryRow(Loc.searchFlashcards, text: $searchQuery)
+                EntryRow(Loc.searchFlashcards, text: Binding(
+                    get: {
+                        self.searchQuery ?? ""
+                    },
+                    set: { newQuery in
+                        self.searchQuery = newQuery.isEmpty ? nil : newQuery
+                    }
+                ))
             }
         }
         .padding(20)
