@@ -50,8 +50,12 @@ struct Flashcard: SearchScore, Identifiable, Codable {
     func score(_ query: String?) -> Int {
         var totalScore = 1
         if let query, !query.isEmpty {
+            totalScore = 0
             totalScore += front.search(query) ? 5 : 0
             totalScore += back.search(query) ? 5 : 0
+            for tag in tags.nonOptional {
+                totalScore += tag.search(query) ? 1 : 0
+            }
         }
         return totalScore
     }
