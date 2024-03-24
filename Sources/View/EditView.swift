@@ -12,22 +12,33 @@ struct EditView: View {
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
-    @State private var searchQuery: String = ""
+    @State private var searchQuery: String?
+    @State private var searchExpanded = false
 
     var view: Body {
         ScrollView {
             VStack {
                 title
                 tags
-                search
                 flashcards
                 actions
             }
             .formWidth()
         }
         .vexpand()
+        .topToolbar(visible: searchExpanded) {
+            SearchEntry()
+                .placeholderText(Loc.searchFlashcards)
+                .text(.init { searchQuery ?? "" } set: { searchQuery = $0 })
+                .focused(.constant(searchQuery != nil))
+                .padding(5, .horizontal.add(.bottom))
+        }
         .topToolbar {
             HeaderBar(titleButtons: false) {
+                Button(icon: .default(icon: .editFind)) {
+                    searchExpanded.toggle()
+                }
+                .tooltip(Loc.searchTitle)
             } end: {
                 Button(Loc.done) {
                     editMode = false
@@ -79,30 +90,9 @@ struct EditView: View {
         .padding(20)
     }
 
-    var search: View {
-        FormSection(Loc.searchTitle) {
-            Form {
-                EntryRow(Loc.searchFlashcards, text: Binding(
-                    get: {
-                        self.searchQuery
-                    },
-                    set: { newQuery in
-                        self.searchQuery = newQuery.lowercased()
-                    }
-                ))
-            }
-        }
-        .padding(20)
-    }
-
     var flashcards: View {
         ForEach(.init(set.flashcards.indices)) { index in
-            if let flashcard = set.flashcards[safe: index],
-               flashcard != nil &&
-              (searchQuery.isEmpty ||
-               flashcard.front.lowercased().contains(searchQuery) ||
-               flashcard.back.lowercased().contains(searchQuery)) {
-
+            if set.flashcards[safe: index] != nil {
                 EditFlashcardView(
                     flashcard: .init {
                         set.flashcards[safe: index] ?? .init()
