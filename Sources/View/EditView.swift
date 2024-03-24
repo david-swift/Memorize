@@ -91,29 +91,32 @@ struct EditView: View {
     }
 
     var flashcards: View {
-        ForEach(.init(set.flashcards.indices)) { index in
-            if set.flashcards[safe: index] != nil {
+        var cards: [Flashcard] = set.flashcards.sortScore(editSearch.query)
+
+        return ForEach(.init(cards.indices)) { index in
+            if cards[safe: index] != nil {
                 EditFlashcardView(
                     flashcard: .init {
-                        set.flashcards[safe: index] ?? .init()
+                        cards[safe: index] ?? .init()
                     } set: { newValue in
-                        set.flashcards[safe: index] = newValue
+                        cards[safe: index] = newValue
                     },
                     index: index,
                     tags: set.tags.nonOptional,
                     focusedFront: focusedFront
                 ) {
-                    if let flashcard = set.flashcards[safe: index + 1] {
+                    if let flashcard = cards[safe: index + 1] {
                         focusedFront = flashcard.id
                         focusedFront = nil
                     } else {
                         appendFlashcard()
                     }
                 } delete: {
-                    set.flashcards = set.flashcards.filter { $0.id != set.flashcards[safe: index]?.id }
+                    let localCards = cards.filter { $0.id != cards[safe: index]?.id }
+                    cards = localCards
                     Task {
                         try? await Task.sleep(nanoseconds: 100)
-                        focusedFront = set.flashcards[safe: index - 1]?.id
+                        focusedFront = localCards[safe: index - 1]?.id
                         focusedFront = nil
                     }
                 }
