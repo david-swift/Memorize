@@ -13,7 +13,8 @@ struct ContentView: WindowView {
     @State("selected-set")
     private var selectedSet = ""
     @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
-    @State private var search: String?
+    @State private var search: Search = .hidden(query: "")
+    @State private var editSearch: Search = .hidden(query: "")
     @State private var editMode = false
     @State("width")
     private var width = 700
@@ -62,7 +63,7 @@ struct ContentView: WindowView {
     var sidebar: View {
         ScrollView {
             List(
-                sets.sortScore(search ?? ""),
+                sets.sortScore(search.effectiveQuery),
                 selection: .init {
                     selectedSet
                 } set: { newValue in
@@ -78,10 +79,10 @@ struct ContentView: WindowView {
             .style("navigation-sidebar")
         }
         .hexpand()
-        .topToolbar(visible: search != nil) {
+        .topToolbar(visible: search.visible) {
             SearchEntry()
                 .placeholderText(Loc.searchSets)
-                .text(.init { search ?? "" } set: { search = $0 })
+                .text($search.query)
                 .focused(.constant(search != nil))
                 .padding(5, .horizontal.add(.bottom))
         }
@@ -90,6 +91,8 @@ struct ContentView: WindowView {
                 sets: $sets,
                 selectedSet: $selectedSet,
                 search: $search,
+                editSearch: $editSearch,
+                editMode: $editMode,
                 app: app,
                 window: window,
                 addSet: addSet
@@ -103,6 +106,7 @@ struct ContentView: WindowView {
             SetOverview(
                 set: binding,
                 editMode: $editMode,
+                editSearch: $editSearch,
                 flashcardsView: $flashcardsView,
                 sidebarVisible: $sidebarVisible,
                 smallWindow: smallWindow

@@ -9,7 +9,9 @@ struct ToolbarView: View {
 
     @Binding var sets: [FlashcardsSet]
     @Binding var selectedSet: String
-    @Binding var search: String?
+    @Binding var search: Search
+    @Binding var editSearch: Search
+    @Binding var editMode: Bool
     @State private var about = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
@@ -63,10 +65,10 @@ struct ToolbarView: View {
     var viewMenu: MenuSection {
         .init {
             MenuButton(Loc.search) {
-                if search != nil {
-                    search = nil
+                if editMode {
+                    editSearch.toggle()
                 } else {
-                    search = ""
+                    search.toggle()
                 }
             }
             .keyboardShortcut("f".ctrl())

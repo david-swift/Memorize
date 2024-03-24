@@ -9,11 +9,10 @@ struct EditView: View {
 
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
+    @Binding var editSearch: Search
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
-    @State private var searchQuery: String?
-    @State private var searchExpanded = false
 
     var view: Body {
         ScrollView {
@@ -26,17 +25,18 @@ struct EditView: View {
             .formWidth()
         }
         .vexpand()
-        .topToolbar(visible: searchExpanded) {
+        .topToolbar(visible: editSearch.visible) {
             SearchEntry()
                 .placeholderText(Loc.searchFlashcards)
-                .text(.init { searchQuery ?? "" } set: { searchQuery = $0 })
-                .focused(.constant(searchQuery != nil))
+                .text($editSearch.query)
+                .focused(.constant(editSearch.visible))
                 .padding(5, .horizontal.add(.bottom))
+                .frame(maxWidth: 300)
         }
         .topToolbar {
             HeaderBar(titleButtons: false) {
                 Button(icon: .default(icon: .editFind)) {
-                    searchExpanded.toggle()
+                    editSearch.show()
                 }
                 .tooltip(Loc.searchTitle)
             } end: {
