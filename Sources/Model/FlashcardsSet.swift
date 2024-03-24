@@ -125,9 +125,9 @@ struct FlashcardsSet: SearchScore, Identifiable, Codable {
     func score(_ query: String?) -> Int {
         var totalScore = 1
         if let query, !query.isEmpty {
-            totalScore = search(query, in: name) ? 5 : 0
+            totalScore = name.search(query) ? 5 : 0
             for keyword in keywords.nonOptional {
-                totalScore += search(query, in: keyword) ? 1 : 0
+                totalScore += keyword.search(query) ? 1 : 0
             }
         }
         return totalScore

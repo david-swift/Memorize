@@ -62,7 +62,7 @@ struct ContentView: WindowView {
     var sidebar: View {
         ScrollView {
             List(
-                sortScore(filter, sets),
+                sets.sortScore(filter ?? ""),
                 selection: .init {
                     selectedSet
                 } set: { newValue in
