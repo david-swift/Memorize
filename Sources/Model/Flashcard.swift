@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Flashcard: Identifiable, Codable {
+struct Flashcard: SearchScore, Identifiable, Codable {
 
     let id: String
     var front = ""
@@ -45,6 +45,15 @@ struct Flashcard: Identifiable, Codable {
     mutating func done() {
         gameData.input = ""
         gameData.lastInput = nil
+    }
+
+    func score(_ query: String?) -> Int {
+        var totalScore = 1
+        if let query, !query.isEmpty {
+            totalScore = search(query, in: front) ? 5 : 0
+            totalScore = search(query, in: back) ? 5 : 0
+        }
+        return totalScore
     }
 
 }

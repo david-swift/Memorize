@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct FlashcardsSet: Identifiable, Codable {
+struct FlashcardsSet: SearchScore, Identifiable, Codable {
 
     let id: String
     var name: String
@@ -122,29 +122,15 @@ struct FlashcardsSet: Identifiable, Codable {
         }
     }
 
-    func score(_ filter: String?) -> Int {
+    func score(_ query: String?) -> Int {
         var totalScore = 1
-        if let filter, !filter.isEmpty {
-            totalScore = search(filter, in: name) ? 5 : 0
+        if let query, !query.isEmpty {
+            totalScore = search(query, in: name) ? 5 : 0
             for keyword in keywords.nonOptional {
-                totalScore += search(filter, in: keyword) ? 1 : 0
+                totalScore += search(query, in: keyword) ? 1 : 0
             }
         }
         return totalScore
-    }
-
-    func search(_ search: String, in text: String) -> Bool {
-        guard !search.isEmpty else {
-            return true
-        }
-        var remainder = search.lowercased()[...]
-        for char in text.lowercased() where char == remainder[remainder.startIndex] {
-            remainder.removeFirst()
-            if remainder.isEmpty {
-                return true
-            }
-        }
-        return false
     }
 
     mutating func filterTags() {
