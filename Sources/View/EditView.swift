@@ -35,10 +35,8 @@ struct EditView: View {
         }
         .topToolbar {
             HeaderBar(titleButtons: false) {
-                Button(icon: .default(icon: .editFind)) {
-                    editSearch.show()
-                }
-                .tooltip(Loc.searchTitle)
+                Toggle(icon: .default(icon: .editFind), isOn: $editSearch.visible)
+                    .tooltip(Loc.searchTitle)
             } end: {
                 Button(Loc.done) {
                     editMode = false

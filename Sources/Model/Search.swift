@@ -30,11 +30,19 @@ enum Search {
     }
 
     var visible: Bool {
-        switch self {
-        case .visible:
-            true
-        case .hidden:
-            false
+        get {
+            switch self {
+            case .visible:
+                true
+            case .hidden:
+                false
+            }
+        }
+        set {
+            switch self {
+            case let .visible(query), let .hidden(query):
+                self = newValue ? .visible(query: query) : .hidden(query: query)
+            }
         }
     }
 
