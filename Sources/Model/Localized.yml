@@ -17,7 +17,7 @@ addSet:
 sets:
     en: Sets
     de: Sets 
-    it: Sets
+    it: Set
     pt_BR: Sets
     fr: Jeux
 
@@ -705,20 +705,25 @@ flashcards(count):
     en: (count) flashcards
     de(count == "1"): 1 Karteikarte
     de: (count) Karteikarten
+    it(count == "1"): 1 flashcard
+    it: (count) flashcard
     fr(count == "1"): 1 carte mémoire
     fr: (count) cartes mémoire
 
 activeStudySession:
     en: Active Study Session
     de: Aktive Lerneinheit
+    it: Sessione di studio attiva
     fr: Session d’étude active
 
 activeStudySessionDescription:
     en: You are currently in a study session
     de: Du befindest dich in einer Lerneinheit
+    it: Attualmente sei in una sessione di studio
     fr: Vous êtes en session d’étude
 
 toggleSidebar:
     en: Toggle Sidebar
     de: Seitenleiste ein- und ausblenden
+    it: Attiva la barra laterale
     fr: Basculer la barre latérale
