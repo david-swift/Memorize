@@ -10,9 +10,11 @@ struct EditView: View {
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
     @Binding var editSearch: Search
+    @Binding var searchFocused: Bool
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
+    var modifySet: (FlashcardsSet) -> Void
 
     var view: Body {
         ScrollView {
@@ -29,14 +31,21 @@ struct EditView: View {
             SearchEntry()
                 .placeholderText(Loc.searchFlashcards)
                 .text($editSearch.query)
-                .focused(.constant(editSearch.visible))
+                .focused($searchFocused)
                 .padding(5, .horizontal.add(.bottom))
                 .frame(maxWidth: 300)
         }
         .topToolbar {
             HeaderBar(titleButtons: false) {
-                Toggle(icon: .default(icon: .editFind), isOn: $editSearch.visible)
-                    .tooltip(Loc.searchTitle)
+                Toggle(icon: .default(icon: .editFind), isOn: .init {
+                    editSearch.visible
+                } set: { newValue in
+                    editSearch.visible = newValue
+                    if newValue {
+                        searchFocused.toggle()
+                    }
+                })
+                .tooltip(Loc.searchTitle)
             } end: {
                 Button(Loc.done) {
                     editMode = false
@@ -89,32 +98,32 @@ struct EditView: View {
     }
 
     var flashcards: View {
-        var cards: [Flashcard] = set.flashcards.sortScore(editSearch.query)
-
-        return ForEach(.init(cards.indices)) { index in
-            if cards[safe: index] != nil {
+        ForEach(.init(set.flashcards.indices)) { index in
+            if let flashcard = set.flashcards[safe: index],
+            flashcard.front.search(editSearch.effectiveQuery) || flashcard.back.search(editSearch.effectiveQuery) {
                 EditFlashcardView(
-                    flashcard: .init {
-                        cards[safe: index] ?? .init()
-                    } set: { newValue in
-                        cards[safe: index] = newValue
+                    flashcard: .init { flashcard } set: { newValue in
+                        if !searchFocused {
+                            var set = set
+                            set.flashcards[safe: index] = newValue
+                            modifySet(set)
+                        }
                     },
                     index: index,
                     tags: set.tags.nonOptional,
                     focusedFront: focusedFront
                 ) {
-                    if let flashcard = cards[safe: index + 1] {
+                    if let flashcard = set.flashcards[safe: index + 1] {
                         focusedFront = flashcard.id
                         focusedFront = nil
                     } else {
                         appendFlashcard()
                     }
                 } delete: {
-                    let localCards = cards.filter { $0.id != cards[safe: index]?.id }
-                    cards = localCards
+                    set.flashcards = set.flashcards.filter { $0.id != flashcard.id }
                     Task {
                         try? await Task.sleep(nanoseconds: 100)
-                        focusedFront = localCards[safe: index - 1]?.id
+                        focusedFront = set.flashcards[safe: index - 1]?.id
                         focusedFront = nil
                     }
                 }

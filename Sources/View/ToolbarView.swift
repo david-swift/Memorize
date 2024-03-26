@@ -11,6 +11,7 @@ struct ToolbarView: View {
     @Binding var selectedSet: String
     @Binding var search: Search
     @Binding var editSearch: Search
+    @Binding var searchFocused: Bool
     @Binding var editMode: Bool
     @State private var about = false
     var app: GTUIApp
@@ -67,8 +68,14 @@ struct ToolbarView: View {
             MenuButton(Loc.search) {
                 if editMode {
                     editSearch.toggle()
+                    if editSearch.visible {
+                        searchFocused = true
+                    }
                 } else {
                     search.toggle()
+                    if search.visible {
+                        searchFocused = true
+                    }
                 }
             }
             .keyboardShortcut("f".ctrl())

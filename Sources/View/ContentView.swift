@@ -15,6 +15,7 @@ struct ContentView: WindowView {
     @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
     @State private var search: Search = .hidden(query: "")
     @State private var editSearch: Search = .hidden(query: "")
+    @State private var searchFocused = false
     @State private var editMode = false
     @State("width")
     private var width = 700
@@ -25,6 +26,7 @@ struct ContentView: WindowView {
     @State private var sidebarVisible = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
+    var modifySet: (FlashcardsSet) -> Void
 
     var smallWindow: Bool { width < 600 }
 
@@ -92,6 +94,7 @@ struct ContentView: WindowView {
                 selectedSet: $selectedSet,
                 search: $search,
                 editSearch: $editSearch,
+                searchFocused: $searchFocused,
                 editMode: $editMode,
                 app: app,
                 window: window,
@@ -107,9 +110,11 @@ struct ContentView: WindowView {
                 set: binding,
                 editMode: $editMode,
                 editSearch: $editSearch,
+                searchFocused: $searchFocused,
                 flashcardsView: $flashcardsView,
                 sidebarVisible: $sidebarVisible,
-                smallWindow: smallWindow
+                smallWindow: smallWindow,
+                modifySet: modifySet
             ) {
                 sets = sets.filter { $0.id != set.id }
             }

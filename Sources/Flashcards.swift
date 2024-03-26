@@ -16,7 +16,11 @@ struct Flashcards: App {
 
     var scene: Scene {
         Window(id: "main") { window in
-            ContentView(sets: $sets, app: app, window: window)
+            ContentView(sets: $sets, app: app, window: window) { newValue in
+                if let index = sets.firstIndex { $0.id == newValue.id } {
+                    _sets.rawValue[index] = newValue
+                }
+            }
         }
         .title("Memorize")
         .quitShortcut()

@@ -10,12 +10,14 @@ struct SetOverview: View {
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
     @Binding var editSearch: Search
+    @Binding var searchFocused: Bool
     @Binding var flashcardsView: NavigationStack<FlashcardsView>
     @Binding var sidebarVisible: Bool
     @State private var export = false
     @State private var deleteState = false
     @State private var copied = Signal()
     var smallWindow: Bool
+    var modifySet: (FlashcardsSet) -> Void
     var delete: () -> Void
 
     var view: Body {
@@ -69,7 +71,13 @@ struct SetOverview: View {
             }
         }
         .dialog(visible: $editMode, id: "edit", width: 700, height: 550) {
-            EditView(set: $set, editMode: $editMode, editSearch: $editSearch)
+            EditView(
+                set: $set,
+                editMode: $editMode,
+                editSearch: $editSearch,
+                searchFocused: $searchFocused,
+                modifySet: modifySet
+            )
         }
         .toast(Loc.copied, signal: copied)
     }
