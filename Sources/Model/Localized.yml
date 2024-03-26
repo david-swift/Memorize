@@ -712,7 +712,7 @@ flashcards(count):
 
 activeStudySession:
     en: Active Study Session
-    de: Aktive Lerneinheien 
+    de: Aktive Lerneinheit
     it: Sessione di studio attiva
     fr: Session d’étude active
 
