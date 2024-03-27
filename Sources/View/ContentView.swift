@@ -71,6 +71,7 @@ struct ContentView: WindowView {
                 } set: { newValue in
                     selectedSet = newValue
                     sidebarVisible = false
+                    editSearch = .hidden(query: "")
                 }
             ) { set in
                 Text(set.name)
@@ -85,7 +86,7 @@ struct ContentView: WindowView {
             SearchEntry()
                 .placeholderText(Loc.searchSets)
                 .text($search.query)
-                .focused(.constant(search != nil))
+                .focused(.constant(true))
                 .padding(5, .horizontal.add(.bottom))
         }
         .topToolbar {
