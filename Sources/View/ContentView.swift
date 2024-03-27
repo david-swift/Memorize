@@ -13,7 +13,9 @@ struct ContentView: WindowView {
     @State("selected-set")
     private var selectedSet = ""
     @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
-    @State private var filter: String?
+    @State private var search: Search = .hidden(query: "")
+    @State private var editSearch: Search = .hidden(query: "")
+    @State private var searchFocused = false
     @State private var editMode = false
     @State("width")
     private var width = 700
@@ -24,6 +26,7 @@ struct ContentView: WindowView {
     @State private var sidebarVisible = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
+    var modifySet: (FlashcardsSet) -> Void
 
     var smallWindow: Bool { width < 600 }
 
@@ -62,12 +65,13 @@ struct ContentView: WindowView {
     var sidebar: View {
         ScrollView {
             List(
-                sets.map { ($0, $0.score(filter)) }.sorted { $0.1 > $1.1 }.filter { $0.1 != 0 }.map { $0.0 },
+                sets.sortScore(search.effectiveQuery),
                 selection: .init {
                     selectedSet
                 } set: { newValue in
                     selectedSet = newValue
                     sidebarVisible = false
+                    editSearch = .hidden(query: "")
                 }
             ) { set in
                 Text(set.name)
@@ -78,18 +82,21 @@ struct ContentView: WindowView {
             .style("navigation-sidebar")
         }
         .hexpand()
-        .topToolbar(visible: filter != nil) {
+        .topToolbar(visible: search.visible) {
             SearchEntry()
-                .placeholderText(Loc.filterSets)
-                .text(.init { filter ?? "" } set: { filter = $0 })
-                .focused(.constant(filter != nil))
+                .placeholderText(Loc.searchSets)
+                .text($search.query)
+                .focused(.constant(true))
                 .padding(5, .horizontal.add(.bottom))
         }
         .topToolbar {
             ToolbarView(
                 sets: $sets,
                 selectedSet: $selectedSet,
-                filter: $filter,
+                search: $search,
+                editSearch: $editSearch,
+                searchFocused: $searchFocused,
+                editMode: $editMode,
                 app: app,
                 window: window,
                 addSet: addSet
@@ -103,9 +110,12 @@ struct ContentView: WindowView {
             SetOverview(
                 set: binding,
                 editMode: $editMode,
+                editSearch: $editSearch,
+                searchFocused: $searchFocused,
                 flashcardsView: $flashcardsView,
                 sidebarVisible: $sidebarVisible,
-                smallWindow: smallWindow
+                smallWindow: smallWindow,
+                modifySet: modifySet
             ) {
                 sets = sets.filter { $0.id != set.id }
             }

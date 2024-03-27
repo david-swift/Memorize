@@ -9,9 +9,12 @@ struct EditView: View {
 
     @Binding var set: FlashcardsSet
     @Binding var editMode: Bool
+    @Binding var editSearch: Search
+    @Binding var searchFocused: Bool
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
+    var modifySet: (FlashcardsSet) -> Void
 
     var view: Body {
         ScrollView {
@@ -24,8 +27,25 @@ struct EditView: View {
             .formWidth()
         }
         .vexpand()
+        .topToolbar(visible: editSearch.visible) {
+            SearchEntry()
+                .placeholderText(Loc.searchFlashcards)
+                .text($editSearch.query)
+                .focused($searchFocused)
+                .padding(5, .horizontal.add(.bottom))
+                .frame(maxWidth: 300)
+        }
         .topToolbar {
             HeaderBar(titleButtons: false) {
+                Toggle(icon: .default(icon: .editFind), isOn: .init {
+                    editSearch.visible
+                } set: { newValue in
+                    editSearch.visible = newValue
+                    if newValue {
+                        searchFocused.toggle()
+                    }
+                })
+                .tooltip(Loc.searchTitle)
             } end: {
                 Button(Loc.done) {
                     editMode = false
@@ -79,12 +99,15 @@ struct EditView: View {
 
     var flashcards: View {
         ForEach(.init(set.flashcards.indices)) { index in
-            if set.flashcards[safe: index] != nil {
+            if let flashcard = set.flashcards[safe: index],
+            flashcard.front.search(editSearch.effectiveQuery) || flashcard.back.search(editSearch.effectiveQuery) {
                 EditFlashcardView(
-                    flashcard: .init {
-                        set.flashcards[safe: index] ?? .init()
-                    } set: { newValue in
-                        set.flashcards[safe: index] = newValue
+                    flashcard: .init { flashcard } set: { newValue in
+                        if !searchFocused {
+                            var set = set
+                            set.flashcards[safe: index] = newValue
+                            modifySet(set)
+                        }
                     },
                     index: index,
                     tags: set.tags.nonOptional,
@@ -97,7 +120,7 @@ struct EditView: View {
                         appendFlashcard()
                     }
                 } delete: {
-                    set.flashcards = set.flashcards.filter { $0.id != set.flashcards[safe: index]?.id }
+                    set.flashcards = set.flashcards.filter { $0.id != flashcard.id }
                     Task {
                         try? await Task.sleep(nanoseconds: 100)
                         focusedFront = set.flashcards[safe: index - 1]?.id

@@ -56,12 +56,9 @@ viewMenu:
     pt_BR: Ver
     fr: Voir
 
-filter:
-    en: Filter...
-    de: Filtern ...
-    it: Filtro...
-    pt_BR: Filtrar...
-    fr: Filtrer...
+search:
+    en: Search...
+    de: Suchen ...
 
 noFlashcards:
     en: No flashcards available
@@ -568,12 +565,9 @@ deleteDescription:
     pt_BR: Não existe desfazer. Os flashcards serão perdidos
     fr: Cette action est irréversible. Les cartes mémoire seront perdues.
 
-filterSets:
-    en: Filter Sets
-    de: Sets filtern
-    it: Set di filtri
-    pt_BR: Filtrar Sets
-    fr: Filtrer les jeux
+searchSets:
+    en: Search Sets
+    de: Sets suchen
 
 noSelection:
     en: No Selection
@@ -727,3 +721,11 @@ toggleSidebar:
     de: Seitenleiste ein- und ausblenden
     it: Attiva la barra laterale
     fr: Basculer la barre latérale
+
+searchTitle:
+    en: Search
+    de: Suche
+
+searchFlashcards:
+    en: Search Flashcards
+    de: Karteikarten suchen
