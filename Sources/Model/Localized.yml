@@ -59,6 +59,7 @@ viewMenu:
 search:
     en: Search...
     de: Suchen ...
+    it: Cerca...
 
 noFlashcards:
     en: No flashcards available
@@ -568,6 +569,7 @@ deleteDescription:
 searchSets:
     en: Search Sets
     de: Sets suchen
+    it: Cerca set
 
 noSelection:
     en: No Selection
@@ -725,7 +727,9 @@ toggleSidebar:
 searchTitle:
     en: Search
     de: Suche
+    it: Cerca
 
 searchFlashcards:
     en: Search Flashcards
     de: Karteikarten suchen
+    it: Cerca Flashcard
