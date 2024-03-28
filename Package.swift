@@ -18,7 +18,8 @@ let package = Package(
             name: "Flashcards",
             dependencies: [
                 .product(name: "Adwaita", package: "Adwaita"),
-                .product(name: "Localized", package: "Localized")
+                .product(name: "Localized", package: "Localized"),
+                .product(name: "SQLite", package: "SQLite.swift")
             ],
             path: "Sources",
             resources: [.process("Model/Localized.yml")],
