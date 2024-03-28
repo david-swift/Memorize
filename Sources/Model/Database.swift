@@ -11,47 +11,49 @@ class Database {
 
     var sets: [FlashcardsSet] {
         didSet {
-            print("Update in JSON file")
-            writeCodableValue()
+            print("Updating sets or flashcards in the database is currently NOT supported")
         }
     }
 
+    private let columnID = Expression<Int64>("id")
+
     // sets table layout
-    let setsTable = Table("sets")
-    let setsId = Expression<Int64>("id")
-    let name = Expression<String>("name")
-    let answerSide = Expression<String>("answerSide")
+    private let tableSets = Table("sets")
+    private let setsName = Expression<String>("name")
+    private let setsSide = Expression<String>("answer_side")
 
     // flashcards table layout
-    let flashcardsTable = Table("flashcards")
-    let flashcardsId = Expression<Int64>("id")
-    let setsTableId = Expression<Int64>("sets_id")
-    let difficulty = Expression<Int?>("difficulty")
-    let front = Expression<String?>("front")
-    let back = Expression<String?>("back")
+    private let tableFlashcards = Table("flashcards")
+    private let flashcardsSet = Expression<Int64>("sets_id")
+    private let flashcardsDifficulty = Expression<Int?>("difficulty")
+    private let flashcardsFront = Expression<String?>("front")
+    private let flashcardsBack = Expression<String?>("back")
+
+    private var connection: Connection?
+
+    private let fileManager = FileManager.default
 
     init() {
         sets = []
 
         do {
-            let database = try Connection(databasePath().path)
+            connection = try Connection(databasePath().path)
 
-            print("Check data directory")
-            checkDir()
+            print("Check data directory, create if not exist")
+            checkDataDir()
 
-            checkDatabase(database)
-            let fileManager = FileManager.default
-            if fileManager.fileExists(atPath: filePath().path) {
-                print("Read value from JSON file")
-                readValue()
+            checkDatabase()
+            let backupPath = jsonPath().path + ".bak"
+            if fileManager.fileExists(atPath: jsonPath().path) &&
+               !fileManager.fileExists(atPath: backupPath) {
+                print("Migrate JSON to SQLite")
+                migrateJSON()
 
-                print("Insert JSON to SQLite")
-                insertJSON(database)
-
-                let backupPath = filePath().path + ".bak"
-                try fileManager.moveItem(atPath: filePath().path, toPath: backupPath)
+                try fileManager.moveItem(atPath: jsonPath().path, toPath: backupPath)
                 print("Conversion finished. Backup of JSON file at " + backupPath)
             }
+
+            loadSets()
         } catch {
             print(error)
         }
@@ -65,21 +67,20 @@ class Database {
             .appendingPathComponent("io.github.david_swift.Flashcards", isDirectory: true)
     }
 
-    /// Get the settings file path.
+    /// Get the JSON user data file path.
     /// - Returns: The path.
-    private func filePath() -> URL {
+    private func jsonPath() -> URL {
         dirPath().appendingPathComponent("sets.json")
     }
 
-    /// Get the settings file path.
+    /// Get the database file path.
     /// - Returns: The path.
     private func databasePath() -> URL {
         dirPath().appendingPathComponent("data.sqlite3")
     }
 
     /// Check whether the data directory exists, and, if not, create it.
-    private func checkDir() {
-        let fileManager = FileManager.default
+    private func checkDataDir() {
         if !fileManager.fileExists(atPath: dirPath().path) {
             try? fileManager.createDirectory(
                 at: .init(fileURLWithPath: dirPath().path),
@@ -89,45 +90,57 @@ class Database {
         }
     }
 
-    // Check whether the database layout exists, and, if not, create it.
-    private func checkDatabase(_ database: Connection) {
+    // Create database tables if they do not exist.
+    private func checkDatabase() {
+        guard let database = connection else {
+            return
+        }
         do {
             // sets table rules
-            try database.run(setsTable.create(ifNotExists: true) { table in
-                table.column(setsId, primaryKey: .autoincrement)
-                table.column(name)
-                table.column(answerSide)
-                table.check(answerSide == "front" || answerSide == "back")
+            try database.run(tableSets.create(ifNotExists: true) { table in
+                table.column(columnID, primaryKey: .autoincrement)
+                table.column(setsName)
+                table.column(setsSide)
+                table.check(setsSide == "front" || setsSide == "back")
             })
 
             // flashcards table rules
-            try database.run(flashcardsTable.create(ifNotExists: true) { table in
-                table.column(flashcardsId, primaryKey: .autoincrement)
-                table.column(setsTableId, references: setsTable, setsId)
-                table.column(difficulty, defaultValue: 0)
-                table.column(front)
-                table.column(back)
+            try database.run(tableFlashcards.create(ifNotExists: true) { table in
+                table.column(columnID, primaryKey: .autoincrement)
+                table.column(flashcardsSet, references: tableSets, columnID)
+                table.column(flashcardsDifficulty, defaultValue: 0)
+                table.column(flashcardsFront)
+                table.column(flashcardsBack)
             })
         } catch {
             print(error)
         }
     }
 
-    // Parse the JSON file (old save format) to the database
-    private func insertJSON(_ database: Connection) {
+    // Migrate the obsolete JSON file to SQLite
+    private func migrateJSON() {
+        var json: [FlashcardsSet] = []
+        let data = try? Data(contentsOf: jsonPath())
+        if let data, let value = try? JSONDecoder().decode([FlashcardsSet].self, from: data) {
+            json = value
+        }
+
+        guard let database = connection else {
+            return
+        }
         do {
-            for (index, item) in sets.enumerated() {
-                try database.run(setsTable.insert(
-                    name <- item.name,
-                    answerSide <- item.answerSide.rawValue
+            for (index, item) in json.enumerated() {
+                try database.run(tableSets.insert(
+                    setsName <- item.name,
+                    setsSide <- item.answerSide.rawValue
                 ))
 
                 for flashcard in item.flashcards {
-                    try database.run(flashcardsTable.insert(
-                        setsTableId <- Int64(index + 1),
-                        difficulty <- flashcard.gameData.difficulty,
-                        front <- flashcard.front,
-                        back <- flashcard.back
+                    try database.run(tableFlashcards.insert(
+                        flashcardsSet <- Int64(index + 1),
+                        flashcardsDifficulty <- flashcard.gameData.difficulty,
+                        flashcardsFront <- flashcard.front,
+                        flashcardsBack <- flashcard.back
                     ))
                 }
             }
@@ -136,20 +149,37 @@ class Database {
         }
     }
 
-    /// Update the local value with the value from the file.
-    private func readValue() {
-        let data = try? Data(contentsOf: filePath())
-        if let data, let value = try? JSONDecoder().decode([FlashcardsSet].self, from: data) {
-            sets = value
+    /// Load all sets
+    func loadSets() {
+        guard let database = connection else {
+            return
+        }
+        do {
+            for item in try database.prepare(tableSets) {
+                sets.append(FlashcardsSet(name: item[setsName], flashcards: loadFlashcards(id: item[columnID])))
+            }
+        } catch {
+            print(error)
         }
     }
 
-    /// Update the value on the file with the local value.
-    private func writeCodableValue() {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        let data = try? encoder.encode(sets)
-        try? data?.write(to: filePath())
+    /// Load all flashcards for set
+    /// - Returns: The Flashcards.
+    func loadFlashcards(id: Int64) -> [Flashcard] {
+        var flashcards: [Flashcard] = []
+
+        guard let database = connection else {
+            return flashcards
+        }
+        do {
+            for item in try database.prepare(tableFlashcards.filter(flashcardsSet == id)) {
+                flashcards.append(Flashcard(front: item[flashcardsFront] ?? "", back: item[flashcardsBack] ?? ""))
+            }
+        } catch {
+            print(error)
+        }
+
+        return flashcards
     }
 
 }
