@@ -111,35 +111,37 @@ class Database {
             return
         }
         do {
-            // Sets Table
-            try database.run(tableSets.create(ifNotExists: true) { table in
-                table.column(columnID, primaryKey: .autoincrement)
-                table.column(columnName)
-                table.column(setsSide)
-                table.check(setsSide == "front" || setsSide == "back")
-            })
+            try database.transaction {
+                // Sets Table
+                try database.run(tableSets.create(ifNotExists: true) { table in
+                    table.column(columnID, primaryKey: .autoincrement)
+                    table.column(columnName)
+                    table.column(setsSide)
+                    table.check(setsSide == "front" || setsSide == "back")
+                })
 
-            // Flashcards Table
-            try database.run(tableFlashcards.create(ifNotExists: true) { table in
-                table.column(columnID, primaryKey: .autoincrement)
-                table.column(flashcardsSet, references: tableSets, columnID)
-                table.column(flashcardsDifficulty, defaultValue: 0)
-                table.column(flashcardsFront)
-                table.column(flashcardsBack)
-            })
+                // Flashcards Table
+                try database.run(tableFlashcards.create(ifNotExists: true) { table in
+                    table.column(columnID, primaryKey: .autoincrement)
+                    table.column(flashcardsSet, references: tableSets, columnID)
+                    table.column(flashcardsDifficulty, defaultValue: 0)
+                    table.column(flashcardsFront)
+                    table.column(flashcardsBack)
+                })
 
-            // Keywords Table
-            try database.run(tableKeywords.create(ifNotExists: true) { table in
-                table.column(columnID, primaryKey: .autoincrement)
-                table.column(columnName)
-            })
+                // Keywords Table
+                try database.run(tableKeywords.create(ifNotExists: true) { table in
+                    table.column(columnID, primaryKey: .autoincrement)
+                    table.column(columnName)
+                })
 
-            // Sets to Keywords Table
-            try database.run(tableSetsKeywords.create(ifNotExists: true) { table in
-                table.column(columnID, primaryKey: .autoincrement)
-                table.column(setsKeywordsSet, references: tableSets, columnID)
-                table.column(setsKeywordsKeyword, references: tableKeywords, columnID)
-            })
+                // Sets to Keywords Table
+                try database.run(tableSetsKeywords.create(ifNotExists: true) { table in
+                    table.column(columnID, primaryKey: .autoincrement)
+                    table.column(setsKeywordsSet, references: tableSets, columnID)
+                    table.column(setsKeywordsKeyword, references: tableKeywords, columnID)
+                })
+            }
         } catch {
             print(error)
         }
@@ -158,28 +160,30 @@ class Database {
             return
         }
         do {
-            for (index, item) in json.enumerated() {
-                print("Migrate set " + item.name)
+            try database.transaction {
+                for (index, item) in json.enumerated() {
+                    print("Migrate set " + item.name)
 
-                try database.run(tableSets.insert(
-                    columnName <- item.name,
-                    setsSide <- item.answerSide.rawValue
-                ))
-
-                for keyword in item.keywords.nonOptional {
-                    try database.run(tableSetsKeywords.insert(
-                        setsKeywordsSet <- Int64(index + 1),
-                        setsKeywordsKeyword <- addKeyword(keyword)
+                    try database.run(tableSets.insert(
+                        columnName <- item.name,
+                        setsSide <- item.answerSide.rawValue
                     ))
-                }
 
-                for flashcard in item.flashcards {
-                    try database.run(tableFlashcards.insert(
-                        flashcardsSet <- Int64(index + 1),
-                        flashcardsDifficulty <- flashcard.gameData.difficulty,
-                        flashcardsFront <- flashcard.front,
-                        flashcardsBack <- flashcard.back
-                    ))
+                    for keyword in item.keywords.nonOptional {
+                        try database.run(tableSetsKeywords.insert(
+                            setsKeywordsSet <- Int64(index + 1),
+                            setsKeywordsKeyword <- addKeyword(keyword)
+                        ))
+                    }
+
+                    for flashcard in item.flashcards {
+                        try database.run(tableFlashcards.insert(
+                            flashcardsSet <- Int64(index + 1),
+                            flashcardsDifficulty <- flashcard.gameData.difficulty,
+                            flashcardsFront <- flashcard.front,
+                            flashcardsBack <- flashcard.back
+                        ))
+                    }
                 }
             }
         } catch {
