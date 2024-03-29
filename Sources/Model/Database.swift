@@ -16,18 +16,32 @@ class Database {
     }
 
     private let columnID = Expression<Int64>("id")
+    private let columnName = Expression<String>("name")
 
-    // sets table layout
+    // Sets Table types
     private let tableSets = Table("sets")
-    private let setsName = Expression<String>("name")
+    /* id: columnID */
+    /* name: columnName */
     private let setsSide = Expression<String>("answer_side")
 
-    // flashcards table layout
+    // Flashcards Table types
     private let tableFlashcards = Table("flashcards")
-    private let flashcardsSet = Expression<Int64>("sets_id")
+    /* id: columnID */
+    private let flashcardsSet = Expression<Int64>("sets_id") // Foreign Key: sets[id]
     private let flashcardsDifficulty = Expression<Int?>("difficulty")
     private let flashcardsFront = Expression<String?>("front")
     private let flashcardsBack = Expression<String?>("back")
+
+    // Keywords Table types
+    private let tableKeywords = Table("keywords")
+    /* id: columnID */
+    /* name: columnName */
+
+    // Sets to Keywords Table types
+    private let tableSetsKeywords = Table("sets_keywords")
+    /* id: columnID */
+    private let setsKeywordsSet = Expression<Int64>("sets_id")
+    private let setsKeywordsKeyword = Expression<Int64>("keywords_id")
 
     private var connection: Connection?
 
@@ -41,8 +55,9 @@ class Database {
 
             print("Check data directory, create if not exist")
             checkDataDir()
-
+            print("Create non-exisitent tables in database")
             checkDatabase()
+
             let backupPath = jsonPath().path + ".bak"
             if fileManager.fileExists(atPath: jsonPath().path) &&
                !fileManager.fileExists(atPath: backupPath) {
@@ -96,21 +111,34 @@ class Database {
             return
         }
         do {
-            // sets table rules
+            // Sets Table
             try database.run(tableSets.create(ifNotExists: true) { table in
                 table.column(columnID, primaryKey: .autoincrement)
-                table.column(setsName)
+                table.column(columnName)
                 table.column(setsSide)
                 table.check(setsSide == "front" || setsSide == "back")
             })
 
-            // flashcards table rules
+            // Flashcards Table
             try database.run(tableFlashcards.create(ifNotExists: true) { table in
                 table.column(columnID, primaryKey: .autoincrement)
                 table.column(flashcardsSet, references: tableSets, columnID)
                 table.column(flashcardsDifficulty, defaultValue: 0)
                 table.column(flashcardsFront)
                 table.column(flashcardsBack)
+            })
+
+            // Keywords Table
+            try database.run(tableKeywords.create(ifNotExists: true) { table in
+                table.column(columnID, primaryKey: .autoincrement)
+                table.column(columnName)
+            })
+
+            // Sets to Keywords Table
+            try database.run(tableSetsKeywords.create(ifNotExists: true) { table in
+                table.column(columnID, primaryKey: .autoincrement)
+                table.column(setsKeywordsSet, references: tableSets, columnID)
+                table.column(setsKeywordsKeyword, references: tableKeywords, columnID)
             })
         } catch {
             print(error)
@@ -120,6 +148,7 @@ class Database {
     // Migrate the obsolete JSON file to SQLite
     private func migrateJSON() {
         var json: [FlashcardsSet] = []
+
         let data = try? Data(contentsOf: jsonPath())
         if let data, let value = try? JSONDecoder().decode([FlashcardsSet].self, from: data) {
             json = value
@@ -130,10 +159,19 @@ class Database {
         }
         do {
             for (index, item) in json.enumerated() {
+                print("Migrate set " + item.name)
+
                 try database.run(tableSets.insert(
-                    setsName <- item.name,
+                    columnName <- item.name,
                     setsSide <- item.answerSide.rawValue
                 ))
+
+                for keyword in item.keywords.nonOptional {
+                    try database.run(tableSetsKeywords.insert(
+                        setsKeywordsSet <- Int64(index + 1),
+                        setsKeywordsKeyword <- addKeyword(keyword)
+                    ))
+                }
 
                 for flashcard in item.flashcards {
                     try database.run(tableFlashcards.insert(
@@ -156,7 +194,7 @@ class Database {
         }
         do {
             for item in try database.prepare(tableSets) {
-                sets.append(FlashcardsSet(name: item[setsName], flashcards: loadFlashcards(id: item[columnID])))
+                sets.append(FlashcardsSet(name: item[columnName], flashcards: loadFlashcards(id: item[columnID])))
             }
         } catch {
             print(error)
@@ -180,6 +218,45 @@ class Database {
         }
 
         return flashcards
+    }
+
+    /// Insert keyword, if non-existent
+    /// - Returns: The id of the keyword
+    func addKeyword(_ keyword: String) -> Int64 {
+        var id = keywordID(keyword)
+
+        guard let database = connection else {
+            return id
+        }
+        do {
+            if id == 0 {
+                try database.run(tableKeywords.insert(columnName <- keyword))
+                id = keywordID(keyword)
+            }
+        } catch {
+            print(error)
+        }
+
+        return id
+    }
+
+    /// Find keyword in keywords table
+    /// - Returns: The id of the keyword
+    func keywordID(_ keyword: String) -> Int64 {
+        var id: Int64 = 0
+
+        guard let database = connection else {
+            return id
+        }
+        do {
+            for item in try database.prepare(tableKeywords.filter(columnName == keyword)) {
+                id = item[columnID]
+            }
+        } catch {
+            print(error)
+        }
+
+        return id
     }
 
 }
