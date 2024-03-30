@@ -9,6 +9,7 @@ enum FlashcardsApp: String, CaseIterable, Identifiable {
 
     case quizlet
     case anki
+    case csv
 
     var id: String { rawValue }
 
@@ -18,6 +19,8 @@ enum FlashcardsApp: String, CaseIterable, Identifiable {
             Loc.quizlet
         case .anki:
             Loc.anki
+        case .csv:
+            Loc.csv
         }
     }
 

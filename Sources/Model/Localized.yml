@@ -733,3 +733,15 @@ searchFlashcards:
     en: Search Flashcards
     de: Karteikarten suchen
     it: Cerca Flashcard
+
+csv:
+    en: CSV
+    de: CSV
+
+csvDescription:
+    en: Paste the text into the text field in the next view. Flashcards are separated by newlines, the front and back by commas.
+    de: Füge den Text in das Textfeld der nächsten Ansicht ein. Karteikarten werden mit Zeilenumbrüchen, die Vorder- und Rückseite mit Kommas getrennt.
+
+importCSV:
+    en: Import CSV
+    de: CSV importieren

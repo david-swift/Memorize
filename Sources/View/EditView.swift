@@ -143,7 +143,7 @@ struct EditView: View {
         } secondary: {
             importFlashcards = true
         }
-        .dialog(visible: $importFlashcards, width: 400, height: 500) {
+        .dialog(visible: $importFlashcards, width: 400, height: 450) {
             ImportView(set: $set) { importFlashcards = false }
         }
     }
