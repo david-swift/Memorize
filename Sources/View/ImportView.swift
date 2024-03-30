@@ -14,9 +14,11 @@ struct ImportView: View {
     // swiftlint:enable large_tuple
 
     @Binding var set: FlashcardsSet
-    @State private var text = ""
+    @Binding var text: String
     @State private var switchSides = false
     @State private var navigationStack = NavigationStack<ImportNavigationDestination>()
+    var window: GTUIWindow
+    var app: GTUIApp
     var close: () -> Void
 
     var view: Body {
@@ -74,6 +76,13 @@ struct ImportView: View {
     var entry: View {
         Form {
             EntryRow(Loc.pasteText, text: $text)
+                .suffix {
+                    Button(icon: .default(icon: .documentOpen)) {
+                        app.addWindow("import", parent: window)
+                    }
+                    .padding(10, .vertical)
+                    .style("flat")
+                }
             SwitchRow(Loc.switchFrontBack, isOn: $switchSides)
         }
         .padding(20)
@@ -186,6 +195,7 @@ struct ImportView: View {
             Button(label) {
                 if case let .paste(app) = destination {
                     set.flashcards += previewSet(app: app).flashcards
+                    text = ""
                     close()
                 } else {
                     if case let .tutorial(app) = destination {

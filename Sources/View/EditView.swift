@@ -11,9 +11,12 @@ struct EditView: View {
     @Binding var editMode: Bool
     @Binding var editSearch: Search
     @Binding var searchFocused: Bool
+    @Binding var importText: String
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
+    var window: GTUIWindow
+    var app: GTUIApp
     var modifySet: (FlashcardsSet) -> Void
 
     var view: Body {
@@ -144,7 +147,7 @@ struct EditView: View {
             importFlashcards = true
         }
         .dialog(visible: $importFlashcards, width: 400, height: 450) {
-            ImportView(set: $set) { importFlashcards = false }
+            ImportView(set: $set, text: $importText, window: window, app: app) { importFlashcards = false }
         }
     }
 

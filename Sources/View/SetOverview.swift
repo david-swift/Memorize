@@ -13,10 +13,13 @@ struct SetOverview: View {
     @Binding var searchFocused: Bool
     @Binding var flashcardsView: NavigationStack<FlashcardsView>
     @Binding var sidebarVisible: Bool
+    @Binding var importText: String
     @State private var export = false
     @State private var deleteState = false
     @State private var copied = Signal()
     var smallWindow: Bool
+    var window: GTUIWindow
+    var app: GTUIApp
     var modifySet: (FlashcardsSet) -> Void
     var delete: () -> Void
 
@@ -76,6 +79,9 @@ struct SetOverview: View {
                 editMode: $editMode,
                 editSearch: $editSearch,
                 searchFocused: $searchFocused,
+                importText: $importText,
+                window: window,
+                app: app,
                 modifySet: modifySet
             )
         }

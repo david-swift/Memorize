@@ -10,6 +10,7 @@ import Foundation
 struct ContentView: WindowView {
 
     @Binding var sets: [FlashcardsSet]
+    @Binding var importText: String
     @State("selected-set")
     private var selectedSet = ""
     @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
@@ -114,7 +115,10 @@ struct ContentView: WindowView {
                 searchFocused: $searchFocused,
                 flashcardsView: $flashcardsView,
                 sidebarVisible: $sidebarVisible,
+                importText: $importText,
                 smallWindow: smallWindow,
+                window: window,
+                app: app,
                 modifySet: modifySet
             ) {
                 sets = sets.filter { $0.id != set.id }
