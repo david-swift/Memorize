@@ -13,6 +13,7 @@ struct SetOverview: View {
     @Binding var searchFocused: Bool
     @Binding var flashcardsView: NavigationStack<FlashcardsView>
     @Binding var importText: String
+    @Binding var createSet: Bool
     @State private var export = false
     @State private var deleteState = false
     @State private var copied = Signal()
@@ -66,13 +67,14 @@ struct SetOverview: View {
                 export = false
             }
         }
-        .dialog(visible: $editMode, id: "edit", width: 700, height: 550) {
+        .dialog(visible: $editMode.onSet { _ in createSet = false }, id: "edit", width: 700, height: 550) {
             EditView(
                 set: $set,
                 editMode: $editMode,
                 editSearch: $editSearch,
                 searchFocused: $searchFocused,
                 importText: $importText,
+                createSet: $createSet,
                 window: window,
                 app: app,
                 modifySet: modifySet

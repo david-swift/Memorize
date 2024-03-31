@@ -25,6 +25,7 @@ struct ContentView: WindowView {
     @State("maximized")
     private var maximized = false
     @State private var contentVisible = true
+    @State private var createSet = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
     var modifySet: (FlashcardsSet) -> Void
@@ -67,7 +68,14 @@ struct ContentView: WindowView {
     var sidebar: View {
         ScrollView {
             List(
-                sets.sortScore(search.effectiveQuery),
+                sets
+                    .filter { set in
+                        if createSet {
+                            return set.id != selectedSet
+                        }
+                        return true
+                    }
+                    .sortScore(search.effectiveQuery),
                 selection: .init {
                     selectedSet
                 } set: { newValue in
@@ -119,6 +127,7 @@ struct ContentView: WindowView {
                 searchFocused: $searchFocused,
                 flashcardsView: $flashcardsView,
                 importText: $importText,
+                createSet: $createSet,
                 smallWindow: smallWindow,
                 window: window,
                 app: app,
@@ -171,6 +180,7 @@ struct ContentView: WindowView {
         sets.insert(newSet, at: 0)
         selectedSet = newSet.id
         editMode = true
+        createSet = true
     }
 
     func binding(id: String) -> Binding<FlashcardsSet> {

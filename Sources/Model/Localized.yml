@@ -745,3 +745,7 @@ csvDescription:
 importCSV:
     en: Import CSV
     de: CSV importieren
+
+create:
+    en: Create
+    de: Erstellen

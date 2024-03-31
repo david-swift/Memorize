@@ -12,6 +12,7 @@ struct EditView: View {
     @Binding var editSearch: Search
     @Binding var searchFocused: Bool
     @Binding var importText: String
+    @Binding var createSet: Bool
     @State private var expanded = false
     @State private var focusedFront: String?
     @State private var importFlashcards = false
@@ -50,13 +51,14 @@ struct EditView: View {
                 })
                 .tooltip(Loc.searchTitle)
             } end: {
-                Button(Loc.done) {
+                Button(createSet ? Loc.create : Loc.done) {
                     editMode = false
+                    createSet = false
                 }
                 .style("suggested-action")
             }
             .headerBarTitle {
-                WindowTitle(subtitle: "", title: Loc.editSet)
+                WindowTitle(subtitle: "", title: createSet ? Loc.newSet : Loc.editSet)
             }
         }
     }
