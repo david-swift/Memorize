@@ -24,7 +24,7 @@ struct ContentView: WindowView {
     private var height = 550
     @State("maximized")
     private var maximized = false
-    @State private var sidebarVisible = false
+    @State private var contentVisible = true
     var app: GTUIApp
     var window: GTUIApplicationWindow
     var modifySet: (FlashcardsSet) -> Void
@@ -48,18 +48,19 @@ struct ContentView: WindowView {
                     HeaderBar.empty()
                 }
         } initialView: {
-            OverlaySplitView(
-                visible: .init {
-                    (smallWindow && sidebarVisible) || (!smallWindow && !sets.isEmpty)
-                } set: { newValue in
-                    sidebarVisible = newValue
+                if sets.isEmpty {
+                    content
+                } else {
+                    NavigationSplitView {
+                        sidebar
+                            .navigationTitle(Loc.sets)
+                    } content: {
+                        content
+                            .navigationTitle(Loc.overview)
+                    }
+                    .collapsed(smallWindow)
+                    .showContent($contentVisible)
                 }
-            ) {
-                sidebar
-            } content: {
-                content
-            }
-            .collapsed(smallWindow)
         }
     }
 
@@ -71,7 +72,7 @@ struct ContentView: WindowView {
                     selectedSet
                 } set: { newValue in
                     selectedSet = newValue
-                    sidebarVisible = false
+                    contentVisible = true
                     editSearch = .hidden(query: "")
                 }
             ) { set in
@@ -79,6 +80,9 @@ struct ContentView: WindowView {
                     .ellipsize()
                     .padding()
                     .halign(.start)
+            }
+            .onClick {
+                contentVisible = true
             }
             .style("navigation-sidebar")
         }
@@ -114,7 +118,6 @@ struct ContentView: WindowView {
                 editSearch: $editSearch,
                 searchFocused: $searchFocused,
                 flashcardsView: $flashcardsView,
-                sidebarVisible: $sidebarVisible,
                 importText: $importText,
                 smallWindow: smallWindow,
                 window: window,
@@ -132,6 +135,9 @@ struct ContentView: WindowView {
                         description: Loc.noSelectionDescription
                     )
                     .centerMinSize()
+                    .onUpdate {
+                        _contentVisible.rawValue = false
+                    }
                 } else {
                     StatusPage(
                         Loc.noSets,
@@ -149,14 +155,7 @@ struct ContentView: WindowView {
                 }
             }
             .topToolbar {
-                HeaderBar.start {
-                    if smallWindow {
-                        Button(icon: .default(icon: .sidebarShow)) {
-                            sidebarVisible.toggle()
-                        }
-                        .tooltip(Loc.toggleSidebar)
-                    }
-                }
+                HeaderBar.empty()
             }
         }
     }

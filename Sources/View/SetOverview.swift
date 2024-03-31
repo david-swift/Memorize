@@ -12,7 +12,6 @@ struct SetOverview: View {
     @Binding var editSearch: Search
     @Binding var searchFocused: Bool
     @Binding var flashcardsView: NavigationStack<FlashcardsView>
-    @Binding var sidebarVisible: Bool
     @Binding var importText: String
     @State private var export = false
     @State private var deleteState = false
@@ -36,12 +35,6 @@ struct SetOverview: View {
         .topToolbar {
             HeaderBar {
                 HStack {
-                    if smallWindow {
-                        Button(icon: .default(icon: .sidebarShow)) {
-                            sidebarVisible.toggle()
-                        }
-                        .tooltip(Loc.toggleSidebar)
-                    }
                     Button(icon: .default(icon: .userTrash)) {
                         deleteState = true
                     }
