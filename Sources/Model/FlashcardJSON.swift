@@ -33,18 +33,8 @@ struct FlashcardJSON: Identifiable, Codable {
     struct GameData: Codable {
 
         var input = ""
-        var lastInput: String?
         var difficulty = 0
 
-    }
-
-    mutating func check() {
-        gameData.lastInput = gameData.input
-    }
-
-    mutating func done() {
-        gameData.input = ""
-        gameData.lastInput = nil
     }
 
 }
