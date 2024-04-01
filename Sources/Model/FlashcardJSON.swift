@@ -1,13 +1,13 @@
 //
-//  Flashcard.swift
+//  FlashcardJSON.swift
 //  Memorize
 //
 
 import Foundation
 
-struct Flashcard: Identifiable, Codable {
+struct FlashcardJSON: Identifiable, Codable {
 
-    let id: Int64
+    let id: String
     var front = ""
     var back = ""
     var gameData = GameData()
@@ -15,8 +15,8 @@ struct Flashcard: Identifiable, Codable {
     var tags: [String]?
     // swiftlint:enable discouraged_optional_collection
 
-    init(id: Int64, front: String = "", back: String = "") {
-        self.id = id
+    init(id: String? = nil, front: String = "", back: String = "") {
+        self.id = id ?? UUID().uuidString
         self.front = front
         self.back = back
     }
