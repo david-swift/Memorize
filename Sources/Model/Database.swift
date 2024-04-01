@@ -28,9 +28,9 @@ class Database {
     private let tableFlashcards = Table("flashcards")
     /* id: columnID */
     private let flashcardsSet = Expression<Int64>("sets_id") // Foreign Key: sets[id]
-    private let flashcardsDifficulty = Expression<Int?>("difficulty")
-    private let flashcardsFront = Expression<String?>("front")
-    private let flashcardsBack = Expression<String?>("back")
+    private let flashcardsDifficulty = Expression<Int64>("difficulty")
+    private let flashcardsFront = Expression<String>("front")
+    private let flashcardsBack = Expression<String>("back")
 
     // Keywords Table types
     private let tableKeywords = Table("keywords")
@@ -179,7 +179,7 @@ class Database {
                     for flashcard in item.flashcards {
                         try database.run(tableFlashcards.insert(
                             flashcardsSet <- Int64(index + 1),
-                            flashcardsDifficulty <- flashcard.gameData.difficulty,
+                            flashcardsDifficulty <- Int64(flashcard.gameData.difficulty),
                             flashcardsFront <- flashcard.front,
                             flashcardsBack <- flashcard.back
                         ))
@@ -188,6 +188,50 @@ class Database {
             }
         } catch {
             print("Error migrating JSON to database: \(error)")
+        }
+    }
+
+    /// Add a set to the database
+    /// - Returns: The set's id.
+    func addSet(name: String) -> Int64 {
+        var id: Int64 = 0
+
+        guard let database = connection else {
+            return id
+        }
+        do {
+            id = try database.run(tableSets.insert(
+                columnName <- name,
+                setsSide <- "back"
+            ))
+        } catch {
+            print("Error inserting set \(name): \(error)")
+        }
+
+        return id
+    }
+
+    /// Update a set in the database
+    func renameSet(id: Int64, name: String) {
+        guard let database = connection else {
+            return
+        }
+        do {
+            try database.run(tableSets.filter(columnID == id).update(columnName <- name))
+        } catch {
+            print("Error updating set \(id): \(error)")
+        }
+    }
+
+    /// Delete a set from the database
+    func deleteSet(id: Int64) {
+        guard let database = connection else {
+            return
+        }
+        do {
+            try database.run(tableSets.filter(columnID == id).delete())
+        } catch {
+            print("Error deleting set \(id): \(error)")
         }
     }
 
@@ -210,44 +254,6 @@ class Database {
         }
     }
 
-    /// Load all flashcards for set
-    /// - Returns: The Flashcards.
-    func loadFlashcards(fromSet: Int64) -> [Int64] {
-        var flashcards: [Int64] = []
-
-        guard let database = connection else {
-            return flashcards
-        }
-        do {
-            for item in try database.prepare(tableFlashcards.filter(flashcardsSet == fromSet)) {
-                flashcards.append(item[columnID])
-            }
-        } catch {
-            print("Error loading flashcards from set \(fromSet): \(error)")
-        }
-
-        return flashcards
-    }
-
-    /// Count total amount of flashcards in set
-    /// - Returns: The amount.
-    func countFlashcards(fromSet: Int64) -> Int64 {
-        var amount = 0
-
-        guard let database = connection else {
-            return amount
-        }
-        do {
-            for item in try database.prepare(tableFlashcards.select(flashcardsSet).filter(flashcardsSet == fromSet)) {
-                amount++
-            }
-        } catch {
-            print("Error counting flashcards: \(error)")
-        }
-
-        return amount
-    }
-
     /// Set difficulty for all flashcards in set
     func setDifficulty(_ difficulty: Int64, inSet: Int64) {
         guard let database = connection else {
@@ -264,6 +270,100 @@ class Database {
                 print("No flashcards found to update difficulty for")
             }
         } catch {}
+    }
+
+    /// Add a flashcard to the database
+    /// - Returns the flashcard's id
+    func addFlashcard(front: String, back: String) -> Int64 {
+        var id: Int64 = 0
+
+        guard let database = connection else {
+            return id
+        }
+        do {
+            id = try database.run(tableFlashcards.insert(
+                flashcardsFront <- front,
+                flashcardsBack <- back
+            ))
+        } catch {
+            print("Error inserting flashcard: \(error)")
+        }
+
+        return id
+    }
+
+    /// Update a flashcard in the database
+    func updateFlashcard(id: Int64, front: String?, back: String?, difficulty: Int64?) {
+        var columns = [Setter]()
+
+        if let value = front {
+            columns.append(flashcardsFront <- value)
+        }
+        if let value = back {
+            columns.append(flashcardsBack <- value)
+        }
+        if let value = difficulty {
+            columns.append(flashcardsDifficulty <- value)
+        }
+
+        guard let database = connection else {
+            return
+        }
+        do {
+            try database.run(tableFlashcards.filter(columnID == id).update(columns))
+        } catch {
+            print("Error updating flashcard \(id): \(error)")
+        }
+    }
+
+    /// Delete a flashcard from the database
+    func deleteFlashcard(id: Int64) {
+        guard let database = connection else {
+            return
+        }
+        do {
+            try database.run(tableFlashcards.filter(columnID == id).delete())
+        } catch {
+            print("Error deleting flashcard \(id): \(error)")
+        }
+    }
+
+    /// Count total amount of flashcards in set
+    /// - Returns: The amount.
+    func countFlashcards(fromSet: Int64) -> Int {
+        var amount = 0
+
+        guard let database = connection else {
+            return amount
+        }
+        do {
+            for _ in try database.prepare(tableFlashcards.select(flashcardsSet).filter(flashcardsSet == fromSet)) {
+                amount += 1
+            }
+        } catch {
+            print("Error counting flashcards: \(error)")
+        }
+
+        return amount
+    }
+
+    /// Load all flashcards for set
+    /// - Returns: The Flashcards.
+    func loadFlashcards(fromSet: Int64) -> [Int64] {
+        var flashcards: [Int64] = []
+
+        guard let database = connection else {
+            return flashcards
+        }
+        do {
+            for item in try database.prepare(tableFlashcards.filter(flashcardsSet == fromSet)) {
+                flashcards.append(item[columnID])
+            }
+        } catch {
+            print("Error loading flashcards for set \(fromSet): \(error)")
+        }
+
+        return flashcards
     }
 
     /// Insert keyword, if non-existent
@@ -286,6 +386,30 @@ class Database {
         return id
     }
 
+    /// Update a keyword in the database
+    func renameKeyword(id: Int64, name: String) {
+        guard let database = connection else {
+            return
+        }
+        do {
+            try database.run(tableKeywords.filter(columnID == id).update(columnName <- name))
+        } catch {
+            print("Error updating keyword \(id): \(error)")
+        }
+    }
+
+    /// Delete a keyword from the database
+    func deleteKeyword(id: Int64) {
+        guard let database = connection else {
+            return
+        }
+        do {
+            try database.run(tableKeywords.filter(columnID == id).delete())
+        } catch {
+            print("Error deleting keyword \(id): \(error)")
+        }
+    }
+
     /// Load keywords from set
     /// - Returns: The keyword ids
     func loadKeywords(fromSet: Int64) -> [Int64] {
@@ -295,7 +419,17 @@ class Database {
             return keywords
         }
         do {
-            for item in table.join()
+            for item in try database.prepare(tableKeywords.join(
+                tableSetsKeywords,
+                on: setsKeywordsKeyword == tableKeywords[columnID] && tableKeywords[columnID] == fromSet
+            )) {
+                keywords.append(item[tableKeywords[columnID]])
+            }
+        } catch {
+            print("Error loading keywords for set \(fromSet): \(error)")
+        }
+
+        return keywords
     }
 
     /// Find keyword in keywords table

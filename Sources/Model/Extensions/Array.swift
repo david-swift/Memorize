@@ -15,11 +15,3 @@ extension Array where Element == FlashcardsSet {
     }
 
 }
-
-extension Array where Element: SearchScore {
-
-    func sortScore(_ search: String) -> Self {
-        map { ($0, $0.score(search)) }.sorted { $0.1 > $1.1 }.filter { $0.1 != 0 }.map { $0.0 }
-    }
-
-}
