@@ -15,35 +15,35 @@ class Database {
         }
     }
 
-    private let columnID = Expression<Int64>("id")
-    private let columnName = Expression<String>("name")
+    let columnID = Expression<Int64>("id")
+    let columnName = Expression<String>("name")
 
     // Sets Table types
-    private let tableSets = Table("sets")
+    let tableSets = Table("sets")
     /* id: columnID */
     /* name: columnName */
-    private let setsSide = Expression<String>("answer_side")
+    let setsSide = Expression<String>("answer_side")
 
     // Flashcards Table types
-    private let tableFlashcards = Table("flashcards")
+    let tableFlashcards = Table("flashcards")
     /* id: columnID */
-    private let flashcardsSet = Expression<Int64>("sets_id") // Foreign Key: sets[id]
-    private let flashcardsDifficulty = Expression<Int64>("difficulty")
-    private let flashcardsFront = Expression<String>("front")
-    private let flashcardsBack = Expression<String>("back")
+    let flashcardsSet = Expression<Int64>("sets_id") // Foreign Key: sets[id]
+    let flashcardsDifficulty = Expression<Int64>("difficulty")
+    let flashcardsFront = Expression<String>("front")
+    let flashcardsBack = Expression<String>("back")
 
     // Keywords Table types
-    private let tableKeywords = Table("keywords")
+    let tableKeywords = Table("keywords")
     /* id: columnID */
     /* name: columnName */
 
     // Sets to Keywords Table types
-    private let tableSetsKeywords = Table("sets_keywords")
+    let tableSetsKeywords = Table("sets_keywords")
     /* id: columnID */
-    private let setsKeywordsSet = Expression<Int64>("sets_id")
-    private let setsKeywordsKeyword = Expression<Int64>("keywords_id")
+    let setsKeywordsSet = Expression<Int64>("sets_id")
+    let setsKeywordsKeyword = Expression<Int64>("keywords_id")
 
-    private var connection: Connection?
+    var connection: Connection?
 
     private let fileManager = FileManager.default
 
