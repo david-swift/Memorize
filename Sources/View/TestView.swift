@@ -10,6 +10,7 @@ struct TestView: View {
     @Binding var set: FlashcardsSet
     @State private var roundIndex = 0
     @State private var focusedFlashcard: String?
+    @State private var focusFlashcard: Signal = .init()
 
     var view: Body {
         ViewStack(element: set) { set in
@@ -80,13 +81,14 @@ struct TestView: View {
                         } set: { newValue in
                             set.testFlashcards[safe: index] = newValue
                         },
-                        focusedFlashcard: focusedFlashcard
+                        focusedFlashcard: focusedFlashcard,
+                        focusFlashcard: focusFlashcard
                     ) {
                         if let testIndex = set.test.firstIndex(
                             where: { $0.id == set.testFlashcards[safe: index]?.id }
                         ) {
                             focusedFlashcard = set.test[safe: testIndex + 1]
-                            focusedFlashcard = nil
+                            focusFlashcard.signal()
                         }
                     }
                 }

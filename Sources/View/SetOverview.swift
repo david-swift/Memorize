@@ -20,7 +20,6 @@ struct SetOverview: View {
     var smallWindow: Bool
     var window: GTUIWindow
     var app: GTUIApp
-    var modifySet: (FlashcardsSet) -> Void
     var delete: () -> Void
 
     var view: Body {
@@ -76,8 +75,7 @@ struct SetOverview: View {
                 importText: $importText,
                 createSet: $createSet,
                 window: window,
-                app: app,
-                modifySet: modifySet
+                app: app
             )
         }
         .toast(Loc.copied, signal: copied)

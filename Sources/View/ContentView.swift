@@ -28,7 +28,6 @@ struct ContentView: WindowView {
     @State private var createSet = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
-    var modifySet: (FlashcardsSet) -> Void
 
     var smallWindow: Bool { width < 600 }
 
@@ -99,7 +98,7 @@ struct ContentView: WindowView {
             SearchEntry()
                 .placeholderText(Loc.searchSets)
                 .text($search.query)
-                .focused(.constant(true))
+                .focused($searchFocused)
                 .padding(5, .horizontal.add(.bottom))
         }
         .topToolbar {
@@ -130,8 +129,7 @@ struct ContentView: WindowView {
                 createSet: $createSet,
                 smallWindow: smallWindow,
                 window: window,
-                app: app,
-                modifySet: modifySet
+                app: app
             ) {
                 sets = sets.filter { $0.id != set.id }
             }

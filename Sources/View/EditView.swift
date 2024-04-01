@@ -15,10 +15,10 @@ struct EditView: View {
     @Binding var createSet: Bool
     @State private var expanded = false
     @State private var focusedFront: String?
+    @State private var focusFront: Signal = .init()
     @State private var importFlashcards = false
     var window: GTUIWindow
     var app: GTUIApp
-    var modifySet: (FlashcardsSet) -> Void
 
     var view: Body {
         ScrollView {
@@ -109,18 +109,17 @@ struct EditView: View {
                 EditFlashcardView(
                     flashcard: .init { flashcard } set: { newValue in
                         if !searchFocused {
-                            var set = set
                             set.flashcards[safe: index] = newValue
-                            modifySet(set)
                         }
                     },
                     index: index,
                     tags: set.tags.nonOptional,
-                    focusedFront: focusedFront
+                    focusedFront: focusedFront,
+                    focusFront: focusFront
                 ) {
                     if let flashcard = set.flashcards[safe: index + 1] {
                         focusedFront = flashcard.id
-                        focusedFront = nil
+                        focusFront.signal()
                     } else {
                         appendFlashcard()
                     }
