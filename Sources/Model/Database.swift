@@ -211,30 +211,6 @@ class Database {
         return id
     }
 
-    /// Update a set in the database
-    func renameSet(id: Int64, name: String) {
-        guard let database = connection else {
-            return
-        }
-        do {
-            try database.run(tableSets.filter(columnID == id).update(columnName <- name))
-        } catch {
-            print("Error updating set \(id): \(error)")
-        }
-    }
-
-    /// Delete a set from the database
-    func deleteSet(id: Int64) {
-        guard let database = connection else {
-            return
-        }
-        do {
-            try database.run(tableSets.filter(columnID == id).delete())
-        } catch {
-            print("Error deleting set \(id): \(error)")
-        }
-    }
-
     /// Load all sets
     func loadSets() {
         guard let database = connection else {
@@ -244,126 +220,14 @@ class Database {
             for item in try database.prepare(tableSets) {
                 sets.append(FlashcardsSet(
                     id: item[columnID],
+                    dbms: self,
                     name: item[columnName],
-                    flashcards: loadFlashcards(fromSet: item[columnID]),
                     keywords: loadKeywords(fromSet: item[columnID])
                 ))
             }
         } catch {
             print("Error loading sets: \(error)")
         }
-    }
-
-    /// Set difficulty for all flashcards in set
-    func setDifficulty(_ difficulty: Int64, inSet: Int64) {
-        guard let database = connection else {
-            return
-        }
-        do {
-            if try database.run(
-                tableFlashcards
-                .filter(flashcardsSet == inSet)
-                .update(flashcardsDifficulty <- difficulty)
-             ) > 0 {
-                print("Flashcards difficulty updated to \(difficulty)")
-            } else {
-                print("No flashcards found to update difficulty for")
-            }
-        } catch {}
-    }
-
-    /// Add a flashcard to the database
-    /// - Returns the flashcard's id
-    func addFlashcard(front: String, back: String) -> Int64 {
-        var id: Int64 = 0
-
-        guard let database = connection else {
-            return id
-        }
-        do {
-            id = try database.run(tableFlashcards.insert(
-                flashcardsFront <- front,
-                flashcardsBack <- back
-            ))
-        } catch {
-            print("Error inserting flashcard: \(error)")
-        }
-
-        return id
-    }
-
-    /// Update a flashcard in the database
-    func updateFlashcard(id: Int64, front: String?, back: String?, difficulty: Int64?) {
-        var columns = [Setter]()
-
-        if let value = front {
-            columns.append(flashcardsFront <- value)
-        }
-        if let value = back {
-            columns.append(flashcardsBack <- value)
-        }
-        if let value = difficulty {
-            columns.append(flashcardsDifficulty <- value)
-        }
-
-        guard let database = connection else {
-            return
-        }
-        do {
-            try database.run(tableFlashcards.filter(columnID == id).update(columns))
-        } catch {
-            print("Error updating flashcard \(id): \(error)")
-        }
-    }
-
-    /// Delete a flashcard from the database
-    func deleteFlashcard(id: Int64) {
-        guard let database = connection else {
-            return
-        }
-        do {
-            try database.run(tableFlashcards.filter(columnID == id).delete())
-        } catch {
-            print("Error deleting flashcard \(id): \(error)")
-        }
-    }
-
-    /// Count total amount of flashcards in set
-    /// - Returns: The amount.
-    func countFlashcards(fromSet: Int64) -> Int {
-        var amount = 0
-
-        guard let database = connection else {
-            return amount
-        }
-        do {
-            for _ in try database.prepare(tableFlashcards.select(flashcardsSet).filter(flashcardsSet == fromSet)) {
-                amount += 1
-            }
-        } catch {
-            print("Error counting flashcards: \(error)")
-        }
-
-        return amount
-    }
-
-    /// Load all flashcards for set
-    /// - Returns: The Flashcards.
-    func loadFlashcards(fromSet: Int64) -> [Int64] {
-        var flashcards: [Int64] = []
-
-        guard let database = connection else {
-            return flashcards
-        }
-        do {
-            for item in try database.prepare(tableFlashcards.filter(flashcardsSet == fromSet)) {
-                flashcards.append(item[columnID])
-            }
-        } catch {
-            print("Error loading flashcards for set \(fromSet): \(error)")
-        }
-
-        return flashcards
     }
 
     /// Insert keyword, if non-existent
