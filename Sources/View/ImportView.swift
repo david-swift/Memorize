@@ -9,10 +9,16 @@ import RegexBuilder
 
 struct ImportView: View {
 
+    // swiftlint:disable large_tuple
+    typealias FlashcardsRegex = Regex<(Substring, Substring, Substring)>
+    // swiftlint:enable large_tuple
+
     @Binding var set: FlashcardsSet
-    @State private var text = ""
+    @Binding var text: String
     @State private var switchSides = false
     @State private var navigationStack = NavigationStack<ImportNavigationDestination>()
+    var window: GTUIWindow
+    var app: GTUIApp
     var close: () -> Void
 
     var view: Body {
@@ -28,10 +34,10 @@ struct ImportView: View {
                         .topToolbar {
                             toolbar(destination: destination)
                         }
-                case .paste:
+                case let .paste(app):
                     VStack {
                         entry
-                        preview
+                        preview(app: app)
                     }
                     .topToolbar {
                         toolbar(destination: destination)
@@ -70,40 +76,16 @@ struct ImportView: View {
     var entry: View {
         Form {
             EntryRow(Loc.pasteText, text: $text)
+                .suffix {
+                    Button(icon: .default(icon: .documentOpen)) {
+                        app.addWindow("import", parent: window)
+                    }
+                    .padding(10, .vertical)
+                    .style("flat")
+                }
             SwitchRow(Loc.switchFrontBack, isOn: $switchSides)
         }
         .padding(20)
-    }
-
-    var preview: View {
-        ScrollView {
-            CarouselView(set: .constant(previewSet))
-        }
-        .vexpand()
-    }
-
-    var previewSet: FlashcardsSet {
-        var previewSet = set
-        previewSet.flashcards = []
-        let pattern = Regex {
-            Capture {
-                ZeroOrMore(.anyNonNewline)
-            }
-            "\t"
-            Capture {
-                ZeroOrMore(.anyNonNewline)
-            }
-        }
-        for (index, match) in text.matches(of: pattern).enumerated() {
-            let (front, back): (Substring, Substring)
-            if switchSides {
-                (_, back, front) = match.output
-            } else {
-                (_, front, back) = match.output
-            }
-            previewSet.flashcards.append(.init(id: "\(index)", front: .init(front), back: .init(back)))
-        }
-        return previewSet
     }
 
     var quizletTutorial: View {
@@ -125,12 +107,61 @@ struct ImportView: View {
         }
     }
 
-    @ViewBuilder var ankiTutorial: View {
+    var ankiTutorial: View {
         StatusPage(
             Loc.exportAnkiDeck,
             icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
             description: Loc.ankiDescription
         )
+    }
+
+    var csvTutorial: View {
+        StatusPage(
+            Loc.importCSV,
+            icon: .default(icon: .emblemDocuments),
+            description: Loc.csvDescription
+        )
+    }
+
+    func preview(app: FlashcardsApp) -> View {
+        ScrollView {
+            CarouselView(set: .constant(previewSet(app: app)))
+        }
+        .vexpand()
+    }
+
+    func previewSet(app: FlashcardsApp) -> FlashcardsSet {
+        var previewSet = set
+        previewSet.flashcards = []
+        let pattern: FlashcardsRegex
+        switch app {
+        case .csv:
+            pattern = newlineRegex(separator: ",")
+        default:
+            pattern = newlineRegex(separator: "\t")
+        }
+        for (index, match) in text.matches(of: pattern).enumerated() {
+            let (front, back): (Substring, Substring)
+            if switchSides {
+                (_, back, front) = match.output
+            } else {
+                (_, front, back) = match.output
+            }
+            previewSet.flashcards.append(.init(id: "\(index)", front: .init(front), back: .init(back)))
+        }
+        return previewSet
+    }
+
+    func newlineRegex(separator: String) -> FlashcardsRegex {
+        .init {
+            Capture {
+                ZeroOrMore(.anyNonNewline)
+            }
+            separator
+            Capture {
+                ZeroOrMore(.anyNonNewline)
+            }
+        }
     }
 
     @ViewBuilder
@@ -140,6 +171,8 @@ struct ImportView: View {
             quizletTutorial
         case .anki:
             ankiTutorial
+        case .csv:
+            csvTutorial
         }
     }
 
@@ -160,8 +193,9 @@ struct ImportView: View {
                 }
             }()
             Button(label) {
-                if case .paste = destination {
-                    set.flashcards += previewSet.flashcards
+                if case let .paste(app) = destination {
+                    set.flashcards += previewSet(app: app).flashcards
+                    text = ""
                     close()
                 } else {
                     if case let .tutorial(app) = destination {

@@ -10,19 +10,24 @@ import Foundation
 struct Flashcards: App {
 
     @State var dbms = Database()
+    @State private var importText = ""
     let id = "io.github.david_swift.Flashcards"
     var app: GTUIApp!
 
     var scene: Scene {
         Window(id: "main") { window in
-            ContentView(sets: $dbms.sets, app: app, window: window) { newValue in
-                if let index = dbms.sets.firstIndex(where: { $0.id == newValue.id }) {
-                    _dbms.rawValue.sets[index] = newValue
-                }
-            }
+            ContentView(sets: $dbms.sets, importText: $importText, app: app, window: window)
         }
         .title("Memorize")
         .quitShortcut()
+        .overlay {
+            FileDialog(importer: "import") { url in
+                if let contents = try? String(contentsOf: url) {
+                    importText = contents
+                }
+            } onClose: {
+            }
+        }
     }
 
 }

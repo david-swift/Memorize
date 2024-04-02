@@ -13,6 +13,7 @@ struct EditFlashcardView: View {
     var index: Int
     var tags: [String]
     var focusedFront: String?
+    var focusFront: Signal
     var focusNext: () -> Void
     var delete: () -> Void
 
@@ -23,7 +24,7 @@ struct EditFlashcardView: View {
                     .entryActivated {
                         focusBack.signal()
                     }
-                    .focused(.constant(focusedFront == flashcard.id))
+                    .focus(focusedFront == flashcard.id ? focusFront : .init())
                 EntryRow(Loc.back, text: $flashcard.back)
                     .entryActivated {
                         focusNext()

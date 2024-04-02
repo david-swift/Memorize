@@ -10,6 +10,7 @@ import Foundation
 struct ContentView: WindowView {
 
     @Binding var sets: [FlashcardsSet]
+    @Binding var importText: String
     @State("selected-set")
     private var selectedSet = ""
     @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
@@ -23,10 +24,10 @@ struct ContentView: WindowView {
     private var height = 550
     @State("maximized")
     private var maximized = false
-    @State private var sidebarVisible = false
+    @State private var contentVisible = true
+    @State private var createSet = false
     var app: GTUIApp
     var window: GTUIApplicationWindow
-    var modifySet: (FlashcardsSet) -> Void
 
     var smallWindow: Bool { width < 600 }
 
@@ -47,30 +48,38 @@ struct ContentView: WindowView {
                     HeaderBar.empty()
                 }
         } initialView: {
-            OverlaySplitView(
-                visible: .init {
-                    (smallWindow && sidebarVisible) || (!smallWindow && !sets.isEmpty)
-                } set: { newValue in
-                    sidebarVisible = newValue
+                if sets.isEmpty {
+                    content
+                } else {
+                    NavigationSplitView {
+                        sidebar
+                            .navigationTitle(Loc.sets)
+                    } content: {
+                        content
+                            .navigationTitle(Loc.overview)
+                    }
+                    .collapsed(smallWindow)
+                    .showContent($contentVisible)
                 }
-            ) {
-                sidebar
-            } content: {
-                content
-            }
-            .collapsed(smallWindow)
         }
     }
 
     var sidebar: View {
         ScrollView {
             List(
-                sets.sortScore(search.effectiveQuery),
+                sets
+                    .filter { set in
+                        if createSet {
+                            return set.id != selectedSet
+                        }
+                        return true
+                    }
+                    .sortScore(search.effectiveQuery),
                 selection: .init {
                     selectedSet
                 } set: { newValue in
                     selectedSet = newValue
-                    sidebarVisible = false
+                    contentVisible = true
                     editSearch = .hidden(query: "")
                 }
             ) { set in
@@ -79,6 +88,9 @@ struct ContentView: WindowView {
                     .padding()
                     .halign(.start)
             }
+            .onClick {
+                contentVisible = true
+            }
             .style("navigation-sidebar")
         }
         .hexpand()
@@ -86,7 +98,7 @@ struct ContentView: WindowView {
             SearchEntry()
                 .placeholderText(Loc.searchSets)
                 .text($search.query)
-                .focused(.constant(true))
+                .focused($searchFocused)
                 .padding(5, .horizontal.add(.bottom))
         }
         .topToolbar {
@@ -113,9 +125,11 @@ struct ContentView: WindowView {
                 editSearch: $editSearch,
                 searchFocused: $searchFocused,
                 flashcardsView: $flashcardsView,
-                sidebarVisible: $sidebarVisible,
+                importText: $importText,
+                createSet: $createSet,
                 smallWindow: smallWindow,
-                modifySet: modifySet
+                window: window,
+                app: app
             ) {
                 sets = sets.filter { $0.id != set.id }
             }
@@ -128,6 +142,9 @@ struct ContentView: WindowView {
                         description: Loc.noSelectionDescription
                     )
                     .centerMinSize()
+                    .onUpdate {
+                        _contentVisible.rawValue = false
+                    }
                 } else {
                     StatusPage(
                         Loc.noSets,
@@ -145,14 +162,7 @@ struct ContentView: WindowView {
                 }
             }
             .topToolbar {
-                HeaderBar.start {
-                    if smallWindow {
-                        Button(icon: .default(icon: .sidebarShow)) {
-                            sidebarVisible.toggle()
-                        }
-                        .tooltip(Loc.toggleSidebar)
-                    }
-                }
+                HeaderBar.empty()
             }
         }
     }
@@ -168,6 +178,7 @@ struct ContentView: WindowView {
         sets.insert(newSet, at: 0)
         selectedSet = newSet.id
         editMode = true
+        createSet = true
     }
 
     func binding(id: String) -> Binding<FlashcardsSet> {

@@ -59,6 +59,7 @@ viewMenu:
 search:
     en: Search...
     de: Suchen ...
+    it: Cerca...
 
 noFlashcards:
     en: No flashcards available
@@ -412,11 +413,11 @@ exportAnkiDeck:
     fr: Exporter un paquet de cartes Anki
 
 ankiDescription:
-    en: "Export decks under <tt><b> File > Export</b></tt>. Select the export format <tt><b> Cards in Plain Text </b></tt>. Uncheck <tt><b>Include HTML and media references</b></tt>. Copy the content of the text file."
-    de: "Exportiere Decks unter <tt><b> File > Export</b></tt>. Wähle das Format <tt><b> Cards in Plain Text </b></tt>. Deaktiviere <tt><b>Include HTML and media references</b></tt>. Kopiere den Inhalt der Textdatei."
-    it: "Esporta mazzi in <tt><b> File > Esporta</b></tt>. Seleziona il formato di esportazione <tt><b> Carte in testo semplice </b></tt>. Deseleziona <tt ><b>Includi riferimenti HTML e multimediali</b></tt>. Copia il contenuto del file di testo."
-    pt_BR: "Exporte decks em <<tt><b> Arquivo > Exportar</b></tt>. Selecionar o formato de exportação <tt><b> Cards in Plain Text. Desselecione <tt><b>Include HTML and media references</b></tt>. Copie o conteúdo do arquivo de texto."
-    fr: "Exportez des paquets dans <tt><b> Fichier > Exporter</b></tt>. Sélectionnez le format d’exportation <tt><b> Cartes en texte clair </b></tt>. Décochez la case <tt><b>Inclure les médias et références HTML</b></tt>. Copiez le contenu du ficher texte."
+    en: "Export decks under <tt><b> File > Export</b></tt>. Select the export format <tt><b> Cards in Plain Text </b></tt>. Uncheck <tt><b>Include HTML and media references</b></tt>."
+    de: "Exportiere Decks unter <tt><b> File > Export</b></tt>. Wähle das Format <tt><b> Cards in Plain Text </b></tt>. Deaktiviere <tt><b>Include HTML and media references</b></tt>."
+    it: "Esporta mazzi in <tt><b> File > Esporta</b></tt>. Seleziona il formato di esportazione <tt><b> Carte in testo semplice </b></tt>. Deseleziona <tt ><b>Includi riferimenti HTML e multimediali</b></tt>."
+    pt_BR: "Exporte decks em <<tt><b> Arquivo > Exportar</b></tt>. Selecionar o formato de exportação <tt><b> Cards in Plain Text. Desselecione <tt><b>Include HTML and media references</b></tt>."
+    fr: "Exportez des paquets dans <tt><b> Fichier > Exporter</b></tt>. Sélectionnez le format d’exportation <tt><b> Cartes en texte clair </b></tt>. Décochez la case <tt><b>Inclure les médias et références HTML</b></tt>."
 
 cancel:
     en: Cancel
@@ -568,6 +569,7 @@ deleteDescription:
 searchSets:
     en: Search Sets
     de: Sets suchen
+    it: Cerca set
 
 noSelection:
     en: No Selection
@@ -725,7 +727,25 @@ toggleSidebar:
 searchTitle:
     en: Search
     de: Suche
+    it: Cerca
 
 searchFlashcards:
     en: Search Flashcards
     de: Karteikarten suchen
+    it: Cerca Flashcard
+
+csv:
+    en: CSV
+    de: CSV
+
+csvDescription:
+    en: Open the file using the button next to the text field. Flashcards are separated by newlines, the front and back by commas.
+    de: Öffne die Datei mit der Schaltfläche neben dem Textfeld. Karteikarten werden mit Zeilenumbrüchen, die Vorder- und Rückseite mit Kommas getrennt.
+
+importCSV:
+    en: Import CSV
+    de: CSV importieren
+
+create:
+    en: Create
+    de: Erstellen

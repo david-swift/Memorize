@@ -9,6 +9,7 @@ struct FlashcardTestSection: View {
 
     @Binding var flashcard: Flashcard
     var focusedFlashcard: String?
+    var focusFlashcard: Signal
     var focusNext: () -> Void
 
     var view: Body {
@@ -53,7 +54,7 @@ struct FlashcardTestSection: View {
             .entryActivated {
                 focusNext()
             }
-            .focused(.constant(focusedFlashcard == flashcard.id))
+            .focus(focusedFlashcard == flashcard.id ? focusFlashcard : .init())
     }
 
 }
