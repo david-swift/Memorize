@@ -99,116 +99,9 @@ struct FlashcardsSet: Identifiable {
         self.id = id
         self.dbms = dbms
         self.name = name
-        loadFlashcards()
+        dbms.loadFlashcards(toSet: &self)
         self.keywords = keywords
         self.tags = tags
-    }
-
-    /// Update a set in the database
-    func update(id: Int64, newName: String) {
-        guard let database = dbms.connection else {
-            return
-        }
-        do {
-            try database.run(dbms.tableSets.filter(dbms.columnID == self.id).update(dbms.columnName <- newName))
-        } catch {
-            print("Error updating set \(id): \(error)")
-        }
-    }
-
-    /// Delete this set
-    func delete() {
-        guard let database = dbms.connection else {
-            return
-        }
-        do {
-            try database.run(dbms.tableSets.filter(dbms.columnID == self.id).delete())
-        } catch {
-            print("Error deleting set \(id): \(error)")
-        }
-    }
-
-    /// Load all flashcards for set
-    /// - Returns: The Flashcards.
-    mutating func loadFlashcards() {
-        flashcards = []
-
-        guard let database = dbms.connection else {
-            return
-        }
-        do {
-            for item in try database.prepare(dbms.tableFlashcards.filter(dbms.flashcardsSet == self.id)) {
-                flashcards.append(item[dbms.columnID])
-            }
-        } catch {
-            print("Error loading flashcards for set \(name) (\(id)): \(error)")
-        }
-    }
-
-    /// Add a flashcard
-    /// - Returns the flashcard's id
-    mutating func addFlashcard(front: String, back: String) -> Int64 {
-        var id: Int64 = 0
-
-        guard let database = dbms.connection else {
-            return id
-        }
-        do {
-            id = try database.run(dbms.tableFlashcards.insert(
-                dbms.flashcardsSet <- self.id,
-                dbms.flashcardsFront <- front,
-                dbms.flashcardsBack <- back
-            ))
-            flashcards.append(id)
-        } catch {
-            print("Error inserting flashcard: \(error)")
-        }
-
-        return id
-    }
-
-    /// Update a flashcard
-    func updateFlashcard(id: Int64, newFront: String = "", newBack: String = "", newDifficulty: Int64 = -1) {
-        var columns = [Setter]()
-
-        if !newFront.isEmpty {
-            columns.append(dbms.flashcardsFront <- newFront)
-        }
-        if !newBack.isEmpty {
-            columns.append(dbms.flashcardsBack <- newBack)
-        }
-        if newDifficulty >= 0 {
-            columns.append(dbms.flashcardsDifficulty <- newDifficulty)
-        }
-
-        guard let database = dbms.connection else {
-            return
-        }
-        do {
-            try database.run(dbms.tableFlashcards.filter(dbms.columnID == id).update(columns))
-        } catch {
-            print("Error updating flashcard \(id): \(error)")
-        }
-    }
-
-    /// Set difficulty for all flashcards in set
-    func setDifficulty(_ difficulty: Int64) {
-        for flashcard in flashcards {
-            updateFlashcard(id: flashcard, newDifficulty: difficulty)
-        }
-    }
-
-    /// Delete a flashcard
-    mutating func deleteFlashcard(id: Int64) {
-        guard let database = dbms.connection else {
-            return
-        }
-        do {
-            try database.run(dbms.tableFlashcards.filter(dbms.columnID == id).delete())
-            flashcards = flashcards.filter { $0 != id }
-        } catch {
-            print("Error deleting flashcard \(id): \(error)")
-        }
     }
 
     /// Count total amount of flashcards in set
@@ -236,7 +129,7 @@ struct FlashcardsSet: Identifiable {
 
     // TODO #37: Decide if nesting dbms.setDifficulty in resetStudyProgress is necessary
     mutating func resetStudyProgress() {
-        setDifficulty(0)
+        dbms.setDifficulty(0, inSet: &self)
     }
 
     /**
