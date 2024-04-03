@@ -119,6 +119,7 @@ class Database {
             return
         }
         do {
+            // swiftlint:disable closure_body_length
             try database.transaction {
                 // Sets Table
                 try database.run(tableSets.create(ifNotExists: true) { table in
@@ -164,6 +165,7 @@ class Database {
                     table.column(flashcardsTagsTag, references: tableTags, columnID)
                 })
             }
+            // swiftlint:enable closure_body_length
         } catch {
             print("Error intializing database tables: \(error)")
         }
@@ -186,6 +188,7 @@ class Database {
             var cardid: Int64 = 0
             var tagid: Int64 = 0
 
+            // swiftlint:disable closure_body_length
             try database.transaction {
                 for item in json {
                     print("Migrate set " + item.name)
@@ -222,6 +225,7 @@ class Database {
                     }
                 }
             }
+            // swiftlint:enable closure_body_length
         } catch {
             print("Error migrating JSON to database: \(error)")
         }
