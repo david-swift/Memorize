@@ -1,5 +1,5 @@
 //
-//  DatabaseKeywords.swift
+//  Database+Keywords.swift
 //  Memorize
 //
 

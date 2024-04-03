@@ -1,5 +1,5 @@
 //
-//  DatabaseFlashcards.swift
+//  Database+Flashcards.swift
 //  Memorize
 //
 

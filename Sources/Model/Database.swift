@@ -36,8 +36,20 @@ class Database {
     // Sets to Keywords Table types
     let tableSetsKeywords = Table("sets_keywords")
     /* id: columnID */
-    let setsKeywordsSet = Expression<Int64>("sets_id")
-    let setsKeywordsKeyword = Expression<Int64>("keywords_id")
+    let setsKeywordsSet = Expression<Int64>("sets_id") // Foreign Key: sets[id]
+    let setsKeywordsKeyword = Expression<Int64>("keywords_id") // Foreign Key: keywords[id]
+
+    // Tags Table types
+    let tableTags = Table("tags")
+    /* id: columnID */
+    /* name: columnName */
+    let tagsSet = Expression<Int64>("sets_id") // Foreign Key: sets[id]
+
+    // Flashcards to Tags Table types
+    let tableFlashcardsTags = Table("flashcards_tags")
+    /* id: columnID */
+    let flashcardsTagsFlashcard = Expression<Int64>("flashcards_id") // Foreign Key: flashcards[id]
+    let flashcardsTagsTag = Expression<Int64>("tags_id") // Foreign Key: tags[id]
 
     var connection: Connection?
 
@@ -137,6 +149,20 @@ class Database {
                     table.column(setsKeywordsSet, references: tableSets, columnID)
                     table.column(setsKeywordsKeyword, references: tableKeywords, columnID)
                 })
+
+                // Tags Table
+                try database.run(tableTags.create(ifNotExists: true) { table in
+                    table.column(columnID, primaryKey: .autoincrement)
+                    table.column(columnName)
+                    table.column(tagsSet, references: tableSets, columnID)
+                })
+
+                // Sets to Keywords Table
+                try database.run(tableFlashcardsTags.create(ifNotExists: true) { table in
+                    table.column(columnID, primaryKey: .autoincrement)
+                    table.column(flashcardsTagsFlashcard, references: tableFlashcards, columnID)
+                    table.column(flashcardsTagsTag, references: tableTags, columnID)
+                })
             }
         } catch {
             print("Error intializing database tables: \(error)")
@@ -156,29 +182,43 @@ class Database {
             return
         }
         do {
+            var setid: Int64 = 0
+            var cardid: Int64 = 0
+            var tagid: Int64 = 0
+
             try database.transaction {
-                for (index, item) in json.enumerated() {
+                for item in json {
                     print("Migrate set " + item.name)
 
-                    try database.run(tableSets.insert(
+                    setid = try database.run(tableSets.insert(
                         columnName <- item.name,
                         setsSide <- item.answerSide.rawValue
                     ))
 
                     for keyword in item.keywords.nonOptional {
                         try database.run(tableSetsKeywords.insert(
-                            setsKeywordsSet <- Int64(index + 1),
+                            setsKeywordsSet <- Int64(setid),
                             setsKeywordsKeyword <- addKeyword(keyword)
                         ))
                     }
 
                     for flashcard in item.flashcards {
-                        try database.run(tableFlashcards.insert(
-                            flashcardsSet <- Int64(index + 1),
+                        cardid = try database.run(tableFlashcards.insert(
+                            flashcardsSet <- Int64(setid),
                             flashcardsDifficulty <- Int64(flashcard.gameData.difficulty),
                             flashcardsFront <- flashcard.front,
                             flashcardsBack <- flashcard.back
                         ))
+                        for tag in flashcard.tags.nonOptional {
+                            tagid = try database.run(tableTags.insert(
+                                columnName <- tag,
+                                tagsSet <- setid
+                            ))
+                            try database.run(tableFlashcardsTags.insert(
+                                flashcardsTagsFlashcard <- cardid,
+                                flashcardsTagsTag <- tagid
+                            ))
+                        }
                     }
                 }
             }
