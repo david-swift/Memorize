@@ -1,7 +1,7 @@
 ## Steps
 - [ ] Add your name or username and a link to your GitHub profile into the [Contributors.md][1] file.
-- [ ] Build the project on your machine. If it does not compile, fix the errors.
-- [ ] Describe the purpose and approach of your pull request below.
+- [ ] Build the project on your machine. If it does not compile, fix the errors. _(Ignore for simple translation PRs)_
+- [ ] Describe the purpose and approach of your pull request below. _(Ignore for simple translation PRs)_
 - [ ] Submit the pull request. Thank you very much for your contribution!
 
 ## Purpose
