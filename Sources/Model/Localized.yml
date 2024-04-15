@@ -192,6 +192,7 @@ correct:
 create:
     de: "Erstellen"
     en: "Create"
+    fr: "Créer"
     nl: "Maken"
 
 createSet:
@@ -213,11 +214,13 @@ createTest:
 csv:
     de: "CSV"
     en: "CSV"
+    fr: "CSV"
     nl: "Csv"
 
 csvDescription:
     de: "Öffne die Datei mit der Schaltfläche neben dem Textfeld. Karteikarten werden mit Zeilenumbrüchen, die Vorder- und Rückseite mit Kommas getrennt."
     en: "Open the file using the button next to the text field. Flashcards are separated by newlines, the front and back by commas."
+    fr: "Ouvrez le fichier en utilisant le bouton à côté du champ de saisie. Les cartes mémoire sont séparées par des sauts de ligne, le recto et le verso par des virgules."
     nl: "Open het bestand met behulp van de knop naast het tekstveld. Geheugenkaarten worden gescheiden door middel van nieuwe regels; de voor- en achterkanten door komma's."
 
 delete:
@@ -379,6 +382,7 @@ generateExamDescription(title):
 importCSV:
     de: "CSV importieren"
     en: "Import CSV"
+    fr: "Importer un fichier CSV"
     nl: "Csv-bestand importeren"
 
 importFlashcards:
@@ -630,24 +634,28 @@ scoreRowLabel:
 search:
     de: "Suchen ..."
     en: "Search..."
+    fr: "Rechercher…"
     it: "Cerca..."
     nl: "Zoeken…"
 
 searchFlashcards:
     de: "Karteikarten suchen"
     en: "Search Flashcards"
+    fr: "Rechercher des cartes mémoire"
     it: "Cerca Flashcard"
     nl: "Geheugenkaarten doorzoeken"
 
 searchSets:
     de: "Sets suchen"
     en: "Search Sets"
+    fr: "Rechercher des jeux"
     it: "Cerca set"
     nl: "Sets doorzoeken"
 
 searchTitle:
     de: "Suche"
     en: "Search"
+    fr: "Rechercher"
     it: "Cerca"
     nl: "Zoeken"
 
