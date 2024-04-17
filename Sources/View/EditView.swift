@@ -160,7 +160,7 @@ struct EditView: View {
         Task {
             try? await Task.sleep(nanoseconds: 100)
             focusedFront = flashcard.id
-            focusedFront = nil
+            focusFront.signal()
         }
     }
 
