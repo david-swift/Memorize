@@ -36,7 +36,7 @@ struct ToolbarView: View {
             visible: $about,
             app: "Memorize",
             developer: "david-swift",
-            version: "0.2.1",
+            version: "0.2.2",
             icon: .custom(name: "io.github.david_swift.Flashcards"),
             website: .init(string: "https://github.com/david-swift/Memorize"),
             issues: .init(string: "https://github.com/david-swift/Memorize/issues")
