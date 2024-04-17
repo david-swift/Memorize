@@ -107,7 +107,9 @@ struct EditView: View {
             if let flashcard = set.flashcards[safe: index],
             flashcard.front.search(editSearch.effectiveQuery) || flashcard.back.search(editSearch.effectiveQuery) {
                 EditFlashcardView(
-                    flashcard: .init { flashcard } set: { newValue in
+                    flashcard: .init {
+                        set.flashcards[safe: index] ?? .init()
+                    } set: { newValue in
                         if !searchFocused {
                             set.flashcards[safe: index] = newValue
                         }
