@@ -18,7 +18,7 @@ struct SetOverview: View {
     @State private var deleteState = false
     @State private var copied = Signal()
     var smallWindow: Bool
-    var window: GTUIWindow
+    var window: GTUIApplicationWindow
     var app: GTUIApp
     var delete: () -> Void
 
@@ -38,10 +38,12 @@ struct SetOverview: View {
                     Button(icon: .default(icon: .userTrash)) {
                         deleteState = true
                     }
+                    .keyboardShortcut("Delete", window: window)
                     .tooltip(Loc.deleteSet)
                     Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
                         export = true
                     }
+                    .keyboardShortcut("e".ctrl(), window: window)
                     .tooltip(Loc.exportSet)
                     .insensitive(set.flashcards.isEmpty)
                 }

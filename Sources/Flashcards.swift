@@ -21,6 +21,7 @@ struct Flashcards: App {
         }
         .title("Memorize")
         .quitShortcut()
+        .closeShortcut()
         .overlay {
             FileDialog(importer: "import") { url in
                 if let contents = try? String(contentsOf: url) {

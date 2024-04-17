@@ -23,6 +23,7 @@ struct ToolbarView: View {
             Button(icon: .default(icon: .listAdd)) {
                 addSet()
             }
+            .keyboardShortcut("n".ctrl(), window: window)
             .tooltip(Loc.addSet)
         } end: {
             menu
@@ -44,14 +45,6 @@ struct ToolbarView: View {
 
     var menu: View {
         Menu(icon: .default(icon: .openMenu), app: app, window: window) {
-            MenuButton(Loc.newWindow, window: false) {
-                app.addWindow("main")
-            }
-            .keyboardShortcut("n".ctrl())
-            MenuButton(Loc.closeWindow) {
-                window.close()
-            }
-            .keyboardShortcut("w".ctrl())
             viewMenu
             MenuSection {
                 MenuButton(Loc.about, window: false) {
