@@ -16,7 +16,7 @@ struct Flashcards: App {
 
     var scene: Scene {
         Window(id: "main") { window in
-            ContentView(sets: $dbms.sets, importText: $importText, app: app, window: window)
+            ContentView(sets: $dbms.sets, importText: $importText, dbms: $dbms, app: app, window: window)
         }
         .title("Memorize")
         .quitShortcut()

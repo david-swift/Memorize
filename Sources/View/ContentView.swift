@@ -26,6 +26,7 @@ struct ContentView: WindowView {
     private var maximized = false
     @State private var contentVisible = true
     @State private var createSet = false
+    @Binding var dbms: Database
     var app: GTUIApp
     var window: GTUIApplicationWindow
 

@@ -9,36 +9,45 @@ extension Database {
 
     /// Load all flashcards for set
     /// - Returns: The Flashcards.
-    func loadFlashcards(toSet: inout FlashcardsSet) {
-        toSet.flashcards = []
+    func loadFlashcards(toSet: inout FlashcardsSet) -> [Flashcard] {
+        if toSet.flashcardsExpired == true {
+            toSet.flashcards = []
 
-        guard let database = connection else {
-            return
-        }
-        do {
-            for item in try database.prepare(tableFlashcards.filter(flashcardsSet == toSet.id)) {
-                toSet.flashcards.append(item[columnID])
+            guard let database = connection else {
+                return []
             }
-        } catch {
-            print("Error loading flashcards for set \(toSet.name) (\(toSet.id)): \(error)")
+            do {
+                for item in try database.prepare(tableFlashcards.filter(flashcardsSet == toSet.id)) {
+                    toSet.flashcards.append(Flashcard(
+                        id: item[columnID],
+                        front: item[flashcardsFront],
+                        back: item[flashcardsBack],
+                        difficulty: item[flashcardsDifficulty]
+                    ))
+                }
+            } catch {
+                print("Error loading flashcards for set \(toSet.name) (\(toSet.id)): \(error)")
+            }
+
+            toSet.flashcardsExpired = false
         }
+
+        return toSet.flashcards
     }
 
     /// Add a flashcard
     /// - Returns the flashcard's id
     func addFlashcard(toSet: inout FlashcardsSet, front: String, back: String) {
-        var id: Int64 = 0
-
         guard let database = connection else {
             return
         }
         do {
-            id = try database.run(tableFlashcards.insert(
+            try database.run(tableFlashcards.insert(
                 flashcardsSet <- toSet.id,
                 flashcardsFront <- front,
                 flashcardsBack <- back
             ))
-            toSet.flashcards.append(id)
+            toSet.flashcardsExpired = true
         } catch {
             print("Error inserting flashcard: \(error)")
         }
@@ -63,47 +72,23 @@ extension Database {
         }
         do {
             try database.run(tableFlashcards.filter(columnID == id).update(columns))
+            // TODO #37: Find set and set.flashcardsExpired = true
         } catch {
             print("Error updating flashcard \(id): \(error)")
         }
     }
 
     /// Delete a flashcard
-    func deleteFlashcard(id: Int64, inSet: inout FlashcardsSet) {
+    func deleteFlashcard(id: Int64, fromSet: Int64) {
         guard let database = connection else {
             return
         }
         do {
+            // TODO #37: Find set and set.flashcardsExpired = true
             try database.run(tableFlashcards.filter(columnID == id).delete())
-            inSet.flashcards = inSet.flashcards.filter { $0 != id }
         } catch {
             print("Error deleting flashcard \(id): \(error)")
         }
-    }
-
-    /// Load flashcard data by id
-    /// TODO #37: Replace this function with for-loops over SELECT statement in Views (Swift Views, not SQL Views)
-    /// - Returns: The flashcard.
-    func resolveFlashcard(id: Int64) -> Flashcard {
-        var flashcard: Flashcard
-
-        guard let database = connection else {
-            return flashcard
-        }
-        do {
-            for item in try database.prepare(tableFlashcards.filter(columnID == id)) {
-                flashcard = Flashcard(
-                    id: item[columnID],
-                    front: item[flashcardsFront],
-                    back: item[flashcardsBack],
-                    difficulty: item[flashcardsDifficulty]
-                )
-            }
-        } catch {
-            print("Error resolving flashcard \(id): \(error)")
-        }
-
-        return flashcard
     }
 
 }

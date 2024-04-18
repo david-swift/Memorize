@@ -82,7 +82,7 @@ extension Database {
     /// Set difficulty for all flashcards in set
     func setDifficulty(_ difficulty: Int64, inSet: inout FlashcardsSet) {
         for flashcard in inSet.flashcards {
-            updateFlashcard(id: flashcard, newDifficulty: difficulty)
+            updateFlashcard(id: flashcard.id, newDifficulty: difficulty)
         }
     }
 

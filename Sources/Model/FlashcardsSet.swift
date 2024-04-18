@@ -17,7 +17,8 @@ struct FlashcardsSet: Identifiable {
     var studyTags: [Int64]?
     var testTags: [Int64]?
     // swiftlint:enable discouraged_optional_collection
-    var flashcards: [Int64]
+    var flashcards: [Flashcard]
+    var flashcardsExpired: Bool
     var test: [Int64] = []
     var answerSide: Flashcard.Side = .back
     // swiftlint:disable discouraged_optional_boolean
@@ -99,6 +100,7 @@ struct FlashcardsSet: Identifiable {
         self.id = id
         self.dbms = dbms
         self.name = name
+        flashcardsExpired = true
         dbms.loadFlashcards(toSet: &self)
         self.keywords = keywords
         self.tags = tags
