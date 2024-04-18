@@ -35,6 +35,9 @@ struct EditView: View {
             SearchEntry()
                 .placeholderText(Loc.searchFlashcards)
                 .text($editSearch.query)
+                .stopSearch {
+                    editSearch.visible = false
+                }
                 .focused($searchFocused)
                 .padding(5, .horizontal.add(.bottom))
                 .frame(maxWidth: 300)
