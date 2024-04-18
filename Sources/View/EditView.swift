@@ -35,6 +35,9 @@ struct EditView: View {
             SearchEntry()
                 .placeholderText(Loc.searchFlashcards)
                 .text($editSearch.query)
+                .stopSearch {
+                    editSearch.visible = false
+                }
                 .focused($searchFocused)
                 .padding(5, .horizontal.add(.bottom))
                 .frame(maxWidth: 300)
@@ -107,7 +110,9 @@ struct EditView: View {
             if let flashcard = set.flashcards[safe: index],
             flashcard.front.search(editSearch.effectiveQuery) || flashcard.back.search(editSearch.effectiveQuery) {
                 EditFlashcardView(
-                    flashcard: .init { flashcard } set: { newValue in
+                    flashcard: .init {
+                        set.flashcards[safe: index] ?? .init()
+                    } set: { newValue in
                         if !searchFocused {
                             set.flashcards[safe: index] = newValue
                         }
@@ -158,7 +163,7 @@ struct EditView: View {
         Task {
             try? await Task.sleep(nanoseconds: 100)
             focusedFront = flashcard.id
-            focusedFront = nil
+            focusFront.signal()
         }
     }
 

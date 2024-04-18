@@ -14,6 +14,7 @@ Additionally, you can easily import existing Quizlet sets.
 
 - [Installation](#Installation)
 - [Usage](#Usage)
+- [Localization](#Localization)
 - [Thanks](#Thanks)
 
 ## Installation
@@ -67,6 +68,13 @@ Type in your answers and scroll down to correct and see your score. Correct your
 ![Export Set](data/tutorials/Export.png)
 
 In the toolbar of the view for editing a set, find the button with a sharing icon in order to export the set.
+
+## Localization
+
+Translations are welcome! You can either edit the [Localized.yml file](Sources/Model/Localized.yml) directly as YAML,
+or install the [Localizer](https://github.com/AparokshaUI/Localizer) app and translate with a UI.
+
+Either way, commit the changes via git and open a pull request.
 
 ## Thanks
 

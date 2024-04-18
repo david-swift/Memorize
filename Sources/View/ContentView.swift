@@ -99,6 +99,9 @@ struct ContentView: WindowView {
             SearchEntry()
                 .placeholderText(Loc.searchSets)
                 .text($search.query)
+                .stopSearch {
+                    search.visible = false
+                }
                 .focused($searchFocused)
                 .padding(5, .horizontal.add(.bottom))
         }

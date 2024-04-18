@@ -1,751 +1,875 @@
 default: en
 
-export(title):
-    en: Export Set \"(title)\"
-    de: Exportiere das Set \"(title)\"
-    it: Esporta set \"(title)\"
-    pt_BR: Exportar Set \"(title)\"
-    fr: Exporter le jeu \"(title)\"
-
-addSet:
-    en: Add Set
-    de: Set hinzufügen
-    it: Aggiungi Set
-    pt_BR: Adicionar Set
-    fr: Ajouter un jeu
-
-sets:
-    en: Sets
-    de: Sets 
-    it: Set
-    pt_BR: Sets
-    fr: Jeux
-
-newWindow:
-    en: New Window
-    de: Neues Fenster
-    it: Nuova finestra
-    pt_BR: Nova Janela
-    fr: Nouvelle fenêtre
-
-closeWindow:
-    en: Close Window
-    de: Fenster schließen
-    it: Chiudi finestra
-    pt_BR: Fechar Janela
-    fr: Fermer la fenêtre
-
-about:
-    en: About Memorize
-    de: Info zu Memorize
-    it: Informazioni su Memorize
-    pt_BR: Sobre Memorize
-    fr: À propos de Memorize
-
-mainMenu:
-    en: Main Menu
-    de: Hauptmenü
-    it: Menu principale
-    pt_BR: Menu Principal
-    fr: Menu principal
-
-viewMenu:
-    en: View
-    de: Ansicht
-    it: Vista
-    pt_BR: Ver
-    fr: Voir
-
-search:
-    en: Search...
-    de: Suchen ...
-    it: Cerca...
-
-noFlashcards:
-    en: No flashcards available
-    de: Keine Karteikarten verfügbar
-    it: Nessuna flashcard disponibile
-    pt_BR: Nenhum flashcard disponível
-    fr: Pas de cartes mémoire disponibles
-
-generateExam:
-    en: Generate a Preparation Exam
-    de: Erstelle eine Vorbereitungsprüfung
-    it: Generare preparazione di un esame
-    pt_BR: Gerar um Exame de Preparação
-    fr: Générer un examen préparatoire
-
-generateExamDescription(title):
-    en: Spot last mistakes before your exam about \"(title)\"
-    de: Finde letzte Fehler vor deiner Prüfung zu \"(title)\"
-    it: Individua gli ultimi errori prima dell'esame su \"(title)\"
-    pt_BR: Identifique os últimos erros antes de sua prova de \"(title)\"
-    fr: Repérez les dernières erreurs avant votre examen de \"(title)\"
-
-answerWithBack:
-    en: Answer With Back
-    de: Antworte mit der Rückseite
-    it: Rispondi con il retro
-    pt_BR: Responder Com Retorno
-    fr: Inverser recto et verso
-
-numberOfQuestions:
-    en: Number of Questions
-    de: Anzahl Fragen
-    it: Numero di domande
-    pt_BR: Número de Questões
-    fr: Nombre de questions
-
-testDescription(count, total):
-    en(total == "1"): Testing (count) of (total) Flashcard
-    en: Testing (count) of (total) Flashcards
-    de(total == "1"): Teste (count) von (total) Karteikarte
-    de: Teste (count) von (total) Karteikarten
-    it(total == "1"): Test (count) di (total) Flashcard
-    it: Test (count) di (total) Flashcard
-    pt_BR(total == "1"): Testando (count) de (total) Flashcard
-    pt_BR: Testando (count) de (total) Flashcards
-    fr(total == "1"): Test de (count) carte mémoire sur (total)
-    fr: Test de (count) cartes mémoire sur (total)
-
-createTest:
-    en: Create Test
-    de: Prüfung erstellen
-    it: Crea Test
-    pt_BR: Criar Teste
-    fr: Créer un test
-
-solveTest:
-    en: Solve Test
-    de: Test lösen
-    it: Risolvi Test
-    pt_BR: Resolver Teste
-    fr: Résoudre le test
-
-fullScore:
-    en: Full Score!
-    de: Volle Punktzahl!
-    it: Punteggio completo!
-    pt_BR: Pontuação Total!
-    fr: Note maximale !
-
-score(score):
-    en(score == "1"): (score) Point
-    en: (score) Points
-    de(score == "1"): (score) Punkt
-    de: (score) Punkte
-    it(score == "1"): (score) Punto
-    it: (score) Punti
-    pt_BR(score == "1"): (score) Ponto
-    pt_BR: (score) Pontos
-    fr(score == "1"): (score) point
-    fr: (score) points
-
-maxScore:
-    en: Maximum Score
-    de: Maximale Punktzahl
-    it: Punteggio massimo
-    pt_BR: Pontuação Máxima
-    fr: Score maximal
-
-noScoreData:
-    en: "-"
-    de: "-"
-    it: "-"
-    pt_BR: "-"
-    fr: "-"
-
-scoreInstructions:
-    en: Scroll down to check your answers
-    de: Überprüfe deine Antworten weiter unten
-    it: Scorri verso il basso per verificare le tue risposte
-    pt_BR: Arraste para baixo para ver suas respostas
-    fr: Défilez vers le bas pour vérifier vos réponses
-
-scoreLabel:
-    en: Score
-    de: Punktzahl
-    it: Punteggio
-    pt_BR: Pontuação
-    fr: Score
-
-scoreRowLabel:
-    en: Your Score
-    de: Deine Punktzahl
-    it: Il tuo punteggio
-    pt_BR: Sua Pontuação
-    fr: Votre score
-
-check:
-    en: Check
-    de: Überprüfen
-    it: Controlla
-    pt_BR: Conferir
-    fr: Vérifier
-
-finishTest:
-    en: Finish Test
-    de: Test beenden
-    it: Fine del test
-    pt_BR: Terminar Teste
-    fr: Terminer le test
-
-star:
-    en: Star
-    de: Stern
-    it: Stella
-    pt_BR: Estrela
-    fr: Étoile
-
-tags:
-    en: Tags
-    de: Tags
-    it: Tag
-    pt_BR: Tags
-    fr: Étiquettes
-
-allFlashcards:
-    en: All Flashcards
-    de: Alle Karteikarten
-    it: Tutte le Flashcard
-    pt_BR: Todos Os Flashcards
-    fr: Toutes les cartes mémoire
-
-flashcardsWithTags:
-    en: Flashcards With Tags
-    de: Karteikarten mit Tags
-    it: Flashcard con tag
-    pt_BR: Flashcards Com Tags
-    fr: Cartes mémoire avec étiquette
-
-study(title):
-    en: Study \"(title)\"
-    de: Lerne \"(title)\"
-    it: Studio \"(title)\"
-    pt_BR: Studar \"(title)\"
-    fr: Étudier \"(title)\"
-
-studyDescription:
-    en: Repeat each flashcard until you remember it
-    de: Lerne bis du jede Karteikarte beherrscht
-    it: Ripeti ogni flashcard finché non la ricordi
-    pt_BR: Repetir cada flashcard até você se lembrar
-    fr: Répétez chaque carte mémoire jusqu’à ce que vous vous en souveniez
-
-initialDifficulty:
-    en: Initial Difficulty
-    de: Anfangsschwierigkeit
-    it: Difficoltà iniziale
-    pt_BR: Dificuldade Inicial
-    fr: Difficulté initiale
-
-initialDifficultyDescription:
-    en: Set the minimum number of repetitions per flashcard
-    de: Lege die minimale Anzahl Wiederholungen pro Karteikarte fest
-    it: Imposta il numero minimo di ripetizioni per flashcard
-    pt_BR: Defina o número minimo de repetições por flashcard
-    fr: Définition le nombre minimum de répétitions par carte mémoire
-
-studySummary(count, total):
-    en(total == "1"): Studying (count) of (total) Flashcard
-    en: Studying (count) of (total) Flashcards
-    de(total == "1"): Lerne (count) von (total) Karteikarte
-    de: Lerne (count) von (total) Karteikarten
-    it(total == "1"): Studio (count) di (total) Flashcard
-    it: Studio (count) delle (total) Flashcard
-    pt_BR(total == "1"): Estudando (count) de (total) Flashcard
-    pt_BR:  Estudando (count) de (total) Flashcards
-    fr(total == "1"): Étude de (count) carte mémoire sur (total)
-    fr: Étude de (count) cartes mémoire sur (total)
-
-startStudyMode:
-    en: Start Study Mode
-    de: Starte den Lernmodus
-    it: Avvia la modalità studio
-    pt_BR: Iniciar Modo de Estudo
-    fr: Lancer la session d’étude
-
-studySettings:
-    en: Study Settings
-    de: Einstellungen zum Lernmodus
-    it: Impostazioni di studio
-    pt_BR: Configurações de Estudo
-    fr: Paramètres d’étude
-
-continueStudying:
-    en: Continue Studying
-    de: Lernen fortsetzen
-    it: Continua a studiare
-    pt_BR: Continuar Estudando
-    fr: Continuer à étudier
-
-terminateStudyMode:
-    en: Terminate Study Mode
-    de: Lernmodus beenden
-    it: Termina la modalità studio
-    pt_BR: Terminar Modo de Estudo
-    fr: Terminer la session d’étude
-
 _continue:
-    en: Continue
-    de: Fortfahren
-    it: Continua
-    pt_BR: Continuar
-    fr: Continuer
-
-makeIncorrect:
-    en: Make Incorrect
-    de: Als falsch markieren
-    it: Rendi errato
-    pt_BR: Deixar Incorreto
-    fr: Marquer comme incorrect
-
-makeCorrect:
-    en: Make Correct
-    de: Als richtig markieren
-    it: Rendi corretto
-    pt_BR: Deixar Correto
-    fr: Marquer comme correct
-
-answer:
-    en: Answer
-    de: Antwort
-    it: Risposta
-    pt_BR: Resposta
-    fr: Réponse
-
-solution:
-    en: Solution
-    de: Lösung
-    it: Soluzione
-    pt_BR: Solução
-    fr: Solution
-
-correct:
-    en: Correct!
-    de: Korrekt!
-    it: Corretto!
-    pt_BR: Correto!
-    fr: Correct !
-
-yourAnswer:
-    en: Your Answer
-    de: Deine Antwort
-    it: La tua risposta
-    pt_BR: Sua Resposta
-    fr: Votre réponse
-
-editSet:
-    en: Edit Set
-    de: Set bearbeiten
-    it: Modifica Set
-    pt_BR: Editar Set
-    fr: Modifier le jeu
-
-keywords:
-    en: Keywords
-    de: Schlüsselwörter
-    it: Parole chiave
-    pt_BR: Palavras Chave
-    fr: Mots-clé
-
-keyword:
-    en: Keyword
-    de: Schlüsselwort
-    it: Parola chiave
-    pt_BR: Palavra Chave
-    fr: Mot-clé
-
-keywordsDescription:
-    en: Keywords simplify the search for sets
-    de: Schlüsselwörter vereinfachen die Suche nach Sets
-    it: Le parole chiave semplificano la ricerca dei set
-    pt_BR: Palavras chave simplificam a procurar por sets
-    fr: Les mots-clés simplifient la recherche de jeux de cartes
-
-add(element):
-    en: Add (element)
-    de: (element) hinzufügen
-    it: Aggiungi (element)
-    pt_BR: Adicionar (element)
-    fr: Ajouter (element)
-
-remove(element):
-    en: Remove (element)
-    de: (element) entfernen
-    it: Rimuovi (element)
-    pt_BR: Remover (element)
-    fr: Supprimer (element)
-
-pasteText:
-    en: Paste Text
-    de: Text einfügen
-    it: Incolla testo
-    pt_BR: Colar Texto
-    fr: Coller le texte
-
-switchFrontBack:
-    en: Switch Front and Back
-    de: Vorder- und Rückseite vertauschen
-    it: Scambia da fronte e retro
-    pt_BR: Trocar Frente e Verso
-    fr: Inverser le recto et le verso
-
-exportQuizletSet:
-    en: Export Quizlet Set
-    de: Quizlet-Set exportieren
-    it: Esporta set di quizlet
-    pt_BR: Exportar Set do Quizlet
-    fr: Exporter un jeu de cartes Quizlet
-
-quizletDescription:
-    en: "Export a Quizlet set under <tt><b> ⋯ > Export</b></tt>. Using the default configuration, copy the text."
-    de: "Exportiere ein Quizlet-Set unter <tt><b> ⋯ > Export</b></tt>. Kopiere den Text mit der Standardkonfiguration."
-    it: "Esporta un set di Quizlet in <tt><b> ⋯ > Esporta</b></tt>. Utilizzando la configurazione predefinita, copia il testo."
-    pt_BR: "Exportar um set do Quizlet em <tt><b> ... > Exportar</b></tt>. Usando a configuração padrão, copie o texto."
-    fr: "Exportez un paquet Quizlet dans <tt><b> ⋯ > Exporter</b></tt>. Utilisez la configuration par défaut et copiez le texte."
-
-exportAnkiDeck:
-    en: Export Anki Deck
-    de: Anki Deck exportieren
-    it: Esporta mazzo Anki
-    pt_BR: Exporte um Deck do Anki
-    fr: Exporter un paquet de cartes Anki
-
-ankiDescription:
-    en: "Export decks under <tt><b> File > Export</b></tt>. Select the export format <tt><b> Cards in Plain Text </b></tt>. Uncheck <tt><b>Include HTML and media references</b></tt>."
-    de: "Exportiere Decks unter <tt><b> File > Export</b></tt>. Wähle das Format <tt><b> Cards in Plain Text </b></tt>. Deaktiviere <tt><b>Include HTML and media references</b></tt>."
-    it: "Esporta mazzi in <tt><b> File > Esporta</b></tt>. Seleziona il formato di esportazione <tt><b> Carte in testo semplice </b></tt>. Deseleziona <tt ><b>Includi riferimenti HTML e multimediali</b></tt>."
-    pt_BR: "Exporte decks em <<tt><b> Arquivo > Exportar</b></tt>. Selecionar o formato de exportação <tt><b> Cards in Plain Text. Desselecione <tt><b>Include HTML and media references</b></tt>."
-    fr: "Exportez des paquets dans <tt><b> Fichier > Exporter</b></tt>. Sélectionnez le format d’exportation <tt><b> Cartes en texte clair </b></tt>. Décochez la case <tt><b>Inclure les médias et références HTML</b></tt>."
-
-cancel:
-    en: Cancel
-    de: Abbrechen
-    it: Annulla
-    pt_BR: Cancelar
-    fr: Annuler
+    de: "Fortfahren"
+    en: "Continue"
+    fr: "Continuer"
+    it: "Continua"
+    nl: "Doorgaan"
+    pt_BR: "Continuar"
 
 _import:
-    en: Import
-    de: Importieren
-    it: Importa
-    pt_BR: Importar
-    fr: Importer
+    de: "Importieren"
+    en: "Import"
+    fr: "Importer"
+    it: "Importa"
+    nl: "Importeren"
+    pt_BR: "Importar"
 
-betweenTermDefinition:
-    en: Between Term and Definition
-    de: Zwischen Term und Definition
-    it: Tra termine e definizione
-    pt_BR: Entre Termo e Definição
-    fr: Entre terme et définition
-
-betweenRows:
-    en: Between Rows
-    de: Zwischen Reihen
-    it: Tra le righe
-    pt_BR: Entre Linhas
-    fr: Entre les lignes
-
-copy:
-    en: Copy
-    de: Kopieren
-    it: Copia
-    pt_BR: Copiar
-    fr: Copier
-
-deleteSet:
-    en: Delete Set
-    de: Set löschen
-    it: Cancella Set
-    pt_BR: Apagar Set
-    fr: Supprimer le jeu
-
-exportSet:
-    en: Export Set
-    de: Set exportieren
-    it: Esporta Set
-    pt_BR: Exportar Set
-    fr: Exporter le jeu
-
-done:
-    en: Done
-    de: Fertig
-    it: Fatto
-    pt_BR: Feito
-    fr: Terminé
-
-title:
-    en: Title
-    de: Titel
-    it: Titolo
-    pt_BR: Título
-    fr: Titre
-
-tagsDescription:
-    en: Organize and study flashcards in groups
-    de: Organisiere und lerne Karteikarten in Gruppen
-    it: Organizza e studia le flashcard in gruppi
-    pt_BR: Organize e estude flashcards em grupo
-    fr: Organiser et étudier les cartes mémoire par groupes
-
-tag:
-    en: Tag
-    de: Tag
-    it: Tag
-    pt_BR: Tag
-    fr: Étiquette
-
-starDescription:
-    en: A special tag that can be set while studying
-    de: Ein spezielles Tag, das während des Lernens gesetzt werden kann
-    it: Un tag speciale che può essere impostato durante lo studio
-    pt_BR: Uma tag especial pode ser definida enquanto estuda
-    fr: Une étiquette spéciale qui peut être utilisée pour l’étude
-
-addFlashcard:
-    en: Add Flashcard
-    de: Karteikarte hinzufügen
-    it: Aggiungi Flashcard
-    pt_BR: Adicionar Flashcard
-    fr: Ajouter une carte mémoire
-
-importFlashcards:
-    en: Import Flashcards
-    de: Karteikarten importieren
-    it: Importa Flashcards
-    pt_BR: Importar Flashcards
-    fr: Importer des cartes mémoire
-
-front:
-    en: Front
-    de: Vorderseite
-    it: Fronte
-    pt_BR: Frente
-    fr: Recto
-
-back:
-    en: Back
-    de: Rückseite
-    it: Retro
-    pt_BR: Verso
-    fr: Verso
-
-flashcard(index):
-    en: Flashcard (index)
-    de: Karteikarte (index)
-    it: Flashcard (index)
-    pt_BR: Flashcard (index)
-    fr: Carte mémoire (index)
-
-deleteFlashcard:
-    en: Delete Flashcard
-    de: Karteikarte löschen
-    it: Elimina Flashcard
-    pt_BR: Apagar Flashcard
-    fr: Supprimer la carte mémoire
-
-delete:
-    en: Delete
-    de: Löschen
-    it: Elimina
-    pt_BR: Apagar
-    fr: Supprimer
-
-deleteTitle(title):
-    en: Delete \"(title)\"?
-    de: \"(title)\" löschen?
-    it: Eliminare \"(title)\"?
-    pt_BR: Apagar \"(title)\"?
-    fr: Supprimer \"(title)\" ?
-
-deleteDescription:
-    en: There is no undo. The flashcards will be lost.
-    de: Die Karteikarten werden nicht wiederherstellbar sein.
-    it: Non è possibile annullare. Le flashcard andranno perse.
-    pt_BR: Não existe desfazer. Os flashcards serão perdidos
-    fr: Cette action est irréversible. Les cartes mémoire seront perdues.
-
-searchSets:
-    en: Search Sets
-    de: Sets suchen
-    it: Cerca set
-
-noSelection:
-    en: No Selection
-    de: Keine Auswahl
-    it: Nessuna selezione
-    pt_BR: Sem Seleção
-    fr: Pas de sélection
-    
-noSelectionDescription:
-    en: Select a set in the sidebar
-    de: Wähle ein Set in der Seitenleiste aus
-    it: Seleziona un set nella barra laterale
-    pt_BR: Selecione um set na barra lateral
-    fr: Sélectionnez un jeu dans la barre latérale
-
-noSets:
-    en: No Sets
-    de: Keine Sets verfügbar
-    it: Nessun Set
-    pt_BR: Nenhum Set
-    fr: Aucun jeu disponible
-
-noSetsDescription:
-    en: Create a new set using the <b>+</b> button in the sidebar
-    de: Erstelle mit dem <b>+</b>-Knopf in der Seitenleiste ein neues Set
-    it: Crea un nuovo set utilizzando il pulsante <b>+</b> nella barra laterale
-    pt_BR: Crie um novo set utilizando o botão <b>+</b> na barra lateral
-    fr: Créez un nouveau jeu en utilisant le bouton <b>+</b> dans la barre latérale
-
-overview:
-    en: Overview
-    de: Übersicht
-    it: Panoramica
-    pt_BR: Visão Geral
-    fr: Aperçu
-
-studySwitcher:
-    en: Study
-    de: Lernen
-    it: Studio
-    pt_BR: Estudar
-    fr: Étudier
-
-test:
-    en: Test
-    de: Testen
-    it: Test
-    pt_BR: Teste
-    fr: Test
-
-newSet:
-    en: New Set
-    de: Neues Set
-    it: Nuovo Set
-    pt_BR: Novo Set
-    fr: Nouveau jeu
-
-question(index):
-    en: Question (index)
-    de: Frage (index)
-    it: Domanda (index)
-    pt_BR: Questão (index)
-    fr: Question (index)
-
-quizlet:
-    en: Quizlet
-    de: Quizlet
-    it: Quizlet
-    pt_BR: Quizlet
-    fr: Quizlet
-
-anki:
-    en: Anki
-    de: Anki
-    it: Anki
-    pt_BR: Anki
-    fr: Anki
-
-showTutorial:
-    en: Show Tutorial
-    de: Tutorial zeigen
-    it: Mostra tutorial
-    pt_BR: Mostrar Tutorial
-    fr: Afficher le tutoriel
-
-comma:
-    en: Comma
-    de: Komma
-    it: Virgola
-    pt_BR: Vírgula
-    fr: Virgule
-
-tab:
-    en: Tab
-    de: Tab
-    it: Scheda
-    pt_BR: Aba
-    fr: Tabulation
-
-newLine:
-    en: New Line
-    de: Neue Zeile
-    it: Nuova riga
-    pt_BR: Nova Linha
-    fr: Nouvelle ligne
-
-semicolon:
-    en: Semicolon
-    de: Semikolon
-    it: Punto e virgola
-    pt_BR: Ponto e vírgula
-    fr: Point-virgule
-
-createSet:
-    en: Create Set
-    de: Set erstellen
-    it: Crea Set
-    pt_BR: Criar Set
-    fr: Créer le jeu
-
-copied:
-    en: Contents copied to clipboard
-    de: Inhalte wurden kopiert
-    it: Contenuto copiato negli appunti
-    fr: Contenu copié vers le presse-papiers
-
-flashcards(count):
-    en(count == "1"): 1 flashcard
-    en: (count) flashcards
-    de(count == "1"): 1 Karteikarte
-    de: (count) Karteikarten
-    it(count == "1"): 1 flashcard
-    it: (count) flashcard
-    fr(count == "1"): 1 carte mémoire
-    fr: (count) cartes mémoire
+about:
+    de: "Info zu Memorize"
+    en: "About Memorize"
+    fr: "À propos de Memorize"
+    it: "Informazioni su Memorize"
+    nl: "Over Memorize"
+    pt_BR: "Sobre Memorize"
 
 activeStudySession:
-    en: Active Study Session
-    de: Aktive Lerneinheit
-    it: Sessione di studio attiva
-    fr: Session d’étude active
+    de: "Aktive Lerneinheit"
+    en: "Active Study Session"
+    fr: "Session d’étude active"
+    it: "Sessione di studio attiva"
+    nl: "Actieve studiesessie"
 
 activeStudySessionDescription:
-    en: You are currently in a study session
-    de: Du befindest dich in einer Lerneinheit
-    it: Attualmente sei in una sessione di studio
-    fr: Vous êtes en session d’étude
+    de: "Du befindest dich in einer Lerneinheit"
+    en: "You are currently in a study session"
+    fr: "Vous êtes en session d’étude"
+    it: "Attualmente sei in una sessione di studio"
+    nl: "Je bent aan het studeren"
 
-toggleSidebar:
-    en: Toggle Sidebar
-    de: Seitenleiste ein- und ausblenden
-    it: Attiva la barra laterale
-    fr: Basculer la barre latérale
+add(element):
+    de: "(element) hinzufügen"
+    en: "Add (element)"
+    fr: "Ajouter (element)"
+    it: "Aggiungi (element)"
+    nl: "(item) toevoegen"
+    pt_BR: "Adicionar (element)"
 
-searchTitle:
-    en: Search
-    de: Suche
-    it: Cerca
+addFlashcard:
+    de: "Karteikarte hinzufügen"
+    en: "Add Flashcard"
+    fr: "Ajouter une carte mémoire"
+    it: "Aggiungi Flashcard"
+    nl: "Geheugenkaart toevoegen"
+    pt_BR: "Adicionar Flashcard"
 
-searchFlashcards:
-    en: Search Flashcards
-    de: Karteikarten suchen
-    it: Cerca Flashcard
+addSet:
+    de: "Set hinzufügen"
+    en: "Add Set"
+    fr: "Ajouter un jeu"
+    it: "Aggiungi Set"
+    nl: "Set toevoegen"
+    pt_BR: "Adicionar Set"
 
-csv:
-    en: CSV
-    de: CSV
+allFlashcards:
+    de: "Alle Karteikarten"
+    en: "All Flashcards"
+    fr: "Toutes les cartes mémoire"
+    it: "Tutte le Flashcard"
+    nl: "Alle geheugenkaarten"
+    pt_BR: "Todos Os Flashcards"
 
-csvDescription:
-    en: Open the file using the button next to the text field. Flashcards are separated by newlines, the front and back by commas.
-    de: Öffne die Datei mit der Schaltfläche neben dem Textfeld. Karteikarten werden mit Zeilenumbrüchen, die Vorder- und Rückseite mit Kommas getrennt.
+anki:
+    de: "Anki"
+    en: "Anki"
+    fr: "Anki"
+    it: "Anki"
+    nl: "Anki"
+    pt_BR: "Anki"
 
-importCSV:
-    en: Import CSV
-    de: CSV importieren
+ankiDescription:
+    de: "Exportiere Decks unter <tt><b> File > Export</b></tt>. Wähle das Format <tt><b> Cards in Plain Text </b></tt>. Deaktiviere <tt><b>Include HTML and media references</b></tt>."
+    en: "Export decks under <tt><b> File > Export</b></tt>. Select the export format <tt><b> Cards in Plain Text </b></tt>. Uncheck <tt><b>Include HTML and media references</b></tt>."
+    fr: "Exportez des paquets dans <tt><b> Fichier > Exporter</b></tt>. Sélectionnez le format d’exportation <tt><b> Cartes en texte clair </b></tt>. Décochez la case <tt><b>Inclure les médias et références HTML</b></tt>."
+    it: "Esporta mazzi in <tt><b> File > Esporta</b></tt>. Seleziona il formato di esportazione <tt><b> Carte in testo semplice </b></tt>. Deseleziona <tt ><b>Includi riferimenti HTML e multimediali</b></tt>."
+    nl: "Exporteer verzamelingen via Bestand → Exporteren. Kies als exportformaat plattetekstopmaak en kruis ‘Html en media bijvoegen’ af."
+    pt_BR: "Exporte decks em <<tt><b> Arquivo > Exportar</b></tt>. Selecionar o formato de exportação <tt><b> Cards in Plain Text. Desselecione <tt><b>Include HTML and media references</b></tt>."
+
+answer:
+    de: "Antwort"
+    en: "Answer"
+    fr: "Réponse"
+    it: "Risposta"
+    nl: "Antwoord"
+    pt_BR: "Resposta"
+
+answerWithBack:
+    de: "Antworte mit der Rückseite"
+    en: "Answer With Back"
+    fr: "Inverser recto et verso"
+    it: "Rispondi con il retro"
+    nl: "Antwoorden met achterkant"
+    pt_BR: "Responder Com Retorno"
+
+back:
+    de: "Rückseite"
+    en: "Back"
+    fr: "Verso"
+    it: "Retro"
+    nl: "Achterkant"
+    pt_BR: "Verso"
+
+betweenRows:
+    de: "Zwischen Reihen"
+    en: "Between Rows"
+    fr: "Entre les lignes"
+    it: "Tra le righe"
+    nl: "Tussen rijen"
+    pt_BR: "Entre Linhas"
+
+betweenTermDefinition:
+    de: "Zwischen Term und Definition"
+    en: "Between Term and Definition"
+    fr: "Entre terme et définition"
+    it: "Tra termine e definizione"
+    nl: "Tussen term en definitie"
+    pt_BR: "Entre Termo e Definição"
+
+cancel:
+    de: "Abbrechen"
+    en: "Cancel"
+    fr: "Annuler"
+    it: "Annulla"
+    nl: "Annuleren"
+    pt_BR: "Cancelar"
+
+check:
+    de: "Überprüfen"
+    en: "Check"
+    fr: "Vérifier"
+    it: "Controlla"
+    nl: "Controleren"
+    pt_BR: "Conferir"
+
+closeWindow:
+    de: "Fenster schließen"
+    en: "Close Window"
+    fr: "Fermer la fenêtre"
+    it: "Chiudi finestra"
+    nl: "Venster sluiten"
+    pt_BR: "Fechar Janela"
+
+comma:
+    de: "Komma"
+    en: "Comma"
+    fr: "Virgule"
+    it: "Virgola"
+    nl: "Komma"
+    pt_BR: "Vírgula"
+
+continueStudying:
+    de: "Lernen fortsetzen"
+    en: "Continue Studying"
+    fr: "Continuer à étudier"
+    it: "Continua a studiare"
+    nl: "Doorgaan met studeren"
+    pt_BR: "Continuar Estudando"
+
+copied:
+    de: "Inhalte wurden kopiert"
+    en: "Contents copied to clipboard"
+    fr: "Contenu copié vers le presse-papiers"
+    it: "Contenuto copiato negli appunti"
+    nl: "De inhoud is gekopieerd naar het klembord"
+
+copy:
+    de: "Kopieren"
+    en: "Copy"
+    fr: "Copier"
+    it: "Copia"
+    nl: "Kopiëren"
+    pt_BR: "Copiar"
+
+correct:
+    de: "Korrekt!"
+    en: "Correct!"
+    fr: "Correct !"
+    it: "Corretto!"
+    nl: "Goed!"
+    pt_BR: "Correto!"
 
 create:
-    en: Create
-    de: Erstellen
+    de: "Erstellen"
+    en: "Create"
+    fr: "Créer"
+    it: "Crea"
+    nl: "Maken"
+
+createSet:
+    de: "Set erstellen"
+    en: "Create Set"
+    fr: "Créer le jeu"
+    it: "Crea Set"
+    nl: "Set samenstellen"
+    pt_BR: "Criar Set"
+
+createTest:
+    de: "Prüfung erstellen"
+    en: "Create Test"
+    fr: "Créer un test"
+    it: "Crea Test"
+    nl: "Toets maken"
+    pt_BR: "Criar Teste"
+
+csv:
+    de: "CSV"
+    en: "CSV"
+    fr: "CSV"
+    it: "CSV"
+    nl: "Csv"
+
+csvDescription:
+    de: "Öffne die Datei mit der Schaltfläche neben dem Textfeld. Karteikarten werden mit Zeilenumbrüchen, die Vorder- und Rückseite mit Kommas getrennt."
+    en: "Open the file using the button next to the text field. Flashcards are separated by newlines, the front and back by commas."
+    fr: "Ouvrez le fichier en utilisant le bouton à côté du champ de saisie. Les cartes mémoire sont séparées par des sauts de ligne, le recto et le verso par des virgules."
+    it: "Apri il file utilizzando il pulsante accanto al campo di testo. Le flashcard sono separate da ritorni a capo, il fronte e il retro da virgole."
+    nl: "Open het bestand met behulp van de knop naast het tekstveld. Geheugenkaarten worden gescheiden door middel van nieuwe regels; de voor- en achterkanten door komma's."
+
+delete:
+    de: "Löschen"
+    en: "Delete"
+    fr: "Supprimer"
+    it: "Elimina"
+    nl: "Verwijderen"
+    pt_BR: "Apagar"
+
+deleteDescription:
+    de: "Die Karteikarten werden nicht wiederherstellbar sein."
+    en: "There is no undo. The flashcards will be lost."
+    fr: "Cette action est irréversible. Les cartes mémoire seront perdues."
+    it: "Non è possibile annullare. Le flashcard andranno perse."
+    nl: "Deze actie is onomkeerbaar - alle kaarten worden verwijderd."
+    pt_BR: "Não existe desfazer. Os flashcards serão perdidos"
+
+deleteFlashcard:
+    de: "Karteikarte löschen"
+    en: "Delete Flashcard"
+    fr: "Supprimer la carte mémoire"
+    it: "Elimina Flashcard"
+    nl: "Geheugenkaart verwijderen"
+    pt_BR: "Apagar Flashcard"
+
+deleteSet:
+    de: "Set löschen"
+    en: "Delete Set"
+    fr: "Supprimer le jeu"
+    it: "Cancella Set"
+    nl: "Set verwijderen"
+    pt_BR: "Apagar Set"
+
+deleteTitle(title):
+    de: "\\\"(title)\\\" löschen?"
+    en: "Delete \\\"(title)\\\"?"
+    fr: "Supprimer \\\"(title)\\\" ?"
+    it: "Eliminare \\\"(title)\\\"?"
+    nl: "Wil je “(title)” verwijderen?"
+    pt_BR: "Apagar \\\"(title)\\\"?"
+
+done:
+    de: "Fertig"
+    en: "Done"
+    fr: "Terminé"
+    it: "Fatto"
+    nl: "Klaar"
+    pt_BR: "Feito"
+
+editSet:
+    de: "Set bearbeiten"
+    en: "Edit Set"
+    fr: "Modifier le jeu"
+    it: "Modifica Set"
+    nl: "Set bewerken"
+    pt_BR: "Editar Set"
+
+export(title):
+    de: "Exportiere das Set \\\"(title)\\\""
+    en: "Export Set \\\"(title)\\\""
+    fr: "Exporter le jeu \\\"(title)\\\""
+    it: "Esporta set \\\"(title)\\\""
+    nl: "“(title)” exporteren"
+    pt_BR: "Exportar Set \\\"(title)\\\""
+
+exportAnkiDeck:
+    de: "Anki Deck exportieren"
+    en: "Export Anki Deck"
+    fr: "Exporter un paquet de cartes Anki"
+    it: "Esporta mazzo Anki"
+    nl: "Anki-set exporteren"
+    pt_BR: "Exporte um Deck do Anki"
+
+exportQuizletSet:
+    de: "Quizlet-Set exportieren"
+    en: "Export Quizlet Set"
+    fr: "Exporter un jeu de cartes Quizlet"
+    it: "Esporta set di quizlet"
+    nl: "Quizlet-set exporteren"
+    pt_BR: "Exportar Set do Quizlet"
+
+exportSet:
+    de: "Set exportieren"
+    en: "Export Set"
+    fr: "Exporter le jeu"
+    it: "Esporta Set"
+    nl: "Set exporteren"
+    pt_BR: "Exportar Set"
+
+finishTest:
+    de: "Test beenden"
+    en: "Finish Test"
+    fr: "Terminer le test"
+    it: "Fine del test"
+    nl: "Test afronden"
+    pt_BR: "Terminar Teste"
+
+flashcard(index):
+    de: "Karteikarte (index)"
+    en: "Flashcard (index)"
+    fr: "Carte mémoire (index)"
+    it: "Flashcard (index)"
+    nl: "Geheugenkaart (index)"
+    pt_BR: "Flashcard (index)"
+
+flashcards(count):
+    de: "(count) Karteikarten"
+    de(count == "1"): "1 Karteikarte"
+    en: "(count) flashcards"
+    en(count == "1"): "1 flashcard"
+    fr: "(count) cartes mémoire"
+    fr(count == "1"): "1 carte mémoire"
+    it: "(count) flashcard"
+    it(count == "1"): "1 flashcard"
+    nl: "(count) geheugenkaarten"
+    nl(count == "1"): "1 geheugenkaart"
+
+flashcardsWithTags:
+    de: "Karteikarten mit Tags"
+    en: "Flashcards With Tags"
+    fr: "Cartes mémoire avec étiquette"
+    it: "Flashcard con tag"
+    nl: "Geheugenkaarten met labels"
+    pt_BR: "Flashcards Com Tags"
+
+front:
+    de: "Vorderseite"
+    en: "Front"
+    fr: "Recto"
+    it: "Fronte"
+    nl: "Voorkant"
+    pt_BR: "Frente"
+
+fullScore:
+    de: "Volle Punktzahl!"
+    en: "Full Score!"
+    fr: "Note maximale !"
+    it: "Punteggio completo!"
+    nl: "Hoogste score!"
+    pt_BR: "Pontuação Total!"
+
+generateExam:
+    de: "Erstelle eine Vorbereitungsprüfung"
+    en: "Generate a Preparation Exam"
+    fr: "Générer un examen préparatoire"
+    it: "Generare preparazione di un esame"
+    nl: "Proefexamen maken"
+    pt_BR: "Gerar um Exame de Preparação"
+
+generateExamDescription(title):
+    de: "Finde letzte Fehler vor deiner Prüfung zu \\\"(title)\\\""
+    en: "Spot last mistakes before your exam about \\\"(title)\\\""
+    fr: "Repérez les dernières erreurs avant votre examen de \\\"(title)\\\""
+    it: "Individua gli ultimi errori prima dell'esame su \\\"(title)\\\""
+    nl: "Spoor de laatste fouten op voorafgaand aan je examen (title)"
+    pt_BR: "Identifique os últimos erros antes de sua prova de \\\"(title)\\\""
+
+importCSV:
+    de: "CSV importieren"
+    en: "Import CSV"
+    fr: "Importer un fichier CSV"
+    it: "Importa CSV"
+    nl: "Csv-bestand importeren"
+
+importFlashcards:
+    de: "Karteikarten importieren"
+    en: "Import Flashcards"
+    fr: "Importer des cartes mémoire"
+    it: "Importa Flashcards"
+    nl: "Geheugenkaarten importeren"
+    pt_BR: "Importar Flashcards"
+
+initialDifficulty:
+    de: "Anfangsschwierigkeit"
+    en: "Initial Difficulty"
+    fr: "Difficulté initiale"
+    it: "Difficoltà iniziale"
+    nl: "Moeilijkheidsgraad aan begin"
+    pt_BR: "Dificuldade Inicial"
+
+initialDifficultyDescription:
+    de: "Lege die minimale Anzahl Wiederholungen pro Karteikarte fest"
+    en: "Set the minimum number of repetitions per flashcard"
+    fr: "Définition le nombre minimum de répétitions par carte mémoire"
+    it: "Imposta il numero minimo di ripetizioni per flashcard"
+    nl: "Stel het minimaal aantal herhalingen per geheugenkaart in"
+    pt_BR: "Defina o número minimo de repetições por flashcard"
+
+keyword:
+    de: "Schlüsselwort"
+    en: "Keyword"
+    fr: "Mot-clé"
+    it: "Parola chiave"
+    nl: "Trefwoord"
+    pt_BR: "Palavra Chave"
+
+keywords:
+    de: "Schlüsselwörter"
+    en: "Keywords"
+    fr: "Mots-clé"
+    it: "Parole chiave"
+    nl: "Trefwoorden"
+    pt_BR: "Palavras Chave"
+
+keywordsDescription:
+    de: "Schlüsselwörter vereinfachen die Suche nach Sets"
+    en: "Keywords simplify the search for sets"
+    fr: "Les mots-clés simplifient la recherche de jeux de cartes"
+    it: "Le parole chiave semplificano la ricerca dei set"
+    nl: "Trefwoorden maken het makkelijker om te zoeken"
+    pt_BR: "Palavras chave simplificam a procurar por sets"
+
+mainMenu:
+    de: "Hauptmenü"
+    en: "Main Menu"
+    fr: "Menu principal"
+    it: "Menu principale"
+    nl: "Hoofdmenu"
+    pt_BR: "Menu Principal"
+
+makeCorrect:
+    de: "Als richtig markieren"
+    en: "Make Correct"
+    fr: "Marquer comme correct"
+    it: "Rendi corretto"
+    nl: "Markeren als goed"
+    pt_BR: "Deixar Correto"
+
+makeIncorrect:
+    de: "Als falsch markieren"
+    en: "Make Incorrect"
+    fr: "Marquer comme incorrect"
+    it: "Rendi errato"
+    nl: "Markeren als fout"
+    pt_BR: "Deixar Incorreto"
+
+maxScore:
+    de: "Maximale Punktzahl"
+    en: "Maximum Score"
+    fr: "Score maximal"
+    it: "Punteggio massimo"
+    nl: "Maximale score"
+    pt_BR: "Pontuação Máxima"
+
+newLine:
+    de: "Neue Zeile"
+    en: "New Line"
+    fr: "Nouvelle ligne"
+    it: "Nuova riga"
+    nl: "Nieuwe regel"
+    pt_BR: "Nova Linha"
+
+newSet:
+    de: "Neues Set"
+    en: "New Set"
+    fr: "Nouveau jeu"
+    it: "Nuovo Set"
+    nl: "Nieuwe set"
+    pt_BR: "Novo Set"
+
+newWindow:
+    de: "Neues Fenster"
+    en: "New Window"
+    fr: "Nouvelle fenêtre"
+    it: "Nuova finestra"
+    nl: "Nieuw venster"
+    pt_BR: "Nova Janela"
+
+noFlashcards:
+    de: "Keine Karteikarten verfügbar"
+    en: "No flashcards available"
+    fr: "Pas de cartes mémoire disponibles"
+    it: "Nessuna flashcard disponibile"
+    nl: "Er zijn geen geheugenkaarten"
+    pt_BR: "Nenhum flashcard disponível"
+
+noScoreData:
+    de: "-"
+    en: "-"
+    fr: "-"
+    it: "-"
+    nl: "-"
+    pt_BR: "-"
+
+noSelection:
+    de: "Keine Auswahl"
+    en: "No Selection"
+    fr: "Pas de sélection"
+    it: "Nessuna selezione"
+    nl: "Er is geen keuze gemaakt"
+    pt_BR: "Sem Seleção"
+
+noSelectionDescription:
+    de: "Wähle ein Set in der Seitenleiste aus"
+    en: "Select a set in the sidebar"
+    fr: "Sélectionnez un jeu dans la barre latérale"
+    it: "Seleziona un set nella barra laterale"
+    nl: "Kies een set uit de zijbalk"
+    pt_BR: "Selecione um set na barra lateral"
+
+noSets:
+    de: "Keine Sets verfügbar"
+    en: "No Sets"
+    fr: "Aucun jeu disponible"
+    it: "Nessun Set"
+    nl: "Er zijn geen sets"
+    pt_BR: "Nenhum Set"
+
+noSetsDescription:
+    de: "Erstelle mit dem <b>+</b>-Knopf in der Seitenleiste ein neues Set"
+    en: "Create a new set using the <b>+</b> button in the sidebar"
+    fr: "Créez un nouveau jeu en utilisant le bouton <b>+</b> dans la barre latérale"
+    it: "Crea un nuovo set utilizzando il pulsante <b>+</b> nella barra laterale"
+    nl: "Stel een nieuwe set samen door op de <b>+</b>-knop in de zijbalk te klikken"
+    pt_BR: "Crie um novo set utilizando o botão <b>+</b> na barra lateral"
+
+numberOfQuestions:
+    de: "Anzahl Fragen"
+    en: "Number of Questions"
+    fr: "Nombre de questions"
+    it: "Numero di domande"
+    nl: "Aantal vragen"
+    pt_BR: "Número de Questões"
+
+overview:
+    de: "Übersicht"
+    en: "Overview"
+    fr: "Aperçu"
+    it: "Panoramica"
+    nl: "Overzicht"
+    pt_BR: "Visão Geral"
+
+pasteText:
+    de: "Text einfügen"
+    en: "Paste Text"
+    fr: "Coller le texte"
+    it: "Incolla testo"
+    nl: "Tekst plakken"
+    pt_BR: "Colar Texto"
+
+question(index):
+    de: "Frage (index)"
+    en: "Question (index)"
+    fr: "Question (index)"
+    it: "Domanda (index)"
+    nl: "Vraag (index)"
+    pt_BR: "Questão (index)"
+
+quizlet:
+    de: "Quizlet"
+    en: "Quizlet"
+    fr: "Quizlet"
+    it: "Quiz"
+    nl: "Quizlet"
+    pt_BR: "Quizlet"
+
+quizletDescription:
+    de: "Exportiere ein Quizlet-Set unter <tt><b> ⋯ > Export</b></tt>. Kopiere den Text mit der Standardkonfiguration."
+    en: "Export a Quizlet set under <tt><b> ⋯ > Export</b></tt>. Using the default configuration, copy the text."
+    fr: "Exportez un paquet Quizlet dans <tt><b> ⋯ > Exporter</b></tt>. Utilisez la configuration par défaut et copiez le texte."
+    it: "Esporta un set di Quizlet in <tt><b> ⋯ > Esporta</b></tt>. Utilizzando la configurazione predefinita, copia il testo."
+    nl: "Exporteer een Quizlet-set via <tt><b> ⋯ → Exporteren</b></tt>. Met de standaardvoorkeuren worden de teksten gekopieerd."
+    pt_BR: "Exportar um set do Quizlet em <tt><b> ... > Exportar</b></tt>. Usando a configuração padrão, copie o texto."
+
+remove(element):
+    de: "(element) entfernen"
+    en: "Remove (element)"
+    fr: "Supprimer (element)"
+    it: "Rimuovi (element)"
+    nl: "(element) verwijderen"
+    pt_BR: "Remover (element)"
+
+score(score):
+    de: "(score) Punkte"
+    de(score == "1"): "(score) Punkt"
+    en: "(score) Points"
+    en(score == "1"): "(score) Point"
+    fr: "(score) points"
+    fr(score == "1"): "(score) point"
+    it: "(score) Punti"
+    it(score == "1"): "(score) Punto"
+    nl: "(score) punten"
+    nl(score == "1"): "(score) punt"
+    pt_BR: "(score) Pontos"
+    pt_BR(score == "1"): "(score) Ponto"
+
+scoreInstructions:
+    de: "Überprüfe deine Antworten weiter unten"
+    en: "Scroll down to check your answers"
+    fr: "Défilez vers le bas pour vérifier vos réponses"
+    it: "Scorri verso il basso per verificare le tue risposte"
+    nl: "Scrol omlaag om je antwoorden te bekijken"
+    pt_BR: "Arraste para baixo para ver suas respostas"
+
+scoreLabel:
+    de: "Punktzahl"
+    en: "Score"
+    fr: "Score"
+    it: "Punteggio"
+    nl: "Score"
+    pt_BR: "Pontuação"
+
+scoreRowLabel:
+    de: "Deine Punktzahl"
+    en: "Your Score"
+    fr: "Votre score"
+    it: "Il tuo punteggio"
+    nl: "Mijn score"
+    pt_BR: "Sua Pontuação"
+
+search:
+    de: "Suchen ..."
+    en: "Search..."
+    fr: "Rechercher…"
+    it: "Cerca..."
+    nl: "Zoeken…"
+
+searchFlashcards:
+    de: "Karteikarten suchen"
+    en: "Search Flashcards"
+    fr: "Rechercher des cartes mémoire"
+    it: "Cerca Flashcard"
+    nl: "Geheugenkaarten doorzoeken"
+
+searchSets:
+    de: "Sets suchen"
+    en: "Search Sets"
+    fr: "Rechercher des jeux"
+    it: "Cerca set"
+    nl: "Sets doorzoeken"
+
+searchTitle:
+    de: "Suche"
+    en: "Search"
+    fr: "Rechercher"
+    it: "Cerca"
+    nl: "Zoeken"
+
+semicolon:
+    de: "Semikolon"
+    en: "Semicolon"
+    fr: "Point-virgule"
+    it: "Punto e virgola"
+    nl: "Puntkomma"
+    pt_BR: "Ponto e vírgula"
+
+sets:
+    de: "Sets"
+    en: "Sets"
+    fr: "Jeux"
+    it: "Set"
+    nl: "Sets"
+    pt_BR: "Sets"
+
+showTutorial:
+    de: "Tutorial zeigen"
+    en: "Show Tutorial"
+    fr: "Afficher le tutoriel"
+    it: "Mostra tutorial"
+    nl: "Rondleiding tonen"
+    pt_BR: "Mostrar Tutorial"
+
+solution:
+    de: "Lösung"
+    en: "Solution"
+    fr: "Solution"
+    it: "Soluzione"
+    nl: "Oplossing"
+    pt_BR: "Solução"
+
+solveTest:
+    de: "Test lösen"
+    en: "Solve Test"
+    fr: "Résoudre le test"
+    it: "Risolvi Test"
+    nl: "Toets oplossen"
+    pt_BR: "Resolver Teste"
+
+star:
+    de: "Stern"
+    en: "Star"
+    fr: "Étoile"
+    it: "Stella"
+    nl: "Ster"
+    pt_BR: "Estrela"
+
+starDescription:
+    de: "Ein spezielles Tag, das während des Lernens gesetzt werden kann"
+    en: "A special tag that can be set while studying"
+    fr: "Une étiquette spéciale qui peut être utilisée pour l’étude"
+    it: "Un tag speciale che può essere impostato durante lo studio"
+    nl: "Een speciaal label tijdens het studeren"
+    pt_BR: "Uma tag especial pode ser definida enquanto estuda"
+
+startStudyMode:
+    de: "Starte den Lernmodus"
+    en: "Start Study Mode"
+    fr: "Lancer la session d’étude"
+    it: "Avvia la modalità studio"
+    nl: "Studiemodus starten"
+    pt_BR: "Iniciar Modo de Estudo"
+
+study(title):
+    de: "Lerne \\\"(title)\\\""
+    en: "Study \\\"(title)\\\""
+    fr: "Étudier \\\"(title)\\\""
+    it: "Studio \\\"(title)\\\""
+    nl: "Studeren voor (title)"
+    pt_BR: "Studar \\\"(title)\\\""
+
+studyDescription:
+    de: "Lerne bis du jede Karteikarte beherrscht"
+    en: "Repeat each flashcard until you remember it"
+    fr: "Répétez chaque carte mémoire jusqu’à ce que vous vous en souveniez"
+    it: "Ripeti ogni flashcard finché non la ricordi"
+    nl: "Herhaal elke geheugenkaart tot je het antwoord kent"
+    pt_BR: "Repetir cada flashcard até você se lembrar"
+
+studySettings:
+    de: "Einstellungen zum Lernmodus"
+    en: "Study Settings"
+    fr: "Paramètres d’étude"
+    it: "Impostazioni di studio"
+    nl: "Studievoorkeuren"
+    pt_BR: "Configurações de Estudo"
+
+studySummary(count, total):
+    de: "Lerne (count) von (total) Karteikarten"
+    de(total == "1"): "Lerne (count) von (total) Karteikarte"
+    en: "Studying (count) of (total) Flashcards"
+    en(total == "1"): "Studying (count) of (total) Flashcard"
+    fr: "Étude de (count) cartes mémoire sur (total)"
+    fr(total == "1"): "Étude de (count) carte mémoire sur (total)"
+    it: "Studio (count) delle (total) Flashcard"
+    it(total == "1"): "Studio (count) di (total) Flashcard"
+    nl: "Studie: (count) van (total) geheugenkaarten"
+    nl(total == "1"): "Studie: (count) van (total) geheugenkaart"
+    pt_BR: "Estudando (count) de (total) Flashcards"
+    pt_BR(total == "1"): "Estudando (count) de (total) Flashcard"
+
+studySwitcher:
+    de: "Lernen"
+    en: "Study"
+    fr: "Étudier"
+    it: "Studio"
+    nl: "Studeren"
+    pt_BR: "Estudar"
+
+switchFrontBack:
+    de: "Vorder- und Rückseite vertauschen"
+    en: "Switch Front and Back"
+    fr: "Inverser le recto et le verso"
+    it: "Scambia da fronte e retro"
+    nl: "Voor- en achterkant verwisselen"
+    pt_BR: "Trocar Frente e Verso"
+
+tab:
+    de: "Tab"
+    en: "Tab"
+    fr: "Tabulation"
+    it: "Scheda"
+    nl: "Tabblad"
+    pt_BR: "Aba"
+
+tag:
+    de: "Tag"
+    en: "Tag"
+    fr: "Étiquette"
+    it: "Tag"
+    nl: "Label"
+    pt_BR: "Tag"
+
+tags:
+    de: "Tags"
+    en: "Tags"
+    fr: "Étiquettes"
+    it: "Tag"
+    nl: "Labels"
+    pt_BR: "Tags"
+
+tagsDescription:
+    de: "Organisiere und lerne Karteikarten in Gruppen"
+    en: "Organize and study flashcards in groups"
+    fr: "Organiser et étudier les cartes mémoire par groupes"
+    it: "Organizza e studia le flashcard in gruppi"
+    nl: "Verdeel geheugenkaarten in groepen"
+    pt_BR: "Organize e estude flashcards em grupo"
+
+terminateStudyMode:
+    de: "Lernmodus beenden"
+    en: "Terminate Study Mode"
+    fr: "Terminer la session d’étude"
+    it: "Termina la modalità studio"
+    nl: "Studiemodus afsluiten"
+    pt_BR: "Terminar Modo de Estudo"
+
+test:
+    de: "Testen"
+    en: "Test"
+    fr: "Test"
+    it: "Test"
+    nl: "Toets"
+    pt_BR: "Teste"
+
+testDescription(count, total):
+    de: "Teste (count) von (total) Karteikarten"
+    de(total == "1"): "Teste (count) von (total) Karteikarte"
+    en: "Testing (count) of (total) Flashcards"
+    en(total == "1"): "Testing (count) of (total) Flashcard"
+    fr: "Test de (count) cartes mémoire sur (total)"
+    fr(total == "1"): "Test de (count) carte mémoire sur (total)"
+    it: "Test (count) di (total) Flashcard"
+    it(total == "1"): "Test (count) di (total) Flashcard"
+    nl: "Toets: (count) van (total) geheugenkaarten"
+    nl(total == "1"): "Toets: (count) van (total) geheugenkaart"
+    pt_BR: "Testando (count) de (total) Flashcards"
+    pt_BR(total == "1"): "Testando (count) de (total) Flashcard"
+
+title:
+    de: "Titel"
+    en: "Title"
+    fr: "Titre"
+    it: "Titolo"
+    nl: "Titel"
+    pt_BR: "Título"
+
+toggleSidebar:
+    de: "Seitenleiste ein- und ausblenden"
+    en: "Toggle Sidebar"
+    fr: "Basculer la barre latérale"
+    it: "Attiva la barra laterale"
+    nl: "Zijbalk tonen/verbergen"
+
+viewMenu:
+    de: "Ansicht"
+    en: "View"
+    fr: "Voir"
+    it: "Vista"
+    nl: "Beeld"
+    pt_BR: "Ver"
+
+yourAnswer:
+    de: "Deine Antwort"
+    en: "Your Answer"
+    fr: "Votre réponse"
+    it: "La tua risposta"
+    nl: "Mijn antwoord"
+    pt_BR: "Sua Resposta"

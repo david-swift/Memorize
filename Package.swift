@@ -9,7 +9,7 @@ import PackageDescription
 let package = Package(
     name: "Flashcards",
     dependencies: [
-        .package(url: "https://github.com/AparokshaUI/Adwaita", branch: "main"),
+        .package(url: "https://github.com/AparokshaUI/Adwaita", branch: "0.2.5"),
         .package(url: "https://github.com/AparokshaUI/Localized", from: "0.2.2"),
         .package(url: "https://github.com/stephencelis/SQLite.swift.git", from: "0.15.0")
     ],
