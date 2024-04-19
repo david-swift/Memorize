@@ -13,6 +13,9 @@ struct StudyView: View {
     @State private var solution = false
     @State private var initialDifficulty = 1
     @State private var focusDefaults = Signal()
+    // Needs to access almost all of the set data
+    // Modifies the game data of the flashcards and set
+    var dbms: Database
 
     var flashcard: Flashcard? {
         getFlashcard(id: randomID)

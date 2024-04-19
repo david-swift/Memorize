@@ -9,6 +9,8 @@ struct CarouselView: View {
 
     @State private var answerCards: [String] = []
     @Binding var set: FlashcardsSet
+    // Unless you fetch the flashcards of a specific set further up in the view tree
+    var dbms: Database
 
     var view: Body {
         Carousel(set.flashcards) { flashcard in

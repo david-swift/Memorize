@@ -19,6 +19,8 @@ struct EditView: View {
     @State private var importFlashcards = false
     var window: GTUIWindow
     var app: GTUIApp
+    // Needs to access and modify a whole set
+    var dbms: Database
 
     var view: Body {
         ScrollView {

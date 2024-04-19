@@ -13,6 +13,8 @@ struct ExportView: View {
     @Binding var copied: Signal
     var set: FlashcardsSet
     var close: () -> Void
+    // Needs to access a set, in case you don't fetch it further up the view tree
+    var dbms: Database
 
     var view: Body {
         ScrollView {

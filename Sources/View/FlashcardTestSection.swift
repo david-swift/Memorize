@@ -11,6 +11,10 @@ struct FlashcardTestSection: View {
     var focusedFlashcard: String?
     var focusFlashcard: Signal
     var focusNext: () -> Void
+    // Needs to access a flashcard
+    // and modify its game data.
+    // In case you don't fetch it further up the view tree.
+    var dbms: Database
 
     var view: Body {
         VStack {

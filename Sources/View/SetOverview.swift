@@ -21,6 +21,8 @@ struct SetOverview: View {
     var window: GTUIApplicationWindow
     var app: GTUIApp
     var delete: () -> Void
+    // Needs to pass database to children
+    var dbms: Database
 
     var view: Body {
         ViewStack(element: set) { _ in
