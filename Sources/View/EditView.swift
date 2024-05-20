@@ -19,6 +19,7 @@ struct EditView: View {
     @State private var importFlashcards = false
     var window: GTUIWindow
     var app: GTUIApp
+    var deleteSet: () -> Void
 
     var view: Body {
         ScrollView {
@@ -44,15 +45,23 @@ struct EditView: View {
         }
         .topToolbar {
             HeaderBar(titleButtons: false) {
-                Toggle(icon: .default(icon: .editFind), isOn: .init {
-                    editSearch.visible
-                } set: { newValue in
-                    editSearch.visible = newValue
-                    if newValue {
-                        searchFocused.toggle()
+                if createSet {
+                    Button(Loc.cancel) {
+                        editMode = false
+                        createSet = false
+                        deleteSet()
                     }
-                })
-                .tooltip(Loc.searchTitle)
+                } else {
+                    Toggle(icon: .default(icon: .editFind), isOn: .init {
+                        editSearch.visible
+                    } set: { newValue in
+                        editSearch.visible = newValue
+                        if newValue {
+                            searchFocused.toggle()
+                        }
+                    })
+                    .tooltip(Loc.searchTitle)
+                }
             } end: {
                 Button(createSet ? Loc.create : Loc.done) {
                     editMode = false

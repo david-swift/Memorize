@@ -24,13 +24,15 @@ struct SetOverview: View {
 
     var view: Body {
         ViewStack(element: set) { _ in
-            title
-                .centerMinSize()
-            cards
-                .frame(minHeight: 270)
-                .valign(.center)
-            buttons
-                .centerMinSize()
+            if !createSet {
+                title
+                    .centerMinSize()
+                cards
+                    .frame(minHeight: 270)
+                    .valign(.center)
+                buttons
+                    .centerMinSize()
+            }
         }
         .topToolbar {
             HeaderBar {
@@ -68,7 +70,17 @@ struct SetOverview: View {
                 export = false
             }
         }
-        .dialog(visible: $editMode.onSet { _ in createSet = false }, id: "edit", width: 700, height: 550) {
+        .dialog(
+            visible: $editMode.onSet { _ in
+                if createSet {
+                    delete()
+                }
+                createSet = false
+            },
+            id: "edit",
+            width: 700,
+            height: 550
+        ) {
             EditView(
                 set: $set,
                 editMode: $editMode,
@@ -77,7 +89,8 @@ struct SetOverview: View {
                 importText: $importText,
                 createSet: $createSet,
                 window: window,
-                app: app
+                app: app,
+                deleteSet: delete
             )
         }
         .toast(Loc.copied, signal: copied)
