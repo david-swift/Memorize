@@ -68,7 +68,7 @@ struct ImportView: View {
                         }
                 }
         }
-        .style("boxed-list")
+        .boxedList()
         .padding(20)
         .formWidth()
     }
@@ -81,7 +81,7 @@ struct ImportView: View {
                         app.addWindow("import", parent: window)
                     }
                     .padding(10, .vertical)
-                    .style("flat")
+                    .flat()
                 }
             SwitchRow(Loc.switchFrontBack, isOn: $switchSides)
         }
@@ -102,7 +102,7 @@ struct ImportView: View {
                 ]
                 try? process.run()
             }
-            .style("pill")
+            .pill()
             .horizontalCenter()
         }
     }
@@ -203,7 +203,7 @@ struct ImportView: View {
                     }
                 }
             }
-            .style("suggested-action")
+            .suggested()
             .insensitive(destination == nil)
         }
     }

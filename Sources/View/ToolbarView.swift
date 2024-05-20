@@ -30,7 +30,7 @@ struct ToolbarView: View {
         }
         .headerBarTitle {
             Text(Loc.sets)
-                .style("heading")
+                .heading()
         }
         .aboutDialog(
             visible: $about,

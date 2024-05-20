@@ -50,7 +50,7 @@ struct StudyView: View {
             VStack {
                 if !set.filteredStudyCards.isEmpty {
                     ProgressBar(value: .init(set.completedCardsCount), total: .init(set.studyFlashcards.count))
-                        .style("osd")
+                        .osd()
                 }
             }
             .insensitive()
@@ -76,7 +76,7 @@ struct StudyView: View {
                     set.setDifficulty(initialDifficulty)
                     continueStudying()
                 }
-                .style("suggested-action")
+                .suggested()
                 .verticalCenter()
             }
             .insensitive(set.studyFlashcards.isEmpty)
@@ -214,7 +214,7 @@ struct StudyView: View {
                 }
             ActionRow(correct ? Loc.correct : Loc.yourAnswer)
                 .subtitle(answer)
-                .style("property")
+                .property()
                 .style(correct ? "success" : "error")
         }
         .padding(20)

@@ -8,7 +8,7 @@ import Adwaita
 extension View {
 
     func formWidth() -> View {
-        frame(maxSize: 500)
+        frame(maxWidth: 500)
     }
 
     @ViewBuilder

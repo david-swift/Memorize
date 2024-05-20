@@ -87,7 +87,7 @@ struct SetOverview: View {
         VStack {
             HStack {
                 Text(set.name)
-                    .style("title-1")
+                    .title1()
                     .padding()
             }
             Text(Loc.flashcards(count: set.flashcards.count))
@@ -109,11 +109,11 @@ struct SetOverview: View {
             Button(Loc.studySwitcher, icon: .default(icon: .mediaPlaybackStart)) {
                 flashcardsView.push(.study(set: set.id))
             }
-            .style("pill")
+            .pill()
             Button(Loc.test, icon: .default(icon: .emblemDocuments)) {
                 flashcardsView.push(.test(set: set.id))
             }
-            .style("pill")
+            .pill()
         }
         .halign(.center)
         .modifyContent(VStack.self) { $0.spacing(20) }

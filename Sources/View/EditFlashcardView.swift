@@ -38,7 +38,7 @@ struct EditFlashcardView: View {
                 Button(icon: .default(icon: .userTrash)) {
                     delete()
                 }
-                .style("flat")
+                .flat()
                 .tooltip(Loc.deleteFlashcard)
             }
         }

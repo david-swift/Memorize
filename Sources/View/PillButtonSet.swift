@@ -21,7 +21,7 @@ struct PillButtonSet: View {
             secondaryView
         }
         .padding(20)
-        .modifyContent(Adwaita.Button.self) { $0.padding().style("pill") }
+        .modifyContent(Adwaita.Button.self) { $0.padding().pill() }
         .horizontalCenter()
     }
 
@@ -29,7 +29,7 @@ struct PillButtonSet: View {
         Button(primary, icon: primaryIcon) {
             primaryAction()
         }
-        .style("suggested-action")
+        .suggested()
         .focus(focus ?? .init())
     }
 

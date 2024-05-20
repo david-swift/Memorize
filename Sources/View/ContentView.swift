@@ -88,10 +88,10 @@ struct ContentView: WindowView {
                     .padding()
                     .halign(.start)
             }
+            .sidebarStyle()
             .onClick {
                 contentVisible = true
             }
-            .style("navigation-sidebar")
         }
         .hexpand()
         .topToolbar(visible: search.visible) {
@@ -157,8 +157,8 @@ struct ContentView: WindowView {
                         Button(Loc.createSet) {
                             addSet()
                         }
-                        .style("pill")
-                        .style("suggested-action")
+                        .pill()
+                        .suggested()
                         .horizontalCenter()
                     }
                     .centerMinSize()

@@ -58,7 +58,7 @@ struct EditView: View {
                     editMode = false
                     createSet = false
                 }
-                .style("suggested-action")
+                .suggested()
             }
             .headerBarTitle {
                 WindowTitle(subtitle: "", title: createSet ? Loc.newSet : Loc.editSet)

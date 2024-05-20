@@ -25,7 +25,7 @@ struct KeywordsRow: View {
                         expanded = true
                         focus.signal()
                     }
-                    .style("flat")
+                    .flat()
                     .tooltip(Loc.add(element: element))
                 }
                 .valign(.center)
@@ -43,7 +43,7 @@ struct KeywordsRow: View {
                             Button(icon: .default(icon: .userTrash)) {
                                 keywords = keywords.filter { $0 != keyword }
                             }
-                            .style("flat")
+                            .flat()
                             .tooltip(Loc.remove(element: element))
                         }
                         .valign(.center)
@@ -54,7 +54,7 @@ struct KeywordsRow: View {
                     }
                     .focus(index == keywords.count - 1 ? focus : .init())
                 }
-                .style("boxed-list")
+                .boxedList()
                 .padding()
             }
             .enableExpansion(.constant(!keywords.isEmpty))
