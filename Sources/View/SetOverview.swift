@@ -38,7 +38,7 @@ struct SetOverview: View {
                     Button(icon: .default(icon: .userTrash)) {
                         deleteState = true
                     }
-                    .keyboardShortcut("Delete", window: window)
+                    .keyboardShortcut("Delete", window: window, active: !editMode)
                     .tooltip(Loc.deleteSet)
                     Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
                         export = true
