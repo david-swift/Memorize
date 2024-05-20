@@ -183,8 +183,10 @@ struct StudyView: View {
             randomID = id
         }
         Task {
-            input = ""
-            focusDefaults.signal()
+            Idle {
+                input = ""
+                focusDefaults.signal()
+            }
         }
     }
 
