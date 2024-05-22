@@ -47,6 +47,7 @@ struct FlashcardTestSection: View {
 
     var front: ActionRow {
         .init(flashcard.front)
+            .useMarkup(false)
     }
 
     var back: View {

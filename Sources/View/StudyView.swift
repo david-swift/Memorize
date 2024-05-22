@@ -163,6 +163,7 @@ struct StudyView: View {
         VStack {
             Form {
                 ActionRow(flashcard.front)
+                    .useMarkup(false)
                 EntryRow(Loc.answer, text: $input)
                     .entryActivated {
                         check()
@@ -200,6 +201,7 @@ struct StudyView: View {
         let correct = answer == solution
         return Form {
             ActionRow(Loc.solution)
+                .useMarkup(false)
                 .subtitle(solution)
                 .suffix {
                     TagsButton(
@@ -215,6 +217,7 @@ struct StudyView: View {
                     .padding()
                 }
             ActionRow(correct ? Loc.correct : Loc.yourAnswer)
+                .useMarkup(false)
                 .subtitle(answer)
                 .property()
                 .style(correct ? "success" : "error")
