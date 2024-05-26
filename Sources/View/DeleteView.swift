@@ -10,6 +10,8 @@ struct DeleteView: View {
     var set: FlashcardsSet
     var delete: () -> Void
     var close: () -> Void
+    // To pass to CarouselView, or fetch the flashcards here
+    var dbms: Database
 
     var view: Body {
         ScrollView {

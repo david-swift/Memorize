@@ -9,15 +9,14 @@ import Foundation
 @main
 struct Flashcards: App {
 
-    @State("sets", folder: "io.github.david_swift.Flashcards", forceUpdates: true)
-    private var sets: [FlashcardsSet] = []
+    @State var dbms = Database()
     @State private var importText = ""
     let id = "io.github.david_swift.Flashcards"
     var app: GTUIApp!
 
     var scene: Scene {
         Window(id: "main") { window in
-            ContentView(sets: $sets, importText: $importText, app: app, window: window)
+            ContentView(sets: $dbms.sets, importText: $importText, dbms: dbms, app: app, window: window)
         }
         .title("Memorize")
         .quitShortcut()

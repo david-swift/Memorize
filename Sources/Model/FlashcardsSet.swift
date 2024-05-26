@@ -4,23 +4,22 @@
 //
 
 import Foundation
+import SQLite
 
-struct FlashcardsSet: SearchScore, Identifiable, Codable {
+struct FlashcardsSet: Identifiable {
 
-    let id: String
+    let id: Int64
+    let dbms: Database
     var name: String
     // swiftlint:disable discouraged_optional_collection
-    var keywords: [String]?
-    var tags: [String]? {
-        didSet {
-            filterTags()
-        }
-    }
-    var studyTags: [String]?
-    var testTags: [String]?
+    var keywords: [Int64]?
+    var tags: [Int64]?
+    var studyTags: [Int64]?
+    var testTags: [Int64]?
     // swiftlint:enable discouraged_optional_collection
     var flashcards: [Flashcard]
-    var test: [String] = []
+    var flashcardsExpired: Bool
+    var test: [Int64] = []
     var answerSide: Flashcard.Side = .back
     // swiftlint:disable discouraged_optional_boolean
     var studyAllFlashcards: Bool?
@@ -37,7 +36,8 @@ struct FlashcardsSet: SearchScore, Identifiable, Codable {
         }
     }
 
-    var studyFlashcards: [Flashcard] {
+    /// TODO #37: Load flashcard data from database via id (Int64) instead of cards array loaded to memory
+    var studyFlashcards: [Int64] {
         if answerSide == .back {
             return flashcards(tags: studyAllFlashcards.nonOptional ? nil : studyTags.nonOptional)
         } else {
@@ -50,7 +50,8 @@ struct FlashcardsSet: SearchScore, Identifiable, Codable {
         }
     }
 
-    var testFlashcards: [Flashcard] {
+    /// TODO #37: Load flashcard data from database via id (Int64) instead of cards array loaded to memory
+    var testFlashcards: [Int64] {
         get {
             if answerSide == .back {
                 return flashcards(tags: testAllFlashcards.nonOptional ? nil : testTags.nonOptional)
@@ -82,73 +83,87 @@ struct FlashcardsSet: SearchScore, Identifiable, Codable {
         return score
     }
 
-    var filteredStudyCards: [String] {
-        studyFlashcards.filter { $0.gameData.difficulty != 0 }.map { $0.id }
-    }
+    /**
+     * TODO #37: Move to SQL via SELECT query
+     * var filteredStudyCards: [Int64] {
+     *     studyFlashcards.filter { $0.gameData.difficulty != 0 }.map { $0.id }
+     * }
+     */
 
-    var completedCardsCount: Int {
-        studyFlashcards.count - filteredStudyCards.count
-    }
-
-    init(name: String = Loc.newSet, flashcards: [Flashcard] = [
-        .init(front: Loc.question(index: 1), back: Loc.answer),
-        .init(front: Loc.question(index: 2), back: Loc.answer)
-    ]) {
-        id = UUID().uuidString
+    init(
+        id: Int64,
+        dbms: Database,
+        name: String,
+        keywords: [Int64] = [],
+        tags: [Int64] = []
+    ) {
+        self.id = id
+        self.dbms = dbms
         self.name = name
-        self.flashcards = flashcards
+        flashcardsExpired = true
+        dbms.loadFlashcards(toSet: &self)
+        self.keywords = keywords
+        self.tags = tags
     }
 
-    mutating func check() {
-        for index in flashcards.indices {
-            flashcards[safe: index]?.check()
+    /// Count total amount of flashcards in set
+    /// - Returns: The amount.
+    func completedCardsCount() -> Int {
+        var amount = 0
+
+        guard let database = dbms.connection else {
+            return amount
         }
-    }
-
-    mutating func done() {
-        test = []
-        for index in flashcards.indices {
-            flashcards[safe: index]?.done()
-        }
-    }
-
-    mutating func resetStudyProgress() {
-        setDifficulty(0)
-    }
-
-    mutating func setDifficulty(_ difficulty: Int) {
-        for index in flashcards.indices {
-            flashcards[safe: index]?.gameData.difficulty = difficulty
-        }
-    }
-
-    func score(_ query: String?) -> Int {
-        var totalScore = 1
-        if let query, !query.isEmpty {
-            totalScore = name.search(query) ? 5 : 0
-            for keyword in keywords.nonOptional {
-                totalScore += keyword.search(query) ? 1 : 0
+        do {
+            for _ in try database.prepare(
+                dbms.tableFlashcards
+                .select(dbms.flashcardsSet)
+                .filter(dbms.flashcardsSet == self.id)
+            ) {
+                amount += 1
             }
+        } catch {
+            print("Error counting flashcards: \(error)")
         }
-        return totalScore
+
+        return amount
     }
 
-    mutating func filterTags() {
-        for (index, flashcard) in flashcards.enumerated() {
-            flashcards[safe: index]?.tags.nonOptional = flashcard.tags.nonOptional
-                .filter { tags.nonOptional.contains($0) }
-        }
-        studyTags.nonOptional = studyTags.nonOptional.filter { tags.nonOptional.contains($0) }
-        testTags.nonOptional = testTags.nonOptional.filter { tags.nonOptional.contains($0) }
+    // TODO #37: Decide if nesting dbms.setDifficulty in resetStudyProgress is necessary
+    mutating func resetStudyProgress() {
+        dbms.setDifficulty(0, inSet: &self)
     }
 
-    // swiftlint:disable discouraged_optional_collection
-    func flashcards(tags: [String]?) -> [Flashcard] {
-        if let tags {
-            return flashcards.filter { $0.tags.nonOptional.contains { tags.contains($0) } }
-        }
-        return flashcards
-    }
-    // swiftlint:enable discouraged_optional_collection
+    /**
+     * TODO #37: Move to SQL: search/filter via SELECT queries
+     * func score(_ query: String?) -> Int {
+     *     var totalScore = 1
+     *     if let query, !query.isEmpty {
+     *         totalScore = name.search(query) ? 5 : 0
+     *         for keyword in keywords.nonOptional {
+     *             totalScore += keyword.search(query) ? 1 : 0
+     *         }
+     *     }
+     *     return totalScore
+     * }
+     *
+     * mutating func filterTags() {
+     *     for (index, flashcard) in flashcards.enumerated() {
+     *         flashcards[safe: index]?.tags.nonOptional = flashcard.tags.nonOptional
+     *             .filter { tags.nonOptional.contains($0) }
+     *     }
+     *     studyTags.nonOptional = studyTags.nonOptional.filter { tags.nonOptional.contains($0) }
+     *     testTags.nonOptional = testTags.nonOptional.filter { tags.nonOptional.contains($0) }
+     * }
+     *
+     * // swiftlint:disable discouraged_optional_collection
+     * func flashcards(tags: [String]?) -> [Flashcard] {
+     *     if let tags {
+     *         return flashcards.filter { $0.tags.nonOptional.contains { tags.contains($0) } }
+     *     }
+     *     return flashcards
+     * }
+     * // swiftlint:enable discouraged_optional_collection
+     */
 
 }

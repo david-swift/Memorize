@@ -20,6 +20,8 @@ struct ImportView: View {
     var window: GTUIWindow
     var app: GTUIApp
     var close: () -> Void
+    // Needs to modify a set's flashcards
+    var dbms: Database
 
     var view: Body {
         VStack {

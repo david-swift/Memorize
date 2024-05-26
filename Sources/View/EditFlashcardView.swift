@@ -16,6 +16,9 @@ struct EditFlashcardView: View {
     var focusFront: Signal
     var focusNext: () -> Void
     var delete: () -> Void
+    // Unless you fetch the flashcard further up in the view tree
+    // This view needs to be able to set the flashcard's front and back
+    var dbms: Database
 
     var view: Body {
         FormSection(Loc.flashcard(index: index + 1)) {

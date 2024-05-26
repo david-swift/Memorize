@@ -1,13 +1,13 @@
 //
-//  Flashcard.swift
+//  FlashcardJSON.swift
 //  Memorize
 //
 
 import Foundation
 
-struct Flashcard: Identifiable {
+struct FlashcardJSON: Identifiable, Codable {
 
-    let id: Int64
+    let id: String
     var front = ""
     var back = ""
     var gameData = GameData()
@@ -15,11 +15,10 @@ struct Flashcard: Identifiable {
     var tags: [String]?
     // swiftlint:enable discouraged_optional_collection
 
-    init(id: Int64, front: String = "", back: String = "", difficulty: Int64 = 0) {
-        self.id = id
+    init(id: String? = nil, front: String = "", back: String = "") {
+        self.id = id ?? UUID().uuidString
         self.front = front
         self.back = back
-        self.gameData.difficulty = Int(difficulty)
     }
 
     enum Side: String, Codable, CaseIterable, Identifiable {
@@ -34,18 +33,8 @@ struct Flashcard: Identifiable {
     struct GameData: Codable {
 
         var input = ""
-        var lastInput: String?
         var difficulty = 0
 
-    }
-
-    mutating func check() {
-        gameData.lastInput = gameData.input
-    }
-
-    mutating func done() {
-        gameData.input = ""
-        gameData.lastInput = nil
     }
 
 }

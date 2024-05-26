@@ -11,6 +11,8 @@ struct TagFilterForm: View {
     @Binding var selectedTags: [String]
     @State private var editTags = false
     var tags: [String]
+    // Needs to modify a set's game data
+    var dbms: Database
 
     var view: Body {
         Form {

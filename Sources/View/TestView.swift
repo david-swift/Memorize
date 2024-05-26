@@ -11,6 +11,9 @@ struct TestView: View {
     @State private var roundIndex = 0
     @State private var focusedFlashcard: String?
     @State private var focusFlashcard: Signal = .init()
+    // Needs to access almost all of the set data
+    // Modifies the game data of the flashcards and set
+    var dbms: Database
 
     var view: Body {
         ViewStack(element: set) { set in
