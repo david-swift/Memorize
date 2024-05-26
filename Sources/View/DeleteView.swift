@@ -28,7 +28,7 @@ struct DeleteView: View {
                     close()
                     delete()
                 }
-                .style("destructive-action")
+                .destructive()
             }
             .titleWidget {
                 WindowTitle(

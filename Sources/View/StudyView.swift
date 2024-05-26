@@ -53,7 +53,7 @@ struct StudyView: View {
             VStack {
                 if !set.filteredStudyCards.isEmpty {
                     ProgressBar(value: .init(set.completedCardsCount), total: .init(set.studyFlashcards.count))
-                        .style("osd")
+                        .osd()
                 }
             }
             .insensitive()
@@ -79,7 +79,7 @@ struct StudyView: View {
                     set.setDifficulty(initialDifficulty)
                     continueStudying()
                 }
-                .style("suggested-action")
+                .suggested()
                 .verticalCenter()
             }
             .insensitive(set.studyFlashcards.isEmpty)
@@ -166,6 +166,7 @@ struct StudyView: View {
         VStack {
             Form {
                 ActionRow(flashcard.front)
+                    .useMarkup(false)
                 EntryRow(Loc.answer, text: $input)
                     .entryActivated {
                         check()
@@ -186,8 +187,10 @@ struct StudyView: View {
             randomID = id
         }
         Task {
-            input = ""
-            focusDefaults.signal()
+            Idle {
+                input = ""
+                focusDefaults.signal()
+            }
         }
     }
 
@@ -201,6 +204,7 @@ struct StudyView: View {
         let correct = answer == solution
         return Form {
             ActionRow(Loc.solution)
+                .useMarkup(false)
                 .subtitle(solution)
                 .suffix {
                     TagsButton(
@@ -216,8 +220,9 @@ struct StudyView: View {
                     .padding()
                 }
             ActionRow(correct ? Loc.correct : Loc.yourAnswer)
+                .useMarkup(false)
                 .subtitle(answer)
-                .style("property")
+                .property()
                 .style(correct ? "success" : "error")
         }
         .padding(20)

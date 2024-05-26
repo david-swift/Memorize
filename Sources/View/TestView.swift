@@ -67,7 +67,7 @@ struct TestView: View {
                 Button(Loc.createTest) {
                     startTest()
                 }
-                .style("suggested-action")
+                .suggested()
                 .verticalCenter()
             }
             .insensitive(set.testFlashcards.isEmpty)
@@ -119,7 +119,7 @@ struct TestView: View {
             ActionRow(Loc.maxScore)
                 .subtitle(Loc.score(score: set.numberOfQuestions ?? 1))
         }
-        .modifyContent(Adwaita.ActionRow.self) { $0.style("property") }
+        .modifyContent(Adwaita.ActionRow.self) { $0.property() }
         .section(Loc.scoreLabel)
         .description(set.score == nil ? Loc.scoreInstructions : "")
         .padding(20, .horizontal.add(.bottom))

@@ -26,13 +26,15 @@ struct SetOverview: View {
 
     var view: Body {
         ViewStack(element: set) { _ in
-            title
-                .centerMinSize()
-            cards
-                .frame(minHeight: 270)
-                .valign(.center)
-            buttons
-                .centerMinSize()
+            if !createSet {
+                title
+                    .centerMinSize()
+                cards
+                    .frame(minHeight: 270)
+                    .valign(.center)
+                buttons
+                    .centerMinSize()
+            }
         }
         .topToolbar {
             HeaderBar {
@@ -40,7 +42,7 @@ struct SetOverview: View {
                     Button(icon: .default(icon: .userTrash)) {
                         deleteState = true
                     }
-                    .keyboardShortcut("Delete", window: window)
+                    .keyboardShortcut("Delete", window: window, active: !editMode)
                     .tooltip(Loc.deleteSet)
                     Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
                         export = true
@@ -70,7 +72,17 @@ struct SetOverview: View {
                 export = false
             }
         }
-        .dialog(visible: $editMode.onSet { _ in createSet = false }, id: "edit", width: 700, height: 550) {
+        .dialog(
+            visible: $editMode.onSet { _ in
+                if createSet {
+                    delete()
+                }
+                createSet = false
+            },
+            id: "edit",
+            width: 700,
+            height: 550
+        ) {
             EditView(
                 set: $set,
                 editMode: $editMode,
@@ -79,7 +91,8 @@ struct SetOverview: View {
                 importText: $importText,
                 createSet: $createSet,
                 window: window,
-                app: app
+                app: app,
+                deleteSet: delete
             )
         }
         .toast(Loc.copied, signal: copied)
@@ -89,7 +102,7 @@ struct SetOverview: View {
         VStack {
             HStack {
                 Text(set.name)
-                    .style("title-1")
+                    .title1()
                     .padding()
             }
             Text(Loc.flashcards(count: set.flashcards.count))
@@ -111,11 +124,11 @@ struct SetOverview: View {
             Button(Loc.studySwitcher, icon: .default(icon: .mediaPlaybackStart)) {
                 flashcardsView.push(.study(set: set.id))
             }
-            .style("pill")
+            .pill()
             Button(Loc.test, icon: .default(icon: .emblemDocuments)) {
                 flashcardsView.push(.test(set: set.id))
             }
-            .style("pill")
+            .pill()
         }
         .halign(.center)
         .modifyContent(VStack.self) { $0.spacing(20) }

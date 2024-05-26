@@ -23,7 +23,7 @@ struct FlashcardTestSection: View {
                     Form {
                         front
                         back
-                            .style("success")
+                            .success()
                     }
                 } else {
                     Form {
@@ -32,11 +32,11 @@ struct FlashcardTestSection: View {
                                 Button(icon: .default(icon: .emojiObjects)) {
                                     flashcard.gameData.input = flashcard.back
                                 }
-                                .style("flat")
+                                .flat()
                                 .verticalCenter()
                             }
                         back
-                            .style("error")
+                            .error()
                     }
                 }
             } else {
@@ -51,6 +51,7 @@ struct FlashcardTestSection: View {
 
     var front: ActionRow {
         .init(flashcard.front)
+            .useMarkup(false)
     }
 
     var back: View {

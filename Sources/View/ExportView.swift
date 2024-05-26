@@ -55,7 +55,7 @@ struct ExportView: View {
                     close()
                     copied.signal()
                 }
-                .style("suggested-action")
+                .suggested()
             }
         }
     }

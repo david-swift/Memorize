@@ -21,6 +21,7 @@ struct EditView: View {
     var app: GTUIApp
     // Needs to access and modify a whole set
     var dbms: Database
+    var deleteSet: () -> Void
 
     var view: Body {
         ScrollView {
@@ -46,21 +47,29 @@ struct EditView: View {
         }
         .topToolbar {
             HeaderBar(titleButtons: false) {
-                Toggle(icon: .default(icon: .editFind), isOn: .init {
-                    editSearch.visible
-                } set: { newValue in
-                    editSearch.visible = newValue
-                    if newValue {
-                        searchFocused.toggle()
+                if createSet {
+                    Button(Loc.cancel) {
+                        editMode = false
+                        createSet = false
+                        deleteSet()
                     }
-                })
-                .tooltip(Loc.searchTitle)
+                } else {
+                    Toggle(icon: .default(icon: .editFind), isOn: .init {
+                        editSearch.visible
+                    } set: { newValue in
+                        editSearch.visible = newValue
+                        if newValue {
+                            searchFocused.toggle()
+                        }
+                    })
+                    .tooltip(Loc.searchTitle)
+                }
             } end: {
                 Button(createSet ? Loc.create : Loc.done) {
                     editMode = false
                     createSet = false
                 }
-                .style("suggested-action")
+                .suggested()
             }
             .headerBarTitle {
                 WindowTitle(subtitle: "", title: createSet ? Loc.newSet : Loc.editSet)
@@ -112,9 +121,7 @@ struct EditView: View {
             if let flashcard = set.flashcards[safe: index],
             flashcard.front.search(editSearch.effectiveQuery) || flashcard.back.search(editSearch.effectiveQuery) {
                 EditFlashcardView(
-                    flashcard: .init {
-                        set.flashcards[safe: index] ?? .init()
-                    } set: { newValue in
+                    flashcard: .init { set.flashcards[safe: index] ?? .init() } set: { newValue in
                         if !searchFocused {
                             set.flashcards[safe: index] = newValue
                         }
@@ -134,8 +141,10 @@ struct EditView: View {
                     set.flashcards = set.flashcards.filter { $0.id != flashcard.id }
                     Task {
                         try? await Task.sleep(nanoseconds: 100)
-                        focusedFront = set.flashcards[safe: index - 1]?.id
-                        focusedFront = nil
+                        Idle {
+                            focusedFront = set.flashcards[safe: index - 1]?.id
+                            focusedFront = nil
+                        }
                     }
                 }
             }
@@ -164,8 +173,10 @@ struct EditView: View {
         set.flashcards.append(flashcard)
         Task {
             try? await Task.sleep(nanoseconds: 100)
-            focusedFront = flashcard.id
-            focusFront.signal()
+            Idle {
+                focusedFront = flashcard.id
+                focusFront.signal()
+            }
         }
     }
 

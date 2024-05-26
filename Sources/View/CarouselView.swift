@@ -15,7 +15,7 @@ struct CarouselView: View {
     var view: Body {
         Carousel(set.flashcards) { flashcard in
             carouselContent(flashcard: flashcard)
-                .style("card")
+                .card()
                 .padding(20)
                 .frame(minWidth: 200, minHeight: 150)
                 .onClick {
@@ -25,7 +25,7 @@ struct CarouselView: View {
                         answerCards.append(flashcard.id)
                     }
                 }
-                .frame(maxSize: 350)
+                .frame(maxWidth: 350)
                 .overlay {
                     starOverlay(flashcard: flashcard)
                 }
@@ -47,7 +47,7 @@ struct CarouselView: View {
             VStack {
                 text
                     .wrap()
-                    .style("title-3")
+                    .title3()
                     .valign(.center)
                     .halign(.center)
                     .vexpand()

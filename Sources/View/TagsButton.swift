@@ -26,8 +26,8 @@ struct TagsButton: View {
 
     var starButton: View {
         tagToggle(tag: Loc.star)
-            .style("flat")
-            .style("circular")
+            .flat()
+            .circular()
             .tooltip(Loc.star)
     }
 
@@ -38,7 +38,7 @@ struct TagsButton: View {
         ) {
             editTags = true
         }
-        .style("flat")
+        .flat()
         .insensitive(tags.isEmpty)
         .tooltip(Loc.tags)
         .popover(visible: $editTags) {
@@ -48,7 +48,7 @@ struct TagsButton: View {
 
     @ViewBuilder var popover: Body {
         Text(Loc.tags)
-            .style("title-3")
+            .title3()
             .padding(10, .top.add(.horizontal))
         FlowBox(tags, selection: nil) { tag in
             tagToggle(tag: tag)
@@ -77,7 +77,7 @@ struct TagsButton: View {
                 }
             }
         )
-        .style("flat")
+        .flat()
         .modifyContent(ButtonContent.self) { $0.canShrink() }
     }
 
