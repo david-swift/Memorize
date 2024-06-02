@@ -74,7 +74,7 @@ struct ContentView: WindowView {
                         }
                         return true
                     }
-                    .sortScore(search.effectiveQuery),
+                    .search(query: search),
                 selection: .init {
                     selectedSet
                 } set: { newValue in

@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct Flashcard: Identifiable, Codable {
+struct Flashcard: Identifiable, Codable, Searchable {
 
     let id: String
     var front = ""
@@ -14,6 +14,10 @@ struct Flashcard: Identifiable, Codable {
     // swiftlint:disable discouraged_optional_collection
     var tags: [String]?
     // swiftlint:enable discouraged_optional_collection
+
+    var searchString: String {
+        "\(front) \(back)"
+    }
 
     init(id: String? = nil, front: String = "", back: String = "") {
         self.id = id ?? UUID().uuidString

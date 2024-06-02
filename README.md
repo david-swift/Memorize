@@ -79,6 +79,7 @@ Either way, commit the changes via git and open a pull request.
 ## Thanks
 
 ### Dependencies
+- [FuzzyFind](https://github.com/truizlop/FuzzyFind) licensed under the [Apache License, Version 2.0](https://github.com/truizlop/FuzzyFind/blob/main/LICENSE.md)
 - [Adwaita](https://github.com/AparokshaUI/Adwaita) licensed under the [MIT License](https://github.com/AparokshaUI/Adwaita/blob/main/LICENSE.md)
 - [Localized](https://github.com/AparokshaUI/Localized) licensed under the [MIT License](https://github.com/AparokshaUI/Localized/blob/master/LICENSE.md)
 

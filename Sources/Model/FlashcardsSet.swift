@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct FlashcardsSet: SearchScore, Identifiable, Codable {
+struct FlashcardsSet: Identifiable, Codable, Searchable {
 
     let id: String
     var name: String
@@ -90,6 +90,10 @@ struct FlashcardsSet: SearchScore, Identifiable, Codable {
         studyFlashcards.count - filteredStudyCards.count
     }
 
+    var searchString: String {
+        "\(name) \(keywords.nonOptional.joined(separator: " "))"
+    }
+
     init(name: String = Loc.newSet, flashcards: [Flashcard] = [
         .init(front: Loc.question(index: 1), back: Loc.answer),
         .init(front: Loc.question(index: 2), back: Loc.answer)
@@ -120,17 +124,6 @@ struct FlashcardsSet: SearchScore, Identifiable, Codable {
         for index in flashcards.indices {
             flashcards[safe: index]?.gameData.difficulty = difficulty
         }
-    }
-
-    func score(_ query: String?) -> Int {
-        var totalScore = 1
-        if let query, !query.isEmpty {
-            totalScore = name.search(query) ? 5 : 0
-            for keyword in keywords.nonOptional {
-                totalScore += keyword.search(query) ? 1 : 0
-            }
-        }
-        return totalScore
     }
 
     mutating func filterTags() {

@@ -17,21 +17,35 @@ struct EditView: View {
     @State private var focusedFront: String?
     @State private var focusFront: Signal = .init()
     @State private var importFlashcards = false
+    @State private var searchFlashcards: [Flashcard] = []
     var window: GTUIWindow
     var app: GTUIApp
     var deleteSet: () -> Void
 
     var view: Body {
-        ScrollView {
-            VStack {
-                title
-                tags
-                flashcards
-                actions
+        VStack {
+            if editSearch.visible {
+                SearchFlashcardsView(
+                    editSearch: $editSearch,
+                    focusedFront: $focusedFront,
+                    focusFront: $focusFront,
+                    flashcards: searchFlashcards
+                )
+                .transition(.crossfade)
+            } else {
+                ScrollView {
+                    VStack {
+                        title
+                        tags
+                        flashcards
+                        actions
+                    }
+                    .formWidth()
+                }
+                .vexpand()
+                .transition(.crossfade)
             }
-            .formWidth()
         }
-        .vexpand()
         .topToolbar(visible: editSearch.visible) {
             SearchEntry()
                 .placeholderText(Loc.searchFlashcards)
@@ -71,6 +85,29 @@ struct EditView: View {
             }
             .headerBarTitle {
                 WindowTitle(subtitle: "", title: createSet ? Loc.newSet : Loc.editSet)
+            }
+        }
+        .inspect { storage in
+            if editSearch.effectiveQuery.isEmpty {
+                guard editSearch.visible else {
+                    return
+                }
+                if set.flashcards.map { $0.id } != searchFlashcards.map { $0.id } {
+                    Idle {
+                        searchFlashcards = set.flashcards
+                    }
+                }
+            } else if !(storage.fields["idle-update"] as? Bool ?? false) {
+                (storage.fields["current-task"] as? Task<Void, Never>)?.cancel()
+                storage.fields["current-task"] = Task {
+                    let searchFlashcards = set.flashcards.search(query: editSearch)
+                    Idle {
+                        self.searchFlashcards = searchFlashcards
+                        storage.fields["idle-update"] = true
+                    }
+                }
+            } else {
+                storage.fields["idle-update"] = false
             }
         }
     }
@@ -116,8 +153,7 @@ struct EditView: View {
 
     var flashcards: View {
         ForEach(.init(set.flashcards.indices)) { index in
-            if let flashcard = set.flashcards[safe: index],
-            flashcard.front.search(editSearch.effectiveQuery) || flashcard.back.search(editSearch.effectiveQuery) {
+            if let flashcard = set.flashcards[safe: index] {
                 EditFlashcardView(
                     flashcard: .init { set.flashcards[safe: index] ?? .init() } set: { newValue in
                         if !searchFocused {

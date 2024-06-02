@@ -3,6 +3,9 @@
 //  Memorize
 //
 
+import Adwaita
+import FuzzyFind
+
 extension Array where Element == FlashcardsSet {
 
     /// The keywords.
@@ -16,10 +19,13 @@ extension Array where Element == FlashcardsSet {
 
 }
 
-extension Array where Element: SearchScore {
+extension Array where Element: Searchable {
 
-    func sortScore(_ search: String) -> Self {
-        map { ($0, $0.score(search)) }.sorted { $0.1 > $1.1 }.filter { $0.1 != 0 }.map { $0.0 }
+    func search(query: Search) -> Self {
+        map { (value: $0, score: bestMatch(query: query.effectiveQuery, input: $0.searchString)?.score.value ?? 0) }
+            .filter { $0.score > 0 || query.effectiveQuery.isEmpty }
+            .sorted { $0.score > $1.score }
+            .map { $0.value }
     }
 
 }
