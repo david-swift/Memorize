@@ -105,6 +105,7 @@ answerWithBack:
 applyTags:
     de: "Tags anwenden"
     en: "Apply Tags"
+    it: "Applica Tag"
 
 back:
     de: "Rückseite"
@@ -532,10 +533,12 @@ noSelectionDescription:
 studyFlashcards:
     de: "Karteikarten lernen"
     en: "Study Flashcards"
+    it: "Studia Flashcards"
 
 noSetsDescription:
     de: "Erstelle ein Set, um mit dem Lernen zu beginnen"
     en: "Create a set to start practicing"
+    it: "Crea un set per iniziare a esercitarti"
 
 numberOfQuestions:
     de: "Anzahl Fragen"
@@ -702,6 +705,7 @@ solveTest:
 specificTag(tag):
     de: "Tag \\\"(tag)\\\""
     en: "Tag \\\"(tag)\\\""
+    it: "Tag \\\"(tag)\\\""
 
 star:
     de: "Stern"
