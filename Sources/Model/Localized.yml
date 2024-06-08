@@ -102,6 +102,10 @@ answerWithBack:
     nl: "Antwoorden met achterkant"
     pt_BR: "Responder Com Retorno"
 
+applyTags:
+    de: "Tags anwenden"
+    en: "Apply Tags"
+
 back:
     de: "Rückseite"
     en: "Back"
@@ -702,6 +706,10 @@ solveTest:
     it: "Risolvi Test"
     nl: "Toets oplossen"
     pt_BR: "Resolver Teste"
+
+specificTag(tag):
+    de: "Tag \\\"(tag)\\\""
+    en: "Tag \\\"(tag)\\\""
 
 star:
     de: "Stern"

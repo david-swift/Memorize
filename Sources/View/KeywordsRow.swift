@@ -13,6 +13,8 @@ struct KeywordsRow: View {
     var title = Loc.keywords
     var subtitle = Loc.keywordsDescription
     var element = Loc.keyword
+    var stack: Binding<NavigationStack<EditNavigationDestination>>?
+    var flashcards: [Flashcard] = []
 
     var view: Body {
         ExpanderRow()
@@ -39,7 +41,8 @@ struct KeywordsRow: View {
                         keywords[safe: index] = newValue
                     })
                     .suffix {
-                        VStack {
+                        HStack {
+                            applyButton(keyword: keyword)
                             Button(icon: .default(icon: .userTrash)) {
                                 keywords = keywords.filter { $0 != keyword }
                             }
@@ -47,6 +50,7 @@ struct KeywordsRow: View {
                             .tooltip(Loc.remove(element: element))
                         }
                         .valign(.center)
+                        .vexpand()
                     }
                     .entryActivated {
                         keywords.append("")
@@ -59,6 +63,17 @@ struct KeywordsRow: View {
             }
             .enableExpansion(.constant(!keywords.isEmpty))
             .expanded($expanded)
+    }
+
+    @ViewBuilder
+    func applyButton(keyword: String) -> View {
+        if let stack {
+            Button(icon: .default(icon: .viewListBullet)) {
+                stack.wrappedValue.push(.tag(tag: keyword))
+            }
+            .flat()
+            .tooltip(Loc.applyTags)
+        }
     }
 
 }

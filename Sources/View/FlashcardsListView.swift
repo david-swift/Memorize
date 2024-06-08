@@ -1,16 +1,15 @@
 //
-//  SearchFlashcardsView.swift
+//  FlashcardsListView.swift
 //  Memorize
 //
 
 import Adwaita
 
-struct SearchFlashcardsView: View {
+struct FlashcardsListView: View {
 
-    @Binding var editSearch: Search
-    @Binding var focusedFront: String?
-    @Binding var focusFront: Signal
     var flashcards: [Flashcard]
+    var activated: (Flashcard) -> Void
+    var prefix: (Flashcard) -> View = { _ in [] }
 
     var view: Body {
         ScrollView {
@@ -22,10 +21,11 @@ struct SearchFlashcardsView: View {
                     .activatableWidget {
                         Button()
                             .activate {
-                                editSearch.visible = false
-                                focusedFront = flashcard.id
-                                focusFront.signal()
+                                activated(flashcard)
                             }
+                    }
+                    .prefix {
+                        prefix(flashcard)
                     }
             }
             .boxedList()
