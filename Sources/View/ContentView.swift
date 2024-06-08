@@ -150,8 +150,8 @@ struct ContentView: WindowView {
                     }
                 } else {
                     StatusPage(
-                        Loc.noSets,
-                        icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
+                        Loc.studyFlashcards,
+                        icon: .custom(name: "io.github.david_swift.Flashcards"),
                         description: Loc.noSetsDescription
                     ) {
                         Button(Loc.createSet) {
@@ -162,10 +162,12 @@ struct ContentView: WindowView {
                         .horizontalCenter()
                     }
                     .centerMinSize()
+                    .iconDropshadow()
                 }
             }
             .topToolbar {
                 HeaderBar.empty()
+                    .titleWidget { }
             }
         }
     }

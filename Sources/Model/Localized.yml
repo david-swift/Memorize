@@ -529,21 +529,13 @@ noSelectionDescription:
     nl: "Kies een set uit de zijbalk"
     pt_BR: "Selecione um set na barra lateral"
 
-noSets:
-    de: "Keine Sets verfügbar"
-    en: "No Sets"
-    fr: "Aucun jeu disponible"
-    it: "Nessun Set"
-    nl: "Er zijn geen sets"
-    pt_BR: "Nenhum Set"
+studyFlashcards:
+    de: "Karteikarten lernen"
+    en: "Study Flashcards"
 
 noSetsDescription:
-    de: "Erstelle mit dem <b>+</b>-Knopf in der Seitenleiste ein neues Set"
-    en: "Create a new set using the <b>+</b> button in the sidebar"
-    fr: "Créez un nouveau jeu en utilisant le bouton <b>+</b> dans la barre latérale"
-    it: "Crea un nuovo set utilizzando il pulsante <b>+</b> nella barra laterale"
-    nl: "Stel een nieuwe set samen door op de <b>+</b>-knop in de zijbalk te klikken"
-    pt_BR: "Crie um novo set utilizando o botão <b>+</b> na barra lateral"
+    de: "Erstelle ein Set, um mit dem Lernen zu beginnen"
+    en: "Create a set to start practicing"
 
 numberOfQuestions:
     de: "Anzahl Fragen"
