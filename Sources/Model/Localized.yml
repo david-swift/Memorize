@@ -119,6 +119,7 @@ applyTags:
     de: "Tags anwenden"
     en: "Apply Tags"
     es: "Aplicar etiquetas"
+    it: "Applica Tag"
 
 back:
     de: "Rückseite"
@@ -601,11 +602,13 @@ studyFlashcards:
     de: "Karteikarten lernen"
     en: "Study Flashcards"
     es: "Estudiar tarjetas"
+    it: "Studia Flashcards"
 
 noSetsDescription:
     de: "Erstelle ein Set, um mit dem Lernen zu beginnen"
     en: "Create a set to start practicing"
     es: "Crear un set para empezar a practicar"
+    it: "Crea un set per iniziare a esercitarti"
 
 numberOfQuestions:
     de: "Anzahl Fragen"
@@ -794,6 +797,7 @@ specificTag(tag):
     de: "Tag \\\"(tag)\\\""
     en: "Tag \\\"(tag)\\\""
     es: "Etiqueta \\\"(tag)\\\""
+    it: "Tag \\\"(tag)\\\""
 
 star:
     de: "Stern"
