@@ -7,3 +7,4 @@
 - [Jakub Steiner](https://jimmac.eu/)
 - [René Coty](https://github.com/rene-coty)
 - [Kevin Pernía](https://github.com/Kaplyak)
+- [Fjuro](https://github.com/Fjuro)
