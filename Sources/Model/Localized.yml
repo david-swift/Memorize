@@ -8,6 +8,8 @@ _continue:
     nl: "Doorgaan"
     pt_BR: "Continuar"
     es: "Continuar"
+    sk: "Pokračovať"
+    cs: "Pokračovat"
 
 _import:
     de: "Importieren"
@@ -17,6 +19,8 @@ _import:
     nl: "Importeren"
     pt_BR: "Importar"
     es: "Importar"
+    sk: "Importovať"
+    cs: "Importovat"
 
 about:
     de: "Info zu Memorize"
@@ -26,6 +30,8 @@ about:
     nl: "Over Memorize"
     pt_BR: "Sobre Memorize"
     es: "Sobre Memorize"
+    sk: "O Memorize"
+    cs: "O Memorize"
 
 activeStudySession:
     de: "Aktive Lerneinheit"
@@ -34,6 +40,8 @@ activeStudySession:
     it: "Sessione di studio attiva"
     nl: "Actieve studiesessie"
     es: "Sesión de estudio activa"
+    sk: "Prebiehajúca lekcia"
+    cs: "Probíhající lekce"
 
 activeStudySessionDescription:
     de: "Du befindest dich in einer Lerneinheit"
@@ -42,6 +50,8 @@ activeStudySessionDescription:
     it: "Attualmente sei in una sessione di studio"
     nl: "Je bent aan het studeren"
     es: "Actualmente estás en una sesión de estudio"
+    sk: "Práve si v študijnej lekcii"
+    cs: "Právě jsi v probíhající lekci"
 
 add(element):
     de: "(element) hinzufügen"
@@ -51,6 +61,8 @@ add(element):
     nl: "(item) toevoegen"
     pt_BR: "Adicionar (element)"
     es: "Añadir (element)"
+    sk: "Pridať (položku)"
+    cs: "Přidat (položku)"
 
 addFlashcard:
     de: "Karteikarte hinzufügen"
@@ -60,6 +72,8 @@ addFlashcard:
     nl: "Geheugenkaart toevoegen"
     pt_BR: "Adicionar Flashcard"
     es: "Añadir tarjeta"
+    sk: "Pridať (kartičku)"
+    cs: "Přidat (kartičku)"
 
 addSet:
     de: "Set hinzufügen"
@@ -69,6 +83,8 @@ addSet:
     nl: "Set toevoegen"
     pt_BR: "Adicionar Set"
     es: "Añadir set"
+    sk: "Pridať (sadu)"
+    cs: "Přidat (sadu)"
 
 allFlashcards:
     de: "Alle Karteikarten"
@@ -78,6 +94,8 @@ allFlashcards:
     nl: "Alle geheugenkaarten"
     pt_BR: "Todos Os Flashcards"
     es: "Todas las tarjetas"
+    sk: "Všetky kartičky"
+    cs: "Všechny kartičky"
 
 anki:
     de: "Anki"
@@ -87,6 +105,8 @@ anki:
     nl: "Anki"
     pt_BR: "Anki"
     es: "Anki"
+    sk: "Anki"
+    cs: "Anki"
 
 ankiDescription:
     de: "Exportiere Decks unter <tt><b> File > Export</b></tt>. Wähle das Format <tt><b> Cards in Plain Text </b></tt>. Deaktiviere <tt><b>Include HTML and media references</b></tt>."
@@ -96,6 +116,8 @@ ankiDescription:
     nl: "Exporteer verzamelingen via Bestand → Exporteren. Kies als exportformaat plattetekstopmaak en kruis ‘Html en media bijvoegen’ af."
     pt_BR: "Exporte decks em <<tt><b> Arquivo > Exportar</b></tt>. Selecionar o formato de exportação <tt><b> Cards in Plain Text. Desselecione <tt><b>Include HTML and media references</b></tt>."
     es: "Exporta mazos en <tt><b> Archivo > Exportar</b></tt>. Selecciona el formato de exportación <tt><b> Tarjetas en texto plano </b></tt>. Desactiva <tt><b>Incluir referencias HTML y multimedia</b></tt>."
+    sk: "Exportuj balíčky v ponuke <tt><b> Súbor > Exportovať</b></tt>. Vyber formát exportu <tt><b> Kartičky v obyčajnom texte</b></tt>. Zruš začiarknutie pri <tt><b> Zahrnúť HTML a odkazy na médiá</b></tt>."
+    cs: "Exportuj balíčky v nabídce <tt><b> Soubor > Exportovat</b></tt>. Vyber formát exportu <tt><b> Kartičky v prostém textu</b></tt>. Zruš zaškrtnutí u <tt><b> Zahrnout HTML a odkazy na média</b></tt>."
 
 answer:
     de: "Antwort"
@@ -105,6 +127,8 @@ answer:
     nl: "Antwoord"
     pt_BR: "Resposta"
     es: "Respuesta"
+    sk: "Odpoveď"
+    cs: "Odpověď"
 
 answerWithBack:
     de: "Antworte mit der Rückseite"
@@ -114,12 +138,16 @@ answerWithBack:
     nl: "Antwoorden met achterkant"
     pt_BR: "Responder Com Retorno"
     es: "Responder con reverso"
+    sk: "Použiť zadnú stranu pre odpoveď"
+    cs: "Použít zadní stranu pro odpověď"
 
 applyTags:
     de: "Tags anwenden"
     en: "Apply Tags"
     es: "Aplicar etiquetas"
     it: "Applica Tag"
+    sk: "Použiť štítky"
+    cs: "Použít štítky"
 
 back:
     de: "Rückseite"
@@ -129,6 +157,8 @@ back:
     nl: "Achterkant"
     pt_BR: "Verso"
     es: "Reverso"
+    sk: "Zadná strana"
+    cs: "Zadní strana"
 
 betweenRows:
     de: "Zwischen Reihen"
@@ -138,6 +168,8 @@ betweenRows:
     nl: "Tussen rijen"
     pt_BR: "Entre Linhas"
     es: "Entre líneas"
+    sk: "Medzi riadkami"
+    cs: "Mezi řádky"
 
 betweenTermDefinition:
     de: "Zwischen Term und Definition"
@@ -147,6 +179,8 @@ betweenTermDefinition:
     nl: "Tussen term en definitie"
     pt_BR: "Entre Termo e Definição"
     es: "Entre término y definición"
+    sk: "Medzi pojmom a definíciou"
+    cs: "Mezi pojmem a definicí"
 
 cancel:
     de: "Abbrechen"
@@ -156,6 +190,8 @@ cancel:
     nl: "Annuleren"
     pt_BR: "Cancelar"
     es: "Cancelar"
+    sk: "Zrušiť"
+    cs: "Zrušit"
 
 check:
     de: "Überprüfen"
@@ -165,6 +201,8 @@ check:
     nl: "Controleren"
     pt_BR: "Conferir"
     es: "Comprobar"
+    sk: "Skontrolovať"
+    cs: "Zkontrolovat"
 
 closeWindow:
     de: "Fenster schließen"
@@ -174,6 +212,8 @@ closeWindow:
     nl: "Venster sluiten"
     pt_BR: "Fechar Janela"
     es: "Cerrar ventana"
+    sk: "Zavrieť okno"
+    cs: "Zavřít okno"
 
 comma:
     de: "Komma"
@@ -183,6 +223,8 @@ comma:
     nl: "Komma"
     pt_BR: "Vírgula"
     es: "Coma"
+    sk: "Čiarka"
+    cs: "Čárka"
 
 continueStudying:
     de: "Lernen fortsetzen"
@@ -192,6 +234,8 @@ continueStudying:
     nl: "Doorgaan met studeren"
     pt_BR: "Continuar Estudando"
     es: "Continuar estudiando"
+    sk: "Pokračovať v štúdiu"
+    cs: "Pokračovat ve studiu"
 
 copied:
     de: "Inhalte wurden kopiert"
@@ -200,6 +244,8 @@ copied:
     it: "Contenuto copiato negli appunti"
     nl: "De inhoud is gekopieerd naar het klembord"
     es: "Contenido copiado al portapapeles"
+    sk: "Obsah bol skopírovaný do schránky"
+    cs: "Obsah byl zkopírován do schránky"
 
 copy:
     de: "Kopieren"
@@ -209,6 +255,8 @@ copy:
     nl: "Kopiëren"
     pt_BR: "Copiar"
     es: "Copiar"
+    sk: "Kopírovať"
+    cs: "Kopírovat"
 
 correct:
     de: "Korrekt!"
@@ -218,6 +266,8 @@ correct:
     nl: "Goed!"
     pt_BR: "Correto!"
     es: "¡Correcto!"
+    sk: "Správne!"
+    cs: "Správně!"
 
 create:
     de: "Erstellen"
@@ -226,6 +276,8 @@ create:
     it: "Crea"
     nl: "Maken"
     es: "Crear"
+    sk: "Vytvoriť"
+    cs: "Vytvořit"
 
 createSet:
     de: "Set erstellen"
@@ -235,6 +287,8 @@ createSet:
     nl: "Set samenstellen"
     pt_BR: "Criar Set"
     es: "Crear set"
+    sk: "Vytvoriť sadu"
+    cs: "Vytvořit sadu"
 
 createTest:
     de: "Prüfung erstellen"
@@ -244,6 +298,8 @@ createTest:
     nl: "Toets maken"
     pt_BR: "Criar Teste"
     es: "Crear test"
+    sk: "Vytvoriť test"
+    cs: "Vytvořit test"
 
 csv:
     de: "CSV"
@@ -252,6 +308,8 @@ csv:
     it: "CSV"
     nl: "Csv"
     es: "CSV"
+    sk: "CSV"
+    cs: "CSV"
 
 csvDescription:
     de: "Öffne die Datei mit der Schaltfläche neben dem Textfeld. Karteikarten werden mit Zeilenumbrüchen, die Vorder- und Rückseite mit Kommas getrennt."
@@ -260,6 +318,8 @@ csvDescription:
     it: "Apri il file utilizzando il pulsante accanto al campo di testo. Le flashcard sono separate da ritorni a capo, il fronte e il retro da virgole."
     nl: "Open het bestand met behulp van de knop naast het tekstveld. Geheugenkaarten worden gescheiden door middel van nieuwe regels; de voor- en achterkanten door komma's."
     es: "Abre el archivo usando el botón al lado del campo de texto. Las tarjetas se separan con una línea en blanco, el anverso y el reverso con comas."
+    sk: "Otvor súbor pomocou tlačidla vedľa textového poľa. Kartičky sú oddelené novými riadkami, predná a zadná strana čiarkami."
+    cs: "Otevři soubor pomocí tlačítka vedle textového pole. Kartičky jsou odděleny novými řádky, přední a zadní strana čárkami."
 
 delete:
     de: "Löschen"
@@ -269,6 +329,8 @@ delete:
     nl: "Verwijderen"
     pt_BR: "Apagar"
     es: "Eliminar"
+    sk: "Odstrániť"
+    cs: "Smazat"
 
 deleteDescription:
     de: "Die Karteikarten werden nicht wiederherstellbar sein."
@@ -278,6 +340,8 @@ deleteDescription:
     nl: "Deze actie is onomkeerbaar - alle kaarten worden verwijderd."
     pt_BR: "Não existe desfazer. Os flashcards serão perdidos"
     es: "No es posible anular. Las tarjetas se perderán."
+    sk: "Nejde vrátiť naspäť. Kartičky budú stratené."
+    cs: "Nelze vrátit zpět. Kartičky budou ztraceny."
 
 deleteFlashcard:
     de: "Karteikarte löschen"
@@ -287,6 +351,8 @@ deleteFlashcard:
     nl: "Geheugenkaart verwijderen"
     pt_BR: "Apagar Flashcard"
     es: "Eliminar tarjeta"
+    sk: "Odstrániť kartičku"
+    cs: "Smazat kartičku"
 
 deleteSet:
     de: "Set löschen"
@@ -296,6 +362,8 @@ deleteSet:
     nl: "Set verwijderen"
     pt_BR: "Apagar Set"
     es: "Eliminar set"
+    sk: "Odstrániť sadu"
+    cs: "Smazat sadu"
 
 deleteTitle(title):
     de: "\\\"(title)\\\" löschen?"
@@ -305,6 +373,8 @@ deleteTitle(title):
     nl: "Wil je “(title)” verwijderen?"
     pt_BR: "Apagar \\\"(title)\\\"?"
     es: "Eliminar \\\"(title)\\\"?"
+    sk: "Odstrániť \\\"(title)\\\"?"
+    cs: "Smazat \\\"(title)\\\"?"
 
 done:
     de: "Fertig"
@@ -314,6 +384,8 @@ done:
     nl: "Klaar"
     pt_BR: "Feito"
     es: "Hecho"
+    sk: "Hotovo"
+    cs: "Hotovo"
 
 editSet:
     de: "Set bearbeiten"
@@ -323,6 +395,8 @@ editSet:
     nl: "Set bewerken"
     pt_BR: "Editar Set"
     es: "Editar set"
+    sk: "Upraviť sadu"
+    cs: "Upravit sadu"
 
 export(title):
     de: "Exportiere das Set \\\"(title)\\\""
@@ -332,6 +406,8 @@ export(title):
     nl: "“(title)” exporteren"
     pt_BR: "Exportar Set \\\"(title)\\\""
     es: "Exportar set \\\"(title)\\\""
+    sk: "Exportovať sadu \\\"(title)\\\""
+    cs: "Exportovat sadu \\\"(title)\\\""
 
 exportAnkiDeck:
     de: "Anki Deck exportieren"
@@ -341,6 +417,8 @@ exportAnkiDeck:
     nl: "Anki-set exporteren"
     pt_BR: "Exporte um Deck do Anki"
     es: "Exportar mazo de Anki"
+    sk: "Exportovať balíček Anki"
+    cs: "Exportovat balíček Anki"
 
 exportQuizletSet:
     de: "Quizlet-Set exportieren"
@@ -350,6 +428,8 @@ exportQuizletSet:
     nl: "Quizlet-set exporteren"
     pt_BR: "Exportar Set do Quizlet"
     es: "Exportar set de Quizlet"
+    sk: "Exportovať sadu Quizlet"
+    cs: "Exportovat sadu Quizlet"
 
 exportSet:
     de: "Set exportieren"
@@ -359,6 +439,8 @@ exportSet:
     nl: "Set exporteren"
     pt_BR: "Exportar Set"
     es: "Exportar set"
+    sk: "Exportovať sadu"
+    cs: "Exportovat sadu"
 
 finishTest:
     de: "Test beenden"
@@ -368,6 +450,8 @@ finishTest:
     nl: "Test afronden"
     pt_BR: "Terminar Teste"
     es: "Terminar test"
+    sk: "Dokončiť test"
+    cs: "Dokončit test"
 
 flashcard(index):
     de: "Karteikarte (index)"
@@ -377,6 +461,9 @@ flashcard(index):
     nl: "Geheugenkaart (index)"
     pt_BR: "Flashcard (index)"
     es: "Tarjeta (index)"
+    sk: "Kartička (index)"
+    cs: "Kartička (index)"
+    
 
 flashcards(count):
     de: "(count) Karteikarten"
@@ -391,6 +478,10 @@ flashcards(count):
     nl(count == "1"): "1 geheugenkaart"
     es: "(count) tarjetas"
     es(count == "1"): "1 tarjeta"
+    sk: "(count) kartičky"
+    sk(count == "1"): "1 kartička"
+    cs: "(count) kartičky"
+    cs(count == "1"): "1 kartička"
 
 flashcardsWithTags:
     de: "Karteikarten mit Tags"
@@ -400,6 +491,8 @@ flashcardsWithTags:
     nl: "Geheugenkaarten met labels"
     pt_BR: "Flashcards Com Tags"
     es: "Tarjetas con etiquetas"
+    sk: "Kartičky so štítkami"
+    cs: "Kartičky se štítky"
 
 front:
     de: "Vorderseite"
@@ -409,6 +502,8 @@ front:
     nl: "Voorkant"
     pt_BR: "Frente"
     es: "Anverso"
+    sk: "Predná strana"
+    cs: "Přední strana"
 
 fullScore:
     de: "Volle Punktzahl!"
@@ -418,6 +513,8 @@ fullScore:
     nl: "Hoogste score!"
     pt_BR: "Pontuação Total!"
     es: "¡Puntuación perfecta!"
+    sk: "Plný počet!"
+    cs: "Plný počet!"
 
 generateExam:
     de: "Erstelle eine Vorbereitungsprüfung"
@@ -427,6 +524,8 @@ generateExam:
     nl: "Proefexamen maken"
     pt_BR: "Gerar um Exame de Preparação"
     es: "Generar examen de preparación"
+    sk: "Vygenerovať prípravný test"
+    cs: "Vygenerovat přípravný test"
 
 generateExamDescription(title):
     de: "Finde letzte Fehler vor deiner Prüfung zu \\\"(title)\\\""
@@ -436,6 +535,8 @@ generateExamDescription(title):
     nl: "Spoor de laatste fouten op voorafgaand aan je examen (title)"
     pt_BR: "Identifique os últimos erros antes de sua prova de \\\"(title)\\\""
     es: "Identificar últimos errores antes de tu examen sobre \\\"(title)\\\""
+    sk: "Odhal posledné chyby pred testom z \\\"(title)\\\""
+    cs: "Odhal poslední chyby před testem z \\\"(title)\\\""
 
 importCSV:
     de: "CSV importieren"
@@ -444,6 +545,8 @@ importCSV:
     it: "Importa CSV"
     nl: "Csv-bestand importeren"
     es: "Importar CSV"
+    sk: "Importovať CSV"
+    cs: "Importovat CSV"
 
 importFlashcards:
     de: "Karteikarten importieren"
@@ -453,6 +556,8 @@ importFlashcards:
     nl: "Geheugenkaarten importeren"
     pt_BR: "Importar Flashcards"
     es: "Importar tarjetas"
+    sk: "Importovať kartičky"
+    cs: "Importovat kartičky"
 
 initialDifficulty:
     de: "Anfangsschwierigkeit"
@@ -462,6 +567,8 @@ initialDifficulty:
     nl: "Moeilijkheidsgraad aan begin"
     pt_BR: "Dificuldade Inicial"
     es: "Dificultad inicial"
+    sk: "Počiatočná úroveň obtiažnosti"
+    cs: "Počáteční úroveň obtížnosti"
 
 initialDifficultyDescription:
     de: "Lege die minimale Anzahl Wiederholungen pro Karteikarte fest"
@@ -471,6 +578,8 @@ initialDifficultyDescription:
     nl: "Stel het minimaal aantal herhalingen per geheugenkaart in"
     pt_BR: "Defina o número minimo de repetições por flashcard"
     es: "Establecer el número mínimo de repeticiones por tarjeta"
+    sk: "Nastaviť minimálny počet opakovaní na kartičku"
+    cs: "Nastavit minimální počet opakování na kartičku"
 
 keyword:
     de: "Schlüsselwort"
@@ -480,6 +589,8 @@ keyword:
     nl: "Trefwoord"
     pt_BR: "Palavra Chave"
     es: "Palabra clave"
+    sk: "Kľúčové slovo"
+    cs: "Klíčové slovo"
 
 keywords:
     de: "Schlüsselwörter"
@@ -489,6 +600,8 @@ keywords:
     nl: "Trefwoorden"
     pt_BR: "Palavras Chave"
     es: "Palabras clave"
+    sk: "Kľúčové slová"
+    cs: "Klíčová slova"
 
 keywordsDescription:
     de: "Schlüsselwörter vereinfachen die Suche nach Sets"
@@ -498,6 +611,8 @@ keywordsDescription:
     nl: "Trefwoorden maken het makkelijker om te zoeken"
     pt_BR: "Palavras chave simplificam a procurar por sets"
     es: "Las palabras clave simplifican la búsqueda de sets"
+    sk: "Kľúčové slová zjednodušujú vyhľadávanie sád"
+    cs: "Klíčová slova zjednodušují vyhledávání sad"
 
 mainMenu:
     de: "Hauptmenü"
@@ -507,6 +622,8 @@ mainMenu:
     nl: "Hoofdmenu"
     pt_BR: "Menu Principal"
     es: "Menú principal"
+    sk: "Hlavné menu"
+    cs: "Hlavní menu"
 
 makeCorrect:
     de: "Als richtig markieren"
@@ -516,6 +633,8 @@ makeCorrect:
     nl: "Markeren als goed"
     pt_BR: "Deixar Correto"
     es: "Marcar como correcto"
+    sk: "Označiť ako správne"
+    cs: "Označit jako správné"
 
 makeIncorrect:
     de: "Als falsch markieren"
@@ -525,6 +644,8 @@ makeIncorrect:
     nl: "Markeren als fout"
     pt_BR: "Deixar Incorreto"
     es: "Marcar como incorrecto"
+    sk: "Označiť ako nesprávne"
+    cs: "Označit jako nesprávné"
 
 maxScore:
     de: "Maximale Punktzahl"
@@ -534,6 +655,8 @@ maxScore:
     nl: "Maximale score"
     pt_BR: "Pontuação Máxima"
     es: "Máxima puntuación"
+    sk: "Maximálny počet bodov"
+    cs: "Maximální počet bodů"
 
 newLine:
     de: "Neue Zeile"
@@ -543,6 +666,8 @@ newLine:
     nl: "Nieuwe regel"
     pt_BR: "Nova Linha"
     es: "Nueva línea"
+    sk: "Nový riadok"
+    cs: "Nový řádek"
 
 newSet:
     de: "Neues Set"
@@ -552,6 +677,8 @@ newSet:
     nl: "Nieuwe set"
     pt_BR: "Novo Set"
     es: "Nuevo set"
+    sk: "Nová sada"
+    cs: "Nová sada"
 
 newWindow:
     de: "Neues Fenster"
@@ -561,6 +688,8 @@ newWindow:
     nl: "Nieuw venster"
     pt_BR: "Nova Janela"
     es: "Nueva ventana"
+    sk: "Nové okno"
+    cs: "Nové okno"
 
 noFlashcards:
     de: "Keine Karteikarten verfügbar"
@@ -570,6 +699,8 @@ noFlashcards:
     nl: "Er zijn geen geheugenkaarten"
     pt_BR: "Nenhum flashcard disponível"
     es: "No hay tarjetas disponibles"
+    sk: "Žiadne kartičky nie sú k dispozícii"
+    cs: "Žádné kartičky nejsou k dispozici"
 
 noScoreData:
     de: "-"
@@ -579,6 +710,8 @@ noScoreData:
     nl: "-"
     pt_BR: "-"
     es: "-"
+    sk: "-"
+    cs: "-"
 
 noSelection:
     de: "Keine Auswahl"
@@ -588,6 +721,8 @@ noSelection:
     nl: "Er is geen keuze gemaakt"
     pt_BR: "Sem Seleção"
     es: "Sin selección"
+    sk: "Bez výberu"
+    cs: "Bez výběru"
 
 noSelectionDescription:
     de: "Wähle ein Set in der Seitenleiste aus"
@@ -597,18 +732,24 @@ noSelectionDescription:
     nl: "Kies een set uit de zijbalk"
     pt_BR: "Selecione um set na barra lateral"
     es: "Selecciona un set en la barra lateral"
+    sk: "Vybrať sadu v bočnom paneli"
+    cs: "Vybrat sadu v postranním panelu"
 
 studyFlashcards:
     de: "Karteikarten lernen"
     en: "Study Flashcards"
     es: "Estudiar tarjetas"
     it: "Studia Flashcards"
+    sk: "Študovať kartičky"
+    cs: "Studovat kartičky"
 
 noSetsDescription:
     de: "Erstelle ein Set, um mit dem Lernen zu beginnen"
     en: "Create a set to start practicing"
     es: "Crear un set para empezar a practicar"
     it: "Crea un set per iniziare a esercitarti"
+    sk: "Vytvoriť sadu a začať precvičovať"
+    cs: "Vytvořit sadu a začít cvičit"
 
 numberOfQuestions:
     de: "Anzahl Fragen"
@@ -618,6 +759,8 @@ numberOfQuestions:
     nl: "Aantal vragen"
     pt_BR: "Número de Questões"
     es: "Número de preguntas"
+    sk: "Počet otázok"
+    cs: "Počet otázek"
 
 overview:
     de: "Übersicht"
@@ -627,6 +770,8 @@ overview:
     nl: "Overzicht"
     pt_BR: "Visão Geral"
     es: "Visión general"
+    sk: "Prehľad"
+    cs: "Přehled"
 
 pasteText:
     de: "Text einfügen"
@@ -636,6 +781,8 @@ pasteText:
     nl: "Tekst plakken"
     pt_BR: "Colar Texto"
     es: "Pegar texto"
+    sk: "Vložiť text"
+    cs: "Vložit text"
 
 question(index):
     de: "Frage (index)"
@@ -645,6 +792,8 @@ question(index):
     nl: "Vraag (index)"
     pt_BR: "Questão (index)"
     es: "Pregunta (index)"
+    sk: "Otázka (index)"
+    cs: "Otázka (index)"
 
 quizlet:
     de: "Quizlet"
@@ -654,6 +803,8 @@ quizlet:
     nl: "Quizlet"
     pt_BR: "Quizlet"
     es: "Quizlet"
+    sk: "Quizlet"
+    cs: "Quizlet"
 
 quizletDescription:
     de: "Exportiere ein Quizlet-Set unter <tt><b> ⋯ > Export</b></tt>. Kopiere den Text mit der Standardkonfiguration."
@@ -663,6 +814,8 @@ quizletDescription:
     nl: "Exporteer een Quizlet-set via <tt><b> ⋯ → Exporteren</b></tt>. Met de standaardvoorkeuren worden de teksten gekopieerd."
     pt_BR: "Exportar um set do Quizlet em <tt><b> ... > Exportar</b></tt>. Usando a configuração padrão, copie o texto."
     es: "Exportar un set de Quizlet en <tt><b> ... > Exportar</b></tt>. Utilizando la configuración predefinida, copia el texto."
+    sk: "Exportovať sadu z Quizletu cez <tt><b> ⋯ > Export</b></tt>. Pri použití predvolenej konfigurácie text skopírujte."
+    cs: "Exportovat sadu z Quizletu přes <tt><b> ⋯ > Export</b></tt>. Při použití výchozí konfigurace text zkopírujte."
 
 remove(element):
     de: "(element) entfernen"
@@ -672,6 +825,8 @@ remove(element):
     nl: "(element) verwijderen"
     pt_BR: "Remover (element)"
     es: "Quitar (element)"
+    sk: "Odstrániť (element)"
+    cs: "Odstranit (element)"
 
 score(score):
     de: "(score) Punkte"
@@ -688,6 +843,10 @@ score(score):
     pt_BR(score == "1"): "(score) Ponto"
     es: "(score) puntos"
     es(score == "1"): "(score) punto"
+    sk: "(score) body"
+    sk(score == "1"): "(score) bod"
+    cs: "(score) body"
+    cs(score == "1"): "(score) bod"
 
 scoreInstructions:
     de: "Überprüfe deine Antworten weiter unten"
@@ -697,6 +856,8 @@ scoreInstructions:
     nl: "Scrol omlaag om je antwoorden te bekijken"
     pt_BR: "Arraste para baixo para ver suas respostas"
     es: "Desplaza hacia abajo para comprobar tus respuestas"
+    sk: "Prejdi dole a skontroluj svoje odpovede."
+    cs: "Přejdi dolů a zkontrolujte své odpovědi."
 
 scoreLabel:
     de: "Punktzahl"
@@ -706,6 +867,8 @@ scoreLabel:
     nl: "Score"
     pt_BR: "Pontuação"
     es: "Puntuación"
+    sk: "Skóre"
+    cs: "Skóre"
 
 scoreRowLabel:
     de: "Deine Punktzahl"
@@ -715,6 +878,8 @@ scoreRowLabel:
     nl: "Mijn score"
     pt_BR: "Sua Pontuação"
     es: "Tu puntuación"
+    sk: "Tvoje skóre"
+    cs: "Tvé skóre"
 
 search:
     de: "Suchen ..."
@@ -723,6 +888,8 @@ search:
     it: "Cerca..."
     nl: "Zoeken…"
     es: "Buscar..."
+    sk: "Hľadať..."
+    cs: "Hledat..."
 
 searchFlashcards:
     de: "Karteikarten suchen"
@@ -731,6 +898,8 @@ searchFlashcards:
     it: "Cerca Flashcard"
     nl: "Geheugenkaarten doorzoeken"
     es: "Buscar tarjetas"
+    sk: "Hľadať kartičky"
+    cs: "Hledat kartičky"
 
 searchSets:
     de: "Sets suchen"
@@ -739,6 +908,8 @@ searchSets:
     it: "Cerca set"
     nl: "Sets doorzoeken"
     es: "Buscar sets"
+    sk: "Hľadať sady"
+    cs: "Hledat sady"
 
 searchTitle:
     de: "Suche"
@@ -747,6 +918,8 @@ searchTitle:
     it: "Cerca"
     nl: "Zoeken"
     es: "Búsqueda"
+    sk: "Hľadanie"
+    cs: "Hledání"
 
 semicolon:
     de: "Semikolon"
@@ -756,6 +929,8 @@ semicolon:
     nl: "Puntkomma"
     pt_BR: "Ponto e vírgula"
     es: "Punto y coma"
+    sk: "Bodkočiarka"
+    cs: "Středník"
 
 sets:
     de: "Sets"
@@ -765,6 +940,8 @@ sets:
     nl: "Sets"
     pt_BR: "Sets"
     es: "Sets"
+    sk: "Sady"
+    cs: "Sady"
 
 showTutorial:
     de: "Tutorial zeigen"
@@ -774,6 +951,8 @@ showTutorial:
     nl: "Rondleiding tonen"
     pt_BR: "Mostrar Tutorial"
     es: "Mostrar tutorial"
+    sk: "Zobraziť návod"
+    cs: "Zobrazit návod"
 
 solution:
     de: "Lösung"
@@ -783,6 +962,8 @@ solution:
     nl: "Oplossing"
     pt_BR: "Solução"
     es: "Solución"
+    sk: "Riešenie"
+    cs: "Řešení"
 
 solveTest:
     de: "Test lösen"
@@ -792,12 +973,16 @@ solveTest:
     nl: "Toets oplossen"
     pt_BR: "Resolver Teste"
     es: "Solucionar test"
+    sk: "Vyriešiť test"
+    cs: "Vyřešit test"
 
 specificTag(tag):
     de: "Tag \\\"(tag)\\\""
     en: "Tag \\\"(tag)\\\""
     es: "Etiqueta \\\"(tag)\\\""
     it: "Tag \\\"(tag)\\\""
+    sk: "Štítok \\\"(tag)\\\""
+    cs: "Štítek \\\"(tag)\\\""
 
 star:
     de: "Stern"
@@ -807,6 +992,8 @@ star:
     nl: "Ster"
     pt_BR: "Estrela"
     es: "Estrella"
+    sk: "Hviezda"
+    cs: "Hvězda"
 
 starDescription:
     de: "Ein spezielles Tag, das während des Lernens gesetzt werden kann"
@@ -816,6 +1003,8 @@ starDescription:
     nl: "Een speciaal label tijdens het studeren"
     pt_BR: "Uma tag especial pode ser definida enquanto estuda"
     es: "Una etiqueta especial que puede usarse durante el estudio"
+    sk: "Špeciálny štítok, ktorý je možné nastaviť počas štúdia"
+    cs: "Speciální štítek, který lze nastavit během studia"
 
 startStudyMode:
     de: "Starte den Lernmodus"
@@ -825,6 +1014,8 @@ startStudyMode:
     nl: "Studiemodus starten"
     pt_BR: "Iniciar Modo de Estudo"
     es: "Comenzar modalidad estudio"
+    sk: "Spustiť študijný režím"
+    cs: "Spustit studijní režim"
 
 study(title):
     de: "Lerne \\\"(title)\\\""
@@ -834,6 +1025,8 @@ study(title):
     nl: "Studeren voor (title)"
     pt_BR: "Studar \\\"(title)\\\""
     es: "Estudiar \\\"(title)\\\""
+    sk: "Študovať \\\"(title)\\\""
+    cs: "Studovat \\\"(title)\\\""
 
 studyDescription:
     de: "Lerne bis du jede Karteikarte beherrscht"
@@ -843,6 +1036,8 @@ studyDescription:
     nl: "Herhaal elke geheugenkaart tot je het antwoord kent"
     pt_BR: "Repetir cada flashcard até você se lembrar"
     es: "Repetir cada tarjeta hasta que la recuerdes"
+    sk: "Opakovať každú kartu pokým si ju nezapamätáš"
+    cs: "Opakovat každou kartu dokud si ji nezapamatuješ"
 
 studySettings:
     de: "Einstellungen zum Lernmodus"
@@ -852,6 +1047,8 @@ studySettings:
     nl: "Studievoorkeuren"
     pt_BR: "Configurações de Estudo"
     es: "Ajustes de estudio"
+    sk: "Spustiť študijný režím"
+    cs: "Spustit studijní režim"
 
 studySummary(count, total):
     de: "Lerne (count) von (total) Karteikarten"
@@ -868,6 +1065,10 @@ studySummary(count, total):
     pt_BR(total == "1"): "Estudando (count) de (total) Flashcard"
     es: "Estudio: (count) de (total) tarjetas"
     es(total == "1"): "Estudio: (count) de (total) tarjeta"
+    sk: "Naštudovaných (count) z (total) kartičiek"
+    sk(total == "1"): "Naštudovaných (count) z (total) kartičiek"
+    cs: "Nastudovaných (count) z (total) kartiček"
+    cs(total == "1"): "Nastudovaných (count) z (total) kartiček"
 
 studySwitcher:
     de: "Lernen"
@@ -877,6 +1078,8 @@ studySwitcher:
     nl: "Studeren"
     pt_BR: "Estudar"
     es: "Estudiar"
+    sk: "Študovať"
+    cs: "Studovat"
 
 switchFrontBack:
     de: "Vorder- und Rückseite vertauschen"
@@ -886,6 +1089,8 @@ switchFrontBack:
     nl: "Voor- en achterkant verwisselen"
     pt_BR: "Trocar Frente e Verso"
     es: "Cambiar anverso y reverso"
+    sk: "Otočiť na opačnú stranu"
+    cs: "Otočit na opačnou stranu"
 
 tab:
     de: "Tab"
@@ -895,6 +1100,8 @@ tab:
     nl: "Tabblad"
     pt_BR: "Aba"
     es: "Pestaña"
+    sk: "Záložka"
+    cs: "Záložka"
 
 tag:
     de: "Tag"
@@ -904,6 +1111,8 @@ tag:
     nl: "Label"
     pt_BR: "Tag"
     es: "Etiqueta"
+    sk: "Štítok"
+    cs: "Štítek"
 
 tags:
     de: "Tags"
@@ -913,6 +1122,8 @@ tags:
     nl: "Labels"
     pt_BR: "Tags"
     es: "Etiquetas"
+    sk: "Štítky"
+    cs: "Štítky"
 
 tagsDescription:
     de: "Organisiere und lerne Karteikarten in Gruppen"
@@ -922,6 +1133,8 @@ tagsDescription:
     nl: "Verdeel geheugenkaarten in groepen"
     pt_BR: "Organize e estude flashcards em grupo"
     es: "Organizar y estudiar tarjetas en grupos"
+    sk: "Organizovať a študovať kartičky v skupinách"
+    cs: "Organizovat a studovat kartičky ve skupinách"
 
 terminateStudyMode:
     de: "Lernmodus beenden"
@@ -931,6 +1144,8 @@ terminateStudyMode:
     nl: "Studiemodus afsluiten"
     pt_BR: "Terminar Modo de Estudo"
     es: "Terminar modalidad estudio"
+    sk: "Ukončiť študijný režím"
+    cs: "Ukončit studijní režim"
 
 test:
     de: "Testen"
@@ -940,6 +1155,8 @@ test:
     nl: "Toets"
     pt_BR: "Teste"
     es: "Test"
+    sk: "Test"
+    cs: "Test"
 
 testDescription(count, total):
     de: "Teste (count) von (total) Karteikarten"
@@ -956,6 +1173,10 @@ testDescription(count, total):
     pt_BR(total == "1"): "Testando (count) de (total) Flashcard"
     es: "Comprobando (count) de (total) tarjetas"
     es(total == "1"): "Comprobando (count) de (total) tarjeta"
+    sk: "Testovaných (count) z (total) kartičiek"
+    sk(total == "1"): "Testovaná (count) z (total) kartičky"
+    cs: "Testováno (count) z (total) kartiček"
+    cs(total == "1"): "Testována (count) z (total) kartičky"
 
 title:
     de: "Titel"
@@ -965,6 +1186,8 @@ title:
     nl: "Titel"
     pt_BR: "Título"
     es: "Título"
+    sk: "Názov"
+    cs: "Název"
 
 toggleSidebar:
     de: "Seitenleiste ein- und ausblenden"
@@ -973,6 +1196,8 @@ toggleSidebar:
     it: "Attiva la barra laterale"
     nl: "Zijbalk tonen/verbergen"
     es: "Activar / Desactivar barra lateral"
+    sk: "Prepnúť bočný panel"
+    cs: "Přepnout postranní panel"
 
 viewMenu:
     de: "Ansicht"
@@ -982,6 +1207,8 @@ viewMenu:
     nl: "Beeld"
     pt_BR: "Ver"
     es: "Ver"
+    sk: "Zobraziť"
+    cs: "Zobrazit"
 
 yourAnswer:
     de: "Deine Antwort"
@@ -991,3 +1218,5 @@ yourAnswer:
     nl: "Mijn antwoord"
     pt_BR: "Sua Resposta"
     es: "Tu respuesta"
+    sk: "Tvoja odpoveď"
+    cs: "Tvá odpověď"
