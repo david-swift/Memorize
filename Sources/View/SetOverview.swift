@@ -123,7 +123,7 @@ struct SetOverview: View {
                 flashcardsView.push(.study(set: set.id))
             }
             .pill()
-            Button(Loc.test, icon: .default(icon: .emblemDocuments)) {
+            Button(Loc.test, icon: .custom(name: "io.github.david_swift.Flashcards.emblem-documents-symbolic")) {
                 flashcardsView.push(.test(set: set.id))
             }
             .pill()

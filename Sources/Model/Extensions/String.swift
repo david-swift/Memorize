@@ -3,7 +3,7 @@
 //  Memorize
 //
 
-extension String: Identifiable {
+extension String: @retroactive Identifiable {
 
     /// The identifier.
     public var id: Self { self }

@@ -15,7 +15,7 @@ struct CarouselView: View {
             carouselContent(flashcard: flashcard)
                 .card()
                 .padding(20)
-                .frame(minWidth: 200, minHeight: 150)
+                .frame(minWidth: 280, minHeight: 150)
                 .onClick {
                     if answerCards.contains(flashcard.id) {
                         answerCards = answerCards.filter { $0 != flashcard.id }

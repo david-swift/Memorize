@@ -92,7 +92,7 @@ struct StudyView: View {
     var entryButtons: View {
         PillButtonSet(
             primary: Loc.check,
-            icon: .default(icon: .emblemOk),
+            icon: .custom(name: "io.github.david_swift.Flashcards.emblem-ok-symbolic"),
             secondary: Loc.studySettings,
             icon: .custom(name: "io.github.david_swift.Flashcards.settings-symbolic")
         ) {
@@ -143,8 +143,11 @@ struct StudyView: View {
             primary: Loc._continue,
             icon: .default(icon: .goNext),
             secondary: flashcard.back == input ? Loc.makeIncorrect : Loc.makeCorrect,
-            icon: flashcard.back == input
-            ? .custom(name: "io.github.david_swift.Flashcards.mistake-symbolic") : .default(icon: .emblemOk),
+            icon: .custom(
+                name: flashcard.back == input ?
+                "io.github.david_swift.Flashcards.mistake-symbolic" :
+                "io.github.david_swift.Flashcards.emblem-ok-symbolic"
+            ),
             focus: focusDefaults
         ) {
             let index = set.flashcards.firstIndex { $0.id == getFlashcard(id: randomID)?.id }

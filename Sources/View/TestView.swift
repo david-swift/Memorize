@@ -129,7 +129,7 @@ struct TestView: View {
     var testButtons: View {
         PillButtonSet(
             primary: Loc.check,
-            icon: .default(icon: .emblemOk),
+            icon: .custom(name: "io.github.david_swift.Flashcards.emblem-ok-symbolic"),
             secondary: Loc.finishTest,
             icon: .default(icon: .goNext)
         ) {

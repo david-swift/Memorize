@@ -118,7 +118,7 @@ struct ImportView: View {
     var csvTutorial: View {
         StatusPage(
             Loc.importCSV,
-            icon: .default(icon: .emblemDocuments),
+            icon: .custom(name: "io.github.david_swift.Flashcards.emblem-documents-symbolic"),
             description: Loc.csvDescription
         )
     }

@@ -1,10 +1,10 @@
 {
   "app-id": "io.github.david_swift.Flashcards",
   "runtime": "org.gnome.Platform",
-  "runtime-version": "46",
+  "runtime-version": "49",
   "sdk": "org.gnome.Sdk",
   "sdk-extensions": [
-    "org.freedesktop.Sdk.Extension.swift5"
+    "org.freedesktop.Sdk.Extension.swift6"
   ],
   "command": "Flashcards",
   "finish-args": [
@@ -15,8 +15,8 @@
     "--socket=wayland"
   ],
   "build-options": {
-    "append-path": "/usr/lib/sdk/swift5/bin",
-    "prepend-ld-library-path": "/usr/lib/sdk/swift5/lib"
+    "append-path": "/usr/lib/sdk/swift6/bin",
+    "prepend-ld-library-path": "/usr/lib/sdk/swift6/lib"
   },
   "cleanup": [
     "/include",
@@ -42,6 +42,7 @@
         }
       ],
       "build-commands": [
+      	"swiftlint Sources",
         "swift build -c debug --static-swift-stdlib",
         "install -Dm755 .build/debug/Flashcards /app/bin/Flashcards",
         "install -Dm644 data/io.github.david_swift.Flashcards.metainfo.xml $DESTDIR/app/share/metainfo/io.github.david_swift.Flashcards.metainfo.xml",
@@ -53,7 +54,9 @@
         "install -Dm644 data/icons/mistake-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.mistake-symbolic.svg",
         "install -Dm644 data/icons/tag-outline-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.tag-outline-symbolic.svg",
         "install -Dm644 data/icons/share-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.share-symbolic.svg",
-        "install -Dm644 data/icons/import-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.import-symbolic.svg"
+        "install -Dm644 data/icons/import-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.import-symbolic.svg",
+        "install -Dm644 data/icons/emblem-ok-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.emblem-ok-symbolic.svg",
+        "install -Dm644 data/icons/emblem-documents-symbolic.svg $DESTDIR/app/share/icons/hicolor/symbolic/apps/io.github.david_swift.Flashcards.emblem-documents-symbolic.svg"
       ]
     }
   ]
