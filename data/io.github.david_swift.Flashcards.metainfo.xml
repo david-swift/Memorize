@@ -58,6 +58,17 @@ Du kannst Quizlet-Sets einfach importieren.
   <launchable type="desktop-id">io.github.david_swift.Flashcards.desktop</launchable>
 
   <releases>
+    <release version="0.2.5" date="2025-12-22">
+      <description>
+        <ul>
+          <li>Update to GNOME 49 runtime</li>
+          <li>Add Spanish (Spain) translation</li>
+          <li>Add Czech translation</li>
+          <li>Add Slovak translation</li>
+          <li>Update Italian translation</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.2.4" date="2024-06-08">
       <description>
         <ul>
