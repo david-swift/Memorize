@@ -14,8 +14,8 @@ struct ToolbarView: View {
     @Binding var searchFocused: Bool
     @Binding var editMode: Bool
     @State private var about = false
-    var app: GTUIApp
-    var window: GTUIApplicationWindow
+    var app: AdwaitaApp
+    var window: AdwaitaWindow
     var addSet: () -> Void
 
     var view: Body {
@@ -43,8 +43,8 @@ struct ToolbarView: View {
         )
     }
 
-    var menu: View {
-        Menu(icon: .default(icon: .openMenu), app: app, window: window) {
+    var menu: AnyView {
+        Menu(icon: .default(icon: .openMenu)) {
             viewMenu
             MenuSection {
                 MenuButton(Loc.about, window: false) {

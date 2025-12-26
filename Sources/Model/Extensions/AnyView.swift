@@ -1,13 +1,13 @@
 //
-//  View.swift
+//  AnyView.swift
 //  Memorize
 //
 
 import Adwaita
 
-extension View {
+extension AnyView {
 
-    func formWidth() -> View {
+    func formWidth() -> AnyView {
         frame(maxWidth: 500)
     }
 

@@ -5,7 +5,7 @@
 
 import Adwaita
 
-struct DeleteView: View {
+struct DeleteView: SimpleView {
 
     var set: FlashcardsSet
     var delete: () -> Void

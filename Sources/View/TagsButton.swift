@@ -5,7 +5,7 @@
 
 import Adwaita
 
-struct TagsButton: View {
+struct TagsButton: SimpleView {
 
     @Binding var selectedTags: [String]
     @Binding var editTags: Bool
@@ -24,14 +24,14 @@ struct TagsButton: View {
         }
     }
 
-    var starButton: View {
+    var starButton: AnyView {
         tagToggle(tag: Loc.star)
             .flat()
             .circular()
             .tooltip(Loc.star)
     }
 
-    var pickerButton: View {
+    var pickerButton: AnyView {
         Button(
             selectedTags.isEmpty ? "" : "\(selectedTags.count)",
             icon: .custom(name: "io.github.david_swift.Flashcards.tag-outline-symbolic")
@@ -59,7 +59,7 @@ struct TagsButton: View {
     }
 
     @ViewBuilder
-    func tagToggle(tag: String) -> View {
+    func tagToggle(tag: String) -> Body {
         let name = "io.github.david_swift.Flashcards.tag-outline-symbolic"
         let icon: Icon = tag == Localized.star.en || tag == Localized.star.de ? .default(
             icon: selectedTags.contains(tag) ? .starred : .nonStarred

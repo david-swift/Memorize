@@ -14,11 +14,12 @@ struct ImportView: View {
     // swiftlint:enable large_tuple
 
     @Binding var set: FlashcardsSet
-    @Binding var text: String
+    @State private var text = ""
     @State private var switchSides = false
     @State private var navigationStack = NavigationStack<ImportNavigationDestination>()
-    var window: GTUIWindow
-    var app: GTUIApp
+    @State private var importer: Signal = .init()
+    var window: AdwaitaWindow
+    var app: AdwaitaApp
     var close: () -> Void
 
     var view: Body {
@@ -51,9 +52,14 @@ struct ImportView: View {
                     .valign(.start)
             }
         }
+        .fileImporter(open: importer) { url in
+            if let contents = try? String(contentsOf: url) {
+                text = contents
+            }
+        } onClose: { }
     }
 
-    var appView: View {
+    var appView: AnyView {
         List(FlashcardsApp.allCases, selection: nil) { app in
             ActionRow()
                 .title(app.name)
@@ -73,12 +79,12 @@ struct ImportView: View {
         .formWidth()
     }
 
-    var entry: View {
+    var entry: AnyView {
         Form {
             EntryRow(Loc.pasteText, text: $text)
                 .suffix {
                     Button(icon: .default(icon: .documentOpen)) {
-                        app.addWindow("import", parent: window)
+                        importer.signal()
                     }
                     .padding(10, .vertical)
                     .flat()
@@ -88,7 +94,7 @@ struct ImportView: View {
         .padding(20)
     }
 
-    var quizletTutorial: View {
+    var quizletTutorial: AnyView {
         StatusPage(
             Loc.exportQuizletSet,
             icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
@@ -103,11 +109,11 @@ struct ImportView: View {
                 try? process.run()
             }
             .pill()
-            .horizontalCenter()
+            .halign(.center)
         }
     }
 
-    var ankiTutorial: View {
+    var ankiTutorial: AnyView {
         StatusPage(
             Loc.exportAnkiDeck,
             icon: .custom(name: "io.github.david_swift.Flashcards.set-symbolic"),
@@ -115,7 +121,7 @@ struct ImportView: View {
         )
     }
 
-    var csvTutorial: View {
+    var csvTutorial: AnyView {
         StatusPage(
             Loc.importCSV,
             icon: .custom(name: "io.github.david_swift.Flashcards.emblem-documents-symbolic"),
@@ -123,7 +129,7 @@ struct ImportView: View {
         )
     }
 
-    func preview(app: FlashcardsApp) -> View {
+    func preview(app: FlashcardsApp) -> AnyView {
         ScrollView {
             CarouselView(set: .constant(previewSet(app: app)))
         }
@@ -165,7 +171,7 @@ struct ImportView: View {
     }
 
     @ViewBuilder
-    func tutorial(app: FlashcardsApp) -> View {
+    func tutorial(app: FlashcardsApp) -> AnyView {
         switch app {
         case .quizlet:
             quizletTutorial
@@ -176,7 +182,7 @@ struct ImportView: View {
         }
     }
 
-    func toolbar(destination: ImportNavigationDestination?) -> View {
+    func toolbar(destination: ImportNavigationDestination?) -> AnyView {
         HeaderBar(titleButtons: false) {
             if destination == nil {
                 Button(Loc.cancel) {

@@ -36,7 +36,7 @@ struct TestView: View {
         }
     }
 
-    @ViewBuilder var configuration: View {
+    @ViewBuilder var configuration: AnyView {
         TagFilterForm(
             allFlashcards: $set.testAllFlashcards.nonOptional,
             selectedTags: $set.testTags.nonOptional,
@@ -47,7 +47,7 @@ struct TestView: View {
             .formWidth()
     }
 
-    var generalSection: View {
+    var generalSection: AnyView {
         Form {
             SwitchRow(Loc.answerWithBack, isOn: $set.answerWithBack)
             SpinRow(
@@ -65,7 +65,7 @@ struct TestView: View {
                     startTest()
                 }
                 .suggested()
-                .verticalCenter()
+                .valign(.center)
             }
             .insensitive(set.testFlashcards.isEmpty)
         }
@@ -99,7 +99,7 @@ struct TestView: View {
         testButtons
     }
 
-    var score: View {
+    var score: AnyView {
         Form {
             if let score = set.score {
                 if score == set.numberOfQuestions {
@@ -126,7 +126,7 @@ struct TestView: View {
         .init(Loc.scoreRowLabel)
     }
 
-    var testButtons: View {
+    var testButtons: AnyView {
         PillButtonSet(
             primary: Loc.check,
             icon: .custom(name: "io.github.david_swift.Flashcards.emblem-ok-symbolic"),

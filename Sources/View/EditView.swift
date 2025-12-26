@@ -11,7 +11,6 @@ struct EditView: View {
     @Binding var editMode: Bool
     @Binding var editSearch: Search
     @Binding var searchFocused: Bool
-    @Binding var importText: String
     @Binding var createSet: Bool
     @State private var expanded = false
     @State private var focusedFront: String?
@@ -19,8 +18,8 @@ struct EditView: View {
     @State private var importFlashcards = false
     @State private var searchFlashcards: [Flashcard] = []
     @State private var stack: NavigationStack<EditNavigationDestination> = .init()
-    var window: GTUIWindow
-    var app: GTUIApp
+    var window: AdwaitaWindow
+    var app: AdwaitaApp
     var deleteSet: () -> Void
 
     var view: Body {
@@ -52,7 +51,7 @@ struct EditView: View {
             .topToolbar(visible: editSearch.visible) { searchToolbar }
             .topToolbar { toolbar }
         }
-        .inspect { storage in
+        .inspect { storage, _ in
             if editSearch.effectiveQuery.isEmpty {
                 guard editSearch.visible else {
                     return
@@ -77,7 +76,7 @@ struct EditView: View {
         }
     }
 
-    var toolbar: View {
+    var toolbar: AnyView {
         HeaderBar(titleButtons: false) {
             if createSet {
                 Button(Loc.cancel) {
@@ -108,7 +107,7 @@ struct EditView: View {
         }
     }
 
-    var searchToolbar: View {
+    var searchToolbar: AnyView {
         SearchEntry()
             .placeholderText(Loc.searchFlashcards)
             .text($editSearch.query)
@@ -120,7 +119,7 @@ struct EditView: View {
             .frame(maxWidth: 300)
     }
 
-    var title: View {
+    var title: AnyView {
         Form {
             EntryRow(Loc.title, text: $set.name)
             KeywordsRow(keywords: $set.keywords.nonOptional)
@@ -128,7 +127,7 @@ struct EditView: View {
         .padding(20)
     }
 
-    var tags: View {
+    var tags: AnyView {
         Form {
             KeywordsRow(
                 keywords: $set.tags.nonOptional,
@@ -161,7 +160,7 @@ struct EditView: View {
         .padding(20)
     }
 
-    var flashcards: View {
+    var flashcards: AnyView {
         ForEach(.init(set.flashcards.indices)) { index in
             if let flashcard = set.flashcards[safe: index] {
                 EditFlashcardView(
@@ -196,7 +195,7 @@ struct EditView: View {
         .padding()
     }
 
-    var actions: View {
+    var actions: AnyView {
         PillButtonSet(
             primary: Loc.addFlashcard,
             icon: .default(icon: .listAdd),
@@ -208,7 +207,7 @@ struct EditView: View {
             importFlashcards = true
         }
         .dialog(visible: $importFlashcards, width: 400, height: 450) {
-            ImportView(set: $set, text: $importText, window: window, app: app) { importFlashcards = false }
+            ImportView(set: $set, window: window, app: app) { importFlashcards = false }
         }
     }
 
@@ -234,7 +233,7 @@ struct EditView: View {
         }
     }
 
-    func tagView(destination: EditNavigationDestination) -> View {
+    func tagView(destination: EditNavigationDestination) -> AnyView {
         FlashcardsListView(flashcards: set.flashcards) { flashcard in
             guard case let .tag(tag) = destination else {
                 return

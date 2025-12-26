@@ -10,7 +10,6 @@ import Foundation
 struct ContentView: WindowView {
 
     @Binding var sets: [FlashcardsSet]
-    @Binding var importText: String
     @State("selected-set")
     private var selectedSet = ""
     @State private var flashcardsView: NavigationStack<FlashcardsView> = .init()
@@ -26,8 +25,8 @@ struct ContentView: WindowView {
     private var maximized = false
     @State private var contentVisible = true
     @State private var createSet = false
-    var app: GTUIApp
-    var window: GTUIApplicationWindow
+    var app: AdwaitaApp
+    var window: AdwaitaWindow
 
     var smallWindow: Bool { width < 600 }
 
@@ -64,7 +63,7 @@ struct ContentView: WindowView {
         }
     }
 
-    var sidebar: View {
+    var sidebar: AnyView {
         ScrollView {
             List(
                 sets
@@ -128,7 +127,6 @@ struct ContentView: WindowView {
                 editSearch: $editSearch,
                 searchFocused: $searchFocused,
                 flashcardsView: $flashcardsView,
-                importText: $importText,
                 createSet: $createSet,
                 smallWindow: smallWindow,
                 window: window,
@@ -159,7 +157,6 @@ struct ContentView: WindowView {
                         }
                         .pill()
                         .suggested()
-                        .horizontalCenter()
                     }
                     .centerMinSize()
                     .iconDropshadow()

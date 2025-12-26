@@ -66,7 +66,7 @@ struct KeywordsRow: View {
     }
 
     @ViewBuilder
-    func applyButton(keyword: String) -> View {
+    func applyButton(keyword: String) -> AnyView {
         if let stack {
             Button(icon: .default(icon: .viewListBullet)) {
                 stack.wrappedValue.push(.tag(tag: keyword))

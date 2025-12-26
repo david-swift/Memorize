@@ -42,7 +42,7 @@
         }
       ],
       "build-commands": [
-      	"swiftlint Sources",
+        "swiftlint Sources",
         "swift build -c debug --static-swift-stdlib",
         "install -Dm755 .build/debug/Flashcards /app/bin/Flashcards",
         "install -Dm644 data/io.github.david_swift.Flashcards.metainfo.xml $DESTDIR/app/share/metainfo/io.github.david_swift.Flashcards.metainfo.xml",

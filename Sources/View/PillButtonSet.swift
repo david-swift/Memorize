@@ -5,7 +5,7 @@
 
 import Adwaita
 
-struct PillButtonSet: View {
+struct PillButtonSet: SimpleView {
 
     var primary: String
     var primaryIcon: Icon
@@ -22,10 +22,10 @@ struct PillButtonSet: View {
         }
         .padding(20)
         .modifyContent(Adwaita.Button.self) { $0.padding().pill() }
-        .horizontalCenter()
+        .halign(.center)
     }
 
-    var primaryView: View {
+    var primaryView: AnyView {
         Button(primary, icon: primaryIcon) {
             primaryAction()
         }
@@ -33,7 +33,7 @@ struct PillButtonSet: View {
         .focus(focus ?? .init())
     }
 
-    var secondaryView: View {
+    var secondaryView: AnyView {
         Button(icon: secondaryIcon) {
             secondaryAction()
         }

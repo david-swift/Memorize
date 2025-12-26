@@ -5,11 +5,11 @@
 
 import Adwaita
 
-struct FlashcardsListView: View {
+struct FlashcardsListView: SimpleView {
 
     var flashcards: [Flashcard]
     var activated: (Flashcard) -> Void
-    var prefix: (Flashcard) -> View = { _ in [] }
+    var prefix: (Flashcard) -> AnyView = { _ in [] }
 
     var view: Body {
         ScrollView {

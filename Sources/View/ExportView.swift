@@ -49,7 +49,7 @@ struct ExportView: View {
                 }
             } end: {
                 Button(Loc.copy) {
-                    State<Any>.copy(text)
+                    AdwaitaApp.copy(text)
                     close()
                     copied.signal()
                 }

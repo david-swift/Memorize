@@ -12,14 +12,13 @@ struct SetOverview: View {
     @Binding var editSearch: Search
     @Binding var searchFocused: Bool
     @Binding var flashcardsView: NavigationStack<FlashcardsView>
-    @Binding var importText: String
     @Binding var createSet: Bool
     @State private var export = false
     @State private var deleteState = false
     @State private var copied = Signal()
     var smallWindow: Bool
-    var window: GTUIApplicationWindow
-    var app: GTUIApp
+    var window: AdwaitaWindow
+    var app: AdwaitaApp
     var delete: () -> Void
 
     var view: Body {
@@ -86,7 +85,6 @@ struct SetOverview: View {
                 editMode: $editMode,
                 editSearch: $editSearch,
                 searchFocused: $searchFocused,
-                importText: $importText,
                 createSet: $createSet,
                 window: window,
                 app: app,
@@ -96,7 +94,7 @@ struct SetOverview: View {
         .toast(Loc.copied, signal: copied)
     }
 
-    var title: View {
+    var title: AnyView {
         VStack {
             HStack {
                 Text(set.name)
@@ -108,7 +106,7 @@ struct SetOverview: View {
         .halign(.center)
     }
 
-    var cards: View {
+    var cards: AnyView {
         ViewStack(element: set) { _ in
             VStack {
                 CarouselView(set: $set)
@@ -117,7 +115,7 @@ struct SetOverview: View {
         }
     }
 
-    var buttons: View {
+    var buttons: AnyView {
         HStack {
             Button(Loc.studySwitcher, icon: .default(icon: .mediaPlaybackStart)) {
                 flashcardsView.push(.study(set: set.id))

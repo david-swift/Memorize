@@ -5,7 +5,7 @@
 
 import Adwaita
 
-struct FlashcardTestSection: View {
+struct FlashcardTestSection: SimpleView {
 
     @Binding var flashcard: Flashcard
     var focusedFlashcard: String?
@@ -29,7 +29,7 @@ struct FlashcardTestSection: View {
                                     flashcard.gameData.input = flashcard.back
                                 }
                                 .flat()
-                                .verticalCenter()
+                                .valign(.center)
                             }
                         back
                             .error()
@@ -50,7 +50,7 @@ struct FlashcardTestSection: View {
             .useMarkup(false)
     }
 
-    var back: View {
+    var back: AnyView {
         EntryRow(Loc.answer, text: $flashcard.gameData.input)
             .entryActivated {
                 focusNext()

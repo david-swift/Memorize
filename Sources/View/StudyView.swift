@@ -35,9 +35,11 @@ struct StudyView: View {
                     if solution {
                         solutionView(flashcard: flashcard)
                             .valign(.center)
+                            .transition(.slideLeft)
                     } else {
                         entryView(flashcard: flashcard)
                             .valign(.center)
+                            .transition(.slideLeft)
                     }
                 } else {
                     pauseView
@@ -77,7 +79,7 @@ struct StudyView: View {
                     continueStudying()
                 }
                 .suggested()
-                .verticalCenter()
+                .valign(.center)
             }
             .insensitive(set.studyFlashcards.isEmpty)
         }
@@ -85,11 +87,11 @@ struct StudyView: View {
         .formWidth()
     }
 
-    var sideSwitchRow: View {
+    var sideSwitchRow: AnyView {
         SwitchRow(Loc.answerWithBack, isOn: $set.answerWithBack)
     }
 
-    var entryButtons: View {
+    var entryButtons: AnyView {
         PillButtonSet(
             primary: Loc.check,
             icon: .custom(name: "io.github.david_swift.Flashcards.emblem-ok-symbolic"),
@@ -125,7 +127,7 @@ struct StudyView: View {
             }
     }
 
-    func solutionView(flashcard: Flashcard) -> View {
+    func solutionView(flashcard: Flashcard) -> AnyView {
         VStack {
             if input == flashcard.back {
                 solutionRow(answer: input)
@@ -135,10 +137,9 @@ struct StudyView: View {
             solutionButtons(flashcard: flashcard)
         }
         .formWidth()
-        .transition(.slideLeft)
     }
 
-    func solutionButtons(flashcard: Flashcard) -> View {
+    func solutionButtons(flashcard: Flashcard) -> AnyView {
         PillButtonSet(
             primary: Loc._continue,
             icon: .default(icon: .goNext),
@@ -162,7 +163,7 @@ struct StudyView: View {
         }
     }
 
-    func entryView(flashcard: Flashcard) -> View {
+    func entryView(flashcard: Flashcard) -> AnyView {
         VStack {
             Form {
                 ActionRow(flashcard.front)
@@ -178,7 +179,6 @@ struct StudyView: View {
             entryButtons
         }
         .formWidth()
-        .transition(.slideLeft)
     }
 
     func continueStudying() {
@@ -199,7 +199,7 @@ struct StudyView: View {
         focusDefaults.signal()
     }
 
-    func solutionRow(answer: String) -> View {
+    func solutionRow(answer: String) -> AnyView {
         let solution = flashcard?.back ?? ""
         let correct = answer == solution
         return Form {
@@ -219,6 +219,7 @@ struct StudyView: View {
                     )
                     .padding()
                 }
+                .property()
             ActionRow(correct ? Loc.correct : Loc.yourAnswer)
                 .useMarkup(false)
                 .subtitle(answer)

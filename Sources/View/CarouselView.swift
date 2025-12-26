@@ -31,7 +31,7 @@ struct CarouselView: View {
         .longSwipes()
     }
 
-    func carouselContent(flashcard: Flashcard) -> View {
+    func carouselContent(flashcard: Flashcard) -> AnyView {
         VStack {
             if answerCards.contains(flashcard.id) {
                 Text(flashcard.back)
@@ -55,7 +55,7 @@ struct CarouselView: View {
         }
     }
 
-    func starOverlay(flashcard: Flashcard) -> View {
+    func starOverlay(flashcard: Flashcard) -> AnyView {
         VStack {
             HStack {
                 TagsButton(
