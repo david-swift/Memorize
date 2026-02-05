@@ -376,17 +376,6 @@ deleteTitle(title):
     sk: "Odstrániť \\\"(title)\\\"?"
     cs: "Smazat \\\"(title)\\\"?"
 
-done:
-    de: "Fertig"
-    en: "Done"
-    fr: "Terminé"
-    it: "Fatto"
-    nl: "Klaar"
-    pt_BR: "Feito"
-    es: "Hecho"
-    sk: "Hotovo"
-    cs: "Hotovo"
-
 editSet:
     de: "Set bearbeiten"
     en: "Edit Set"
@@ -581,6 +570,10 @@ initialDifficultyDescription:
     sk: "Nastaviť minimálny počet opakovaní na kartičku"
     cs: "Nastavit minimální počet opakování na kartičku"
 
+keyboardShortcuts:
+    de: "Tastenkombinationen"
+    en: "Keyboard Shortcuts"
+
 keyword:
     de: "Schlüsselwort"
     en: "Keyword"
@@ -762,6 +755,10 @@ numberOfQuestions:
     sk: "Počet otázok"
     cs: "Počet otázek"
 
+openMenu:
+    de: "Menü öffnen"
+    en: "Open Menu"
+
 overview:
     de: "Übersicht"
     en: "Overview"
@@ -794,6 +791,10 @@ question(index):
     es: "Pregunta (index)"
     sk: "Otázka (index)"
     cs: "Otázka (index)"
+
+quit:
+    de: "Die Anwendung beenden"
+    en: "Quit the application"
 
 quizlet:
     de: "Quizlet"

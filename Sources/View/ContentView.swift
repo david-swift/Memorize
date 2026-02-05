@@ -112,7 +112,6 @@ struct ContentView: WindowView {
                 searchFocused: $searchFocused,
                 editMode: $editMode,
                 app: app,
-                window: window,
                 addSet: addSet
             )
         }
@@ -132,7 +131,12 @@ struct ContentView: WindowView {
                 window: window,
                 app: app
             ) {
-                sets = sets.filter { $0.id != set.id }
+                if let set = sets[safe: index - 1] {
+                    selectedSet = set.id
+                } else if let set = sets[safe: index + 1] {
+                    selectedSet = set.id
+                }
+                sets.remove(at: index)
             }
         } else {
             VStack {
@@ -157,6 +161,7 @@ struct ContentView: WindowView {
                         }
                         .pill()
                         .suggested()
+                        .halign(.center)
                     }
                     .centerMinSize()
                     .iconDropshadow()

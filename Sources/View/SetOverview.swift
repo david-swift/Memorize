@@ -23,15 +23,13 @@ struct SetOverview: View {
 
     var view: Body {
         ViewStack(element: set) { _ in
-            if !createSet {
-                title
-                    .centerMinSize()
-                cards
-                    .frame(minHeight: 270)
-                    .valign(.center)
-                buttons
-                    .centerMinSize()
-            }
+            title
+                .centerMinSize()
+            cards
+                .frame(minHeight: 270)
+                .valign(.center)
+            buttons
+                .centerMinSize()
         }
         .topToolbar {
             HeaderBar {
@@ -39,12 +37,12 @@ struct SetOverview: View {
                     Button(icon: .default(icon: .userTrash)) {
                         deleteState = true
                     }
-                    .keyboardShortcut("Delete", window: window, active: !editMode)
+                    .keyboardShortcut("Delete", active: !editMode)
                     .tooltip(Loc.deleteSet)
                     Button(icon: .custom(name: "io.github.david_swift.Flashcards.share-symbolic")) {
                         export = true
                     }
-                    .keyboardShortcut("e".ctrl(), window: window)
+                    .keyboardShortcut("e".ctrl())
                     .tooltip(Loc.exportSet)
                     .insensitive(set.flashcards.isEmpty)
                 }
@@ -57,12 +55,13 @@ struct SetOverview: View {
             }
             .titleWidget { }
         }
-        .dialog(visible: $deleteState, title: Loc.deleteTitle(title: set.name), id: "delete", height: 350) {
-            DeleteView(set: set) {
-                delete()
-            } close: {
-                deleteState = false
-            }
+        .alertDialog(visible: $deleteState, heading: Loc.deleteTitle(title: set.name), body: Loc.deleteDescription)
+        .response(Loc.cancel, role: .close) {
+            deleteState = false
+        }
+        .response(Loc.delete, appearance: .destructive) {
+            delete()
+            deleteState = false
         }
         .dialog(visible: $export, title: Loc.export(title: set.name), id: "export", width: 400, height: 400) {
             ExportView(copied: $copied, set: set) {

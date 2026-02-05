@@ -22,4 +22,13 @@ struct Flashcards: App {
         .closeShortcut()
     }
 
+    init() {
+        let userData = AdwaitaApp.userDataDir()
+        let oldPath = userData.appendingPathComponent("data.sqlite")
+        if FileManager.default.fileExists(atPath: oldPath.path) {
+            let newPath = userData.appendingPathComponent("io.github.david_swift.Flashcards.sqlite")
+            try? FileManager.default.moveItem(at: oldPath, to: newPath)
+        }
+    }
+
 }

@@ -68,7 +68,7 @@ struct ImportView: View {
                         .iconName("go-next-symbolic")
                 }
                 .activatableWidget {
-                    Button()
+                    Button("") { }
                         .activate {
                             navigationStack.push(.tutorial(app: app))
                         }

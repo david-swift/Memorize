@@ -77,7 +77,7 @@ struct EditView: View {
     }
 
     var toolbar: AnyView {
-        HeaderBar(titleButtons: false) {
+        HeaderBar(titleButtons: !createSet) {
             if createSet {
                 Button(Loc.cancel) {
                     editMode = false
@@ -96,11 +96,13 @@ struct EditView: View {
                 .tooltip(Loc.searchTitle)
             }
         } end: {
-            Button(createSet ? Loc.create : Loc.done) {
-                editMode = false
-                createSet = false
+            if createSet {
+                Button(Loc.create) {
+                    editMode = false
+                    createSet = false
+                }
+                .suggested()
             }
-            .suggested()
         }
         .headerBarTitle {
             WindowTitle(subtitle: "", title: createSet ? Loc.newSet : Loc.editSet)

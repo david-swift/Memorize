@@ -19,7 +19,7 @@ struct FlashcardsListView: SimpleView {
                     .subtitle(flashcard.back)
                     .useMarkup(false)
                     .activatableWidget {
-                        Button()
+                        Button("") { }
                             .activate {
                                 activated(flashcard)
                             }
